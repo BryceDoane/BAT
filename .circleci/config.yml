@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Deploy Master to Heroku
           command: |
-           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$behavior-a-tracker.git master
+           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/behavior-a-tracker.git master
     
 workflows:
   version: 2
