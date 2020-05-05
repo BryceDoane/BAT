@@ -1,0 +1,17 @@
+{
+    "name": "behavior-a-tracker",
+    "description": "Launch a GraphQL interface in Heroku.",
+    "keywords": [
+      "graphql",
+      "nodejs"
+    ],
+    "website": "https://github.com/BryceDoane/BAT",
+    "repository": "https://github.com/BryceDoane/BAT",
+    "success_url": "/graphql",
+    "image": "heroku/nodejs",
+    "buildpacks": [
+      {
+        "url": "heroku/nodejs"
+      }
+    ]
+  }
