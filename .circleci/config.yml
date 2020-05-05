@@ -23,9 +23,9 @@ jobs:
       # run tests!
       #- run: yarn test
 
-  deploy:xs
-    #docker:
-     # - image: buildpack-deps:trusty
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
     steps:
       - checkout
       - run:
