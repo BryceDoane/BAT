@@ -23,4 +23,4 @@ jobs:
                   command: npm build
             - run:
                   name: Firebase Deploy
-                  command: index.html deploy --token "$FIREBASE_TOKEN" --only hosting
+                  command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
