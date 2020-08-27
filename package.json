@@ -37,6 +37,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "firebase-tools": "^8.9.2",
     "nyc": "^13.1.0"
   }
 }
