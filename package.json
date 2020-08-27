@@ -30,6 +30,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
+    "firebase-functions": "^3.11.0",
     "graphql": "^14.0.2",
     "heroku": "^7.18.7",
     "lokijs": "^1.5.5",
