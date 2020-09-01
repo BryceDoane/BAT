@@ -15,6 +15,7 @@ Pull requests are welcome. For major changes, please email bd1275@messiah.edu to
 Please make sure to test appropriately.
 
 
-## License
+## Support
+Please email bd1275@messiah.edu for any questions, comments, or concerns.
 
 
