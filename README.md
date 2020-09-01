@@ -1,6 +1,8 @@
-# BehaviorAnalysisTracker
+# Name
+  Behavior Analysis Tracker
 
-Behavior Analysis Tracker is a web application deigned to assist special education teachers with the monitoring and reporting of their students' behavior in class.
+# Description
+ This is a web application designed to assist special education teachers with the monitoring and reporting of their students' behavior in class.
 
 ## Usage
 
