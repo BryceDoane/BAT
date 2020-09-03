@@ -21,3 +21,7 @@ Please make sure to test appropriately.
 Please email bd1275@messiah.edu for any questions, comments, or concerns.
 
 ## Credits
+Bryce Doane 
+Matt Laven 
+Eddie Daniel
+Gage-Sapp
