@@ -10,6 +10,7 @@ Navigate to https://behavior-analysis-tracker.web.app in a web browser, create a
 
 
 ## Future Releases
+Version 1.1 will include a login page as well as an update landing page that will house the core of the project
 
 ## Contributing
 Pull requests are welcome. For major changes, please email bd1275@messiah.edu to discuss the issue being fixed.
