@@ -10,6 +10,7 @@ Navigate to https://behavior-analysis-tracker.web.app in a web browser, create a
 
 
 ## Future Releases
+
 Version 1.1 will include a login page as well as an updated landing page that will house the core of the project
 
 ## Contributing
