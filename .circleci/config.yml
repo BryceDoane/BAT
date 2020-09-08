@@ -7,8 +7,9 @@ jobs:
             - image: circleci/node:10.16.0
         working_directory: ~/repo
         steps:
-            - slack/approval:
-                color: '#42e2f4'
+            - slack/status:
+                color: '#66f442'
+                fail_only: false
                 message: Project deploy started
             - checkout
             # Download and cache dependencies
