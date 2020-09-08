@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  slack: circleci/slack@x.y.z
 jobs:
     build:
         docker:
@@ -24,7 +26,6 @@ jobs:
             - run:
                   name: Firebase Deploy
                   command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
-orbs:
-  slack: circleci/slack@x.y.z
+
 
 
