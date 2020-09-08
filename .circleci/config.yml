@@ -27,5 +27,11 @@ jobs:
                   name: Firebase Deploy
                   command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 
+            - run: exit 0
+            - slack/status:
+                 fail_only: true
+                 only_for_branches: only_for_branches
+                 webhook: webhook
+
 
 
