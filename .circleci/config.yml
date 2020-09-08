@@ -9,7 +9,7 @@ jobs:
         steps:
             - slack/approval:
                 color: '#42e2f4'
-                message: This is a custom message notification
+                message: Project deploy started
             - checkout
             # Download and cache dependencies
             - restore_cache:
