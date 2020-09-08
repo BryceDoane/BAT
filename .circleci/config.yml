@@ -7,6 +7,12 @@ jobs:
             - image: circleci/node:10.16.0
         working_directory: ~/repo
         steps:
+            - slack/notify:
+                channel: cis47x_2020_behaviortracker
+                color: '#42e2f4'
+                mentions: 'channel'
+                message: This is a custom message notification
+                webhook: https://hooks.slack.com/services/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
             - checkout
             # Download and cache dependencies
             - restore_cache:
@@ -27,12 +33,7 @@ jobs:
                   name: Firebase Deploy
                   command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 
-            - slack/notify:
-                channel: cis47x_2020_behaviortracker
-                color: '#42e2f4'
-                mentions: 'channel'
-                message: This is a custom message notification
-                webhook: https://hooks.slack.com/services/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
+            
 
 
 
