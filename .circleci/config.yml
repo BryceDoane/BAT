@@ -26,8 +26,5 @@ jobs:
                   command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 orbs:
   slack: circleci/slack@x.y.z
-workflows:
-  your-workflow:
-    jobs:
-      - build
+
 
