@@ -1,5 +1,10 @@
+<head>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+</head>
+
 <div class="form">
-      
+  <script src="login.js"></script>
     <ul class="tab-group">
       <li class="tab active"><a href="#signup">Sign Up</a></li>
       <li class="tab"><a href="#login">Log In</a></li>
@@ -16,14 +21,14 @@
             <label>
               First Name<span class="req">*</span>
             </label>
-            <input type="text" required autocomplete="off" />
+            <input type="text" id="fname" required autocomplete="off" />
           </div>
       
           <div class="field-wrap">
             <label>
               Last Name<span class="req">*</span>
             </label>
-            <input type="text"required autocomplete="off"/>
+            <input type="text" id="lname" required autocomplete="off"/>
           </div>
         </div>
 
@@ -31,14 +36,14 @@
           <label>
             Email Address<span class="req">*</span>
           </label>
-          <input type="email"required autocomplete="off"/>
+          <input type="email" id="email" required autocomplete="off"/>
         </div>
         
         <div class="field-wrap">
           <label>
             Set A Password<span class="req">*</span>
           </label>
-          <input type="password"required autocomplete="off"/>
+          <input type="password" id="password" required autocomplete="off"/>
         </div>
         
         <button type="submit" class="button button-block"/>Get Started</button>
