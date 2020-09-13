@@ -1,12 +1,13 @@
 <head>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  <link href="css/login.css" rel="stylesheet" />
 </head>
 <body>
 
 
-<div class="form">
-  <script src="login.js"></script>
+<form id="login">
+
     <ul class="tab-group">
       <li class="tab active"><a href="#signup">Sign Up</a></li>
       <li class="tab"><a href="#login">Log In</a></li>
@@ -15,9 +16,9 @@
     <div class="tab-content">
       <div id="signup">   
         <h1>Sign Up for Free</h1>
-        
-        <form action="/" method="post">
-        
+
+        <div class="alert">Logging in</div>
+
         <div class="top-row">
           <div class="field-wrap">
             <label>
@@ -48,7 +49,7 @@
           <input type="password" id="password" required autocomplete="off"/>
         </div>
         
-        <button type="submit" event="submit" class="button button-block"/>Get Started</button>
+        <button type="submit" event="submit" class="button button-block">Get Started</button>
         
         </form>
 
@@ -75,7 +76,7 @@
         
         <p class="forgot"><a href="#">Forgot Password?</a></p>
         
-        <button class="button button-block"/>Log In</button>
+        <button class="button button-block" type="submit">Log In</button>
         
         </form>
 
@@ -83,15 +84,10 @@
       
     </div><!-- tab-content -->
     
-</div> 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.20.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.20.0/firebase-analytics.js"></script>
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+  </form> 
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+<script src="login.js"></script>
 </body><!-- /form -->
 <!-- Basic design by Ehermanson on Codepen -->
