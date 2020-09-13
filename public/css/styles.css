@@ -200,6 +200,13 @@ img {
   border-style: none;
 }
 
+img.feature {
+  border-radius: 8px;
+  display: block;
+  border: 3px solid #000000;
+  width: 100%;
+}
+
 svg {
   overflow: hidden;
   vertical-align: middle;
@@ -368,7 +375,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: 2.5rem;
+  font-size: 5.5rem;
 }
 
 h2, .h2 {
@@ -9982,7 +9989,9 @@ hr.light {
 .page-section {
   padding: 8rem 0;
 }
-
+.about-us{
+  padding: 5rem 0 !important; 
+}
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   background-color: #fff;
