@@ -93,14 +93,12 @@ function saveMessage(fname, lname, email, password){
   }
 
   var databaseEmail = firebase.database().ref(email);
-  if(databaseEmail){
-    var databasePassword = firebase.database().ref(password);
+  var databasePassword = firebase.database().ref(password);
     function loginTest(email, password){
       var loginTest = loginTest.push();
       loginTest.set({
         databaseEmail:email,
         databasePassword:password
-      });
   }
 
 
