@@ -19,7 +19,7 @@ var loginTest = firebase.database().ref('test')
 
 
 // Listen for form submit
-document.getElementById('login').addEventListener('submit', submitForm);
+document.getElementById('signup').addEventListener('submit', submitForm);
 
 // Submit form
 function submitForm(e){
@@ -27,7 +27,6 @@ function submitForm(e){
 
     // Get values
   var fname = getInputVal('fname');
-  var lname = getInputVal('lname');
   var email = getInputVal('email');
   var password = getInputVal('password'); 
   
@@ -56,7 +55,6 @@ function saveMessage(fname, lname, email, password){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
     fname: fname,
-    lname:lname,
     email:email,
     password:password
   });
