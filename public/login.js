@@ -15,6 +15,7 @@
 
 // Reference messages collection
 var messagesRef = firebase.database().ref('users');
+var loginTest = firebase.database().ref('test')
 
 
 // Listen for form submit
@@ -59,4 +60,49 @@ function saveMessage(fname, lname, email, password){
     email:email,
     password:password
   });
+
+  //Listens for the login action on login button
+  document.getElementById('login').addEventListener('login', submitForm);
+
+  function submitForm(e){
+    e.preventDefault();
+  
+      // Get values
+    var email = getInputVal('loginEmail');
+    var password = getInputVal('loginPassword');
+
+    
+    saveLogin(email,password);
+  
+    // Show alert
+    document.querySelector('.alert').style.display = 'block';
+  
+    // Hide alert after 3 seconds
+    setTimeout(function(){
+      document.querySelector('.alert').style.display = 'none';
+    },3000);
+  
+    // Clear form
+    document.getElementById('login').reset();
+  
+  }
+  
+  // Function to get form values
+  function getInputVal(id){
+    return document.getElementById(id).value;
+  }
+
+  var databaseEmail = firebase.database().ref(email);
+  if(databaseEmail){
+    var databasePassword = firebase.database().ref(password);
+    function loginTest(email, password){
+      var loginTest = loginTest.push();
+      loginTest.set({
+        databaseEmail:email,
+        databasePassword:password
+      });
+  }
+
+
+}
 }
