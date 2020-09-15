@@ -24,13 +24,12 @@ document.getElementById('signup').addEventListener('submit', submitForm);
 // Submit form
 function submitForm(e){
   e.preventDefault();
-
     // Get values
   var fname = getInputVal('fname');
   var email = getInputVal('email');
   var password = getInputVal('password'); 
   
-  saveMessage(fname,lname,email,password);
+  saveMessage(fname,email,password);
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
@@ -41,7 +40,7 @@ function submitForm(e){
   },3000);
 
   // Clear form
-  document.getElementById('login').reset();
+  document.getElementById('signup').reset();
 
 }
 
@@ -51,16 +50,17 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function saveMessage(fname, lname, email, password){
+function saveMessage(fname, email, password){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
     fname: fname,
     email:email,
     password:password
   });
+}
 
   //Listens for the login action on login button
-  document.getElementById('login').addEventListener('login', submitForm);
+  /* document.getElementById('login').addEventListener('login', submitForm);
 
   function submitForm(e){
     e.preventDefault();
@@ -97,8 +97,5 @@ function saveMessage(fname, lname, email, password){
       loginTest.set({
         databaseEmail:email,
         databasePassword:password
-  }
-
-
-}
-}
+  }) 
+ }*/
