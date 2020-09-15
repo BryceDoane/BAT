@@ -24,7 +24,7 @@ document.getElementById('signup').addEventListener('submit', submitForm);
 // Submit form
 function submitForm(e){
   e.preventDefault();
-    // Get values
+  // Get values
   var fname = getInputVal('fname');
   var email = getInputVal('email');
   var password = getInputVal('password'); 
@@ -41,6 +41,7 @@ function submitForm(e){
 
   // Clear form
   document.getElementById('signup').reset();
+
 
 }
 
