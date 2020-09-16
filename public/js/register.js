@@ -40,7 +40,7 @@ function submitForm(e){
   },3000);
 
   // Clear form
-  document.getElementById('signup').reset();
+  // document.getElementById('signup').reset();
 
 
 }
@@ -52,13 +52,13 @@ function getInputVal(id){
 
 // Save message to firebase
 function saveMessage(fname, email, password){
-  var newMessageRef = messagesRef.push();
-  newMessageRef.set({
-    fname: fname,
-    email:email,
-    password:password
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
   });
-}
+  }
 
   //Listens for the login action on login button
   /* document.getElementById('login').addEventListener('login', submitForm);
