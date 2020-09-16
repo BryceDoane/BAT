@@ -12,14 +12,28 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
-
-  function signIn(){
+const auth = firebase.auth();
+ 
+//Signs In User
+function signIn(){
   
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-    });
-  }
+    var email = document.getElementById("email");
+    var password = document.getElementById("password");
+    
+    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+    promise.catch(e => alert(e.message));
+
+    alert("Signed In " + email.value);
+
+ }
+    
+  //Signs Out User
+   
+   function signOut(){
+    
+    auth.signOut();
+    alert("Signed Out");
+    
+  };
+   
+  
