@@ -72,6 +72,12 @@ ul{
     outline:0;
     transition: background-color 2s ease-out;
 }
+/*.wrapper form input{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+    transition: background-color 2s ease-out;
+}*/
 
 /* Large Screens */
 @media(min-width:800px){
