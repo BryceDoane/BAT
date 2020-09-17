@@ -12,7 +12,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+  const auth = firebase.auth();
  
 //Signs In User
 function signIn(){
@@ -25,6 +25,7 @@ function signIn(){
 
     alert("Signed In " + email.value);
 
+    window.open("https://behavior-analysis-tracker.web.app/loggedIn.html"); //loggedin.html;
  }
 
  //Checks If Auth Status has changed
@@ -41,7 +42,7 @@ function signIn(){
    
    function signOut(){
     
-    auth.signOut();
+    firebase.auth.signOut();
     alert("Signed Out");
     
   };
