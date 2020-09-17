@@ -20,14 +20,10 @@ function signIn(){
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     
-<<<<<<< HEAD
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
 
 }
-=======
-    firebase.auth().signInWithEmailAndPassword(email.value, password.value).catch(e => alert(e.message));
->>>>>>> 67275c8f1bc926e6f551989d3a813b2b66f916df
 
     //Checks If Auth Status has changed
 var user = promise;
@@ -35,7 +31,7 @@ var user = promise;
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     // User is signed in.
-    console.log(signIn);
+    console.log('you are logged in');
   } else {
     console.log('not logged');
     // No user is signed in.
