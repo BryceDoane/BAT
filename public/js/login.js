@@ -16,7 +16,7 @@
  
 //Signs In User
 function signIn(){
-  
+    auth.signOut();
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     

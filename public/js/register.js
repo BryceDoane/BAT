@@ -12,6 +12,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 
 // Reference messages collection
 var messagesRef = firebase.database().ref('users');
@@ -56,10 +57,9 @@ function saveMessage(fname, email, password){
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    firebase.auth.signOut();
     // ...
   });
-  }
+}
 
   //Listens for the login action on login button
   /* document.getElementById('login').addEventListener('login', submitForm);
