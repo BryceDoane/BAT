@@ -13,14 +13,14 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
+  auth.signOut();
  
 //Signs In User
 function signIn(){
-    //auth.signOut();
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     
-    firebase.auth().signInWithEmailAndPassword(email.value, password.value);//.catch(e => alert(e.message));
+    firebase.auth().signInWithEmailAndPassword(email.value, password.value).catch(e => alert(e.message));
 
     //Checks If Auth Status has changed
     auth.onAuthStateChanged(function(user) {
