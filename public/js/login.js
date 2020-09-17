@@ -25,15 +25,16 @@ function signIn(){
 
     alert("Signed In " + email.value);
 
+    
  
 
  //Checks If Auth Status has changed
  
- function siauth.onAuthStateChanged(user => {
+ auth.onAuthStateChanged(user => {
   if (user) {
-   console.log('user logged in: ', use);
-  } else { 
-    console.log('not logged in');
+    window.location.replace("LoggedIn.html");
+  } else {  
+    alert("you are not signed in");
   }
 })};
     
