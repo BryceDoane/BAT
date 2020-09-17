@@ -29,9 +29,9 @@ function signIn(){
 
  //Checks If Auth Status has changed
  
- auth.onAuthStateChanged(user => {
+ function siauth.onAuthStateChanged(user => {
   if (user) {
-   console.log('user logged in: ', user);
+   console.log('user logged in: ', use);
   } else { 
     console.log('not logged in');
   }
