@@ -16,27 +16,27 @@
  
 //Signs In User
 function signIn(){
-    auth.signOut();
+    //auth.signOut();
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     
-    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
-    promise.catch(e => alert(e.message));
+    auth.signInWithEmailAndPassword(email.value, password.value);//.catch(e => alert(e.message));
 
-    alert("Signed In " + email.value);
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        alert("Signed In " + email.value);
+        window.open("https://behavior-analysis-tracker.web.app/loggedIn.html");
+      } else {  
+        alert("you are not signed in");
+      }
+    })
 
-    window.open("https://behavior-analysis-tracker.web.app/loggedIn.html"); //loggedin.html;
+     //loggedin.html;
  
 
  //Checks If Auth Status has changed
  
- auth.onAuthStateChanged(user => {
-  if (user) {
-    window.location.replace("loggedIn.html");
-  } else {  
-    alert("you are not signed in");
-  }
-})
+
 };
     
   //Signs Out User
