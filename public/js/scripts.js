@@ -62,24 +62,7 @@
 
   // Set the configuration for your app
   // TODO: Replace with your project's config object
-  const firebaseConfig = {
-    apiKey: "AIzaSyB9Y2gGnOUC9tG_4piaqqCEhMxdi5yxQDI",
-    authDomain: "behavior-analysis-tracker.firebaseapp.com",
-    databaseURL: "https://behavior-analysis-tracker.firebaseio.com",
-    projectId: "behavior-analysis-tracker",
-    storageBucket: "behavior-analysis-tracker.appspot.com",
-    messagingSenderId: "392015561610",
-    appId: "1:392015561610:web:d9d2686cb3c9b312e4fe73",
-    measurementId: "G-EM4XVKW2YS"
-  };
-  firebase.initializeApp(config);
 
-  // Get a reference to the database service
-  var database = firebase.database();
-
-  var userId = firebase.auth().currentUser.uid;
-  return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-    var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';});
 
 
 })(jQuery); // End of use strict
