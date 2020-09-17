@@ -56,6 +56,7 @@ function saveMessage(fname, email, password){
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+    firebase.auth.signOut();
     // ...
   });
   }
