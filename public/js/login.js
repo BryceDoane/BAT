@@ -25,25 +25,25 @@ function signIn(){
 
     alert("Signed In " + email.value);
 
- }
+ 
 
  //Checks If Auth Status has changed
  
- firebase.auth().onAuthStateChanged(function(user) {
+ auth.onAuthStateChanged(user => {
   if (user) {
-   alert("You are signed in");
+   console.log('user logged in: ', user);
   } else { 
-    alert("not signed in");
+    console.log('not logged in');
   }
-});
+})};
     
   //Signs Out User
    
-   function signOut(){
+  /* function signOut(){
     
     auth.signOut();
     alert("Signed Out");
     
-  };
+  };*/
    
   
