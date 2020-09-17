@@ -22,6 +22,7 @@ function signIn(){
     
     auth.signInWithEmailAndPassword(email.value, password.value);//.catch(e => alert(e.message));
 
+    //Checks If Auth Status has changed
     auth.onAuthStateChanged(function(user) {
       if (user) {
         alert("Signed In " + email.value);
@@ -30,12 +31,6 @@ function signIn(){
         alert("you are not signed in");
       }
     })
-
-     //loggedin.html;
- 
-
- //Checks If Auth Status has changed
- 
 
 };
     
