@@ -46,12 +46,6 @@ ul{
     margin-bottom: 10px;
     display: none;
 }
-/*Form*/
-.registration form{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-}
 .registration form label{
     display:block;
 }
@@ -69,6 +63,7 @@ ul{
 .registration form button{
     background:#c9e6ff;
     border:0;
+    margin-top: 10px;
     text-transform: uppercase;
 }
 .registration form button:hover, .registration form button:focus{
@@ -76,4 +71,20 @@ ul{
     color:#ffffff;
     outline:0;
     transition: background-color 2s ease-out;
+}
+
+/* Large Screens */
+@media(min-width:800px){
+    .wrapper{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+    .registration form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+    .wrapper > *{
+        padding: 2em;
+    }
 }
