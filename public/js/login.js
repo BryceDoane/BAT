@@ -37,7 +37,7 @@ function signIn(){
  
  auth.onAuthStateChanged(user => {
   if (user) {
-    window.location.replace("LoggedIn.html");
+    window.location.replace("loggedIn.html");
   } else {  
     alert("you are not signed in");
   }
