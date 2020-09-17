@@ -20,7 +20,7 @@ function signIn(){
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     
-    auth.signInWithEmailAndPassword(email.value, password.value);//.catch(e => alert(e.message));
+    firebase.auth().signInWithEmailAndPassword(email.value, password.value);//.catch(e => alert(e.message));
 
     //Checks If Auth Status has changed
     auth.onAuthStateChanged(function(user) {
