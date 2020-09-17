@@ -37,8 +37,7 @@ function signIn(){
   } else {  
     alert("you are not signed in");
   }
-})
-};
+})};
     
   //Signs Out User
    
