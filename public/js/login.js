@@ -25,12 +25,8 @@ function signIn(){
 
     alert("Signed In " + email.value);
 
-<<<<<<< HEAD
-    
-=======
     window.open("https://behavior-analysis-tracker.web.app/loggedIn.html"); //loggedin.html;
  }
->>>>>>> c01e8b433d4aea563e272023abf0a1ff4e331b8e
  
 
  //Checks If Auth Status has changed
@@ -41,7 +37,8 @@ function signIn(){
   } else {  
     alert("you are not signed in");
   }
-})};
+})
+};
     
   //Signs Out User
    
