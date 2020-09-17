@@ -13,31 +13,7 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
- 
-//Signs In User
-function signIn(){
-    //auth.signOut();
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-    
-    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
-    promise.catch(e => alert(e.message));
 
-}
+  //Sign out
 
-    //Checks If Auth Status has changed
-var user = promise;
-
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    // User is signed in.
-    console.log(signIn);
-  } else {
-    console.log('not logged');
-    // No user is signed in.
-  }
-});
-    
-
-   
-  
+  Sign
