@@ -27,24 +27,25 @@ function signIn(){
 
     window.open("https://behavior-analysis-tracker.web.app/loggedIn.html"); //loggedin.html;
  }
+ 
 
  //Checks If Auth Status has changed
  
- firebase.auth().onAuthStateChanged(function(user) {
+ function siauth.onAuthStateChanged(user => {
   if (user) {
-   alert("You are signed in");
+   console.log('user logged in: ', use);
   } else { 
-    alert("not signed in");
+    console.log('not logged in');
   }
-});
+})};
     
   //Signs Out User
    
-   function signOut(){
+  /* function signOut(){
     
     firebase.auth.signOut();
     alert("Signed Out");
     
-  };
+  };*/
    
   
