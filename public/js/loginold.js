@@ -17,7 +17,7 @@
 var messagesRef = firebase.database().ref('users');
 var loginTest = firebase.database().ref('test')
 
-
+/*
 // Listen for form submit
 document.getElementById('signup').addEventListener('submit', submitForm);
 
@@ -40,7 +40,7 @@ function submitForm(e){
   },3000);
 
   // Clear form
-  // document.getElementById('signup').reset();
+  document.getElementById('signup').reset();
 
 
 }
@@ -52,23 +52,23 @@ function getInputVal(id){
 
 // Save message to firebase
 function saveMessage(fname, email, password){
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
+  var newMessageRef = messagesRef.push();
+  newMessageRef.set({
+    fname: fname,
+    email:email,
+    password:password
   });
-  }
-
+}
+*/
   //Listens for the login action on login button
-  /* document.getElementById('login').addEventListener('login', submitForm);
+   document.getElementById('login').addEventListener('login', submitForm);
 
   function submitForm(e){
     e.preventDefault();
   
       // Get values
-    var email = getInputVal('loginEmail');
-    var password = getInputVal('loginPassword');
+    var email = getInputVal('email');
+    var password = getInputVal('password');
 
     
     saveLogin(email,password);
@@ -90,7 +90,7 @@ function saveMessage(fname, email, password){
   function getInputVal(id){
     return document.getElementById(id).value;
   }
-
+/*
   var databaseEmail = firebase.database().ref(email);
   var databasePassword = firebase.database().ref(password);
     function loginTest(email, password){

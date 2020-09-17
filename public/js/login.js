@@ -12,91 +12,38 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
-// Reference messages collection
-var messagesRef = firebase.database().ref('users');
-var loginTest = firebase.database().ref('test')
-
-/*
-// Listen for form submit
-document.getElementById('signup').addEventListener('submit', submitForm);
-
-// Submit form
-function submitForm(e){
-  e.preventDefault();
-  // Get values
-  var fname = getInputVal('fname');
-  var email = getInputVal('email');
-  var password = getInputVal('password'); 
+const auth = firebase.auth();
+ 
+//Signs In User
+function signIn(){
   
-  saveMessage(fname,email,password);
-
-  // Show alert
-  document.querySelector('.alert').style.display = 'block';
-
-  // Hide alert after 3 seconds
-  setTimeout(function(){
-    document.querySelector('.alert').style.display = 'none';
-  },3000);
-
-  // Clear form
-  document.getElementById('signup').reset();
-
-
-}
-
-// Function to get form values
-function getInputVal(id){
-  return document.getElementById(id).value;
-}
-
-// Save message to firebase
-function saveMessage(fname, email, password){
-  var newMessageRef = messagesRef.push();
-  newMessageRef.set({
-    fname: fname,
-    email:email,
-    password:password
-  });
-}
-*/
-  //Listens for the login action on login button
-   document.getElementById('login').addEventListener('login', submitForm);
-
-  function submitForm(e){
-    e.preventDefault();
-  
-      // Get values
-    var email = getInputVal('email');
-    var password = getInputVal('password');
-
+    var email = document.getElementById("email");
+    var password = document.getElementById("password");
     
-    saveLogin(email,password);
-  
-    // Show alert
-    document.querySelector('.alert').style.display = 'block';
-  
-    // Hide alert after 3 seconds
-    setTimeout(function(){
-      document.querySelector('.alert').style.display = 'none';
-    },3000);
-  
-    // Clear form
-    document.getElementById('login').reset();
-  
+    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+    promise.catch(e => alert(e.message));
+
+    alert("Signed In " + email.value);
+
+ }
+
+ //Checks If Auth Status has changed
+ 
+ firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+   alert("You are signed in");
+  } else { 
+    alert("not signed in");
   }
+});
+    
+  //Signs Out User
+   
+   function signOut(){
+    
+    auth.signOut();
+    alert("Signed Out");
+    
+  };
+   
   
-  // Function to get form values
-  function getInputVal(id){
-    return document.getElementById(id).value;
-  }
-/*
-  var databaseEmail = firebase.database().ref(email);
-  var databasePassword = firebase.database().ref(password);
-    function loginTest(email, password){
-      var loginTest = loginTest.push();
-      loginTest.set({
-        databaseEmail:email,
-        databasePassword:password
-  }) 
- }*/
