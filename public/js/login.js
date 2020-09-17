@@ -25,6 +25,13 @@ function signIn(){
 
     alert("Signed In " + email.value);
 
+<<<<<<< HEAD
+=======
+    window.open("https://behavior-analysis-tracker.web.app/loggedIn.html"); //loggedin.html;
+ }
+ 
+
+>>>>>>> 39980f9555e0e8f95f498521c30fef0b576f6c16
  //Checks If Auth Status has changed
  
  auth.onAuthStateChanged(user => {
