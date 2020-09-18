@@ -14,7 +14,7 @@
   firebase.initializeApp(firebaseConfig);
   firebase.auth().signOut();
   const auth = firebase.auth();
-  firebase.auth().setPersistence(app.auth.Auth.Persistence.LOCAL);
+  //firebase.auth.Auth.Persistence.NONE;
 
   firebase.auth().onAuthStateChanged(user => {
     if(user){
