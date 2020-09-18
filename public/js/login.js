@@ -13,6 +13,7 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
+  firebase.auth().setPersistence(app.auth.Auth.Persistence.LOCAL);
 
   firebase.auth().onAuthStateChanged(user => {
     if(user){
