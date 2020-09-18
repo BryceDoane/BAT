@@ -14,43 +14,47 @@
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
 
+  firebase.auth().onAuthStateChanged(user => {
+    if(user){
+      console.log(user);
+      alert("Active User " + user);
+      btnLogout.classList.remove('hide');
+       
+    }else{
+      console.log("No Active User");
+       //no user is signed in
+      }
+    });
+
+  // get elements
+  const btnLogin = document.getElementById('loginbtn');
+  const txtEmail = document.getElementById("email");
+  const pass = document.getElementById("password");
+  const btnLogout = document.getElementById('logoutbtn');
  
 //Signs In User
-function signIn(){
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
+  btnLogin.addEventListener('click', e => {
+    const email = txtEmail.value;
+    const password = pass.value;
     
-    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+    const promise = firebase.auth().signInWithEmailAndPassword(email, password);
     promise.catch(e => alert(e.message));
 
 
     //Checks If Auth Status has changed
+});
 
+btnLogout.addEventListener('click', e => {
+  firebase.auth().signOut();
+  console.log("Signed out");
+});
 
-    auth.onAuthStateChanged(function(user){
-  
-      if(user){
-       
-       var email = user.email;
-       alert("Active User " + email);
-       
-       //Take user to a different or home page
-    
-       //is signed in
-       
-      }else{
-       
-       alert("No Active User");
-       //no user is signed in
-      }
-    });};
-
-    function signOut(){
+    /*function signOut(){
   
       auth.signOut();
       alert("Signed Out");
       
-     }
+     }*/
 
     
 
