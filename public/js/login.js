@@ -45,6 +45,12 @@ function signIn(){
       }
     });};
 
+    function signOut(){
+  
+      auth.signOut();
+      alert("Signed Out");
+      
+     }
 
     
 
