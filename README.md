@@ -54,4 +54,4 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 
 ## Future Releases
 
-Version 1.2 will...
+Version 1.2 will include a user dashboard page as well as more user account functionality based on authentication 
