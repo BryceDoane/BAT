@@ -12,14 +12,14 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.auth().signOut();
+  //firebase.auth().signOut();
   const auth = firebase.auth();
-  //firebase.auth.Auth.Persistence.NONE;
+  firebase.auth.Auth.Persistence.NONE;
 
   firebase.auth().onAuthStateChanged(user => {
     if(user){
       console.log(user);
-      alert("Active User " + user.email);
+      alert("Active User " + user);
       btnLogout.classList.remove('hide');
        
     }else{
