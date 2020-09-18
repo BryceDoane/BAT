@@ -12,13 +12,14 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  firebase.auth().signOut();
   const auth = firebase.auth();
   firebase.auth().setPersistence(app.auth.Auth.Persistence.LOCAL);
 
   firebase.auth().onAuthStateChanged(user => {
     if(user){
       console.log(user);
-      alert("Active User " + user);
+      alert("Active User " + user.email);
       btnLogout.classList.remove('hide');
        
     }else{
