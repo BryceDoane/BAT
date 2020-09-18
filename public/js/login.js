@@ -14,7 +14,6 @@
   firebase.initializeApp(firebaseConfig);
   //firebase.auth().signOut();
   const auth = firebase.auth();
-  firebase.auth.Auth.Persistence.NONE;
 
   firebase.auth().onAuthStateChanged(user => {
     if(user){
@@ -39,10 +38,16 @@
     const email = txtEmail.value;
     const password = pass.value;
     
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
+  .then(function() {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
     const promise = firebase.auth().signInWithEmailAndPassword(email, password);
     promise.catch(e => alert(e.message));
-
-
+  })
     //Checks If Auth Status has changed
 });
 
