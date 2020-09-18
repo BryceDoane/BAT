@@ -12,57 +12,83 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  //firebase.auth().signOut();
-  const auth = firebase.auth();
 
-  firebase.auth().onAuthStateChanged(user => {
-    if(user){
-      console.log(user);
-      alert("Active User " + user);
-      btnLogout.classList.remove('hide');
-       
-    }else{
-      console.log("No Active User");
-       //no user is signed in
+/**
+     * Handles the sign in button press.
+     */
+    function toggleSignIn() {
+      if (firebase.auth().currentUser) {
+      // [START signout]
+      firebase.auth().signOut();
+      // [END signout]
+      } else {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      if (email.length < 4) {
+      alert('Please enter an email address.');
+      return;
       }
-    });
+      if (password.length < 4) {
+      alert('Please enter a password.');
+      return;
+      }
+      // Sign in with email and pass.
+      // [START authwithemail]
+      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // [START_EXCLUDE]
+      if (errorCode === 'auth/wrong-password') {
+      alert('Wrong password.');
+      } else {
+      alert(errorMessage);
+      }
+      console.log(error);
+      document.getElementById('loginbtn').disabled = false;
+      // [END_EXCLUDE]
+      });
+      // [END authwithemail]
+      }
+      document.getElementById('loginbtn').disabled = true;
+      }
+      /**
+           * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+           *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+           *    out, and that is where we update the UI.
+           */
+      function initApp() {
+      // Listening for auth state changes.
+      // [START authstatelistener]
+      firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+      // User is signed in.
+      var email = user.email;
+      alert("signed in as " + email);
+      document.getElementById('signed-in-user').textContent = email;
+      document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+      document.getElementById('loginbtn').textContent = 'Sign out';
 
-  // get elements
-  const btnLogin = document.getElementById('loginbtn');
-  const txtEmail = document.getElementById("email");
-  const pass = document.getElementById("password");
-  const btnLogout = document.getElementById('logoutbtn');
- 
-//Signs In User
-  btnLogin.addEventListener('click', e => {
-    const email = txtEmail.value;
-    const password = pass.value;
-    
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
-  .then(function() {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
-    const promise = firebase.auth().signInWithEmailAndPassword(email, password);
-    promise.catch(e => alert(e.message));
-  })
-    //Checks If Auth Status has changed
-});
-
-btnLogout.addEventListener('click', e => {
-  firebase.auth().signOut();
-  console.log("Signed out");
-});
-
-    /*function signOut(){
-  
-      auth.signOut();
-      alert("Signed Out");
-      
-     }*/
-
+      // [END_EXCLUDE]
+      } else {
+      // User is signed out.
+      // [START_EXCLUDE]
+      document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+      document.getElementById('loginbtn').textContent = 'Sign in';
+      document.getElementById('signed-in-user').textContent = "";
+      console.log("signed out");
+      // [END_EXCLUDE]
+      }
+      // [START_EXCLUDE silent]
+      document.getElementById('loginbtn').disabled = false;
+      // [END_EXCLUDE]
+      });
+      // [END authstatelistener]
+      document.getElementById('loginbtn').addEventListener('click', toggleSignIn, false);
+      }
+      window.onload = function() {
+      initApp();
+      };
     
 
    
