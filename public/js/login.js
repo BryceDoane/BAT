@@ -13,7 +13,7 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
-  auth.signOut();
+
  
 //Signs In User
 function signIn(){
@@ -23,20 +23,29 @@ function signIn(){
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
 
-}
 
     //Checks If Auth Status has changed
-var user = promise;
 
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    // User is signed in.
-    console.log('you are logged in');
-  } else {
-    console.log('not logged');
-    // No user is signed in.
-  }
-});
+
+    auth.onAuthStateChanged(function(user){
+  
+      if(user){
+       
+       var email = user.email;
+       alert("Active User " + email);
+       
+       //Take user to a different or home page
+    
+       //is signed in
+       
+      }else{
+       
+       alert("No Active User");
+       //no user is signed in
+      }
+    });};
+
+
     
 
    

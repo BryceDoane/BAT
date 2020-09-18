@@ -14,6 +14,3 @@
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
 
-  //Sign out
-
-  Sign
