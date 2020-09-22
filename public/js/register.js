@@ -41,7 +41,7 @@ function submitForm(e){
   },3000);
 
   // Clear form
-  // document.getElementById('signup').reset();
+  document.getElementById('signup').reset();
 
 
 }
@@ -57,6 +57,7 @@ function saveMessage(fname, email, password){
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+    alert("Error: " + errorMessage);
     // ...
   });
 }

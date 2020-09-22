@@ -40,7 +40,7 @@
       var errorMessage = error.message;
       // [START_EXCLUDE]
       if (errorCode === 'auth/wrong-password') {
-      alert('Wrong password.');
+      alert('Error: Wrong password.');
       } else {
       alert(errorMessage);
       }
