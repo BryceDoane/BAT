@@ -35,7 +35,7 @@
                         <input type="password" id="password" name="name">
                     </p>
                     <p class="full">
-                        <button id="loginbtn" type="submit" event="submit"  class="button button-block">Get Started</button>
+                        <button id="loginbtn" type="submit" event="submit" class="button button-block">Get Started</button>
                     </p>
                 </form>
                 </div>
@@ -43,9 +43,26 @@
             <form>
                 <input type="button" value="Go back!" onclick="history.back()">
             </form>
-            <form>
-                <input type="button" value="Forgot Password?" id="forgetpass" href="forgetpass.html"">
-            </form>
+
+                <button id="myBtn" type="submit" class="button button-block">Forgot Password</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Password Recovery</h3>
+                <form id="login">
+                    <p>
+                        <label>Email Address<span class="req">*</span></label>
+                        <input type="email" id="email" name="name">
+                    </p>
+      <button id="forgotPassSubmit">Submit</button>
+    </div>
+  
+  </div>
+
         </div>
         <div class="quickstart-user-details-container">
             Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
