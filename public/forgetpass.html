@@ -24,18 +24,14 @@
             </div>
             <div class="registration">
                 <div id="signup">
-                <h3>Login</h3>
+                <h3>Password Recovery</h3>
                 <form id="login">
                     <p>
                         <label>Email Address<span class="req">*</span></label>
                         <input type="email" id="email" name="name">
                     </p>
-                    <p>
-                        <label>Password<span class="req">*</span></label>
-                        <input type="password" id="password" name="name">
-                    </p>
                     <p class="full">
-                        <button id="loginbtn" type="submit" event="submit"  class="button button-block">Get Started</button>
+                        <button id="submitbtn" type="submit" event="submit"  class="button button-block">Submit</button>
                     </p>
                 </form>
                 </div>
@@ -43,20 +39,12 @@
             <form>
                 <input type="button" value="Go back!" onclick="history.back()">
             </form>
-            <form>
-                <input type="button" value="Forgot Password?" id="forgetpass" href="forgetpass.html"">
-            </form>
-        </div>
-        <div class="quickstart-user-details-container">
-            Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-<div>Firebase auth currentUser object value:</div><span id="signed-in-user">Nobody</span>
-</div>
 
 
 
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
-    <script src="js/login.js"></script> 
+    <script src="js/forgetpass.js"></script> 
 </body>
 </html>
