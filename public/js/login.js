@@ -68,7 +68,8 @@
       document.getElementById('signed-in-user').textContent = email;
       document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
       document.getElementById('loginbtn').textContent = 'Sign out';
-      window.location.replace("https://behavior-analysis-tracker.web.app/loggedIn.html");
+      //TODO: Enable 
+      //window.location.replace("https://behavior-analysis-tracker.web.app/loggedIn.html");
 
       // [END_EXCLUDE]
       } else {

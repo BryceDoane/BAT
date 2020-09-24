@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 </head>
+
 <body>
     <div class="container">
         <h1 class="brand">
@@ -24,56 +26,57 @@
             </div>
             <div class="registration">
                 <div id="signup">
-                <h3>Login</h3>
-                <form id="login">
-                    <p>
-                        <label>Email Address<span class="req">*</span></label>
-                        <input type="email" id="email" name="name">
-                    </p>
-                    <p>
-                        <label>Password<span class="req">*</span></label>
-                        <input type="password" id="password" name="name">
-                    </p>
-                    <p class="full">
-                        <button id="loginbtn" type="submit" event="submit" class="button button-block">Get Started</button>
-                    </p>
-                </form>
+                    <h3>Login</h3>
+                    <form id="login">
+                        <p>
+                            <label>Email Address<span class="req">*</span></label>
+                            <input type="email" id="email" name="name">
+                        </p>
+                        <p>
+                            <label>Password<span class="req">*</span></label>
+                            <input type="password" id="password" name="name">
+                        </p>
+                        <p class="full">
+                            <button id="loginbtn" type="submit" event="submit" class="button button-block">Get
+                                Started</button>
+                            <button id="myBtn" type="button" class="button button-block">Forgot Password</button>
+                        </p>
+                    </form>
                 </div>
             </div>
             <form>
                 <input type="button" value="Go back!" onclick="history.back()">
             </form>
-
-                <button id="myBtn" type="submit" class="button button-block">Forgot Password</button>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>Password Recovery</h3>
-                <form id="login">
-                    <p>
-                        <label>Email Address<span class="req">*</span></label>
-                        <input type="email" id="email" name="name">
-                    </p>
-      <button id="forgotPassSubmit">Submit</button>
-    </div>
-  
-  </div>
-
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <img src="/public/assets/img/lock.png">
+                    <span class="close">&times;</span>
+                    <div class="modal-header">
+                        <h2>Password Recovery</h2>
+                    </div>
+                    <form id="login">
+                        <p>
+                            <label>Name<span class="req"></span></label>
+                            <input type="email" id="name" class="forgotpass-email" name="name"><br>
+                            <label>Email Address<span class="req"></span></label>
+                            <input type="email" id="email" class="forgotpass-email" name="name">
+                        </p>
+                        <button id="forgotPassCancel" class="button button-block"
+                            onclick="window.close()">Cancel</button><button id="forgotPassSubmit" class="button button-block">Submit</button>
+                        
+                </div>
+            </div>
         </div>
         <div class="quickstart-user-details-container">
             Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-<div>Firebase auth currentUser object value:</div><span id="signed-in-user">Nobody</span>
-</div>
-
-
-
+            <div>Firebase auth currentUser object value:</div><span id="signed-in-user">Nobody</span>
+        </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
-    <script src="js/login.js"></script> 
+    <script src="js/login.js"></script>
 </body>
+
 </html>
