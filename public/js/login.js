@@ -134,7 +134,7 @@ const reset = () => {
   
 });}
 
-fbutton.addEventListener('click', reset)
+fbutton.addEventListener('click', reset);
 
 
 

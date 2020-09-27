@@ -57,38 +57,22 @@
                         <h2>Password Recovery</h2>
                         <p>Enter your email and we'll send you a link to reset your password.</p>
                     </div>
-                    <form id="login">
+                    <form id="login2">
                         <p>
-                            <input placeholder="Email" type="email" id="email" class="forgotpass-email" name="name" size="35">
+                            <input placeholder="Email" type="email" id="emailf" class="forgotpass-email" name="name" size="35">
                         </p>
                         <hr class="hr-text" data-content="OR">
                         <a href src="register.html">Create an Account</href><br><br>
                         <button id="forgotPassCancel" class="button button-block"
-                            onclick="window.close()">Cancel</button><button id="forgotPassSubmit" class="button button-block">Submit</button>
+                            onclick="window.close()">Cancel</button><button type ="submit" id="fbutton" class="button button-block">Submit</button>
                         </form>
                 </div>
             </div>
 
-                <button id="myBtn" type="submit" class="button button-block">Forgot Password</button>
+               
 
     <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>Password Recovery</h3>
-                <form id="login2">
-                    <p>
-                        <label>Email Address<span class="req">*</span></label>
-                        <input type="email" id="emailf" name="emailf">
-                    </p>
-      <button type ="submit" id="fpass">Submit</button>
-    </div>
-  
-  </div>
-
-        </div>
+   
         <div class="quickstart-user-details-container">
             Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
             <div>Firebase auth currentUser object value:</div><span id="signed-in-user">Nobody</span>
