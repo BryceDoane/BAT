@@ -127,7 +127,7 @@ const reset = () => {
   const rmail = sub.value;
 
   auth.sendPasswordResetEmail(rmail).then(() => {
-    console.log('password reset sent!');
+    alert('password reset sent!');
   // Email sent.
 }).catch(error => {
   console.log('error')
