@@ -51,21 +51,21 @@
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <div class="modal-content">
-                    <img src="/public/assets/img/lock.png">
+                    <img class="lock" src="assets/img/Lock/favicon.ico">
                     <span class="close">&times;</span>
                     <div class="modal-header">
                         <h2>Password Recovery</h2>
+                        <p>Enter your email and we'll send you a link to reset your password.</p>
                     </div>
                     <form id="login">
                         <p>
-                            <label>Name<span class="req"></span></label>
-                            <input type="email" id="name" class="forgotpass-email" name="name"><br>
-                            <label>Email Address<span class="req"></span></label>
-                            <input type="email" id="email" class="forgotpass-email" name="name">
+                            <input placeholder="Email" type="email" id="email" class="forgotpass-email" name="name" size="35">
                         </p>
+                        <hr class="hr-text" data-content="OR">
+                        <a href src="register.html">Create an Account</href><br><br>
                         <button id="forgotPassCancel" class="button button-block"
                             onclick="window.close()">Cancel</button><button id="forgotPassSubmit" class="button button-block">Submit</button>
-                        
+                        </form>
                 </div>
             </div>
         </div>
