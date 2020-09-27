@@ -118,7 +118,25 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-    
+
+const auth = firebase.auth();
+const sub = document.getElementById("emailf");
+const fbutton = document.getElementById("fpass");
+
+const reset = () => { 
+  const rmail = sub.value;
+
+  auth.sendPasswordResetEmail(rmail).then(() => {
+    console.log('password reset sent!');
+  // Email sent.
+}).catch(error => {
+  console.log('error')
+  
+});}
+
+fbutton.addEventListener('click', reset)
+
+
 
    
   
