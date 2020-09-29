@@ -62,7 +62,7 @@ function saveMessage(fname, email, password){
 }
   function writeUserData(fname, email){
     var messagesRef = messagesRef.push();
-    messagesRef.database().ref('user').push({
+    messagesRef.push({
     fname: name,
     email: email,
     });
