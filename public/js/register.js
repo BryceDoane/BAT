@@ -16,7 +16,7 @@
 
 // Reference messages collection
 var messagesRef = firebase.database().ref('user');
-var loginTest = firebase.database().ref('test')
+var loginTest = firebase.database().ref('user')
 
 
 // Listen for form submit
