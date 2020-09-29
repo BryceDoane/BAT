@@ -5,7 +5,7 @@
 
 body{
     background:#b3a5d9;
-    color:#6f42c1;
+    color:2#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding:1em;
@@ -18,7 +18,7 @@ body{
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #9665ff;
+    background-color: #200064;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 100px;
   }
@@ -29,7 +29,7 @@ body{
     text-decoration: none;
     font-size: 25px;
     color: #ffffff;
-    background-color: #9665ff;
+    background-color: #200064;
     display: block;
   }
   
