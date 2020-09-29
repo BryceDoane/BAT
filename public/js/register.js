@@ -15,7 +15,7 @@
   const auth = firebase.auth();
 
 // Reference messages collection
-var messagesRef = firebase.database().ref('users');
+var messagesRef = firebase.database().ref('user');
 var loginTest = firebase.database().ref('test')
 
 
@@ -60,12 +60,10 @@ function saveMessage(fname, email, password){
     // ...
   });
 }
-function writeUserData(uid, fname, email) {
-  uid = console.log(user.uid);
-  firebase.database().ref('user/').push({
+function writeUserData(fname, email) {
+  firebase.database().ref('user').push({
     fname: name,
     email: email,
-    uid: uid,
   });
 }
 
