@@ -60,6 +60,14 @@ function saveMessage(fname, email, password){
     // ...
   });
 }
+function writeUserData(uid, fname, email) {
+  uid = console.log(user.uid);
+  firebase.database().ref('user/').push({
+    fname: name,
+    email: email,
+    uid: uid,
+  });
+}
 
   //Listens for the login action on login button
   /* document.getElementById('login').addEventListener('login', submitForm);
