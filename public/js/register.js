@@ -62,7 +62,7 @@ function saveMessage(fname, email, password){
   });
 }
   function writeUserData(fname, email){
-    var messagesRef = messagesRef.child('user');
+    var messagesRef = messagesRef.child('user').push();
     messagesRef.push({
     fname: name,
     email: email
