@@ -31,7 +31,7 @@ function submitForm(e){
   var password = getInputVal('password'); 
   
   saveMessage(fname,email,password);
-  writeUserData(fname, email);
+  //writeUserData(fname, email);
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
@@ -61,17 +61,17 @@ function saveMessage(fname, email, password){
     // ...
   });
 }
-  function writeUserData(fname, email){
-    var messagesRef = messagesRef.child('user').push();
-    messagesRef.push({
-    name: fname,
-    email: email
-    });
-}
+  //function writeUserData(fname, email){
+    //var messagesRef = messagesRef.child('user').push();
+    //messagesRef.push({
+    //name: fname,
+    //email: email
+    //});
+//}
 
 
   //Listens for the login action on login button
-  /* document.getElementById('login').addEventListener('login', submitForm);
+  document.getElementById('login').addEventListener('login', submitForm);
 
   function submitForm(e){
     e.preventDefault();
@@ -109,4 +109,4 @@ function saveMessage(fname, email, password){
         databaseEmail:email,
         databasePassword:password
   }) 
- }*/
+ }
