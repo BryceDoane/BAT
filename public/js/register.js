@@ -71,7 +71,7 @@ function saveMessage(fname, email, password){
 
 
   //Listens for the login action on login button
-  document.getElementById('login').addEventListener('login', submitForm);
+  /*document.getElementById('login').addEventListener('login', submitForm);
 
   function submitForm(e){
     e.preventDefault();
@@ -100,6 +100,7 @@ function saveMessage(fname, email, password){
   function getInputVal(id){
     return document.getElementById(id).value;
   }
+  */
 
   var databaseEmail = firebase.database().ref(email);
   var databasePassword = firebase.database().ref(password);
