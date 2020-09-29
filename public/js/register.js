@@ -61,10 +61,10 @@ function saveMessage(fname, email, password){
   });
 }
   function writeUserData(fname, email){
-    var messagesRef = messagesRef.push();
+    var messagesRef = messagesRef.child('user');
     messagesRef.push({
     fname: name,
-    email: email,
+    email: email
     });
 }
 
