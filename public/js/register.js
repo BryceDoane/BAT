@@ -31,6 +31,7 @@ function submitForm(e){
   var password = getInputVal('password'); 
   
   saveMessage(fname,email,password);
+  writeUserData(fname, email);
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
