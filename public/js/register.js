@@ -65,6 +65,7 @@ function saveMessage(fname, email, password){
     messagesRef.database().ref('user').push({
     fname: name,
     email: email,
+    });
 }
 
 
