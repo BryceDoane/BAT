@@ -104,11 +104,11 @@ function saveMessage(fname, email, password){
   */
 
   var databaseEmail = firebase.database().ref(email);
-  var databasePassword = firebase.database().ref(password);
-    function loginTest(email, password){
+  var databaseName = firebase.database().ref(name);
+    function loginTest(email, fname){
       var loginTest = loginTest.push();
       loginTest.set({
         databaseEmail:email,
-        databasePassword:password
+        databaseName:fname
   }) 
  }
