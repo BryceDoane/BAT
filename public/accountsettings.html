@@ -46,22 +46,23 @@
                 </p>
                 <p class="full">
                     <button type="submit" event="submit" class="button button-block">Save Changes</button>
+                    <button type="submit" onclick="verifyEmail()" class="button button-block">Verify Email</button>
                 </p>
             </form>
             <h3>Password Reset</h3>
             <form>
                 <p>
                     <label>Old Password</label>
-                    <input type="password" id="password" name="name">
+                    <input type="password" id="oldpassword" name="name">
                 </p>
                 <p>
                     <label>Create New Password</label>
-                    <input type="password" id="password" name="name">
+                    <input type="password" id="newpassword" name="name">
                 </p>
                 <p>
                     <label>Confirm New Password</label>
                     <input type="password" name="name">
-                </p>
+                </p>s
                 <p class="full">
                     <button type="submit" event="submit" class="button button-block">Save Changes</button>
                 </p>
@@ -82,4 +83,7 @@
             </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+    <script src="js/settings.js"></script>
 </body>
