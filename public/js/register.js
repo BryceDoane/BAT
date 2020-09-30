@@ -31,6 +31,7 @@ function submitForm(e){
   var password = getInputVal('password'); 
   
   //messagesRef.push(fname, email);
+  firebase.database().ref('user').push({name:fname, email: email});
   saveMessage(fname,email,password);
   //loginTest(fname, email);
   //writeUserData(fname, email);
@@ -102,7 +103,7 @@ function saveMessage(fname, email, password){
   function getInputVal(id){
     return document.getElementById(id).value;
   }
-  */
+  
 
   var databaseEmail = firebase.database().ref(email);
   var databaseName = firebase.database().ref(name);
@@ -110,3 +111,4 @@ function saveMessage(fname, email, password){
       var loginTest = loginTest.push();
       loginTest.push(email, fname);
  }
+ */
