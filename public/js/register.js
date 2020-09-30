@@ -30,7 +30,7 @@ function submitForm(e){
   var email = getInputVal('email');
   var password = getInputVal('password'); 
   
-  messagesRef.push(fname, email);
+  //messagesRef.push(fname, email);
   saveMessage(fname,email,password);
   //loginTest(fname, email);
   //writeUserData(fname, email);
@@ -108,8 +108,5 @@ function saveMessage(fname, email, password){
   var databaseName = firebase.database().ref(name);
     function loginTest(email, fname){
       var loginTest = loginTest.push();
-      loginTest.set({
-        databaseEmail:email,
-        databaseName:fname
-  }) 
+      loginTest.push(email, fname);
  }
