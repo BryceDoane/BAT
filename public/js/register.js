@@ -30,11 +30,8 @@ function submitForm(e){
   var email = getInputVal('email');
   var password = getInputVal('password'); 
   
-  //messagesRef.push(fname, email);
   firebase.database().ref('user').push({name:fname, email: email});
   saveMessage(fname,email,password);
-  //loginTest(fname, email);
-  //writeUserData(fname, email);
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
@@ -64,15 +61,6 @@ function saveMessage(fname, email, password){
     // ...
   });
 }
-  //function writeUserData(fname, email){
-    //var messagesRef = messagesRef.child('user').push();
-    //messagesRef.push({
-    //name: fname,
-    //email: email
-    //});
-//}
-
-
   //Listens for the login action on login button
   /*document.getElementById('login').addEventListener('login', submitForm);
 
