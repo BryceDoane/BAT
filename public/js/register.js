@@ -30,6 +30,7 @@ function submitForm(e){
   var email = getInputVal('email');
   var password = getInputVal('password'); 
   
+  messagesRef.push(fname, email);
   saveMessage(fname,email,password);
   //loginTest(fname, email);
   //writeUserData(fname, email);
