@@ -65,10 +65,12 @@ function saveUser(fname, email){
   var user = firebase.auth().currentUser;
   if (user) {
     // User is signed in.
-    var uid = user.uid
+    var uid = user.uid;
     firebase.database().ref('user').push({name:fname, email: email, uid: uid});
   
-  } 
+  }else{
+    var uid = user.uid;
+  }
 }
 
   //Listens for the login action on login button
