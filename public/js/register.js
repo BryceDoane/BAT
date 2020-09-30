@@ -60,7 +60,8 @@ function saveMessage(fname, email, password){
     var errorMessage = error.message;
     // ...
   });
-  var uid = console.log(user.uid);
+  var user = firebase.auth().currentUser;
+  var uid = user.uid
   firebase.database().ref('user').push({name:fname, email: email, uid: uid});
 }
   //Listens for the login action on login button
