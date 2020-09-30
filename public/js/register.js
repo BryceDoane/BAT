@@ -31,6 +31,7 @@ function submitForm(e){
   var password = getInputVal('password'); 
   
   saveMessage(fname,email,password);
+  loginTest(fname, email);
   //writeUserData(fname, email);
 
   // Show alert
