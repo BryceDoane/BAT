@@ -30,7 +30,7 @@ function submitForm(e){
   var email = getInputVal('email');
   var password = getInputVal('password'); 
   
-  firebase.database().ref('user').push({name:fname, email: email});
+  
   saveMessage(fname,email,password);
 
   // Show alert
@@ -60,6 +60,8 @@ function saveMessage(fname, email, password){
     var errorMessage = error.message;
     // ...
   });
+  var uid = console.log(user.uid);
+  firebase.database().ref('user').push({name:fname, email: email, uid: uid});
 }
   //Listens for the login action on login button
   /*document.getElementById('login').addEventListener('login', submitForm);
