@@ -16,11 +16,14 @@
 //function verifyEmail(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        console.log("true");
-        console.log(user);
-        if (user.verifyEmail == true){
-            alert("Email verified");
-        }
+      var user = auth.currentUser();
+      console.log("true");
+      var emailVerified = user.emailVerified;
+      var uid = user.uid;
+      var email = user.email;
+      if (emailVerified == true){
+        alert("Email verified");
+      }
     }else {
         console.log("false");
     }
