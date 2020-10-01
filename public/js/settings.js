@@ -47,16 +47,19 @@ const dbutton = document.getElementById("delb");
 
 //function for delting user
 function deleteu(){ 
+  const confp = conf.value;
+  if (confp == "Yes"){
 alert('this account has been deleted');
 window.location.replace("https://behavior-analysis-tracker.web.app");
-alert('this account has been deleted'); 
+alert('this account has been deleted');
+
 
 const user = firebase.auth().currentUser;
 user.delete().then(function hey() {
 }).catch(function(error) {
   // An error happened.
 });
-}
+}}
 //listens for click to submit button for delete account
   dbutton.addEventListener('click', deleteu);
 
