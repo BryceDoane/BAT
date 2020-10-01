@@ -32,6 +32,8 @@
       alert('Please enter a password.');
       return;
       }
+      
+        //
       // Sign in with email and pass.
       // [START authwithemail]
       firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -120,21 +122,27 @@ window.onclick = function(event) {
 }
 
 const auth = firebase.auth();
+//variable for forgot password email field
 const sub = document.getElementById("emailf");
+//variable for submit button to forgot password
 const fbutton = document.getElementById("fpass");
 
+//function for password reset
 const reset = () => { 
   const rmail = sub.value;
-
-  auth.sendPasswordResetEmail(rmail).then(() => {
+//sends password reset email 
+  auth.sendPasswordResetEmail(rmail)
+  .then(() => {
     alert('password reset sent!');
   // Email sent.
-}).catch(error => {
-  console.log('error')
+})
+.catch(error => {
+  console.log('error');
   
-});}
-
+})}
+//listens for click to submit button for forgot password
 fbutton.addEventListener('click', reset);
+
 
 
 

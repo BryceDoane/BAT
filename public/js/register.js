@@ -22,6 +22,7 @@ var loginTest = firebase.database().ref('test')
 // Listen for form submit
 document.getElementById('signup').addEventListener('submit', submitForm);
 
+
 // Submit form
 function submitForm(e){
   e.preventDefault();
@@ -29,6 +30,11 @@ function submitForm(e){
   var fname = getInputVal('fname');
   var email = getInputVal('email');
   var password = getInputVal('password'); 
+  var password2 = getInputVal('password2'); 
+  if (password != password2) {
+    alert('Password do not match');
+    return;
+    }
   
   saveMessage(fname,email,password);
 
@@ -53,10 +59,19 @@ function getInputVal(id){
 
 // Save message to firebase
 function saveMessage(fname, email, password){
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+    if (errorCode == 'auth/email-already-in-use') {
+      alert('Email already in use');
+    } 
+    
+    else {
+      alert(errorMessage);
+    }
+
     // ...
   });
 }
