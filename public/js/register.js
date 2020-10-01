@@ -16,7 +16,7 @@
 
 // Reference messages collection
 var messagesRef = firebase.database().ref('user');
-var loginTest = firebase.database().ref('test')
+var loginTest = firebase.database().ref('user')
 
 
 // Listen for form submit
@@ -35,6 +35,7 @@ function submitForm(e){
     alert('Password do not match');
     return;
     }
+  
   
   saveMessage(fname,email,password);
 
@@ -75,16 +76,20 @@ function saveMessage(fname, email, password){
     // ...
   });
 }
-  //function writeUserData(fname, email){
-    //var messagesRef = messagesRef.push();
-    //messagesRef.database().ref('user').push({
-     // fname: name,
-      //email: email,
-//}
-
+function saveUser(fname, email){
+  var user = firebase.auth().currentUser;
+  if (user) {
+    // User is signed in.
+    var uid = user.uid;
+    firebase.database().ref('user').push({name:fname, email: email, uid: uid});
+  
+  }else{
+    var uid = user.uid;
+  }
+}
 
   //Listens for the login action on login button
-  /* document.getElementById('login').addEventListener('login', submitForm);
+  /*document.getElementById('login').addEventListener('login', submitForm);
 
   function submitForm(e){
     e.preventDefault();
@@ -113,13 +118,12 @@ function saveMessage(fname, email, password){
   function getInputVal(id){
     return document.getElementById(id).value;
   }
+  
 
   var databaseEmail = firebase.database().ref(email);
-  var databasePassword = firebase.database().ref(password);
-    function loginTest(email, password){
+  var databaseName = firebase.database().ref(name);
+    function loginTest(email, fname){
       var loginTest = loginTest.push();
-      loginTest.set({
-        databaseEmail:email,
-        databasePassword:password
-  }) 
- }*/
+      loginTest.push(email, fname);
+ }
+ */
