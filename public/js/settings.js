@@ -38,3 +38,47 @@ function verifyEmail(){
       // An error happened.
     });
 }
+
+const auth = firebase.auth();
+//variable for forgot password email field
+const conf = document.getElementById("confirmation");
+//variable for delete button
+const dbutton = document.getElementById("delb");
+
+//function for delting user
+function deleteu(){ 
+alert('this account has been deleted');
+window.location.replace("https://behavior-analysis-tracker.web.app");
+alert('this account has been deleted'); 
+
+const user = firebase.auth().currentUser;
+user.delete().then(function hey() {
+}).catch(function(error) {
+  // An error happened.
+});
+}
+//listens for click to submit button for delete account
+  dbutton.addEventListener('click', deleteu);
+
+  //log out functionality on top right
+  function signout(){firebase.auth().signOut();
+    alert("signed out");};
+  const sout = document.getElementById("lout");
+  sout.addEventListener('click', signout);
+
+
+ //update password functionality 
+const newPassword = document.getElementById("newpassword");
+const newpass = document.getElementById("submitnp");
+const updatep = () => {
+const uppass = newPassword.value;
+const user = firebase.auth().currentUser;
+user.updatePassword(uppass).then(function() {
+  // Update successful.
+}).catch(function(error) {
+  // An error happened.*/
+})}
+
+newpass.addEventListener('click', updatep);
+
+
