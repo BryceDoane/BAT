@@ -13,15 +13,25 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-
+//function verifyEmail(){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log("true");
+        console.log(user);
+        if (user.verifyEmail == true){
+            alert("Email verified");
+        }
+    }else {
+        console.log("false");
+    }
+})
+//}
 function verifyEmail(){
     var user = firebase.auth().currentUser;
-    alert(user.email);
-
-user.sendEmailVerification().then(function() {
-  // Email sent.
+    console.log(user);
+    user.sendEmailVerification().then(function() {
 }).catch(function(error) {
     alert(error);
-  // An error happened.
-});
+      // An error happened.
+    });
 }
