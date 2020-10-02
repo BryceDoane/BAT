@@ -49,9 +49,9 @@ const dbutton = document.getElementById("delb");
 function deleteu(){ 
   const confp = conf.value;
   if (confp == "Yes"){
-alert('this account has been deleted');
+alert('your account has been deleted');
 window.location.replace("https://behavior-analysis-tracker.web.app");
-alert('this account has been deleted');
+alert('your account has been deleted');
 
 
 const user = firebase.auth().currentUser;
