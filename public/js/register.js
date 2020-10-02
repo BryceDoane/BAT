@@ -75,8 +75,16 @@ function saveMessage(fname, email, password){
 
     // ...
   });
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var uid = user.uid;
+    firebase.database().ref('user').push({name:fname, email: email, uid: uid});
 }
-function saveUser(fname, email){
+}
+
+/*function saveUser(fname, email){
   var user = firebase.auth().currentUser;
   if (user) {
     // User is signed in.
@@ -87,9 +95,8 @@ function saveUser(fname, email){
     var uid = user.uid;
   }
 }
-
   //Listens for the login action on login button
-  /*document.getElementById('login').addEventListener('login', submitForm);
+  document.getElementById('login').addEventListener('login', submitForm);
 
   function submitForm(e){
     e.preventDefault();
