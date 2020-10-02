@@ -83,7 +83,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     firebase.database().ref('user').push({name:fname, email: email, uid: uid});
 }
 });
-
+}
 /*function saveUser(fname, email){
   var user = firebase.auth().currentUser;
   if (user) {
