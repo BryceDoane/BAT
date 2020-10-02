@@ -51,7 +51,7 @@ function deleteu(){
   if (confp == "Yes"){
 alert('your account has been deleted');
 window.location.replace("https://behavior-analysis-tracker.web.app");
-alert('your account has been deleted');
+
 
 
 const user = firebase.auth().currentUser;
