@@ -142,7 +142,10 @@ const reset = () => {
 //listens for click to submit button for forgot password
 fbutton.addEventListener('click', reset);
 
-
+function newClass() {
+  var className = document.getElementById("className");
+  console.log(className);
+}
 
 
 

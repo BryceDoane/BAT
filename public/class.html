@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,50 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="sidenav">
         <a href="dashboard.html">Dashboard</a>
         <a href="class.html">Classes</a>
         <a href="student.html">Students</a>
         <a href="accountsettings.html">Settings</a>
-     </div>
-  
-     <div class="topnav">
+    </div>
+
+    <div class="topnav">
         <h1>Behavv</h1>
-        <a href="index.html" id ="lout">Log Out</a><!-- Add script to log out user -->
-     </div>
-  <!-- Page content -->
+        <a href="index.html" id="lout">Log Out</a><!-- Add script to log out user -->
+    </div>
+    <!-- Page content -->
     <div class="classes">
         <h1>Classes</h1>
+        <button id="addClassModal">Add Class</button>
+
+
     </div>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Add Class</h2>
+            </div>
+            <div class="modal-body">
+                <form id="newClassForm">
+                <p>Please enter class name</p>
+                <input type="text" id="className"><hr>
+                
+                </form>
+                <button class="button button-block">Cancel</button> <button value="Submit" onclick="newClass()">Submit</button>
+                
+            </div>
+        </div>
+        </div>
+    
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
-    <script src="js/settings.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
