@@ -6,7 +6,7 @@
 
 ## Front-Facing Usage
 
-Navigate to https://behavior-analysis-tracker.web.app in a web browser, create an account, and begin using.
+Navigate to https://behavior-analysis-tracker.web.app in a web browser, create an account, and begin using. You can browse all account pages, but some may still have limited functionality at this point. 
 
 ## Development Environment Setup
 (1.) Download these programs
@@ -39,6 +39,10 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 
  The Firebase Quick-Start Guide: https://github.com/firebase/quickstart-js/blob/master/auth/email-password.html
 
+ Lance from StackOverFlow for the dashboard current date script. https://stackoverflow.com/questions/32540044/html-display-current-date/32540196
+
+
+
 # Change Log
 ## V 1.0
 1. Refined homepage design
@@ -51,7 +55,12 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 3. Login page displays the status of authentication until a user dashboard is developed
 4. About us and contact us pages added
 
+## V1.2
+1. Added dashboard, user settings, classes, and students pages
+2. Additional security added through email account verification and other signup error checking
+3. Ability to change password and delete account
+4. UUID introduced to better organize and populate database in future versions
 
 ## Future Releases
 
-Version 1.2 will include a user dashboard page as well as more user account functionality based on authentication 
+Version 1.3 will add fuctionality that allows the user to add classes, students, and actions. 
