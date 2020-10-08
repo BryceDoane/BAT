@@ -27,7 +27,6 @@ addClassbtn.onclick = function () {
   classModal.style.display = "block";
 }
 
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   classModal.style.display = "none";
@@ -39,12 +38,17 @@ window.onclick = function (event) {
     classModal.style.display = "none";
   }
 }
+
+//Declare Variables
 var uid;
 var userEmail;
+var classes = [];
 
-firebase.auth().onAuthStateChanged(function(user) {
+//User State Listener
+firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
+    console.log(uid);
     email = user.email;
   } else {
     // No user is signed in.
@@ -60,3 +64,24 @@ function newClass() {
   classModal.style.display = "none";
   firebase.database().ref('classes').push({ className: className, task: "temp", UID: uid });
 }
+
+// View classes
+var classesRef = firebase.database().ref('classes');
+classesRef.on('value', function (snapshot) {
+  snapshot.forEach(function (childSnapshot) {
+    var childData = childSnapshot.val();
+    classesRef.on('child_added', function (snapshot) {
+      //Do something with the data
+      //document.getElementById("classNameLi").innerHTML = childData.className;
+      var classeslist = classes.toString();
+document.getElementById("classNameLi").innerHTML = classeslist;
+    });
+    classes.push(childData.className);
+    
+    
+
+  });
+}); 
+console.log(classes);
+
+
