@@ -13,4 +13,17 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
+var uid;
+var userEmail;
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    uid = user.uid;
+    email = user.email;
+    console.log(uid);
+  } else {
+    // No user is signed in.
+  }
+});
   

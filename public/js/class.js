@@ -40,11 +40,12 @@ window.onclick = function (event) {
   }
 }
 var uid;
+var userEmail;
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     uid = user.uid;
-    console.log(uid);
+    email = user.email;
   } else {
     // No user is signed in.
   }

@@ -42,6 +42,19 @@ function close() {
     studentModal.style.display = "none";
 }
 
+var uid;
+var userEmail;
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    uid = user.uid;
+    email = user.email;
+    console.log(uid);
+  } else {
+    // No user is signed in.
+  }
+});
+
 //Takes in class name from modal form
 function newStudent() {
     var studentName = document.getElementById("studentName").value;
