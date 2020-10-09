@@ -49,7 +49,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
     console.log(uid);
-    email = user.email;
+    userEmail = user.email;
   } else {
     // No user is signed in.
   }
@@ -58,30 +58,29 @@ firebase.auth().onAuthStateChanged(function (user) {
 //Takes in class name from modal form
 function newClass() {
   var className = document.getElementById("className").value;
-  console.log(uid);
   //var UID = user.uid;
   alert(className);
   classModal.style.display = "none";
   firebase.database().ref('classes').push({ className: className, task: "temp", UID: uid });
+  location.reload();
 }
 
 // View classes
 var classesRef = firebase.database().ref('classes');
+var classesList;
 classesRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
     classesRef.on('child_added', function (snapshot) {
       //Do something with the data
       //document.getElementById("classNameLi").innerHTML = childData.className;
-      var classeslist = classes.toString();
-document.getElementById("classNameLi").innerHTML = classeslist;
+
     });
     classes.push(childData.className);
-    
-    
+    classesList = classes.toString();
 
   });
-}); 
-console.log(classes);
+  document.getElementById("classNameLi").innerHTML = classesList;
+});
 
 
