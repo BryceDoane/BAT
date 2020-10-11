@@ -43,6 +43,7 @@ window.onclick = function (event) {
 var uid;
 var userEmail;
 var classes = [];
+var tasks = [];
 
 //User State Listener
 firebase.auth().onAuthStateChanged(function (user) {
@@ -76,14 +77,17 @@ classesRef.on('value', function (snapshot) {
       
     });
     classes.push(childData.className);
+    classes.push(childData.task);
+
     //document.getElementById("classNameLi").innerHTML = ("<li>" + childData.className + "</li>");
-    classesList = classes.toString();   
+    console.log(classes);  
 
   });
   //document.getElementById("classNameLi").innerHTML = ("<li>" + classesList + "</li>");
     for (i = 0; i < classes.length; i++) {
+      //classes[i] = tasks[childData.task];
       var node = document.createElement("li");                 // Create a <li> node
-      var textnode = document.createTextNode(classes[i]);         // Create a text node
+      var textnode = document.createTextNode(classes[i]);      //Create a text node
       node.appendChild(textnode);  
       document.getElementById("classNameLi").appendChild(node);
     }
