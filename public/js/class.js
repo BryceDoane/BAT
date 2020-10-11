@@ -54,12 +54,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
   }
 });
-
+var classAdded = false;
 //Takes in class name from modal form
 function newClass() {
   var className = document.getElementById("className").value;
   //var UID = user.uid;
-  alert(className);
   classModal.style.display = "none";
   firebase.database().ref('classes').push({ className: className, task: "temp", UID: uid });
   location.reload();
@@ -74,13 +73,22 @@ classesRef.on('value', function (snapshot) {
     classesRef.on('child_added', function (snapshot) {
       //Do something with the data
       //document.getElementById("classNameLi").innerHTML = childData.className;
-
+      
     });
     classes.push(childData.className);
-    classesList = classes.toString();
+    //document.getElementById("classNameLi").innerHTML = ("<li>" + childData.className + "</li>");
+    classesList = classes.toString();   
 
   });
-  document.getElementById("classNameLi").innerHTML = classesList;
+  //document.getElementById("classNameLi").innerHTML = ("<li>" + classesList + "</li>");
+    for (i = 0; i < classes.length; i++) {
+      var node = document.createElement("li");                 // Create a <li> node
+      var textnode = document.createTextNode(classes[i]);         // Create a text node
+      node.appendChild(textnode);  
+      document.getElementById("classNameLi").appendChild(node);
+    }
 });
+
+
 
 
