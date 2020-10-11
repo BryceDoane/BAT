@@ -16,7 +16,7 @@
 //function verifyEmail(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      var user = auth.currentUser();
+      var user = firebase.auth().currentUser;
       console.log("true");
       var emailVerified = user.emailVerified;
       var uid = user.uid;
