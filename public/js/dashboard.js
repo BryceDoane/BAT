@@ -24,6 +24,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     console.log(uid);
   } else {
     // No user is signed in.
+    window.location = "http://behavior-analysis-tracker.web.app/index.html";
   }
 });
   
