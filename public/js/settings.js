@@ -17,12 +17,12 @@
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       var user = firebase.auth().currentUser;
-      console.log("true");
+      //console.log("true");
       var emailVerified = user.emailVerified;
       var uid = user.uid;
       var email = user.email;
       if (emailVerified == true){
-        alert("Email verified");
+        //alert("Email verified");
       }
     }else {
         console.log("false");
@@ -50,15 +50,12 @@ function deleteu(){
   const confp = conf.value;
   if (confp == "Yes"){
 alert('your account has been deleted');
-window.location.replace("https://behavior-analysis-tracker.web.app");
-
-
-
 const user = firebase.auth().currentUser;
 user.delete().then(function hey() {
 }).catch(function(error) {
   // An error happened.
 });
+window.location = "https://behavior-analysis-tracker.web.app/login.html";
 }}
 //listens for click to submit button for delete account
   dbutton.addEventListener('click', deleteu);
