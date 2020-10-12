@@ -111,22 +111,52 @@ body{
     background-color: #b3a5d9;
   }
   
-  /* Style page content */
+  /* DASHBOARD */
   .dashboard {
     margin-left: 200px; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
-
+  /* CLASSES */
   .classes {
     margin-left: 200px; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
 
+  #myBtn, .classes button{
+    display: inline-block;
+    width:40%;
+    margin-left: 100px;
+    padding: 1em;
+    border: 1px solid #6f42c1;
+    background:#c9e6ff;
+    border:0;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  #myBtn:hover, #myBtn:focus, .classes button:hover, .classes button:focus{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+    transition: background-color 2s ease-out;
+  }
+
+  .classes p{
+    color: #ff0000;
+  }
+
+  .classes p li{
+    color: #000000;
+  }
+
+  .classes p ul{
+    color: #0000ff;
+  }
+  /* STUDENTS */
   .students {
     margin-left: 200px; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
-
+  /* USER SETTINGS */
   .settings {
     margin-left: 200px; /* Same as the width of the sidebar */
     margin-top: 100px;
