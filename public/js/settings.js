@@ -12,17 +12,17 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+  var emailVerified;
 //function verifyEmail(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       var user = firebase.auth().currentUser;
       //console.log("true");
-      var emailVerified = user.emailVerified;
+      emailVerified = user.emailVerified;
       var uid = user.uid;
       var email = user.email;
       if (emailVerified == true){
-        //alert("Email verified");
+       document.getElementById("emailVerifiedBool").innerHTML = "True";
       }
     }else {
         console.log("false");
@@ -31,12 +31,16 @@
 //}
 function verifyEmail(){
     var user = firebase.auth().currentUser;
-    console.log(user);
+    //console.log(user);
+    if(emailVerified == true){
+      alert("Error: Email already verified");
+    }else{
     user.sendEmailVerification().then(function() {
 }).catch(function(error) {
     alert(error);
       // An error happened.
     });
+}
 }
 
 const auth = firebase.auth();
