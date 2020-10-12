@@ -28,10 +28,14 @@
     <div class="classes">
         <h1>Classes</h1>
         <button id="addClassModal">Add Class</button>
+        <button id="addTask"> Add a Task</button>
+
+        <p id="classNameLi">Classes</p>
 
 
     </div>
-    <div id="myModal" class="modal">
+
+    <div id="classModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
@@ -44,7 +48,7 @@
                 <input type="text" id="className"><hr>
                 
                 </form>
-                <button class="button button-block">Cancel</button> <button value="Submit" onclick="newClass()">Submit</button>
+                <button value="Submit" onclick="newClass()">Submit</button>
                 
             </div>
         </div>
@@ -53,5 +57,5 @@
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/class.js"></script>
 </body>

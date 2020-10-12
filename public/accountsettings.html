@@ -30,27 +30,33 @@
             <form class="signup" id="signup">
                 <p>
                     <label>Name</label>
-                    <input type="text" id="fname" name="name">
+                    <input type="text" id="fname" name="name" placeholder="name">
                 </p>
                 <p>
                     <label>Email Address</label>
-                    <input type="email" id="email" name="name">
+                    <input type="email" id="email" name="name" placeholder="email">
                 </p>
                 <p>
                     <label>School Name</label>
-                    <input type="text" id="school" name="name">
+                    <input type="text" id="school" name="name" placeholder="school name">
                 </p>
-                <p>
+                <p> 
                     <label>Phone Number</label>
-                    <input type="text" id="phone" name="name">
+                    <input type="text" id="phone" name="name" placeholder="555-555-5555">
                 </p>
                 <p class="full">
                     <button type="submit" event="submit" class="button button-block">Save Changes</button>
                     <button onclick="verifyEmail()" class="button button-block">Verify Email</button>
                 </p>
+                <p class="full">
+                    Email Verified <label id="emailVerifiedBool">False</p>
+                </p>
             </form>
-            <h3>Update Current Password</h3>
+            <h3>Change Password</h3>
             <form>
+                    <label>Old Password</label>
+                    <input type="password" id="oldpassword" name="name">
+                </p>
                <label>New Password</label>
                     <input type="password" id="newpassword" name="name">
                 </p>

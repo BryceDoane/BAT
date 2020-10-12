@@ -12,17 +12,17 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+  var emailVerified;
 //function verifyEmail(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-       user = auth.currentUser();
-      console.log("true");
-      var emailVerified = user.emailVerified;
+      var user = firebase.auth().currentUser;
+      //console.log("true");
+      emailVerified = user.emailVerified;
       var uid = user.uid;
       var email = user.email;
       if (emailVerified == true){
-        alert("Email verified");
+       document.getElementById("emailVerifiedBool").innerHTML = "True";
       }
     }else {
         console.log("false");
@@ -31,12 +31,16 @@
 //}
 function verifyEmail(){
     var user = firebase.auth().currentUser;
-    console.log(user);
+    //console.log(user);
+    if(emailVerified == true){
+      alert("Error: Email already verified");
+    }else{
     user.sendEmailVerification().then(function() {
 }).catch(function(error) {
     alert(error);
       // An error happened.
     });
+}
 }
 
 const auth = firebase.auth();
@@ -50,15 +54,12 @@ function deleteu(){
   const confp = conf.value;
   if (confp == "Yes"){
 alert('your account has been deleted');
-window.location.replace("https://behavior-analysis-tracker.web.app");
-alert('your account has been deleted');
-
-
 const user = firebase.auth().currentUser;
 user.delete().then(function hey() {
 }).catch(function(error) {
   // An error happened.
 });
+window.location = "https://behavior-analysis-tracker.web.app/login.html";
 }}
 //listens for click to submit button for delete account
   dbutton.addEventListener('click', deleteu);
