@@ -77,20 +77,39 @@ classesRef.on('value', function (snapshot) {
       
     });
     classes.push(childData.className);
-    classes.push(childData.task);
-
+    classes.push(childData.Tasks);
+    
+    //console.log(childData.Tasks);
     //document.getElementById("classNameLi").innerHTML = ("<li>" + childData.className + "</li>");
-    console.log(classes);  
+    //console.log(classes); 
 
   });
   //document.getElementById("classNameLi").innerHTML = ("<li>" + classesList + "</li>");
     for (i = 0; i < classes.length; i++) {
-      //classes[i] = tasks[childData.task];
-      var node = document.createElement("li");                 // Create a <li> node
-      var textnode = document.createTextNode(classes[i]);      //Create a text node
-      node.appendChild(textnode);  
-      document.getElementById("classNameLi").appendChild(node);
+      if (i%2 == 0){
+        //console.log(classes[i]);
+        var node = document.createElement("li");                 // Create a <li> node
+        var textnode = document.createTextNode(classes[i]);  //Create a text node
+        node.appendChild(textnode);
+        document.getElementById("classNameLi").appendChild(node);
+      }else {
+        var taskText = classes[i];
+        //taskText.flat(1);
+        console.log(JSON.stringify(classes[i]));
+        var node2 = document.createElement("ul");                 // Create a <li> node
+        var textnode2 = document.createTextNode(JSON.stringify(classes[i]));  //Create a text node
+        node2.appendChild(textnode2);
+        document.getElementById("classNameLi").appendChild(node2);
+      }
+
+      /*for (j = 0; j < classes[i].length; j++){
+        //console.log(classes[1]);
+      }*/
+
+
     }
+    //console.log(classes);
+    //onsole.log(classes[1]);
 });
 
 
