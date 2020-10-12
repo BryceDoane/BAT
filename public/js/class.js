@@ -85,7 +85,7 @@ classesRef.on('value', function (snapshot) {
 
   });
   //document.getElementById("classNameLi").innerHTML = ("<li>" + classesList + "</li>");
-    for (i = 0; i < classes.length; i++) {
+    /*for (i = 0; i < classes.length; i++) {
       if (i%2 == 0){
         //console.log(classes[i]);
         var node = document.createElement("li");                 // Create a <li> node
@@ -102,12 +102,12 @@ classesRef.on('value', function (snapshot) {
         document.getElementById("classNameLi").appendChild(node2);
       }
 
-      /*for (j = 0; j < classes[i].length; j++){
+      for (j = 0; j < classes[i].length; j++){
         //console.log(classes[1]);
-      }*/
+      }
 
 
-    }
+    }*/
     //console.log(classes);
     //onsole.log(classes[1]);
 });
