@@ -16,7 +16,7 @@
 //function verifyEmail(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      var user = auth.currentUser();
+       user = auth.currentUser();
       console.log("true");
       var emailVerified = user.emailVerified;
       var uid = user.uid;
@@ -51,7 +51,7 @@ function deleteu(){
   if (confp == "Yes"){
 alert('your account has been deleted');
 window.location.replace("https://behavior-analysis-tracker.web.app");
-
+alert('your account has been deleted');
 
 
 const user = firebase.auth().currentUser;
@@ -84,4 +84,19 @@ user.updatePassword(uppass).then(function() {
 
 newpass.addEventListener('click', updatep);
 
+//Makes the user logged out once the session has ended (tab has closed)
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
 
