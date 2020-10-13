@@ -98,3 +98,9 @@ classesRef.on('value', function (snapshot) {
 
   generateClassesTable(mountains);
 });
+
+//log out functionality on top right
+function signout(){firebase.auth().signOut();
+  alert("signed out");};
+const sout = document.getElementById("lout");
+sout.addEventListener('click', signout);

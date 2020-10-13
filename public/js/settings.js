@@ -69,8 +69,9 @@ dbutton.addEventListener('click', deleteu);
   //log out functionality on top right
   function signout(){firebase.auth().signOut();
     alert("signed out");};
-  const sout = document.getElementsByClassName("lout");
+  const sout = document.getElementById("lout");
   sout.addEventListener('click', signout);
+  
 
 
 //update password functionality 

@@ -82,3 +82,9 @@ studentRef.on('value', function (snapshot) {
   });
   document.getElementById("studentNameLi").innerHTML = studentList;
 });
+
+//log out functionality on top right
+function signout(){firebase.auth().signOut();
+  alert("signed out");};
+const sout = document.getElementById("lout");
+sout.addEventListener('click', signout);
