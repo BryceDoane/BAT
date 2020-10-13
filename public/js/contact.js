@@ -16,7 +16,7 @@
 
 
 // Listen for form submit
-document.getElementById('contact').addEventListener('submit', submitForm);
+document.getElementById('contact').addEventListener('sendIt', submitForm);
 
 
 // Submit form
@@ -49,8 +49,8 @@ function getInputVal(id){
 }
 //FUnction to compile message and mail it
 function sendIt(fname, email, topic, association, message){
-  var msg = "Name: " + fname + '\n' + 'Email:' + email + '\n'
-  + "Topic: " + topic + '\n' + "School or Company: " + association + '\n' + message;
-  mail("BehavvTracker@gmail.com","Customer Support",msg);
+  //var msg = "Name: " + fname + '\n' + 'Email:' + email + '\n'
+  //+ "Topic: " + topic + '\n' + "School or Company: " + association + '\n' + message;
+  mail("BehavvTracker@gmail.com","Customer Support", msg);
 }
 
