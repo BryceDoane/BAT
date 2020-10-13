@@ -25,18 +25,11 @@
     <div class="dashboard">
         <h1>Dashboard</h1>
         <h1 id="date"></h1>
+        <p id="classNameLi"></p>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
-    <script src="js/settings.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
-    
-<!-- This is the script to get the realtime date and time -->
-<script>
-    n =  new Date();
-    y = n.getFullYear();
-    m = n.getMonth() + 1;
-    d = n.getDate();
-    document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
-    //current date script by Lance on StackOverflow
-</script>
+
