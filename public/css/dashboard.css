@@ -151,6 +151,30 @@ body{
   .classes p ul{
     color: #0000ff;
   }
+
+  .classes table{
+    display: inline-block;
+    border-collapse: collapse;
+    width:40%;
+    margin-left: 20px;
+  }
+
+  .classes table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #6f42c1;
+    color: white;
+  }
+
+  .classes table td, .classes table th{
+    border: 2px solid #000000;
+    padding: 10px;
+  }
+
+  .classes table tr:nth-child(even) {background-color: #6d6d6d;}
+  .classes table tr:hover {background-color: #6d6d6d;}
+
   /* STUDENTS */
   .students {
     margin-left: 200px; /* Same as the width of the sidebar */

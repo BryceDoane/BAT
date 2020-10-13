@@ -65,6 +65,41 @@ function newClass() {
   location.reload();
 }
 
+//Create table
+var mountains = [];
+
+
+function generateClassesTable(mountains) {
+
+  let table = document.querySelector("table");
+  let data = Object.keys(mountains[0]);
+  generateTable(table, mountains);
+  generateTableHead(table, data);
+  
+  function generateTableHead(table, data) {
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+    for (let key of data) {
+      let th = document.createElement("th");
+      let text = document.createTextNode(key);
+      th.appendChild(text);
+      row.appendChild(th);
+    }
+  }
+
+  function generateTable(table, data) {
+    for (let element of data) {
+      let row = table.insertRow();
+      for (key in element) {
+        let cell = row.insertCell();
+        let text = document.createTextNode(element[key]);
+        cell.appendChild(text);
+      }
+    }
+  }
+  mountains = [];
+}
+
 // View classes
 var classesRef = firebase.database().ref('classes');
 var classesList;
@@ -74,16 +109,27 @@ classesRef.on('value', function (snapshot) {
     classesRef.on('child_added', function (snapshot) {
       //Do something with the data
       //document.getElementById("classNameLi").innerHTML = childData.className;
-      
+
     });
     classes.push(childData.className);
     classes.push(childData.Tasks);
-    
-    //console.log(childData.Tasks);
-    //document.getElementById("classNameLi").innerHTML = ("<li>" + childData.className + "</li>");
-    //console.log(classes); 
-
   });
+  for (i = 0; i < (classes.length / 2); i++) {
+    var td = document.createElement('TABLE');
+    document.getElementById("classNameLi").appendChild(td);
+    mountains = [
+      { StudentName: "Bryce", Bring_Pencils: 1, Bring_Homework: 1, Task4: 3, task3: 9 },
+      { name: "Gage", task1: 4, task2: 5, task3: 3, task4: 6 },
+      { name: "Matt", task1: 2, task2: 2, task3: 3, task4: 6  },
+      { name: "Eddie", task1: 5, task2: 3, task3: 3, task4: 6  },
+      { name: "Pat", task1: 3, task2: 4, task3: 3, task4: 6  }
+    ];
+  
+  }
+
+  generateClassesTable(mountains);
+  console.log(mountains[1].task2);
+  /*
   //document.getElementById("classNameLi").innerHTML = ("<li>" + classesList + "</li>");
     for (i = 0; i < classes.length; i++) {
       if (i%2 == 0){
@@ -102,16 +148,13 @@ classesRef.on('value', function (snapshot) {
         document.getElementById("classNameLi").appendChild(node2);
       }
 
-      /*for (j = 0; j < classes[i].length; j++){
+      for (j = 0; j < classes[i].length; j++){
         //console.log(classes[1]);
-      }*/
+      }
 
 
     }
     //console.log(classes);
     //onsole.log(classes[1]);
+    */
 });
-
-
-
-
