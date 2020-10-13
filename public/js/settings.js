@@ -67,7 +67,7 @@ window.location = "https://behavior-analysis-tracker.web.app/login.html";
   //log out functionality on top right
   function signout(){firebase.auth().signOut();
     alert("signed out");};
-  const sout = document.getElementById("lout");
+  const sout = document.getElementsByClassName("lout");
   sout.addEventListener('click', signout);
 
 
