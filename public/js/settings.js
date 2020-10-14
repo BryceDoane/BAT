@@ -106,7 +106,7 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   });
 
 //gets signed in user
-  const don = firebase.auth().currentUser;
+  var don = firebase.auth().currentUser;
 
 if (don != null) { alert("user");
   // User is signed in.
