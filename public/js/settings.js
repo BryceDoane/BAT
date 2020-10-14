@@ -105,3 +105,11 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
     var errorMessage = error.message;
   });
 
+//gets signed in user
+  const don = firebase.auth().currentUser;
+
+if (don != null) { alert("user");
+  // User is signed in.
+} else { alert("nope");
+  // No user is signed in.
+}

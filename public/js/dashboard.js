@@ -104,3 +104,4 @@ function signout(){firebase.auth().signOut();
   alert("signed out");};
 const sout = document.getElementById("lout");
 sout.addEventListener('click', signout);
+
