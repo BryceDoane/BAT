@@ -106,10 +106,11 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   });
 
 //gets signed in user
-  var don = firebase.auth().currentUser;
-
-if (don != null) { alert("user");
-  // User is signed in.
-} else { alert("nope");
-  // No user is signed in.
-}
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user != null) {
+    alert("true");
+    //console.log("true");
+  } else {
+    alert("false");
+  }
+})
