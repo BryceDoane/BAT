@@ -196,9 +196,9 @@ body{
   }
 
   #linu{
-    background;
-    color:blue;
-    line-height:1.6;
+    color:white;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-    padding:1em;
+    padding-right: 50px;
+  }
+    
     
