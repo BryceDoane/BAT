@@ -108,7 +108,7 @@ sout.addEventListener('click', signout);
 //gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {
   if (user != null) {
-    document.getElementById("linu").innerHTML = "Singed in as"; user.email;
+    document.getElementById("linu").innerHTML = user.email;
   } else {
     document.getElementById("linu").innerHTML = user.email;
   }
