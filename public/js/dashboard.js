@@ -105,3 +105,11 @@ function signout(){firebase.auth().signOut();
 const sout = document.getElementById("lout");
 sout.addEventListener('click', signout);
 
+//gets signed in user
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user != null) {
+    alert("true");
+  } else {
+    alert("false");
+  }
+})

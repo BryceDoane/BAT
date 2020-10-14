@@ -109,7 +109,6 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 firebase.auth().onAuthStateChanged(function (user) {
   if (user != null) {
     alert("true");
-    //console.log("true");
   } else {
     alert("false");
   }
