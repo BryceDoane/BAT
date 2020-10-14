@@ -108,8 +108,8 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 //gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {
   if (user != null) {
-    alert("true");
+    document.getElementById("linu").innerHTML = user.email;
   } else {
-    alert("false");
+    document.getElementById("linu").innerHTML = user.email;
   }
 })
