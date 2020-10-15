@@ -59,7 +59,7 @@ var userEmail;
 var classes = [];
 var tasks = [];
 //var classRef = firebase.database().ref('classes');
-var classRef = firebase.databse().ref('classes').orderByChild("UID").equalTo(uid);
+var classRef = firebase.databse().ref('classes').orderByChild("UID").equalTo("gkOIuUEI7lZSto7eEgwHMywlc1A2");
 var classes = [];
 var classesandtasks = [];
 var classesList;
