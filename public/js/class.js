@@ -50,7 +50,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
     console.log(uid);
-    //userEmail = user.email;
+    userEmail = user.email;
   } else {
     // No user is signed in.
   }
@@ -104,8 +104,8 @@ classRef.on('value', function (snapshot) {
   //gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {
   if (user != null) {
-    //document.getElementById("linu").innerHTML = user.email;
+    document.getElementById("linu").innerHTML = user.email;
   } else {
-    //document.getElementById("linu").innerHTML = user.email;
+    document.getElementById("linu").innerHTML = user.email;
   }
 })
