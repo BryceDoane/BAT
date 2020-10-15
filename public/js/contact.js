@@ -16,9 +16,7 @@
 
 
 // Listen for form submit
-document.getElementById('contact').addEventListener('sendIt', submitForm);
-
-
+document.getElementById('contact').addEventListener('submit', submitForm);
 // Submit form
 function submitForm(e){
   e.preventDefault();
@@ -28,17 +26,19 @@ function submitForm(e){
   var topic = getInputVal('topic'); 
   var association = getInputVal('association'); 
   var message = getInputVal('message'); 
-
+  
+  firebase.database().ref('messages').push({Name: fname, Email: email, Organization: association, Topic: topic, Message: message});
+  //saveMessage(fname);
   // Show alert
-  document.querySelector('.alert').style.display = 'block';
+  //document.querySelector('.alert').style.display = 'block';
 
   // Hide alert after 3 seconds
-  setTimeout(function(){
-    document.querySelector('.alert').style.display = 'none';
-  },3000);
+  //setTimeout(function(){
+    //document.querySelector('.alert').style.display = 'none';
+  //},3000);
 
   // Clear form
-  // document.getElementById('signup').reset();
+  //document.getElementById('contact').reset();
 
 
 }
@@ -47,10 +47,15 @@ function submitForm(e){
 function getInputVal(id){
   return document.getElementById(id).value;
 }
-//FUnction to compile message and mail it
-function sendIt(fname, email, topic, association, message){
-  //var msg = "Name: " + fname + '\n' + 'Email:' + email + '\n'
-  //+ "Topic: " + topic + '\n' + "School or Company: " + association + '\n' + message;
-  mail("BehavvTracker@gmail.com","Customer Support", msg);
+
+
+function saveMessage(fname){
+  firebase.database().ref('messages').push(fname);
 }
+
+
+
+
+
+
 
