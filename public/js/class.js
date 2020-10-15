@@ -58,7 +58,8 @@ var uid;
 var userEmail;
 var classes = [];
 var tasks = [];
-var classRef = firebase.database().ref('classes');
+//var classRef = firebase.database().ref('classes');
+var classRef = firebase.databse().ref('classes').orderByChild("UID").equalTo(uid);
 var classes = [];
 var classesandtasks = [];
 var classesList;
@@ -93,6 +94,7 @@ function newTask(){
   classRef2.set({taskName: taskName, taskVal: "3" });
   location.reload();
 }
+
 
 classRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
