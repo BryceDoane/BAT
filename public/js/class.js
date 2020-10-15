@@ -95,7 +95,7 @@ function newTask(){
   classRef2.set("3");
   location.reload();
 }
-uid = user.uid;
+
 classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
