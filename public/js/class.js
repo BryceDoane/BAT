@@ -144,10 +144,10 @@ function checkClass(){
 classRef.once("value", function(snapshot) {
   snapshot.forEach(function(child) {
     if (snapshot.hasChild(document.getElementById("className").value)){
-      alert("Already Added");
+      alert("Class already exists");
   }
   else{newClass();
 }
-  });
+});
 });
 }
