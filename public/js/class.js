@@ -51,7 +51,6 @@ window.onclick = function (event) {
   }
 }
 
-
 //Declare Variables
 var uid;
 var userEmail;
@@ -79,7 +78,7 @@ function newClass() {
   //var UID = user.uid;
   classModal.style.display = "none";
   //firebase.database().ref('classes').push({ className: className, UID: uid });
-   firebase.database().ref("classes").child(className).push({class: className});
+   firebase.database().ref("classes").child(className).set({className: className, UID: uid});
   location.reload();
 }
 //Create a new task
