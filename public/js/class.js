@@ -145,6 +145,8 @@ classRef.once("value", function(snapshot) {
   snapshot.forEach(function(child) {
     if (snapshot.hasChild(document.getElementById("className").value)){
       alert("Class already exists");
+      location.reload();
+      setTimeout();
   }
   else{newClass();
 }
