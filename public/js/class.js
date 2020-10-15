@@ -50,7 +50,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
     console.log(uid);
-    userEmail = user.email;
+    //userEmail = user.email;
   } else {
     // No user is signed in.
   }
@@ -65,98 +65,34 @@ function newClass() {
   location.reload();
 }
 
-//Create table
-var mountains = [];
-
-
-function generateClassesTable(mountains) {
-
-  let table = document.querySelector("table");
-  let data = Object.keys(mountains[0]);
-  generateTable(table, mountains);
-  generateTableHead(table, data);
-  
-  function generateTableHead(table, data) {
-    let thead = table.createTHead();
-    let row = thead.insertRow();
-    for (let key of data) {
-      let th = document.createElement("th");
-      let text = document.createTextNode(key);
-      th.appendChild(text);
-      row.appendChild(th);
-    }
-  }
-
-  function generateTable(table, data) {
-    for (let element of data) {
-      let row = table.insertRow();
-      for (key in element) {
-        let cell = row.insertCell();
-        let text = document.createTextNode(element[key]);
-        cell.appendChild(text);
-      }
-    }
-  }
-  mountains = [];
-}
-
-// View classes
-var classesRef = firebase.database().ref('classes');
+var classRef = firebase.database().ref('classes');
+var classes = [];
+var classesandtasks = [];
 var classesList;
-classesRef.on('value', function (snapshot) {
+classRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
-    classesRef.on('child_added', function (snapshot) {
+    classRef.on('child_added', function (snapshot) {
       //Do something with the data
       //document.getElementById("classNameLi").innerHTML = childData.className;
 
     });
     classes.push(childData.className);
-    classes.push(childData.Tasks);
+    classes.push(JSON.stringify(childData.Tasks));
+    classesList = classes.toString();
+
   });
-  for (i = 0; i < (classes.length / 2); i++) {
-    var td = document.createElement('TABLE');
-    document.getElementById("classNameLi").appendChild(td);
-    mountains = [
-      { StudentName: "Bryce", Bring_Pencils: 1, Bring_Homework: 1, Task4: 3, task3: 9 },
-      { name: "Gage", task1: 4, task2: 5, task3: 3, task4: 6 },
-      { name: "Matt", task1: 2, task2: 2, task3: 3, task4: 6  },
-      { name: "Eddie", task1: 5, task2: 3, task3: 3, task4: 6  },
-      { name: "Pat", task1: 3, task2: 4, task3: 3, task4: 6  }
-    ];
-  
-  }
-
-  generateClassesTable(mountains);
-  console.log(mountains[1].task2);
-  /*
-  //document.getElementById("classNameLi").innerHTML = ("<li>" + classesList + "</li>");
-    for (i = 0; i < classes.length; i++) {
-      if (i%2 == 0){
-        //console.log(classes[i]);
-        var node = document.createElement("li");                 // Create a <li> node
-        var textnode = document.createTextNode(classes[i]);  //Create a text node
-        node.appendChild(textnode);
-        document.getElementById("classNameLi").appendChild(node);
-      }else {
-        var taskText = classes[i];
-        //taskText.flat(1);
-        console.log(JSON.stringify(classes[i]));
-        var node2 = document.createElement("ul");                 // Create a <li> node
-        var textnode2 = document.createTextNode(JSON.stringify(classes[i]));  //Create a text node
-        node2.appendChild(textnode2);
-        document.getElementById("classNameLi").appendChild(node2);
-      }
-
-      for (j = 0; j < classes[i].length; j++){
-        //console.log(classes[1]);
-      }
-
-
+  for (i = 0; i < classes.length; i++){
+    if (i % 2 == 0){
+    var node = document.createElement('li');
+    }else {
+      var node = document.createElement('ul');
     }
-    //console.log(classes);
-    //onsole.log(classes[1]);
-    */
+    var textNode = document.createTextNode(classes[i]);
+    node.appendChild(textNode);
+    document.getElementById("classNameLi").appendChild(node);
+  }
+  //document.getElementById("classNameLi").innerHTML = classesList;
 });
 
 //log out functionality on top right
@@ -168,8 +104,8 @@ classesRef.on('value', function (snapshot) {
   //gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {
   if (user != null) {
-    document.getElementById("linu").innerHTML = user.email;
+    //document.getElementById("linu").innerHTML = user.email;
   } else {
-    document.getElementById("linu").innerHTML = user.email;
+    //document.getElementById("linu").innerHTML = user.email;
   }
 })
