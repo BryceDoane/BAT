@@ -54,7 +54,7 @@ window.onclick = function (event) {
 }
 
 //Declare Variables
-var uid;
+var uid = "";
 var userEmail;
 var classes = [];
 var tasks = [];
@@ -95,7 +95,7 @@ function newTask(){
   classRef2.set("3");
   location.reload();
 }
-
+//uid = "gkOIuUEI7lZSto7eEgwHMywlc1A2";
 classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
