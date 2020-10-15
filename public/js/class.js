@@ -15,21 +15,28 @@ firebase.initializeApp(firebaseConfig);
 
 // Get the modal
 var classModal = document.getElementById("classModal");
+var taskModal = document.getElementById("taskModal");
 
 // Get the button that opens the modal
 var addClassbtn = document.getElementById("addClassModal");
+var addTaskBtn = document.getElementById("addTaskModal");
 
 // Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
 addClassbtn.onclick = function () {
   classModal.style.display = "block";
 }
+addTaskBtn.onclick = function () {
+  taskModal.style.display = "block";
+}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   classModal.style.display = "none";
+  taskModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -38,6 +45,12 @@ window.onclick = function (event) {
     classModal.style.display = "none";
   }
 }
+window.onclick = function (event) {
+  if (event.target == taskModal) {
+    taskModal.style.display = "none";
+  }
+}
+
 
 //Declare Variables
 var uid;
@@ -61,7 +74,14 @@ function newClass() {
   var className = document.getElementById("className").value;
   //var UID = user.uid;
   classModal.style.display = "none";
-  firebase.database().ref('classes').push({ className: className, task: "temp", UID: uid });
+  firebase.database().ref('classes').push({ className: className, UID: uid });
+  location.reload();
+}
+//Create a new task
+function newTask(){
+  var taskName = document.getElementById("taskName").value;
+  taskModal.style.display = "none";
+  firebase.database().ref("classes".childData("English")).push({task: taskName});
   location.reload();
 }
 

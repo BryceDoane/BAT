@@ -4,7 +4,6 @@
 }
 
 body{
-    background:#b3a5d9;
     color:2#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
@@ -116,6 +115,36 @@ body{
     margin-left: 200px; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
+
+  .dashboard p{
+    color: #ff0000;
+  }
+
+  .dashboard table{
+    display: inline-block;
+    border-collapse: collapse;
+    width:40%;
+    margin-left: 20px;
+  }
+
+  .dashboard table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-align: center;
+    background-color: #6f42c1;
+    color: white;
+    border: 2px solid #000000;
+  }
+
+  .dashboard table td, .classes table th{
+    border: 2px solid #000000;
+    padding: 10px;
+  }
+
+  .dashboard table tr:nth-child(even) {background-color: #6d6d6d;}
+  .dashboard table tr:hover {background-color: #6d6d6d;}
   /* CLASSES */
   .classes {
     margin-left: 200px; /* Same as the width of the sidebar */
@@ -139,41 +168,6 @@ body{
     outline:0;
     transition: background-color 2s ease-out;
   }
-
-  .classes p{
-    color: #ff0000;
-  }
-
-  .classes p li{
-    color: #000000;
-  }
-
-  .classes p ul{
-    color: #0000ff;
-  }
-
-  .classes table{
-    display: inline-block;
-    border-collapse: collapse;
-    width:40%;
-    margin-left: 20px;
-  }
-
-  .classes table th{
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #6f42c1;
-    color: white;
-  }
-
-  .classes table td, .classes table th{
-    border: 2px solid #000000;
-    padding: 10px;
-  }
-
-  .classes table tr:nth-child(even) {background-color: #6d6d6d;}
-  .classes table tr:hover {background-color: #6d6d6d;}
 
   /* STUDENTS */
   .students {
