@@ -58,8 +58,7 @@ var uid;
 var userEmail;
 var classes = [];
 var tasks = [];
-//var classRef = firebase.database().ref('classes');
-var classRef = firebase.databse().ref('classes').orderByChild("UID").equalTo("gkOIuUEI7lZSto7eEgwHMywlc1A2");
+var classRef = firebase.database().ref('classes');
 var classes = [];
 var classesandtasks = [];
 var classesList;
@@ -96,9 +95,8 @@ function newTask(){
   classRef2.set("3");
   location.reload();
 }
-
-
-classRef.on('value', function (snapshot) {
+uid = user.uid;
+classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
     classRef.on('child_added', function (snapshot) {
@@ -124,7 +122,6 @@ classRef.on('value', function (snapshot) {
   }
   //document.getElementById("classNameLi").innerHTML = classesList;
 });
-
 //log out functionality on top right
   function signout(){firebase.auth().signOut();
     alert("signed out");};
