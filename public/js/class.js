@@ -139,9 +139,15 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 })
 //error checking on classes for duplicates
-DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-usersRef.child(theDataToAdd).once('value', function(snapshot) {
-  if (snapshot.exists()) {
-    alert('exists');
+function checkClass(){ 
+  var classRef = firebase.database().ref('classes');
+classRef.once("value", function(snapshot) {
+  snapshot.forEach(function(child) {
+    if (snapshot.hasChild(document.getElementById("className").value)){
+      alert("Already Added");
   }
-})
+  else{newClass();
+}
+  });
+});
+}
