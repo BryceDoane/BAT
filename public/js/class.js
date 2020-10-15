@@ -96,6 +96,7 @@ function newTask(){
   location.reload();
 }
 //uid = "gkOIuUEI7lZSto7eEgwHMywlc1A2";
+firebase.auth().onAuthStateChanged(function (user) {
 classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
@@ -122,6 +123,7 @@ classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
   }
   //document.getElementById("classNameLi").innerHTML = classesList;
 });
+})
 //log out functionality on top right
   function signout(){firebase.auth().signOut();
     alert("signed out");};
