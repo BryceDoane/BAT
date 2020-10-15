@@ -22,8 +22,8 @@ var addClassbtn = document.getElementById("addClassModal");
 var addTaskBtn = document.getElementById("addTaskModal");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var span = document.getElementsByClassName("close")[0];
+var span1 = document.getElementsByClassName("close")[0];
+var span2 = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
 addClassbtn.onclick = function () {
@@ -34,8 +34,10 @@ addTaskBtn.onclick = function () {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+span1.onclick = function () {
   classModal.style.display = "none";
+}
+span2.onclick = function () {
   taskModal.style.display = "none";
 }
 
@@ -91,6 +93,7 @@ function newTask(){
   classRef2.set({taskName: taskName, taskVal: "3" });
   location.reload();
 }
+
 classRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
