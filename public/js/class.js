@@ -170,6 +170,6 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user != null) {
     document.getElementById("linu").innerHTML = user.email;
   } else {
-    document.getElementById("linu").innerHTML = user.email;
+    document.getElementById("linu");
   }
 })
