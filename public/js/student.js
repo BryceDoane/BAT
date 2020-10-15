@@ -55,15 +55,31 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
+
 //Takes in student name from modal form
 function newStudent() {
+  var dCheck = "to";
   var studentName = document.getElementById("studentName").value;
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
   //TODO: pull school name from user
-  firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: "temp schoolName" });
-  location.reload();
+  firebase.database().ref('student').orderByChild('studentID').equalTo(studentID).on("child_added", function(snapshot) {
+  console.log(snapshot.key);
+  if(snapshot.key = studentID){
+    alert("A student with that ID already exists");
+    dCheck = "no";
+    console.log(dCheck);
+  }
+});
+console.log(dCheck);
+  if (dCheck === "to"){
+    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: "temp schoolName" });
+    location.reload(true);
+    //studentID = null;
+  }
+  
 }
+
 //Fills student info to webpage
 var studentRef = firebase.database().ref('student');
 var students = [];
