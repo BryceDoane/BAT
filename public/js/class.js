@@ -57,6 +57,10 @@ var uid;
 var userEmail;
 var classes = [];
 var tasks = [];
+var classRef = firebase.database().ref('classes');
+var classes = [];
+var classesandtasks = [];
+var classesList;
 
 //User State Listener
 firebase.auth().onAuthStateChanged(function (user) {
@@ -74,21 +78,20 @@ function newClass() {
   var className = document.getElementById("className").value;
   //var UID = user.uid;
   classModal.style.display = "none";
-  firebase.database().ref('classes').push({ className: className, UID: uid });
+  //firebase.database().ref('classes').push({ className: className, UID: uid });
+   firebase.database().ref("classes").child(className).push({class: className});
   location.reload();
 }
 //Create a new task
 function newTask(){
   var taskName = document.getElementById("taskName").value;
+  var select = document.getElementById("classList");
+  var classSelect = select.options[select.selectedIndex].value;
+  var classRef2 = firebase.database().ref('classes').child(classSelect).child("Tasks");
   taskModal.style.display = "none";
-  firebase.database().ref("classes".childData("English")).push({task: taskName});
+  classRef2.set({taskName: taskName, taskVal: "3" });
   location.reload();
 }
-
-var classRef = firebase.database().ref('classes');
-var classes = [];
-var classesandtasks = [];
-var classesList;
 classRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
