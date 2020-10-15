@@ -21,6 +21,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     emailVerified = user.emailVerified;
     var uid = user.uid;
     var email = user.email;
+    document.getElementById("email").placeholder = email;
     if (emailVerified == true) {
       document.getElementById("emailVerifiedBool").innerHTML = "True";
     }
@@ -35,6 +36,7 @@ function verifyEmail() {
   if (emailVerified == true) {
     alert("Error: Email already verified");
   } else {
+    alert("Email alert sent");
     user.sendEmailVerification().then(function () {
     }).catch(function (error) {
       alert(error);
@@ -52,15 +54,14 @@ const dbutton = document.getElementById("delb");
 //function for delting user
 function deleteu() {
   const confp = conf.value;
+  alert("Account Deleted");
   if (confp == "Yes") {
     const user = firebase.auth().currentUser;
+    window.location = "https://behavior-analysis-tracker.web.app/login.html";
     user.delete().then(function hey() {
     }).catch(function (error) {
       // An error happened.
     });
-    alert('your account has been deleted');
-    window.location = "https://behavior-analysis-tracker.web.app/login.html";
-    alert("Account Deleted");
   }
 }
 //listens for click to submit button for delete account
