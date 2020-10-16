@@ -29,11 +29,9 @@
     <div class="classes">
         <h1>Classes</h1>
         <button id="addClassModal">Add Class</button>
-        <button id="addTaskModal"> Add a Task</button>
 
-<p>List of Classes</p>
+    <p>List of Classes</p>
         <p id="classNameLi"></p>
-
     </div>
 
     <div id="classModal" class="modal">
@@ -47,20 +45,11 @@
                 <form id="newClassForm">
                 <p>Please enter class name</p>
                 <input type="text" id="className"><hr>
-                
+                </div>
+                <div class="modal-body">
                 </form>
-                <button value="Submit" onclick= "checkClass();">Submit</button>
-                
-            </div>
-        </div>
-    </div>
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Create a Task</h2>
-            </div>
-            <div class="modal-body">
+                <button value="Submit" onclick= "checkClass();">Add Class</button>
+                <hr>
                 <form id="newTaskForm">
                     <label for="classList">Choose a class:</label>
                     <select name="classList" id="classList">
@@ -73,9 +62,8 @@
                     <br><br>
                     <p>Please enter a task:</p>
                     <input type="text" id="taskName"><hr>
-                    <button value="Submit" onclick="newTask()">Submit</button>
+                    <button value="Submit" onclick="newTask()">Add Task</button>
                   </form>
-                
             </div>
         </div>
     </div>
