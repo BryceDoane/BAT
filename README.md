@@ -61,6 +61,13 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 3. Ability to change password and delete account
 4. UUID introduced to better organize and populate database in future versions
 
+## V1.3
+1. Added ability to create students, classes, and tasks
+2. Improved database and added connections between classes and tasks
+3. Displays added information and auto refreshes page upon added data
+4. User account information shows on dashboard and settings page
+5. Fixed page links and signin bugs
+
 ## Future Releases
 
-Version 1.3 will add fuctionality that allows the user to add classes, students, and actions. 
+In Version 1.4, we will focus on efforts on displaying information properly on the dashboard in a user friendly UI.
