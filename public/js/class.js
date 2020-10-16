@@ -15,41 +15,27 @@ firebase.initializeApp(firebaseConfig);
 
 // Get the modal
 var classModal = document.getElementById("classModal");
-var taskModal = document.getElementById("taskModal");
 
 // Get the button that opens the modal
 var addClassbtn = document.getElementById("addClassModal");
-var addTaskBtn = document.getElementById("addTaskModal");
 
 // Get the <span> element that closes the modal
 var span1 = document.getElementsByClassName("close")[0];
-var span2 = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
 addClassbtn.onclick = function () {
   classModal.style.display = "block";
-}
-addTaskBtn.onclick = function () {
-  taskModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span1.onclick = function () {
   classModal.style.display = "none";
 }
-span2.onclick = function () {
-  taskModal.style.display = "none";
-}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == classModal) {
     classModal.style.display = "none";
-  }
-}
-window.onclick = function (event) {
-  if (event.target == taskModal) {
-    taskModal.style.display = "none";
   }
 }
 
@@ -80,57 +66,64 @@ function newClass() {
   //var UID = user.uid;
   classModal.style.display = "none";
   //firebase.database().ref('classes').push({ className: className, UID: uid });
-  firebase.database().ref("classes").child(className).set({className: className, UID: uid});
+  firebase.database().ref("classes").child(className).set({ className: className, UID: uid });
   var classRef2 = firebase.database().ref('classes').child(className).child("Tasks");
-  classRef2.set({taskName: "", taskVal: ""});
+  classRef2.set({ taskName: "", taskVal: "" });
   location.reload();
 }
 //Create a new task
-function newTask(){
+function newTask() {
   var taskName = document.getElementById("taskName").value;
   var select = document.getElementById("classList");
   var classSelect = select.options[select.selectedIndex].value;
   var classRef2 = firebase.database().ref('classes/' + classSelect + "/Tasks").child(taskName);
-  taskModal.style.display = "none";
-  classRef2.set("3");
+  classModal.style.display = "none";
+  classRef2.set("");
   location.reload();
 }
 //uid = "gkOIuUEI7lZSto7eEgwHMywlc1A2";
 firebase.auth().onAuthStateChanged(function (user) {
-classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
-  snapshot.forEach(function (childSnapshot) {
-    var childData = childSnapshot.val();
-    classRef.on('child_added', function (snapshot) {
-      //Do something with the data
-      //document.getElementById("classNameLi").innerHTML = childData.className;
+  classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+       var childData = childSnapshot.val();
+       var select = document.getElementById("classList")
+       var option = document.createElement("option");
+       option.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);;
+       option.text = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
+       select.appendChild(option);
+      classRef.on('child_added', function (snapshot) {
+        //Do something with the data
+        //document.getElementById("classNameLi").innerHTML = childData.className;
+
+      });
+      classes.push(childData.className);
+      var tasks = (JSON.stringify(childData.Tasks));
+      classes.push(tasks);
+      classesList = classes.toString();
 
     });
-    classes.push(childData.className);
-    var tasks = (JSON.stringify(childData.Tasks));
-    classes.push(tasks);
-    classesList = classes.toString();
-
-  });
-  for (i = 0; i < classes.length; i++){
-    if (i % 2 == 0){
-    var node = document.createElement('li');
-    }else {
-      var node = document.createElement('ul');
+    for (i = 0; i < classes.length; i++) {
+      if (i % 2 == 0) {
+        var node = document.createElement('li');
+      } else {
+        var node = document.createElement('ul');
+      }
+      var textNode = document.createTextNode(classes[i]);
+      node.appendChild(textNode);
+      document.getElementById("classNameLi").appendChild(node);
     }
-    var textNode = document.createTextNode(classes[i]);
-    node.appendChild(textNode);
-    document.getElementById("classNameLi").appendChild(node);
-  }
-  //document.getElementById("classNameLi").innerHTML = classesList;
-});
+    //document.getElementById("classNameLi").innerHTML = classesList;
+  });
 })
 //log out functionality on top right
-  function signout(){firebase.auth().signOut();
-    alert("signed out");};
-  const sout = document.getElementById("lout");
-  sout.addEventListener('click', signout);
+function signout() {
+  firebase.auth().signOut();
+  alert("signed out");
+};
+const sout = document.getElementById("lout");
+sout.addEventListener('click', signout);
 
-  //gets signed in user
+//gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {
   if (user != null) {
     document.getElementById("linu").innerHTML = user.email;
@@ -139,17 +132,18 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 })
 //error checking on classes for duplicates
-function checkClass(){ 
+function checkClass() {
   var classRef = firebase.database().ref('classes');
-classRef.once("value", function(snapshot) {
-  snapshot.forEach(function(child) {
-    if (snapshot.hasChild(document.getElementById("className").value)){
-      alert("Class already exists");
-      location.reload();
-      setTimeout();
-  }
-  else{newClass();
-}
-});
-});
+  classRef.once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+      if (snapshot.hasChild(document.getElementById("className").value)) {
+        alert("Class already exists");
+        location.reload();
+        setTimeout();
+      }
+      else {
+        newClass();
+      }
+    });
+  });
 }
