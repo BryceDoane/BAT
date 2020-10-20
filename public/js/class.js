@@ -68,7 +68,7 @@ function newClass() {
   //firebase.database().ref('classes').push({ className: className, UID: uid });
   firebase.database().ref("classes").child(className).set({ className: className, UID: uid });
   var classRef2 = firebase.database().ref('classes').child(className).child("Tasks");
-  classRef2.set({ taskName: "", taskVal: "" });
+  classRef2.set({ taskName: ""});
   location.reload();
 }
 //Create a new task

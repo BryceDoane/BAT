@@ -1,3 +1,4 @@
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
@@ -58,23 +59,28 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 //Takes in student name from modal form
 function newStudent() {
-  var dCheck = "to";
+  var dCheck = true;
+  var IDList = [];
   var studentName = document.getElementById("studentName").value;
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
   //TODO: pull school name from user
-  firebase.database().ref('student').orderByChild('studentID').equalTo(studentID).on("child_added", function(snapshot) {
-  console.log(snapshot.key);
-  if(snapshot.key = studentID){
-    alert("A student with that ID already exists");
-    dCheck = "no";
-    console.log(dCheck);
-  }
+  firebase.database().ref('student').orderByChild('studentID').on("child_added", function(snapshot) {
+    IDList.push(snapshot.val().studentID);
 });
+for(i = 0; i <= IDList.length; i++){
+  if(IDList[i] == (studentID)){
+    alert("A student with that ID already exists");
+    dCheck = false;
+    console.log(dCheck);
+    location.reload();
+    break;
+  }
+}
 console.log(dCheck);
-  if (dCheck === "to"){
+  if (dCheck == true){
     firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: "temp schoolName" });
-    location.reload(true);
+    location.reload();
     //studentID = null;
   }
   
