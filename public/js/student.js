@@ -81,7 +81,7 @@ for(i = 0; i <= IDList.length; i++){
 }
 console.log(dCheck);
   if (dCheck == true){
-    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, studentSchool: userSchool });
+    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: userSchool });
     location.reload();
     //studentID = null;
   }
