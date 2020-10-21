@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,26 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="sidenav">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="class.html">Classes</a>
-        <a href="student.html">Students</a>
-        <a href="accountsettings.html">Settings</a>
-     </div>
-  
-     <div class="topnav">
-        <h1>Behavv - The New Way to Monitor</h1>
-        <a href="accountsettings.html" id = "linu" ></a>
-        <a href="index.html" id = "lout" >Log Out</a><!-- Add script to log out user -->
-     </div>
-  <!-- Page content -->
+        <img src="assets/img/logo.png" width="200" height="80" class="logo">
+        <a href="dashboard.html"><img src="assets/img/dashboardicon.png" class="icon" /> Dashboard</a>
+        <a href="class.html"><img src="assets/img/iconclass.png" class="icon" /> Classes</a>
+        <a href="student.html"><img src="assets/img/iconstudent.png" class="icon" /> Students</a>
+        <a href="reports.html"><img src="assets/img/iconreport.png" class="icon" /> Reports</a>
+        <a href="accountsettings.html"><img src="assets/img/iconsettings.png" class="icon" /> Settings</a>
+    </div>
+
+    <div class="topnav">
+        <h1> - The New Way to Monitor - </h1>
+        <a href="accountsettings.html" id="linu"></a>
+        <a href="index.html" id="lout">Log Out</a><!-- Add script to log out user -->
+    </div>
+    <!-- Page content -->
     <div class="dashboard">
         <h1>Dashboard</h1>
         <h1 id="date"></h1>
@@ -33,4 +38,3 @@
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
-

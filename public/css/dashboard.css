@@ -50,22 +50,31 @@ body{
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 200px; /* Set the width of the sidebar */
+    background-image: url("../assets/img/sidenav.jpg");
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #200064;
+
     overflow-x: hidden; /* Disable horizontal scroll */
-    margin-top: 100px;
   }
-  
+   .sidenav img {
+     background-color: transparent;
+   }
+   .sidenav .logo {
+    margin-top: 30px;
+   }
+   .sidenav .icon {
+    height: 35px;
+    width: 35px;
+   }
   /* The navigation menu links */
   .sidenav a {
-    padding: 6px 8px 6px 16px;
+    padding: 10px 16px 16px 16px;
     text-decoration: none;
     font-size: 25px;
-    color: #ffffff;
-    background-color: #200064;
+    color: black;
+    background-color: rgba(255, 253, 253, 0.2);
     display: block;
   }
   
@@ -77,37 +86,48 @@ body{
 
   .topnav {
     display: flex;
-    width: 100%; /* Full-height: remove this if you want "auto" height */
-    height: 100px; /* Set the width of the sidebar */
+    width: 86.1%; /* Full-height: remove this if you want "auto" height */
+    height: 117px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #200064;
+    right: 0;
+    background-image: url("../assets/img/sidenav.jpg");
     overflow-x: hidden; /* Disable horizontal scroll */
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
   }
   
   .topnav h1 {
-    padding: 0px 8px 6px 16px;
-    color: #ffffff;
-    background-color: #200064;
+    padding: 30px 0px 0px 20px;
+    color: #6f42c1;
+    text-shadow: #000000;
+    background-color: transparent;
     font-size: 40px;
+    text-shadow: -1px 1px 2px #000
+    1px 1px 2px #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
   }
   .topnav a {
     padding: 8px 8px 6px 20px;
     text-decoration: none;
-    font-size: 20px;
-    color: #ffffff;
-    background-color: #200064;
+    font-size: 30px;
+    color: #6f42c1;
+    background-color: transparent;
     text-align: center;
     display: block;
     position: absolute;
     right:0;
+    bottom: 0;
+    text-shadow: -1px 1px 2px #000,
+    1px 1px 2px #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
   }
 
   .topnav a:hover {
-    color: #000000;
-    background-color: #b3a5d9;
+    color: #fff;
+    /* background-color: #b3a5d9; */
   }
   
   /* DASHBOARD */
