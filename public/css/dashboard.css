@@ -98,36 +98,39 @@ body{
   }
   
   .topnav h1 {
-    padding: 30px 0px 0px 20px;
-    color: #6f42c1;
+    padding: 50px 0px 0px 20px;
+    /*    color: #6f42c1; */
+    color: white;
     text-shadow: #000000;
+    font-style: italic;
     background-color: transparent;
-    font-size: 40px;
-    text-shadow: -1px 1px 2px #000
-    1px 1px 2px #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000;
+    font-size: 30px;
+    text-shadow: -1px 1px 2px #6f42c1
+    1px 1px 2px #6f42c1,
+    1px -1px 0 #6f42c1,
+    -1px -1px 0 #6f42c1;
   }
-  .topnav a {
+.topnav button{
     padding: 8px 8px 6px 20px;
     text-decoration: none;
-    font-size: 30px;
-    color: #6f42c1;
-    background-color: transparent;
+    font-size: 20px;
+    color: white;
     text-align: center;
-    display: block;
     position: absolute;
-    right:0;
-    bottom: 0;
+    right:10px;;
+    bottom: 10px;
     text-shadow: -1px 1px 2px #000,
     1px 1px 2px #000,
     1px -1px 0 #000,
     -1px -1px 0 #000;
+    border-radius: 25px;
   }
-
   .topnav a:hover {
     color: #fff;
     /* background-color: #b3a5d9; */
+  }
+  .user{
+    background-color: black !important;
   }
   
   /* DASHBOARD */
@@ -228,9 +231,12 @@ body{
   }
 
   #linu{
-    color:white;
+    background-color: transparent;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-    padding-right: 100px;
+    padding-right: 10px;
   }
-    
+
+  #lout {
+    margin-bottom: 0px !important;
+  }
     
