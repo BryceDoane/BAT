@@ -45,12 +45,14 @@ function close() {
 
 var uid;
 var userEmail;
+var userSchool;
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
+    userSchool = user.school;
     email = user.email;
-    console.log(uid);
+    console.log(userSchool);
   } else {
     // No user is signed in.
   }
@@ -79,7 +81,7 @@ for(i = 0; i <= IDList.length; i++){
 }
 console.log(dCheck);
   if (dCheck == true){
-    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: "temp schoolName" });
+    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, studentSchool: userSchool });
     location.reload();
     //studentID = null;
   }

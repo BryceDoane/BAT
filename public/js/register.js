@@ -29,15 +29,16 @@ function submitForm(e){
   // Get values
   var fname = getInputVal('fname');
   var email = getInputVal('email');
+  var school = getInputVal('school'); 
   var password = getInputVal('password'); 
   var password2 = getInputVal('password2'); 
   if (password != password2) {
-    alert('Password do not match');
+    alert('Passwords do not match');
     return;
     }
   
   
-  saveMessage(fname,email,password);
+  saveMessage(fname,email, school, password);
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
@@ -59,7 +60,7 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function saveMessage(fname, email, password){
+function saveMessage(fname, email, school, password){
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .catch(function(error) {
     // Handle Errors here.
@@ -80,7 +81,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     var uid = user.uid;
-    firebase.database().ref('user').push({name:fname, email: email, uid: uid});
+    firebase.database().ref('user').push({name:fname, email: email, school: school, uid: uid});
 }
 });
 }
