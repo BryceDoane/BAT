@@ -15,24 +15,24 @@
 <body>
     <div class="sidenav">
         <img src="assets/img/logo.png" width="200" height="80" class="logo">
-        <a href="dashboard.html"><img src="assets/img/dashboardicon.png" class="icon"/> Dashboard</a>
-        <a href="class.html"><img src="assets/img/iconclass.png" class="icon"/> Classes</a>
-        <a href="student.html"><img src="assets/img/iconstudent.png" class="icon"/> Students</a>
-        <a href="reports.html"><img src="assets/img/iconreport.png" class="icon"/> Reports</a>
-        <a href="accountsettings.html"><img src="assets/img/iconsettings.png" class="icon"/> Settings</a>
-        <a href="index.html" id = "lout"><img src="assets/img/iconlogout.png" class="icon"/> Log Out</a>
+        <a href="dashboard.html"><img src="assets/img/dashboardicon.png" class="icon" /> Dashboard</a>
+        <a href="class.html"><img src="assets/img/iconclass.png" class="icon" /> Classes</a>
+        <a href="student.html"><img src="assets/img/iconstudent.png" class="icon" /> Students</a>
+        <a href="reports.html"><img src="assets/img/iconreport.png" class="icon" /> Reports</a>
+        <a href="accountsettings.html"><img src="assets/img/iconsettings.png" class="icon" /> Settings</a>
+        <a href="index.html" id="lout"><img src="assets/img/iconlogout.png" class="icon" /> Log Out</a>
     </div>
 
     <div class="topnav">
         <h1> - The New Way to Monitor - </h1>
-        <button id = "linu" class="dropbtn" onclick="window.location.href='accountsettings.html'"></button>
-</div>
+        <button id="linu" class="dropbtn" onclick="window.location.href='accountsettings.html'"></button>
+    </div>
     <!-- Page content -->
     <div class="classes">
         <h1>Classes</h1>
-        <button id="addClassModal">Add Class</button>
+        <button id="addClassModal">Add Class or Task</button><button id="deleteClassModal">Delete Class or Task</button>
 
-    <p>List of Classes</p>
+        <p>List of Classes</p>
         <p id="classNameLi"></p>
     </div>
 
@@ -45,31 +45,74 @@
             </div>
             <div class="modal-body">
                 <form id="newClassForm">
-                <p>Please enter class name</p>
-                <input type="text" id="className"><hr>
-                </div>
-                <div class="modal-body">
+                    <p>Please enter class name</p>
+                    <input type="text" id="className">
+                    <hr>
+            </div>
+            <div class="modal-body">
                 </form>
-                <button value="Submit" onclick= "checkClass();">Add Class</button>
+                <button value="Submit" onclick="checkClass();">Add Class</button>
                 <hr>
                 <form id="newTaskForm">
                     <label for="classList">Choose a class:</label>
                     <select name="classList" id="classList">
                         <!-- Autofill from Database Later -->
-                      <!-- <option value="Math">Math</option>
+                        <!-- <option value="Math">Math</option>
                       <option value="Reading">Reading</option>
                       <option value="History">History</option>
                       <option value="Art">Art</option> -->
                     </select>
                     <br><br>
                     <p>Please enter a task:</p>
-                    <input type="text" id="taskName"><hr>
+                    <input type="text" id="taskName">
+                    <hr>
                     <button value="Submit" onclick="newTask()">Add Task</button>
-                  </form>
+                </form>
             </div>
         </div>
     </div>
-    
+
+    <div id="deleteModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close2">&times;</span>
+                <h2>Delete Class or Task</h2>
+
+            </div>
+            <div class="modal-body">
+                <form id="deleteClassForm">
+                    <label for="dClassList">Choose a class:</label>
+                    <select name="dClassList" id="dClassList"></select>
+            </div>
+            <div class="modal-body">
+                </form>
+                <button value="Submit" onclick="deleteClass();">Delete Class</button>
+                <hr>
+                <form id="deleteTaskForm">
+                    <label for="dtClassList">Choose a class:</label>
+                    <select name="dtClassList" id="dtClassList">
+                        <!-- Autofill from Database Later -->
+                        <!-- <option value="Math">Math</option>
+                      <option value="Reading">Reading</option>
+                      <option value="History">History</option>
+                      <option value="Art">Art</option> -->
+                    </select>
+                    <label for="classList">Choose a Task:</label>
+                    <select name="taskList" id="taskList">
+                        <!-- Autofill from Database Later -->
+                        <!-- <option value="Math">Math</option>
+                      <option value="Reading">Reading</option>
+                      <option value="History">History</option>
+                      <option value="Art">Art</option> -->
+                    </select>
+                    <br><br>
+                    <button value="Submit" onclick="deleteTask()">Delete Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>

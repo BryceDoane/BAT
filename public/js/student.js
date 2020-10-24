@@ -50,10 +50,16 @@ var userSchool;
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
-    userSchool = user.school;
+    userSchool = user.schoolName;
     email = user.email;
-    console.log(userSchool);
-  } else {
+    console.log(uid);
+    console.log(email);
+  // TODO: FIX
+  firebase.database().ref('user/').child("-MIe8WwHAYH7dHwWBPlL").on('value',(snap)=>{
+    console.log(snap.schoolName);
+  });
+  }
+ else {
     // No user is signed in.
   }
 });
@@ -65,6 +71,7 @@ function newStudent() {
   var IDList = [];
   var studentName = document.getElementById("studentName").value;
   var studentID = document.getElementById("studentID").value;
+  var userSchool = this.userSchool;
   studentModal.style.display = "none";
   //TODO: pull school name from user
   firebase.database().ref('student').orderByChild('studentID').on("child_added", function(snapshot) {

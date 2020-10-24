@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     var uid = user.uid;
-    firebase.database().ref('user').push({name:fname, email: email, school: school, uid: uid});
+    firebase.database().ref('user').push({name:fname, email: email, schoolName: school, uid: uid});
 }
 });
 }

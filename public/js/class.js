@@ -15,27 +15,39 @@ firebase.initializeApp(firebaseConfig);
 
 // Get the modal
 var classModal = document.getElementById("classModal");
+var deleteModal = document.getElementById("deleteModal");
 
 // Get the button that opens the modal
 var addClassbtn = document.getElementById("addClassModal");
+var deleteClassbtn = document.getElementById("deleteClassModal");
 
 // Get the <span> element that closes the modal
 var span1 = document.getElementsByClassName("close")[0];
+var span2 = document.getElementsByClassName("close2")[0];
 
 // When the user clicks on the button, open the modal 
 addClassbtn.onclick = function () {
   classModal.style.display = "block";
+}
+deleteClassbtn.onclick = function () {
+  deleteModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span1.onclick = function () {
   classModal.style.display = "none";
 }
+span2.onclick = function () {
+  deleteModal.style.display = "none";
+}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == classModal) {
     classModal.style.display = "none";
+  }
+  if (event.target == deleteModal) {
+    deleteModal.style.display = "none";
   }
 }
 
@@ -81,16 +93,45 @@ function newTask() {
   classRef2.set("");
   location.reload();
 }
-//uid = "gkOIuUEI7lZSto7eEgwHMywlc1A2";
+function deleteClass() {
+  var select2 = document.getElementById("dClassList");
+  var dClassSelect = select2.options[select2.selectedIndex].value;
+  var classRef2 = firebase.database().ref('classes/' + dClassSelect);
+  deleteModal.style.display = "none";
+  classRef2.remove();
+  location.reload();
+}
+function deleteTask() {
+  var select3 = document.getElementById("dtClassList");
+  var dtClassSelect = select3.options[select3.selectedIndex].value;
+  var classRef2 = firebase.database().ref('classes/' + dtClassSelect);
+  deleteModal.style.display = "none";
+  classRef2.remove();
+  location.reload();
+}
 firebase.auth().onAuthStateChanged(function (user) {
   classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
        var childData = childSnapshot.val();
-       var select = document.getElementById("classList")
+       var select = document.getElementById("classList");
+       var dSelect = document.getElementById("dClassList");
+       var dtSelect = document.getElementById("dtClassList");
+
        var option = document.createElement("option");
-       option.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);;
+       var option2 = document.createElement("option");
+       var option3 = document.createElement("option");
+
+       option.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
        option.text = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
+       option2.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
+       option2.text = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
+       option3.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
+       option3.text = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
+
        select.appendChild(option);
+       dSelect.appendChild(option2);
+       dtSelect.appendChild(option3);
+
       classRef.on('child_added', function (snapshot) {
         //Do something with the data
         //document.getElementById("classNameLi").innerHTML = childData.className;
