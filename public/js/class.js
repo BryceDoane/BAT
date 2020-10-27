@@ -168,14 +168,14 @@ function signout() {
 const sout = document.getElementById("lout");
 sout.addEventListener('click', signout);
 
-//gets signed in user
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user != null) {
-    document.getElementById("linu").innerHTML = user.email;
-  } else {
-    document.getElementById("linu");
-  }
-})
+// //gets signed in user
+// firebase.auth().onAuthStateChanged(function (user) {
+//   if (user != null) {
+//     document.getElementById("linu").innerHTML = user.email;
+//   } else {
+//     document.getElementById("linu");
+//   }
+// })
 //error checking on classes for duplicates
 /*function checkClass() {
   var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
