@@ -20,6 +20,7 @@ var studentModal = document.getElementById("studentModal");
 // Get the button that opens the modal
 var addStudentbtn = document.getElementById("addStudentModal");
 
+
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
@@ -31,6 +32,7 @@ addStudentbtn.onclick = function () {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   studentModal.style.display = "none";
+  
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -128,3 +130,40 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("linu");
   }
 })
+
+var addStuClass = document.getElementById("addStuClass");
+
+// Get the button that opens the modal
+var addStuClassbtn = document.getElementById("addStuClassModal");
+
+
+// When the user clicks on the button, open the modal
+addStuClassbtn.onclick = function () {
+  addStuClass.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+
+function closeasc() {
+  studentModal.style.display = "none";
+}
+
+function checkClass(){ 
+  //checks class 
+  var classRef = firebase.database().ref('classes');
+  //Checks Student
+  var sturef = firebase.database().ref('student//');
+classRef.once("value", function(snapshot) {
+  snapshot.forEach(function(child) {
+    if (snapshot.hasChild(document.getElementById("StudentID").value) && snapshot.hasChild(document.getElementById("classID").value)){
+      alert("Class already exists");
+      location.reload();
+      setTimeout();
+  }
+
+  else{
+    newClass();
+};
+});
+});
+}

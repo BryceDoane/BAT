@@ -60,6 +60,7 @@ var tasks = [];
 var classRef = firebase.database().ref('Schools/');
 var classesandtasks = [];
 var classesList;
+var studentName;
 
 //User State Listener
 firebase.auth().onAuthStateChanged(function (user) {
@@ -209,3 +210,5 @@ window.onclick = function (event) {
     }
   }
 }
+
+function newStuClass()
