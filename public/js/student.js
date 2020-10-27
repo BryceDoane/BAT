@@ -1,3 +1,4 @@
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
@@ -46,13 +47,21 @@ function close() {
 
 var uid;
 var userEmail;
+var userSchool;
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
+    userSchool = user.schoolName;
     email = user.email;
     console.log(uid);
-  } else {
+    console.log(email);
+  // TODO: FIX
+  firebase.database().ref('user/').child("-MIe8WwHAYH7dHwWBPlL").on('value',(snap)=>{
+    console.log(snap.schoolName);
+  });
+  }
+ else {
     // No user is signed in.
   }
 });
@@ -60,23 +69,29 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 //Takes in student name from modal form
 function newStudent() {
-  var dCheck = "to";
+  var dCheck = true;
+  var IDList = [];
   var studentName = document.getElementById("studentName").value;
   var studentID = document.getElementById("studentID").value;
+  var userSchool = this.userSchool;
   studentModal.style.display = "none";
   //TODO: pull school name from user
-  firebase.database().ref('student').orderByChild('studentID').equalTo(studentID).on("child_added", function(snapshot) {
-  console.log(snapshot.key);
-  if(snapshot.key = studentID){
-    alert("A student with that ID already exists");
-    dCheck = "no";
-    console.log(dCheck);
-  }
+  firebase.database().ref('student').orderByChild('studentID').on("child_added", function(snapshot) {
+    IDList.push(snapshot.val().studentID);
 });
+for(i = 0; i <= IDList.length; i++){
+  if(IDList[i] == (studentID)){
+    alert("A student with that ID already exists");
+    dCheck = false;
+    console.log(dCheck);
+    location.reload();
+    break;
+  }
+}
 console.log(dCheck);
-  if (dCheck === "to"){
-    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: "temp schoolName" });
-    location.reload(true);
+  if (dCheck == true){
+    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: userSchool });
+    location.reload();
     //studentID = null;
   }
   

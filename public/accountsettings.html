@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,80 +8,84 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="sidenav">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="class.html">Classes</a>
-        <a href="student.html">Students</a>
-        <a href="accountsettings.html">Settings</a>
-     </div>
-  
-     <div class="topnav">
-        <h1>Behavv - The New Way to Monitor</h1>
-        <a href="accountsettings.html" id = "linu" ></a>
-        <a href="index.html" id = "lout" >Log Out</a><!-- Add script to log out user -->
-        
-        
-     </div>
-  <!-- Page content -->
+        <img src="assets/img/logo.png" width="200" height="80" class="logo">
+        <a href="dashboard.html"><img src="assets/img/dashboardicon.png" class="icon"/> Dashboard</a>
+        <a href="class.html"><img src="assets/img/iconclass.png" class="icon"/> Classes</a>
+        <a href="student.html"><img src="assets/img/iconstudent.png" class="icon"/> Students</a>
+        <a href="reports.html"><img src="assets/img/iconreport.png" class="icon"/> Reports</a>
+        <a href="accountsettings.html"><img src="assets/img/iconsettings.png" class="icon"/> Settings</a>
+        <a href="index.html" id = "lout"><img src="assets/img/iconlogout.png" class="icon"/> Log Out</a>
+    </div>
+
+    <div class="topnav">
+        <h1>- The New Way to Monitor - </h1>
+        <button id = "linu" class="dropbtn" onclick="window.location.href='accountsettings.html'"></button>
+
+    </div>
+    <!-- Page content -->
     <div class="settings">
         <h1>Account Settings</h1>
         <div class="registration">
             <div id="signup">
-            <h3>General</h3>
-            <form class="signup" id="signup">
-                <p>
-                    <label>Name</label>
-                    <input type="text" id="fname" name="name" placeholder="name">
-                </p>
-                <p>
-                    <label>Email Address</label>
-                    <input type="email" id="email" name="name" placeholder="email">
-                </p>
-                <p>
-                    <label>School Name</label>
-                    <input type="text" id="school" name="name" placeholder="school name">
-                </p>
-                <p> 
-                    <label>Phone Number</label>
-                    <input type="text" id="phone" name="name" placeholder="555-555-5555">
-                </p>
-                <p class="full">
-                    <button type="submit" event="submit" class="button button-block">Save Changes</button>
-                    <button onclick="verifyEmail()" class="button button-block">Verify Email</button>
-                </p>
-                <p class="full">
-                    Email Verified <label id="emailVerifiedBool">False</p>
-                </p>
-            </form>
-            <h3>Change Password</h3>
-            <form>
+                <h3>General</h3>
+                <form class="signup" id="signup">
+                    <p>
+                        <label>Name</label>
+                        <input type="text" id="fname" name="name" placeholder="name">
+                    </p>
+                    <p>
+                        <label>Email Address</label>
+                        <input type="email" id="email" name="name" placeholder="email">
+                    </p>
+                    <p>
+                        <label>School Name</label>
+                        <input type="text" id="school" name="name" placeholder="school name">
+                    </p>
+                    <p>
+                        <label>Phone Number</label>
+                        <input type="text" id="phone" name="name" placeholder="555-555-5555">
+                    </p>
+                    <p class="full">
+                        <button type="submit" event="submit" class="button button-block">Save Changes</button>
+                        <button onclick="verifyEmail()" class="button button-block">Verify Email</button>
+                    </p>
+                    <p class="full">
+                        Email Verified <label id="emailVerifiedBool">False</p>
+                    </p>
+                </form>
+                <h3>Change Password</h3>
+                <form>
                     <label>Old Password</label>
                     <input type="password" id="oldpassword" name="name">
-                </p>
-               <label>New Password</label>
+                    </p>
+                    <label>New Password</label>
                     <input type="password" id="newpassword" name="name">
-                </p>
-                
-                <p class="full">
-                    <button id ="submitnp" type="submit" event="submit" class="button button-block">Save Changes</button>
-                </p>
-            </form>
-            <h3>Delete Account</h3>
-            <form>
-                <p>
-                    <label>Warning! This action is permanent and cannot be undone.
-                        To confirm, please type "Yes" in the textbox.
-                    </label>
-                    <input type="text" id="confirmation" name="name">
-                </p>
+                    </p>
 
-                <p class="full">
-                    <button id = "delb" type="submit" class="button button-block">Delete</button>
-                </p>
-            </form>
+                    <p class="full">
+                        <button id="submitnp" type="submit" event="submit" class="button button-block">Save
+                            Changes</button>
+                    </p>
+                </form>
+                <h3>Delete Account</h3>
+                <form>
+                    <p>
+                        <label>Warning! This action is permanent and cannot be undone.
+                            To confirm, please type "Yes" in the textbox.
+                        </label>
+                        <input type="text" id="confirmation" name="name">
+                    </p>
+
+                    <p class="full">
+                        <button id="delb" type="submit" class="button button-block">Delete</button>
+                    </p>
+                </form>
             </div>
         </div>
     </div>
