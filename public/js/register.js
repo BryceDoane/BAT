@@ -37,7 +37,6 @@ function submitForm(e){
     return;
     }
   
-  
   saveMessage(fname,email, school, password);
 
   // Show alert
@@ -51,7 +50,6 @@ function submitForm(e){
   // Clear form
   // document.getElementById('signup').reset();
 
-
 }
 
 // Function to get form values
@@ -62,27 +60,32 @@ function getInputVal(id){
 // Save message to firebase
 function saveMessage(fname, email, school, password){
   firebase.auth().createUserWithEmailAndPassword(email, password)
-  .catch(function(error) {
+  .then(function(result) {
+    return result.user.updateProfile({
+      displayName: school
+    })
+  }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
     if (errorCode == 'auth/email-already-in-use') {
       alert('Email already in use');
     } 
-    
     else {
       alert(errorMessage);
     }
-
-    // ...
   });
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     var uid = user.uid;
-    firebase.database().ref('user').push({name:fname, email: email, schoolName: school, uid: uid});
-}
+    var schoolName = user.displayName;
+    console.log(schoolName);
+    firebase.database().ref('Schools').child(school).child("Users").push({ name: fname, email: email, uid: uid, schoolName: schoolName });
+}else{
+
+};
 });
 }
 /*function saveUser(fname, email){
