@@ -54,19 +54,21 @@ window.onclick = function (event) {
 //Declare Variables
 var uid = "";
 var userEmail;
+var schoolName;
 var classes = [];
 var tasks = [];
-var classRef = firebase.database().ref('classes');
-var classes = [];
+var classRef = firebase.database().ref('Schools/');
 var classesandtasks = [];
 var classesList;
 
 //User State Listener
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
+    schoolName = user.displayName;
     uid = user.uid;
-    console.log(uid);
+    //console.log(uid);
     userEmail = user.email;
+    classRef = firebase.database().ref('Schools/' + schoolName);
   } else {
     // No user is signed in.
   }
@@ -78,9 +80,8 @@ function newClass() {
   //var UID = user.uid;
   classModal.style.display = "none";
   //firebase.database().ref('classes').push({ className: className, UID: uid });
-  firebase.database().ref("classes").child(className).set({ className: className, UID: uid });
-  var classRef2 = firebase.database().ref('classes').child(className).child("Tasks");
-  classRef2.set({ taskName: ""});
+  firebase.database().ref("Schools").child(schoolName).child("classes").child(className).set({ UID: uid, className: className });
+  //firebase.database().ref(schoolName).child("classes").child(className).child("Tasks").set({ taskName: ""});
   location.reload();
 }
 //Create a new task
@@ -88,7 +89,7 @@ function newTask() {
   var taskName = document.getElementById("taskName").value;
   var select = document.getElementById("classList");
   var classSelect = select.options[select.selectedIndex].value;
-  var classRef2 = firebase.database().ref('classes/' + classSelect + "/Tasks").child(taskName);
+  var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + classSelect + "Tasks").child(taskName);
   classModal.style.display = "none";
   classRef2.set("");
   location.reload();
@@ -110,51 +111,51 @@ function deleteTask() {
   location.reload();
 }
 firebase.auth().onAuthStateChanged(function (user) {
-  classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
+  var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+  classRef.on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
-       var childData = childSnapshot.val();
-       var select = document.getElementById("classList");
-       var dSelect = document.getElementById("dClassList");
-       var dtSelect = document.getElementById("dtClassList");
+      console.log(childSnapshot.val().className);
+  var childData = childSnapshot.val().className;
+  //console.log(childData);
+  var select = document.getElementById("classList");
+  var dSelect = document.getElementById("dClassList");
+  var dtSelect = document.getElementById("dtClassList");
 
-       var option = document.createElement("option");
-       var option2 = document.createElement("option");
-       var option3 = document.createElement("option");
+  var option = document.createElement("option");
+  var option2 = document.createElement("option");
+  var option3 = document.createElement("option");
 
-       option.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
-       option.text = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
-       option2.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
-       option2.text = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
-       option3.value = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
-       option3.text = childData.className.charAt(0).toUpperCase() + childData.className.slice(1);
+  option.value = childData.charAt(0).toUpperCase() + childData.slice(1);
+  option.text = childData.charAt(0).toUpperCase() + childData.slice(1);
+  option2.value = childData.charAt(0).toUpperCase() + childData.slice(1);
+  option2.text = childData.charAt(0).toUpperCase() + childData.slice(1);
+  option3.value = childData.charAt(0).toUpperCase() + childData.slice(1);
+  option3.text = childData.charAt(0).toUpperCase() + childData.slice(1);
 
-       select.appendChild(option);
-       dSelect.appendChild(option2);
-       dtSelect.appendChild(option3);
+  select.appendChild(option);
+  dSelect.appendChild(option2);
+  dtSelect.appendChild(option3);
 
-      classRef.on('child_added', function (snapshot) {
-        //Do something with the data
-        //document.getElementById("classNameLi").innerHTML = childData.className;
+  classRef.on('child_added', function (snapshot) {
+    //Do something with the data
+    //document.getElementById("classNameLi").innerHTML = childData.className;
 
-      });
-      classes.push(childData.className);
-      var tasks = (JSON.stringify(childData.Tasks));
-      classes.push(tasks);
-      classesList = classes.toString();
-
-    });
-    for (i = 0; i < classes.length; i++) {
-      if (i % 2 == 0) {
-        var node = document.createElement('li');
-      } else {
-        var node = document.createElement('ul');
-      }
-      var textNode = document.createTextNode(classes[i]);
-      node.appendChild(textNode);
-      document.getElementById("classNameLi").appendChild(node);
-    }
-    //document.getElementById("classNameLi").innerHTML = classesList;
   });
+  classes.push(childData);
+  //var tasks = (JSON.stringify(childData.Tasks));
+  //classes.push(tasks);
+  classesList = classes.toString();
+  //console.log(classes);
+
+});
+for (i = 0; i < classes.length; i++) {
+    var node = document.createElement('li');
+  var textNode = document.createTextNode(classes[i]);
+  node.appendChild(textNode);
+  document.getElementById("classNameLi").appendChild(node);
+}
+    //document.getElementById("classNameLi").innerHTML = classesList;
+  })
 })
 //log out functionality on top right
 function signout() {
@@ -174,7 +175,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 })
 //error checking on classes for duplicates
 function checkClass() {
-  var classRef = firebase.database().ref('classes');
+  var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("className").value)) {
@@ -196,7 +197,7 @@ function showFunction() {
 }
 
 // Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (!event.target.matches('.dropbtn')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;
