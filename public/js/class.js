@@ -69,6 +69,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     uid = user.uid;
     //console.log(uid);
     userEmail = user.email;
+    document.getElementById("linu").innerHTML = userEmail;
+    console.log(user);
     classRef = firebase.database().ref('Schools/' + schoolName);
   } else {
     // No user is signed in.
@@ -116,45 +118,45 @@ firebase.auth().onAuthStateChanged(function (user) {
   classRef.on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       console.log(childSnapshot.val().className);
-  var childData = childSnapshot.val().className;
-  //console.log(childData);
-  var select = document.getElementById("classList");
-  var dSelect = document.getElementById("dClassList");
-  var dtSelect = document.getElementById("dtClassList");
+      var childData = childSnapshot.val().className;
+      //console.log(childData);
+      var select = document.getElementById("classList");
+      var dSelect = document.getElementById("dClassList");
+      var dtSelect = document.getElementById("dtClassList");
 
-  var option = document.createElement("option");
-  var option2 = document.createElement("option");
-  var option3 = document.createElement("option");
+      var option = document.createElement("option");
+      var option2 = document.createElement("option");
+      var option3 = document.createElement("option");
 
-  option.value = childData.charAt(0).toUpperCase() + childData.slice(1);
-  option.text = childData.charAt(0).toUpperCase() + childData.slice(1);
-  option2.value = childData.charAt(0).toUpperCase() + childData.slice(1);
-  option2.text = childData.charAt(0).toUpperCase() + childData.slice(1);
-  option3.value = childData.charAt(0).toUpperCase() + childData.slice(1);
-  option3.text = childData.charAt(0).toUpperCase() + childData.slice(1);
+      option.value = childData.charAt(0).toUpperCase() + childData.slice(1);
+      option.text = childData.charAt(0).toUpperCase() + childData.slice(1);
+      option2.value = childData.charAt(0).toUpperCase() + childData.slice(1);
+      option2.text = childData.charAt(0).toUpperCase() + childData.slice(1);
+      option3.value = childData.charAt(0).toUpperCase() + childData.slice(1);
+      option3.text = childData.charAt(0).toUpperCase() + childData.slice(1);
 
-  select.appendChild(option);
-  dSelect.appendChild(option2);
-  dtSelect.appendChild(option3);
+      select.appendChild(option);
+      dSelect.appendChild(option2);
+      dtSelect.appendChild(option3);
 
-  classRef.on('child_added', function (snapshot) {
-    //Do something with the data
-    //document.getElementById("classNameLi").innerHTML = childData.className;
+      classRef.on('child_added', function (snapshot) {
+        //Do something with the data
+        //document.getElementById("classNameLi").innerHTML = childData.className;
 
-  });
-  classes.push(childData);
-  //var tasks = (JSON.stringify(childData.Tasks));
-  //classes.push(tasks);
-  classesList = classes.toString();
-  //console.log(classes);
+      });
+      classes.push(childData);
+      //var tasks = (JSON.stringify(childData.Tasks));
+      //classes.push(tasks);
+      classesList = classes.toString();
+      //console.log(classes);
 
-});
-for (i = 0; i < classes.length; i++) {
-    var node = document.createElement('li');
-  var textNode = document.createTextNode(classes[i]);
-  node.appendChild(textNode);
-  document.getElementById("classNameLi").appendChild(node);
-}
+    });
+    for (i = 0; i < classes.length; i++) {
+      var node = document.createElement('li');
+      var textNode = document.createTextNode(classes[i]);
+      node.appendChild(textNode);
+      document.getElementById("classNameLi").appendChild(node);
+    }
     //document.getElementById("classNameLi").innerHTML = classesList;
   })
 })
@@ -210,5 +212,3 @@ window.onclick = function (event) {
     }
   }
 }
-
-function newStuClass()
