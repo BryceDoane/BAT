@@ -177,7 +177,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 })
 //error checking on classes for duplicates
-function checkClass() {
+/*function checkClass() {
   var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
@@ -191,7 +191,7 @@ function checkClass() {
       }
     });
   });
-}
+}/
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
