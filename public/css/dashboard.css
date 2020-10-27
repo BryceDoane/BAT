@@ -54,7 +54,7 @@ font-size: 25px;
 /* The sidebar menu */
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 200px; /* Set the width of the sidebar */
+    width: 15%; /* Set the width of the sidebar */
     background-image: url("../assets/img/sidenav.jpg");
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
@@ -91,7 +91,7 @@ font-size: 25px;
 
   .topnav {
     display: flex;
-    width: 86.1%; /* Full-height: remove this if you want "auto" height */
+    width: 85%; /* Full-height: remove this if you want "auto" height */
     height: 117px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
