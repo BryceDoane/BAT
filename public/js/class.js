@@ -62,6 +62,7 @@ var classRef = firebase.database().ref('classes');
 var classes = [];
 var classesandtasks = [];
 var classesList;
+var studentName;
 
 //User State Listener
 firebase.auth().onAuthStateChanged(function (user) {
@@ -83,6 +84,8 @@ function newClass() {
   firebase.database().ref("classes").child(className).set({className: className, UID: uid});
   var classRef2 = firebase.database().ref('classes').child(className).child("Tasks");
   classRef2.set({taskName: "", taskVal: ""});
+  var classRefstu = firebase.database().ref('classes').child(className).child("studentsList");
+  classRefstu.set({studentID: ""});
   location.reload();
 }
 //Create a new task
@@ -153,3 +156,5 @@ classRef.once("value", function(snapshot) {
 });
 });
 }
+
+function newStuClass()

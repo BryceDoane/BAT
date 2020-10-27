@@ -26,6 +26,7 @@
     <div class="students">
         <h1>Students</h1>
         <button id="addStudentModal">Add Student</button>
+        <button id="addStuClassModal">Add Student to Class</button>
         <p id="studentNameLi">Loading</p>
             <!-- JS adds student names in list here -->
 
@@ -50,6 +51,26 @@
             </div>
         </div>
         </div>
+        <div id="addStuClass" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>Add Student to a Class</h2>
+                </div>
+                <div class="modal-body">
+                    <form id="newStudentForm">
+                    <p>Please enter a Student ID</p>
+                    <input type="text" id="studentID"><hr>
+                    <p>Please enter a class</p>
+                    <input type="text" id="classID"><hr>
+                    
+                    </form>
+                    <button value="Submit" onclick="newStuClass()">Submit</button>
+                    
+                </div>
+            </div>
+            </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
