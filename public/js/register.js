@@ -82,7 +82,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     var uid = user.uid;
     var schoolName = user.displayName;
     console.log(schoolName);
-    firebase.database().ref('Schools').child(school).child("Users").push({ name: fname, email: email, uid: uid, schoolName: schoolName });
+    firebase.database().ref('Schools').child(schoolName).child("Users").push({ name: fname, email: email, uid: uid, schoolName: schoolName });
 }else{
 
 };

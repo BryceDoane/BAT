@@ -54,7 +54,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
   } else {
     // No user is signed in.
-    window.location = "http://behavior-analysis-tracker.web.app/index.html";
+    window.location = "http://behavv.com/index.html";
   }
 });
 
