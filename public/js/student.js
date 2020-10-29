@@ -152,7 +152,7 @@ function closeasc() {
 
 function checkClass() {
   //checks class 
-  var classRef = firebase.database().ref('Schools/' + schoolName + "/classes//");
+  var classRef = firebase.database().ref('Schools/' + userSchool + "/classes//");
   //Checks Student
   var sturef = firebase.database().ref('');
   classRef.once("value", function (snapshot) {
