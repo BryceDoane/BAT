@@ -92,7 +92,7 @@ function newTask() {
   var taskName = document.getElementById("taskName").value;
   var select = document.getElementById("classList");
   var classSelect = select.options[select.selectedIndex].value;
-  var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + classSelect + "Tasks").child(taskName);
+  var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + classSelect + "/Tasks/").child(taskName);
   classModal.style.display = "none";
   classRef2.set("");
   location.reload();
@@ -108,10 +108,12 @@ function deleteClass() {
 }
 function deleteTask() {
   var select3 = document.getElementById("dtClassList");
+  var select4 = document.getElementById("taskList").value;
   var dtClassSelect = select3.options[select3.selectedIndex].value;
-  var classRef2 = firebase.database().ref('classes/' + dtClassSelect);
+  //var taskSelect = select4.options[select4.selectedIndex].value;
+  var taskRef = firebase.database().ref('Schools/' + schoolName + '/classes/' + dtClassSelect + "/Tasks/" + select4);
   deleteModal.style.display = "none";
-  classRef2.remove();
+  taskRef.remove();
   location.reload();
 }
 firebase.auth().onAuthStateChanged(function (user) {
