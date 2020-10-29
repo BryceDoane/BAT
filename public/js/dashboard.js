@@ -22,6 +22,7 @@ document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
 
 var uid;
 var userEmail;
+var schoolName;
 var classes = [];
 var classRef = firebase.database().ref('classes');
 var classesList;
@@ -30,7 +31,9 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
     email = user.email;
-    classRef.orderByChild("UID").equalTo(uid).on('value', function (snapshot) {
+    schoolName = user.displayName;
+    var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+    classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var childData = childSnapshot.val();
         var select = document.getElementById("classList")
