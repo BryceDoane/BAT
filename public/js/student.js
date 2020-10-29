@@ -152,9 +152,9 @@ function closeasc() {
 
 function checkClass() {
   //checks class 
-  var classRef = firebase.database().ref('classes');
+  var classRef = firebase.database().ref('Schools/' + schoolName + "/classes//");
   //Checks Student
-  var sturef = firebase.database().ref('student//');
+  var sturef = firebase.database().ref('');
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("StudentID").value) && snapshot.hasChild(document.getElementById("classID").value)) {
