@@ -32,7 +32,7 @@ addStudentbtn.onclick = function () {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   studentModal.style.display = "none";
-  
+
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -52,16 +52,12 @@ var userSchool;
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
-    userSchool = user.schoolName;
+    userSchool = user.displayName;
     email = user.email;
     console.log(uid);
     console.log(email);
-  // TODO: FIX
-  firebase.database().ref('user/').child("-MIe8WwHAYH7dHwWBPlL").on('value',(snap)=>{
-    console.log(snap.schoolName);
-  });
   }
- else {
+  else {
     // No user is signed in.
   }
 });
@@ -73,52 +69,58 @@ function newStudent() {
   var IDList = [];
   var studentName = document.getElementById("studentName").value;
   var studentID = document.getElementById("studentID").value;
-  var userSchool = this.userSchool;
   studentModal.style.display = "none";
   //TODO: pull school name from user
-  firebase.database().ref('student').orderByChild('studentID').on("child_added", function(snapshot) {
+  firebase.database().ref('Schools/' + userSchool + "/students").on("child_added", function (snapshot) {
     IDList.push(snapshot.val().studentID);
-});
-for(i = 0; i <= IDList.length; i++){
-  if(IDList[i] == (studentID)){
-    alert("A student with that ID already exists");
-    dCheck = false;
-    console.log(dCheck);
-    location.reload();
-    break;
+  });
+  for (i = 0; i <= IDList.length; i++) {
+    if (IDList[i] == (studentID)) {
+      alert("A student with that ID already exists");
+      dCheck = false;
+      console.log(dCheck);
+      location.reload();
+      break;
+    }
   }
-}
-console.log(dCheck);
-  if (dCheck == true){
-    firebase.database().ref('student').push({ studentName: studentName, studentID: studentID, schoolName: userSchool });
+  console.log(dCheck);
+  if (dCheck == true) {
+    firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentName: studentName, studentID: studentID });
     location.reload();
     //studentID = null;
   }
-  
+
 }
 
 //Fills student info to webpage
-var studentRef = firebase.database().ref('student');
+var studentRef = firebase.database().ref('Schools/' + userSchool + "/students");
 var students = [];
 var studentList;
-studentRef.on('value', function (snapshot) {
-  snapshot.forEach(function (childSnapshot) {
-    var childData = childSnapshot.val();
-    studentRef.on('child_added', function (snapshot) {
-      //Do something with the data
-      //document.getElementById("classNameLi").innerHTML = childData.className;
+
+firebase.auth().onAuthStateChanged(function (user) {
+  studentRef.on('value', function (snapshot) {
+    console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      console.log(childSnapshot);
+      var childData = childSnapshot.val();
+
+      studentRef.on('child_added', function (snapshot) {
+        //Do something with the data
+        //document.getElementById("classNameLi").innerHTML = childData.className;
+      });
+      students.push(childData.studentName);
+      studentList = students.toString();
 
     });
-    students.push(childData.studentName);
-    studentList = students.toString();
-
+    document.getElementById("studentNameLi").innerHTML = studentList;
   });
-  document.getElementById("studentNameLi").innerHTML = studentList;
-});
 
+})
 //log out functionality on top right
-function signout(){firebase.auth().signOut();
-  alert("signed out");};
+function signout() {
+  firebase.auth().signOut();
+  alert("signed out");
+};
 const sout = document.getElementById("lout");
 sout.addEventListener('click', signout);
 
@@ -148,22 +150,22 @@ function closeasc() {
   studentModal.style.display = "none";
 }
 
-function checkClass(){ 
+function checkClass() {
   //checks class 
   var classRef = firebase.database().ref('classes');
   //Checks Student
   var sturef = firebase.database().ref('student//');
-classRef.once("value", function(snapshot) {
-  snapshot.forEach(function(child) {
-    if (snapshot.hasChild(document.getElementById("StudentID").value) && snapshot.hasChild(document.getElementById("classID").value)){
-      alert("Class already exists");
-      location.reload();
-      setTimeout();
-  }
+  classRef.once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+      if (snapshot.hasChild(document.getElementById("StudentID").value) && snapshot.hasChild(document.getElementById("classID").value)) {
+        alert("Class already exists");
+        location.reload();
+        setTimeout();
+      }
 
-  else{
-    newClass();
-};
-});
-});
+      else {
+        newClass();
+      };
+    });
+  });
 }
