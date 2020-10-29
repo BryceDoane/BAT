@@ -100,7 +100,8 @@ function newTask() {
 function deleteClass() {
   var select2 = document.getElementById("dClassList");
   var dClassSelect = select2.options[select2.selectedIndex].value;
-  var classRef2 = firebase.database().ref('Schools' + schoolName + 'classes/' + dClassSelect);
+  var classRef2 = firebase.database().ref('Schools/' + schoolName + '/classes/' + dClassSelect);
+  console.log(classRef2);
   deleteModal.style.display = "none";
   classRef2.remove();
   location.reload();
