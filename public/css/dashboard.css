@@ -178,7 +178,26 @@ font-size: 25px;
     margin-left: 200px; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
-
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    font-size: 20px;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 4%;
+    padding-bottom: 5%;
+    width: 30%;
+    height: 125px;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
   #myBtn, .classes button{
     display: inline-block;
     width:40%;

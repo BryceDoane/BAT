@@ -120,7 +120,6 @@ firebase.auth().onAuthStateChanged(function (user) {
   var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
   classRef.on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
-      console.log(childSnapshot.val().className);
       var childData = childSnapshot.val().className;
       //console.log(childData);
       var select = document.getElementById("classList");
@@ -151,18 +150,29 @@ firebase.auth().onAuthStateChanged(function (user) {
       //var tasks = (JSON.stringify(childData.Tasks));
       //classes.push(tasks);
       classesList = classes.toString();
-      //console.log(classes);
+      console.log(classes);
 
     });
-    for (i = 0; i < classes.length; i++) {
-      var node = document.createElement('li');
-      var textNode = document.createTextNode(classes[i]);
+
+    classes.forEach(classes => {
+      var node = document.createElement('div');
+      node.classList.add("card");
+      node.id = "card";
+      node.style.background = getRandomColor();
+      var textNode = document.createTextNode(classes);
       node.appendChild(textNode);
       document.getElementById("classNameLi").appendChild(node);
-    }
+    });
     //document.getElementById("classNameLi").innerHTML = classesList;
   })
 })
+
+function getRandomColor() {
+
+  items = ['#B28DFF', '#BFFCC6', '#FFBEBC', '#853EFF', '#FFF5BA', '#C4FAF8', '#BAFFC9', '#BAE1FF', '#ffb3ba', '#AEC6CF', '#D7ECD9', '#FCECF5'];
+  return items[Math.floor(Math.random()*items.length)];
+
+}
 //log out functionality on top right
 function signout() {
   firebase.auth().signOut();
@@ -170,6 +180,7 @@ function signout() {
 };
 const sout = document.getElementById("lout");
 sout.addEventListener('click', signout);
+
 
 // //gets signed in user
 // firebase.auth().onAuthStateChanged(function (user) {
