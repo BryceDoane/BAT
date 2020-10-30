@@ -142,7 +142,7 @@ font-size: 25px;
   
   /* DASHBOARD */
   .dashboard {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
 
@@ -226,7 +226,7 @@ font-size: 25px;
 
   /* STUDENTS */
   .students {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
 
@@ -249,7 +249,7 @@ font-size: 25px;
   }
   /* USER SETTINGS */
   .settings {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
   
