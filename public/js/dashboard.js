@@ -140,3 +140,26 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("linu");
   }
 })
+
+var tasks = [];
+var taskList;
+//Show tasks as table
+firebase.auth().onAuthStateChanged(function (user) {
+  userSchool = user.displayName;
+  var tasksRef = firebase.database().ref('Schools/' + userSchool + "/classes/tasks");
+  tasksRef.on('value', function (snapshot) {
+    console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      console.log(childSnapshot);
+      var childData = childSnapshot.val();
+
+      tasksRef.on('child_added', function (snapshot) {
+        //Do something with the data
+        //document.getElementById("classNameLi").innerHTML = childData.className;
+      });
+      tasks.push(childData.studentName);
+      taskList = students.toString();
+
+    });
+    document.getElementById("taskNameLi").innerHTML = taskList;
+  });})
