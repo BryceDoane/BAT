@@ -83,7 +83,7 @@ function newClass() {
   //var UID = user.uid;
   classModal.style.display = "none";
   //firebase.database().ref('classes').push({ className: className, UID: uid });
-  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className, studentCID: null });
+  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className });
   //firebase.database().ref(schoolName).child("classes").child(className).child("Tasks").set({ taskName: ""});
   location.reload();
 }

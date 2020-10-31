@@ -71,9 +71,11 @@ function newStudent() {
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
   //TODO: pull school name from user
-  firebase.database().ref('Schools/' + userSchool + "/students").on("child_added", function (snapshot) {
+  firebase.database().ref('Schools/' + userSchool + "/students/")
+  .child(studentName).set({ SUID: studentID, studentName: studentName });
+  /* .on("child_added", function (snapshot) {
     IDList.push(snapshot.val().studentID);
-  });
+  });*/
   for (i = 0; i <= IDList.length; i++) {
     if (IDList[i] == (studentID)) {
       alert("A student with that ID already exists");
