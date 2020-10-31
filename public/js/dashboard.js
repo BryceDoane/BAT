@@ -57,7 +57,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
   } else {
     // No user is signed in.
-    window.location = "http://behavv.com/index.html";
+    // window.location = "http://behavv.com/index.html";
   }
 });
 
@@ -145,11 +145,11 @@ var tasks = [];
 var taskList;
 //Show tasks as table
 firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-  uid = user.uid;
-  email = user.email;
-    schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/");
+  //if (user) {
+  //uid = user.uid;
+ // email = user.email;
+    //schoolName = user.displayName;
+  var tasksRef = firebase.database().ref("Schools/Liberty/classes/Bright/Tasks/");
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
@@ -160,14 +160,14 @@ firebase.auth().onAuthStateChanged(function (user) {
         //Do something with the data
         //document.getElementById("classNameLi").innerHTML = childData.className;
       });
-      tasks.push(childData.studentName);
-      taskList = students.toString();
+      tasks.push(childData);
+      taskList = tasks.toString();
 
     });
     document.getElementById("taskNameLi").innerHTML = taskList;
-  });}
-  else {
+  });//}
+ // else {
     // No user is signed in.
-    window.location = "http://behavv.com/index.html";
-  }
+    //window.location = "http://behavv.com/index.html";
+ // }
 });
