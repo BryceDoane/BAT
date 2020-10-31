@@ -145,8 +145,10 @@ var tasks = [];
 var taskList;
 //Show tasks as table
 firebase.auth().onAuthStateChanged(function (user) {
-  
-  schoolName = user.displayName;
+  if (user) {
+  uid = user.uid;
+  email = user.email;
+    schoolName = user.displayName;
   var tasksRef = firebase.database().ref("Schools/");
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
@@ -163,4 +165,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     });
     document.getElementById("taskNameLi").innerHTML = taskList;
-  });})
+  });}
+  else {
+    // No user is signed in.
+    window.location = "http://behavv.com/index.html";
+  }
+});
