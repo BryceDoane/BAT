@@ -147,7 +147,7 @@ var taskList;
 firebase.auth().onAuthStateChanged(function (user) {
   
   schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools");
+  var tasksRef = firebase.database().ref("Schools/");
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
