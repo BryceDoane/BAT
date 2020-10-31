@@ -72,7 +72,7 @@ function newStudent() {
   studentModal.style.display = "none";
   //TODO: pull school name from user
   firebase.database().ref('Schools/' + userSchool + "/students/")
-  .child(studentName).set({ SUID: studentID, studentName: studentName });
+  //.child(studentName).set({ SUID: studentID, studentName: studentName });
   /* .on("child_added", function (snapshot) {
     IDList.push(snapshot.val().studentID);
   });*/
