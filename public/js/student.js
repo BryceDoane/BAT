@@ -95,7 +95,7 @@ function newStudent() {
 }
 
 //Fills student info to webpage
-//var studentRef = firebase.database().ref('Schools/' + userSchool + "/students/");
+
 var students = [];
 var studentList;
 
