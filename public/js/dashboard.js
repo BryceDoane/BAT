@@ -145,8 +145,9 @@ var tasks = [];
 var taskList;
 //Show tasks as table
 firebase.auth().onAuthStateChanged(function (user) {
+  
   schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/Liberty/students/");
+  var tasksRef = firebase.database().ref("Schools");
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
