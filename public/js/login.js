@@ -67,18 +67,18 @@
       // User is signed in.
       var email = user.email;
       alert("signed in as " + email);
-      document.getElementById('signed-in-user').textContent = email;
-      document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-      document.getElementById('loginbtn').textContent = 'Sign out';
+      // document.getElementById('signed-in-user').textContent = email;
+      // document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+      // document.getElementById('loginbtn').textContent = 'Sign out';
       window.location = "/dashboard.html";
 
       // [END_EXCLUDE]
       } else {
       // User is signed out.
       // [START_EXCLUDE]
-      document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-      document.getElementById('loginbtn').textContent = 'Sign in';
-      document.getElementById('signed-in-user').textContent = "";
+      // document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+      // document.getElementById('loginbtn').textContent = 'Sign in';
+      // document.getElementById('signed-in-user').textContent = "";
       console.log("signed out");
       // [END_EXCLUDE]
       }

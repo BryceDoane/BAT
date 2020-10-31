@@ -108,7 +108,7 @@
   }
   /*End Modal */
 body{
-    background:#b3a5d9;
+    background-image: url('../assets/img/webb.png');
     color:#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
@@ -128,7 +128,8 @@ ul{
     text-align:center;
 }
 .wrapper{
-    box-shadow: 0 0 20px 0 rgba(72,94,0.7)
+    box-shadow: 0 0 20px 0 rgb(60, 1, 94);
+    background-color: white;
 }
 .wrapper > *{
     padding:1em;

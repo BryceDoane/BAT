@@ -67,7 +67,9 @@ font-size: 25px;
      background-color: transparent;
    }
    .sidenav .logo {
-    margin-top: 30px;
+    margin-top: 60px;
+    width: 180px;
+    height: 50px;
    }
    .sidenav .icon {
     height: 35px;
@@ -140,7 +142,7 @@ font-size: 25px;
   
   /* DASHBOARD */
   .dashboard {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
 
@@ -175,8 +177,14 @@ font-size: 25px;
   .dashboard table tr:hover {background-color: #6d6d6d;}
   /* CLASSES */
   .classes {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
+  }
+  .classes hr{
+    margin-top: 30px;
+  }
+  #classNameLi {
+    margin-top: 30px;
   }
   .card {
     /* Add shadows to create the "card" effect */
@@ -218,7 +226,7 @@ font-size: 25px;
 
   /* STUDENTS */
   .students {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
 
@@ -241,7 +249,7 @@ font-size: 25px;
   }
   /* USER SETTINGS */
   .settings {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
   }
   
