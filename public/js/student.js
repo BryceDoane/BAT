@@ -100,6 +100,7 @@ var students = [];
 var studentList;
 
 firebase.auth().onAuthStateChanged(function (user) {
+  userSchool = user.displayName;
   var studentRef = firebase.database().ref('Schools/' + userSchool + "/students");
   studentRef.on('value', function (snapshot) {
     console.log(snapshot);
