@@ -105,8 +105,8 @@ var clist = classesRef.on('value', function (snapshot) {
       //document.getElementById("classNameLi").innerHTML = childData.className;
 
     });
-   var dlist = classes.push(childData.className);
-    var elist = classes.push(childData.Tasks);
+   classes.push(childData.className);
+    classes.push(childData.Tasks);
   });
   for (i = 0; i < (classes.length / 2); i++) {
     var td = document.createElement('TABLE');
