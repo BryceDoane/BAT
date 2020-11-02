@@ -170,8 +170,4 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
     //window.location = "http://behavv.com/index.html";
  // }
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> parent of 313c0aa2... path
