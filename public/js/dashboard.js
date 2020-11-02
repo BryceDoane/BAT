@@ -97,7 +97,7 @@ function generateClassesTable(mountains) {
 
 var classesRef = firebase.database().ref('classes');
 var classesList;
-var clist = classesRef.on('value', function (snapshot) {
+classesRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
     classesRef.on('child_added', function (snapshot) {
