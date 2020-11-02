@@ -197,3 +197,11 @@ function checkClass() {
     });
   });
 }
+
+function addstudentClass() {
+  var studentCID = document.getElementById("studentCID").value;
+  var classID = document.getElementById("classID").value;
+  studentModal.style.display = "none";
+    firebase.database().ref('Schools/' + userSchool + "classes/" + classID + "/").set({ ClassID: ClassID, studentCID: studentCID});
+    location.reload();
+}
