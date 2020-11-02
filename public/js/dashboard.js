@@ -145,10 +145,13 @@ var tasks = [];
 var taskList;
 //Show tasks as table
 firebase.auth().onAuthStateChanged(function (user) {
-  
-  var tasksRef = firebase.database().ref("Schools/" + schoolName );
+  //if (user) {
+  //uid = user.uid;
+ // email = user.email;
+    //schoolName = user.displayName;
+  var tasksRef = firebase.database().ref("Schools/Liberty/classes/Bright/Tasks/");
   tasksRef.on('value', function (snapshot) {
-    console.log(childsnapshot);
+    console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
       console.log(childSnapshot);
       var childData = childSnapshot.val();
@@ -167,4 +170,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
     //window.location = "http://behavv.com/index.html";
  // }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> parent of 313c0aa2... path
