@@ -149,9 +149,9 @@ firebase.auth().onAuthStateChanged(function (user) {
   //uid = user.uid;
  // email = user.email;
     //schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/Liberty/classes/Bright/Tasks/");
-  tasksRef.on('value', function (snapshot) {
-    console.log(snapshot);
+  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/");
+  tasksRef.child.equalto(tasks).on('value', function (childSnapshot) {
+    console.log(childsnapshot);
     snapshot.forEach(function (childSnapshot) {
       console.log(childSnapshot);
       var childData = childSnapshot.val();
@@ -170,4 +170,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
     //window.location = "http://behavv.com/index.html";
  // }
+});
+tasks.forEach(tasks => {
+ 
 });

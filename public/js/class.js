@@ -165,7 +165,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
     //document.getElementById("classNameLi").innerHTML = classesList;
   })
-})
+})``
 
 function getRandomColor() {
 
