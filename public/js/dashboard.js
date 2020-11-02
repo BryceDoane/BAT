@@ -97,7 +97,7 @@ function generateClassesTable(mountains) {
 
 var classesRef = firebase.database().ref('classes');
 var classesList;
-classesRef.on('value', function (snapshot) {
+var cList = classesRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
     classesRef.on('child_added', function (snapshot) {
@@ -149,7 +149,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   //uid = user.uid;
  // email = user.email;
     //schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/Liberty/classes/Bright/Tasks/");
+  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes" + cList + "/tasks");
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
