@@ -35,14 +35,14 @@ firebase.auth().onAuthStateChanged(function (user) {
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
     classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
-        var childData = childSnapshot.val();
+        var childCData = childSnapshot.val();
         var select = document.getElementById("classList")
         classRef.on('child_added', function (snapshot) {
           //Do something with the data
           //document.getElementById("classNameLi").innerHTML = childData.className;
 
         });
-        classes.push(childData.className);
+        classes.push(childCData.className);
         classesList = classes.toString();
 
       });
@@ -97,7 +97,7 @@ function generateClassesTable(mountains) {
 
 var classesRef = firebase.database().ref('classes');
 var classesList;
-var cList = classesRef.on('value', function (snapshot) {
+ classesRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
     classesRef.on('child_added', function (snapshot) {
