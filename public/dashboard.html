@@ -30,6 +30,41 @@
     <!-- Page content -->
     <div class="dashboard">
         <h1>Dashboard</h1>
+        <div id="rateStudents">
+            <h3>Add Information</h3>
+            <form id="addInfo">
+                <p>
+                    <label for="dClassList">Choose a class:</label>
+                    <select name="dClassList" id="dClassList"></select>
+                </p>
+                <p>
+                    <label for="StudentList">Choose a Student:</label>
+                    <select name="StudentList" id="StudentList"></select>
+                </p>
+                <p>
+                    <label for="TaskList">Choose a Task:</label>
+                    <select name="TaskList" id="TaskList"></select>
+                </p>
+                <p>
+                    <label for="PerformanceScore">Enter performance score on 1-5 scale:</label>
+                    <select name="PerformanceScore" id="PerformanceScore">
+                        <option value="1">n/a</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </p>
+                <button id="loginbtn" type="submit" event="submit" class="button button-block">
+                    Submit</button>
+
+
+            </form>
+        </div>
+       
+
+
         <h1 id="date"></h1>
         <p id="classNameLi"></p>
         <p id="taskNameLi">Loading</p>
