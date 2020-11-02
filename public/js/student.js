@@ -203,5 +203,5 @@ function addstudentClass() {
   var className = document.getElementById("className").value;
   var StuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/").child(studentCID);
   classModal.style.display = "none";
-  StuClass.set(studentCID);
+  StuClass.set({studentCID : studentCID, className: className});
 }
