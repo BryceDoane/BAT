@@ -199,8 +199,9 @@ function checkClass() {
 }
 
 function addstudentClass() {
-  var studentCID = document.getElementById("studentCID").value;
-  var classID = document.getElementById("classID").value;
-    firebase.database().ref('Schools/' + userSchool + "/classes/" + classID + "/").set({ studentCID: studentCID, ClassID: ClassID, });
-    location.reload();
+  var studentCID = document.getElementById("StudentCID").value;
+  var className = document.getElementById("className").value;
+  var StuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/").child(studentCID);
+  classModal.style.display = "none";
+  StuClass.set(studentCID);
 }
