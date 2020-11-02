@@ -168,6 +168,3 @@ firebase.auth().onAuthStateChanged(function (user) {
     //window.location = "http://behavv.com/index.html";
  // }
 });
-tasks.forEach(tasks => {
- 
-});
