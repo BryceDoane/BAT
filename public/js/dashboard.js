@@ -97,7 +97,7 @@ function generateClassesTable(mountains) {
 
 var classesRef = firebase.database().ref('classes');
 var classesList;
-classesRef.on('value', function (snapshot) {
+varclist = classesRef.on('value', function (snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var childData = childSnapshot.val();
     classesRef.on('child_added', function (snapshot) {
@@ -105,8 +105,8 @@ classesRef.on('value', function (snapshot) {
       //document.getElementById("classNameLi").innerHTML = childData.className;
 
     });
-    classes.push(childData.className);
-    classes.push(childData.Tasks);
+   var dlist = classes.push(childData.className);
+    var elist = classes.push(childData.Tasks);
   });
   for (i = 0; i < (classes.length / 2); i++) {
     var td = document.createElement('TABLE');
@@ -149,8 +149,8 @@ firebase.auth().onAuthStateChanged(function (user) {
   //uid = user.uid;
  // email = user.email;
     //schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/");
-  tasksRef.child.equalto(tasks).on('value', function (childSnapshot) {
+  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes" + clist + "/tasks") ;
+  tasksRef.on('value', function (childSnapshot) {
     console.log(childsnapshot);
     snapshot.forEach(function (childSnapshot) {
       console.log(childSnapshot);
