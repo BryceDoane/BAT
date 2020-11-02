@@ -8,6 +8,7 @@ body{
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding:1em;
+    background-image: url("../assets/img/dashboard_background.jpg");
 }
 /* The Modal (background) */
 .modal {
@@ -67,7 +68,9 @@ font-size: 25px;
      background-color: transparent;
    }
    .sidenav .logo {
-    margin-top: 30px;
+    margin-top: 60px;
+    width: 180px;
+    height: 50px;
    }
    .sidenav .icon {
     height: 35px;
@@ -77,7 +80,7 @@ font-size: 25px;
   .sidenav a {
     padding: 10px 16px 16px 16px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: black;
     background-color: rgba(255, 253, 253, 0.2);
     display: block;
@@ -140,12 +143,49 @@ font-size: 25px;
   
   /* DASHBOARD */
   .dashboard {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
+    background-color: transparent;
   }
 
-  .dashboard p{
+  #myBtn, .dashboard button{
+    display: inline-block;
+    width:40%;
+    margin-left: 100px;
+    padding: 1em;
+    border: 1px solid #6f42c1;
+    background:#c9e6ff;
+    border:0;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  #myBtn:hover, #myBtn:focus, .dashboard button:hover, .dashboard button:focus{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+    transition: background-color 2s ease-out;
+  }
+
+  @media(min-width:800px){
+    .dashboard form{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        background-color: transparent;
+    }
+
+  .dashboard p, .dashboard label{
     color: black;
+    background-color: transparent;
+  }
+
+  .dashboard div{
+    background-color: transparent;
+  }
+
+  .dashboard h1, .dashboard h3{
+    color: black;
+    background-color: transparent;
   }
 
   .dashboard table{
@@ -175,8 +215,24 @@ font-size: 25px;
   .dashboard table tr:hover {background-color: #6d6d6d;}
   /* CLASSES */
   .classes {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
+    background-color: transparent;
+  }
+
+  .classes h1{
+    color: black;
+    background-color: transparent;
+  }
+
+  .classes div{
+    background-color: transparent;
+  }
+  .classes hr{
+    margin-top: 30px;
+  }
+  #classNameLi {
+    margin-top: 30px;
   }
   .card {
     /* Add shadows to create the "card" effect */
@@ -218,8 +274,18 @@ font-size: 25px;
 
   /* STUDENTS */
   .students {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
+    background-color: transparent;
+  }
+
+  .students div{
+    background-color: transparent;
+  }
+
+  .students h1, .students h3, .students p{
+    color: black;
+    background-color: transparent;
   }
 
   #myBtn, .students button{
@@ -241,8 +307,52 @@ font-size: 25px;
   }
   /* USER SETTINGS */
   .settings {
-    margin-left: 200px; /* Same as the width of the sidebar */
+    margin-left: 15%; /* Same as the width of the sidebar */
     margin-top: 100px;
+    background-color: transparent;
+  }
+
+  .settings h1, .settings h3{
+    color: black;
+    background-color: transparent;
+  }
+
+  .settings div{
+    color: black;
+    background-color: transparent;
+  }
+
+  .settings p{
+    color: black;
+    background-color: transparent;
+  }
+
+  .settings form{
+    color: black;
+    background-color: transparent;
+  }
+
+  label{
+    color: black;
+    background-color: transparent;
+  }
+
+  #myBtn, .settings button{
+    display: inline-block;
+    width:20%;
+    margin-left: 100px;
+    padding: 1em;
+    border: 1px solid #6f42c1;
+    background:#c9e6ff;
+    border:0;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  #myBtn:hover, #myBtn:focus, .settings button:hover, .settings button:focus{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+    transition: background-color 2s ease-out;
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
@@ -263,4 +373,3 @@ font-size: 25px;
   #lout {
     margin-bottom: 0px !important;
   }
-    

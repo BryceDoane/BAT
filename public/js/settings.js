@@ -13,6 +13,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var emailVerified;
+var userSchool;
 //function verifyEmail(){
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
@@ -20,8 +21,10 @@ firebase.auth().onAuthStateChanged(function (user) {
     //console.log("true");
     emailVerified = user.emailVerified;
     var uid = user.uid;
+    userSchool = user.displayName;
     var email = user.email;
     document.getElementById("email").placeholder = email;
+    document.getElementById("school").placeholder = userSchool;
     if (emailVerified == true) {
       document.getElementById("emailVerifiedBool").innerHTML = "True";
     }

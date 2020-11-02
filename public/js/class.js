@@ -94,7 +94,7 @@ function newTask() {
   var classSelect = select.options[select.selectedIndex].value;
   var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + classSelect + "/Tasks/").child(taskName);
   classModal.style.display = "none";
-  classRef2.set("");
+  classRef2.set(taskName);
   location.reload();
 }
 function deleteClass() {
@@ -165,7 +165,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
     //document.getElementById("classNameLi").innerHTML = classesList;
   })
-})
+})``
 
 function getRandomColor() {
 

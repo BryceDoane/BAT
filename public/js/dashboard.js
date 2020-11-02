@@ -57,7 +57,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
   } else {
     // No user is signed in.
-    window.location = "http://behavv.com/index.html";
+    // window.location = "http://behavv.com/index.html";
   }
 });
 
@@ -105,7 +105,7 @@ classesRef.on('value', function (snapshot) {
       //document.getElementById("classNameLi").innerHTML = childData.className;
 
     });
-    classes.push(childData.className);
+   classes.push(childData.className);
     classes.push(childData.Tasks);
   });
   for (i = 0; i < (classes.length / 2); i++) {
@@ -140,3 +140,31 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("linu");
   }
 })
+
+var tasks = [];
+var taskList;
+//Show tasks as table
+firebase.auth().onAuthStateChanged(function (user) {
+  
+  var tasksRef = firebase.database().ref("Schools/" + schoolName );
+  tasksRef.on('value', function (snapshot) {
+    console.log(childsnapshot);
+    snapshot.forEach(function (childSnapshot) {
+      console.log(childSnapshot);
+      var childData = childSnapshot.val();
+
+      tasksRef.on('child_added', function (snapshot) {
+        //Do something with the data
+        //document.getElementById("classNameLi").innerHTML = childData.className;
+      });
+      tasks.push(childData);
+      taskList = tasks.toString();
+
+    });
+    document.getElementById("taskNameLi").innerHTML = taskList;
+  });//}
+ // else {
+    // No user is signed in.
+    //window.location = "http://behavv.com/index.html";
+ // }
+});
