@@ -73,7 +73,6 @@ function newStudent() {
   var studentName = document.getElementById("studentName").value;
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
-  //TODO: pull school name from user
   firebase.database().ref('Schools/' + userSchool + "/students/")
   //.child(studentName).set({ SUID: studentID, studentName: studentName });
   /* .on("child_added", function (snapshot) {
@@ -100,6 +99,7 @@ function newStudent() {
 //Fills student info to webpage
 
 var students = [];
+var studentID = [];
 var studentList;
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -115,11 +115,27 @@ firebase.auth().onAuthStateChanged(function (user) {
         //Do something with the data
         //document.getElementById("classNameLi").innerHTML = childData.className;
       });
-      students.push(childData.studentName);
+      students.push(childData);
+      studentID.push(childData.studentID);
+
       studentList = students.toString();
 
     });
-    document.getElementById("studentNameLi").innerHTML = studentList;
+    students.forEach(students => {
+      var trNode = document.createElement('tr');
+      document.getElementById("studentNameLi").appendChild(trNode);
+      var node = document.createElement('td');
+      node.classList.add("thID");
+      var textNode = document.createTextNode(students.studentID);
+      var textNode2 = document.createTextNode(students.studentName);
+      var node2 = document.createElement('td');
+      node.appendChild(textNode);
+      node2.appendChild(textNode2);
+      trNode.appendChild(node);
+      trNode.appendChild(node2);
+      document.getElementById("studentNameLi").appendChild(trNode);
+    })
+    //document.getElementById("studentNameLi").innerHTML = studentList;
   });
 
 })

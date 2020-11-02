@@ -287,6 +287,24 @@ font-size: 25px;
     color: black;
     background-color: transparent;
   }
+  #studentNameLi{
+    width: 100%;
+    background-color: transparent;
+    margin-top: 20px;
+  }
+  #studentNameLi th{
+    color: black;
+    background-color: grey;
+    border-radius: 10PX;;
+  }
+  .thID{
+    width: 20%;
+  }
+  #studentNameLi td{
+    text-align: center;
+    background-color: lightgrey;
+    border-radius: 5PX;;
+  }
 
   #myBtn, .students button{
     display: inline-block;
@@ -365,7 +383,7 @@ font-size: 25px;
   }
 
   #linu{
-    background-color: transparent;
+    background-color: lightgrey;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
   }
@@ -373,3 +391,4 @@ font-size: 25px;
   #lout {
     margin-bottom: 0px !important;
   }
+}
