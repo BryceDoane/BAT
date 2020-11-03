@@ -179,7 +179,8 @@ window.onclick = function (event) {
 }
 function addStudentClass(){
   var studentcid = document.getElementById("studentcid").value;
-  var addStuClass = firebase.database().ref("Schools/Liberty/classes/Free/").child("students");
-  addStuClass.set({studentcid:studentcid})
+  var className = document.getElementById("className").value;
+  var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/");
+  addStuClass.set({studentcid : studentcid});
   location.reload();
 }
