@@ -162,7 +162,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   //uid = user.uid;
  // email = user.email;
   schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + classesList );
+  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + textNode + "/tasks/" );
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
