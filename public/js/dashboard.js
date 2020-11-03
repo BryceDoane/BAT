@@ -37,6 +37,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       snapshot.forEach(function (childSnapshot) {
         var childCData = childSnapshot.val();
         var select = document.getElementById("classList")
+        var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + childCData);
         classRef.on('child_added', function (snapshot) {
           //Do something with the data
           //document.getElementById("classNameLi").innerHTML = childData.className;
@@ -51,6 +52,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         node.classList.add("classList"); /*adds classList as class on ul*/
         var textNode = document.createTextNode(classes[i]);
         node.appendChild(textNode);
+        node.appendChild("Jerry");
         document.getElementById("classNameLi").appendChild(node);
       }
       //document.getElementById("classNameLi").innerHTML = classesList;

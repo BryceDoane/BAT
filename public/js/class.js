@@ -56,7 +56,6 @@ var uid = "";
 var userEmail;
 var schoolName;
 var classes = [];
-var Students = [];
 var tasks = [];
 var classRef = firebase.database().ref('Schools/');
 var classesandtasks = [];
@@ -165,16 +164,6 @@ firebase.auth().onAuthStateChanged(function (user) {
       document.getElementById("classNameLi").appendChild(node);
     });
     //document.getElementById("classNameLi").innerHTML = classesList;
-    var Students = ["Jerry", "Alan", "Hanna"];
-    classes.forEach(Students => {
-      var node = document.createElement('div');
-      node.classList.add("card");
-      node.id = "card";
-      node.style.background = getRandomColor();
-      var textNode = document.createTextNode(Students);
-      node.appendChild(textNode);
-      document.getElementById("classNameLi").appendChild(node);
-    });
   })
 })
 
