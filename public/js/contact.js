@@ -27,7 +27,7 @@ function submitForm(e){
   var association = getInputVal('association'); 
   var message = getInputVal('message'); 
   
-  firebase.database().ref('messages').push({Name: fname, Email: email, Organization: association, Topic: topic, Message: message});
+  firebase.database().ref('Support_Tickets').push({Name: fname, Email: email, Organization: association, Topic: topic, Message: message});
   //saveMessage(fname);
   // Show alert
   //document.querySelector('.alert').style.display = 'block';
@@ -39,7 +39,7 @@ function submitForm(e){
 
   // Clear form
   //document.getElementById('contact').reset();
-
+  location.reload();
 
 }
 

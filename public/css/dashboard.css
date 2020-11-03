@@ -3,12 +3,16 @@
     box-sizing: border-box;
 }
 
+html{
+  background-image: url("../assets/img/dashboard_background.jpg");
+}
+
 body{
+  background-image: url("../assets/img/dashboard_background.jpg");
     color:2#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding:1em;
-    background-image: url("../assets/img/dashboard_background.jpg");
 }
 /* The Modal (background) */
 .modal {
@@ -187,7 +191,7 @@ font-size: 25px;
     color: black;
     background-color: transparent;
   }
-
+/* Dashboard Table Formatting */
   .dashboard table{
     display: inline-block;
     border-collapse: collapse;
@@ -213,6 +217,8 @@ font-size: 25px;
 
   .dashboard table tr:nth-child(even) {background-color: #6d6d6d;}
   .dashboard table tr:hover {background-color: #6d6d6d;}
+  /* Dashboard Table Formatting END*/
+
   /* CLASSES */
   .classes {
     margin-left: 15%; /* Same as the width of the sidebar */
