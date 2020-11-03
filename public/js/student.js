@@ -183,6 +183,7 @@ function addStudentClass(){
   var className = document.getElementById("className").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
   addStuClass.set({studentcid : studentcid});
+  alert(studentcid + "has been added to" + className);
   location.reload();
 }
 function checkClass() {
@@ -204,6 +205,7 @@ function checkClass() {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("studentcid").value)) {
     addStudentClass();
+
    }
       else {
         alert("student ID does not exist");
