@@ -63,7 +63,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   
         });
         node.appendChild(textNode);
-        node.appendChild(studentList);
+        //node.appendChild(studentList);
         document.getElementById("classNameLi").appendChild(node);
       }
       //document.getElementById("classNameLi").innerHTML = classesList;
