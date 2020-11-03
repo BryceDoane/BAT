@@ -37,7 +37,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     email = user.email;
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
-    classRef.on('value', function (snapshot) {
+    var ctext = classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var childCData = childSnapshot.val();
         var select = document.getElementById("classList")
@@ -163,7 +163,7 @@ firebase.auth().onAuthStateChanged(function (user) {
  // email = user.email;
 
   schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/liberty/classes/" + classes + "/Tasks/");
+  var tasksRef = firebase.database().ref("Schools/liberty/classes/" + ctext + "/Tasks/");
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
