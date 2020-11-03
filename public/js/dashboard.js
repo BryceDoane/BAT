@@ -37,9 +37,9 @@ firebase.auth().onAuthStateChanged(function (user) {
     email = user.email;
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
-    var ctext = classRef.on('value', function (snapshot) {
+     classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
-        var childCData = childSnapshot.val();
+        var ctext = childSnapshot.val();
         var select = document.getElementById("classList")
         classRef.on('child_added', function (snapshot) {
           //Do something with the data
@@ -48,7 +48,29 @@ firebase.auth().onAuthStateChanged(function (user) {
         });
         classes.push(childCData.className);
         classesList = classes.toString();
-
+        
+        //display task to dashboard
+        var tasksRef = firebase.database().ref("Schools/liberty/classes/" + ctext + "/Tasks/");
+        tasksRef.on('value', function (snapshot) {
+          console.log(snapshot);
+          snapshot.forEach(function (childSnapshot) {
+            console.log(childSnapshot);
+            var childData = childSnapshot.val();
+            tasksRef.on('child_added', function (snapshot) {
+              //Do something with the data
+              //document.getElementById("classNameLi").innerHTML = childData.className;
+            });
+            tasks.push(childData);
+            taskList = tasks.toString();
+      
+          });
+          document.getElementById("taskNameLi").innerHTML = taskList;
+        });//}
+       // else {
+          // No user is signed in.
+          //window.location = "http://behavv.com/index.html";
+       // }
+      
       });
       var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
       studentRef.on('value', function (snapshot){
