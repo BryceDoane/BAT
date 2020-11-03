@@ -52,12 +52,9 @@ firebase.auth().onAuthStateChanged(function (user) {
       });
       var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
       studentRef.on('value', function (snapshot){
-        snapshot.forEach(function (childSnapshot) {
-        var childSData = childSnapshot.val();
-        studentsList.push(childSData);
-        });
-        studentTest = studentsList.toString();
-        console.log(studentTest);
+        
+        studentTest = snapshot.toString();
+        console.log(snapshot);
       });
       for (i = 0; i < classes.length; i++) {
         var node = document.createElement('ul');
