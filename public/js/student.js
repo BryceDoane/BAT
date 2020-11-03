@@ -173,7 +173,7 @@ function closeasc() {
 }
 
 window.onclick = function (event) {
-  if (event.target == addstuClass) {
+  if (event.target == addStudentClass) {
     addstuClass.style.display = "none";
   }
 }
