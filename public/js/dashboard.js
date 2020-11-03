@@ -156,15 +156,11 @@ firebase.auth().onAuthStateChanged(function (user) {
   //if (user) {
   //uid = user.uid;
  // email = user.email;
-<<<<<<< HEAD
-  schoolName = user.displayName;
-=======
-<<<<<<< HEAD
+
   schoolName = user.displayName;
   var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + classesList + "/");
 =======
   //schoolName = user.displayName;
->>>>>>> 27cd7e0be673e34d603c1756fb63d9ffd43ceb06
   var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/MGMT/Tasks/");
 >>>>>>> 1915b50c991840899ccb786e82996bb85c015db8
   tasksRef.on('value', function (snapshot) {
