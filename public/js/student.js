@@ -177,13 +177,36 @@ window.onclick = function (event) {
     addstuClass.style.display = "none";
   }
 }
-
-
+//adds students to class
 function addStudentClass(){
   var studentcid = document.getElementById("studentcid").value;
   var className = document.getElementById("className").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
   addStuClass.set({studentcid : studentcid});
   location.reload();
-
 }
+function checkClass() {
+  var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+  classRef.once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+      if (snapshot.hasChild(document.getElementById("className").value)) {
+    checkStudent();
+   }
+      else {
+        alert("class does not exist");
+      }});
+    });
+  }
+
+  function checkStudent()
+  var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
+  classRef.once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+      if (snapshot.hasChild(document.getElementById("studentcid").value)) {
+    addStudentClass();
+   }
+      else {
+        alert("student ID does not exist");
+      }
+    });})
+  
