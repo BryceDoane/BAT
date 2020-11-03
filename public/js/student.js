@@ -177,10 +177,14 @@ window.onclick = function (event) {
     addstuClass.style.display = "none";
   }
 }
+
+
 function addStudentClass(){
   var studentcid = document.getElementById("studentcid").value;
   var className = document.getElementById("className").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/");
   addStuClass.set({studentcid : studentcid});
+  { merge: true }
   location.reload();
+
 }
