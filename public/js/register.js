@@ -80,9 +80,9 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     var uid = user.uid;
-    var schoolName = user.displayName;
-    console.log(schoolName);
-    firebase.database().ref('Schools').child(schoolName).child("Users").push({ name: fname, email: email, uid: uid, schoolName: schoolName });
+    //var schoolName = user.displayName;
+    console.log(school);
+    firebase.database().ref('Schools/' + school + '/Users').push({ name: fname, email: email, uid: uid, schoolName: school });
 }else{
 
 };
