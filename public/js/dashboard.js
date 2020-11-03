@@ -179,7 +179,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 var tasks = [];
 var taskList;
 //Show tasks as table
-firebase.auth().onAuthStateChanged(function (user) {
+/*firebase.auth().onAuthStateChanged(function (user) {
   //if (user) {
   //uid = user.uid;
  // email = user.email;
@@ -206,3 +206,4 @@ firebase.auth().onAuthStateChanged(function (user) {
     //window.location = "http://behavv.com/index.html";
  // }
 });
+*/
