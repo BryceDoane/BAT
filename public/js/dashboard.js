@@ -158,11 +158,7 @@ firebase.auth().onAuthStateChanged(function (user) {
  // email = user.email;
 
   schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + classesList + "/");
-=======
-  //schoolName = user.displayName;
   var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/MGMT/Tasks/");
->>>>>>> 1915b50c991840899ccb786e82996bb85c015db8
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
