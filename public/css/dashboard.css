@@ -2,13 +2,17 @@
     background-color: aliceblue;
     box-sizing: border-box;
 }
+html{
+  
+  background-image: url("../assets/img/prism2.png");
+}
 
 body{
     color:2#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding:1em;
-    background-image: url("../assets/img/dashboard_background.jpg");
+    background-image: url("../assets/img/prism2.png");
 }
 /* The Modal (background) */
 .modal {
@@ -61,6 +65,8 @@ font-size: 25px;
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
+    box-shadow: 5px 5px 5px grey;
+
 
     overflow-x: hidden; /* Disable horizontal scroll */
   }
@@ -100,15 +106,16 @@ font-size: 25px;
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     right: 0;
+    border-bottom-right-radius: 25px;
     background-image: url("../assets/img/memphis-colorful.png");
     overflow-x: hidden; /* Disable horizontal scroll */
-    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    box-shadow: 5px 5px 5px grey;
   }
   
   .topnav h1 {
     padding: 50px 0px 0px 20px;
     /*    color: #6f42c1; */
-    color: white;
+    color: black;
     text-shadow: #000000;
     font-style: italic;
     background-color: transparent;
