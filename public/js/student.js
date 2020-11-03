@@ -177,31 +177,9 @@ window.onclick = function (event) {
     addstuClass.style.display = "none";
   }
 }
-
-function checkClass() {
-  //checks class 
-  var classRef = firebase.database().ref('Schools/' + userSchool + "/classes//");
-  //Checks Student
-  var sturef = firebase.database().ref('');
-  classRef.once("value", function (snapshot) {
-    snapshot.forEach(function (child) {
-      if (snapshot.hasChild(document.getElementById("StudentID").value) && snapshot.hasChild(document.getElementById("classID").value)) {
-        alert("Class already exists");
-        location.reload();
-        setTimeout();
-      }
-
-      else {
-        newClass();
-      };
-    });
-  });
-}
-
-function addstudentClass() {
-  var studentCID = document.getElementById("StudentCID").value;
-  var className = document.getElementById("className").value;
-  var StuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/").child(studentCID);
-  classModal.style.display = "none";
-  StuClass.set({studentCID : studentCID, className: className});
+function addStudentClass(){
+  var studentcid = document.getElementById("studentcid").value;
+  var addStuClass = firebase.database().ref("Schools/Liberty/classes/Free/").child("students");
+  addStuClass.set({studentcid:studentcid})
+  location.reload();
 }
