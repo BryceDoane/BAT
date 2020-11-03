@@ -198,7 +198,7 @@ function checkClass() {
     });
   }
 
-  function checkStudent()
+  function checkStudent(){
   var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
@@ -208,5 +208,5 @@ function checkClass() {
       else {
         alert("student ID does not exist");
       }
-    });})
+    });})}
   
