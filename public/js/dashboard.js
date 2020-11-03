@@ -55,13 +55,13 @@ firebase.auth().onAuthStateChanged(function (user) {
         node.classList.add("classList"); /*adds classList as class on ul*/
         var textNode = document.createTextNode(classes[i]);
         var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + '/Student List');
-        studentRef.on('value', function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
-          var childSData = childSnapshot.val();
-          students.push(childCSData.studentcid);
-          studentList = students.toString();
+        // studentRef.on('value', function (snapshot) {
+        //   snapshot.forEach(function (childSnapshot) {
+        //   var childSData = childSnapshot.val();
+        //   students.push(childCSData.studentcid);
+        //   studentList = students.toString();
   
-        });
+        // });
         node.appendChild(textNode);
         //node.appendChild(studentList);
         document.getElementById("classNameLi").appendChild(node);
