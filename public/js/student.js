@@ -199,7 +199,7 @@ function checkClass() {
   }
 
   function checkStudent(){
-  var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
+  var classRef = firebase.database().ref('Schools/' + userSchool + "/students");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("studentcid").value)) {
