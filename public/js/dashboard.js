@@ -26,6 +26,7 @@ var schoolName;
 var classes = [];
 var students = [];
 var studentsList;
+var studentTest;
 var classRef = firebase.database().ref('classes');
 var classesList;
 
@@ -53,9 +54,9 @@ firebase.auth().onAuthStateChanged(function (user) {
       studentRef.on('value', function (snapshot){
         snapshot.forEach(function (childSnapshot) {
         var childSData = childSnapshot.val();
-        studentsList.push(childSData.studentcid);
+        studentsList.push(childSData);
         });
-        var studentTest = studentsList.toString();
+        studentTest = studentsList.toString();
         console.log(studentTest);
       });
       for (i = 0; i < classes.length; i++) {
