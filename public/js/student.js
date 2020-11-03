@@ -186,7 +186,7 @@ function addStudentClass(){
   location.reload();
 }
 function checkClass() {
-  var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+  var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("className").value)) {
