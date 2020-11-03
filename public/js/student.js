@@ -182,8 +182,8 @@ window.onclick = function (event) {
 function addStudentClass(){
   var studentcid = document.getElementById("studentcid").value;
   var className = document.getElementById("className").value;
-  var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/");
-  addStuClass.set({studentcid : studentcid}, {merge: true });
+  var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
+  addStuClass.set({studentcid : studentcid});
   location.reload();
 
 }
