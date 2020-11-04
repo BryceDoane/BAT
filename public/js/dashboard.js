@@ -26,11 +26,18 @@ var schoolName;
 var classes = [];
 var students = [];
 var studentsList;
+var studentNames = [];
+var studentNamesList;
 var studentTest;
 var classRef = firebase.database().ref('classes');
 var classesList;
 var tasks = [];
 var taskList;
+
+
+
+
+
 
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -39,6 +46,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     email = user.email;
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+<<<<<<< Updated upstream
      classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         childCData = childSnapshot.val();
@@ -68,14 +76,59 @@ firebase.auth().onAuthStateChanged(function (user) {
           });
           document.getElementById("taskNameLi").innerHTML = taskList;
         });
+=======
+    var studentNameRef = firebase.database().ref('Schools/' + schoolName + "/students");
+    studentNameRef.on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+    var childSNData = childSnapshot.val();
+    studentNames.push(childSNData.studentName);
+    studentNames.push(childSNData.studentID);
+  });
+  studentsNamesList = studentNames; //.toString();
+  console.log(studentsNamesList);
+  });
+      classRef.on('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          var childCData = childSnapshot.val();
+          var select = document.getElementById("classList")
+          classRef.on('child_added', function (snapshot) {
+            //Do something with the data
+            //document.getElementById("classNameLi").innerHTML = childData.className;
 
-      });
-      var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
-      studentRef.on('value', function (snapshot){
+          });
+          classes.push(childCData.className);
+          classesList = classes.toString();
+
+        });
         
-        studentTest = snapshot.toString();
-        console.log(snapshot);
+        for (i = 0; i < classes.length; i++) {
+        students = [];
+        
+        var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
+        studentRef.on('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          var childSData = childSnapshot.val();
+          var identifier = childSData.studentcid;
+          var finder = studentsNamesList.indexOf(identifier);
+          finder = finder -1;
+          students.push(studentsNamesList[finder]);
+          
+        });
+        studentsList = students.toString();
+        console.log(studentsList);
+        });
+          var node = document.createElement('ul');
+          node.classList.add("classList"); /*adds classList as class on ul*/
+          var textNode = document.createTextNode("Class: " + classes[i] + " Students: " + studentsList);
+          node.appendChild(textNode);
+          document.getElementById("classNameLi").appendChild(node);
+>>>>>>> Stashed changes
+
+        
+        }
+        //document.getElementById("classNameLi").innerHTML = classesList;
       });
+<<<<<<< Updated upstream
       for (i = 0; i < classes.length; i++) {
         var node = document.createElement('ul');
         var cnode = document.getElementsByTagName('ul').value;
@@ -90,8 +143,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
     // window.location = "http://behavv.com/index.html";
   }
+=======
+    
+};
+>>>>>>> Stashed changes
 });
-
 //Create table
 var mountains = [];
 
@@ -202,4 +258,39 @@ firebase.auth().onAuthStateChanged(function (user) {
     //window.location = "http://behavv.com/index.html";
  // }
 });
+<<<<<<< Updated upstream
 */
+=======
+
+// var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+//     classRef.on('value', function (snapshot) {
+//       snapshot.forEach(function (childSnapshot) {
+//         var childCData = childSnapshot.val();
+//         var select = document.getElementById("classList")
+//         classRef.on('child_added', function (snapshot) {
+//           //Do something with the data
+//           //document.getElementById("classNameLi").innerHTML = childData.className;
+
+//         });
+//         classes.push(childCData.className);
+//         classesList = classes.toString();
+
+//       });
+      
+//       for (i = 0; i < classes.length; i++) {
+//         var node = document.createElement('ul');
+//         node.classList.add("classList"); /*adds classList as class on ul*/
+//         var textNode = document.createTextNode(classes[i]);
+//         node.appendChild(textNode);
+//         document.getElementById("classNameLi").appendChild(node);
+
+       
+//       }
+//       //document.getElementById("classNameLi").innerHTML = classesList;
+//     });
+//   } else {
+//     // No user is signed in.
+//     // window.location = "http://behavv.com/index.html";
+//   }
+  
+>>>>>>> Stashed changes
