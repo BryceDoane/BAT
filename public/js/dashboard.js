@@ -52,7 +52,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         classesList = classes.toString();
         schoolName = user.displayName;
         var ctext = document.getElementById('classNameLi').nodevalue;
-        var tasksRef = firebase.database().ref("Schools/liberty/classes/" + cnode + "/Tasks/");
+        var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + cnode + "/Tasks/");
         tasksRef.on('value', function (snapshot) {
           console.log(snapshot);
           snapshot.forEach(function (childSnapshot) {
