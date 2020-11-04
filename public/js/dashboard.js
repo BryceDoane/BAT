@@ -32,6 +32,7 @@ var studentTest;
 var classRef = firebase.database().ref('classes');
 var classesList;
 var tasks = [];
+var tasksID = [];
 var taskList;
 
 
@@ -101,19 +102,37 @@ firebase.auth().onAuthStateChanged(function (user) {
         tasksRef.on('value', function (snapshot) {
           //console.log(snapshot.val());
           snapshot.forEach(function (childSnapshot) {
-            tasks.push(ctext + ":");
-            tasks.push(childSnapshot.val().taskName);
+            var childData = childSnapshot.val();
+            tasks.push(childData);
+            tasksID.push(childSnapshot.val().taskName);
             //console.log(childData);
+            console.log(tasks);
             taskList = tasks.toString();
 
           });
-          document.getElementById("taskNameLi").innerHTML = taskList;
+         
         });
+  
+      };
+      tasks.forEach(tasks => {
+        var trNode = document.createElement('tr');
+        //document.getElementById("taskNameLi").appendChild(trNode);
+        var node = document.createElement('td');
+        node.classList.add("thID");
+        var textNode = document.createTextNode(tasks.taskName);
+        console.log(textNode);
+        //var textNode2 = document.createTextNode(students.studentName);
+        var node2 = document.createElement('td');
+        node.appendChild(textNode);
+        trNode.appendChild(node);
+       // trNode.appendChild(node2);
+        document.getElementById("taskNameLi").appendChild(node);
+      })
+        });
+        
         //document.getElementById("classNameLi").innerHTML = classesList;
       }
-    });
-
-  };
+     
 
   //Create table
   // var mountains = [];
@@ -175,7 +194,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     }
 
-    generateClassesTable(mountains);
+    //generateClassesTable(mountains);
   });
 
   //log out functionality on top right
