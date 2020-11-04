@@ -105,29 +105,15 @@ firebase.auth().onAuthStateChanged(function (user) {
             tasks.push(childSnapshot.val().taskName);
             //console.log(childData);
             taskList = tasks.toString();
-          
+
           });
-          
-          tasks.forEach(tasks => {
-            var trNode = document.createElement('tr');
-            document.getElementById("TaskNameLi").appendChild(trNode);
-            var node = document.createElement('td');
-            node.classList.add("thID");
-            var textNode = document.createTextNode(tasks.tasksName);
-            var node2 = document.createElement('td');
-            node.appendChild(textNode);
-            trNode.appendChild(node);
-            trNode.appendChild(node2);
-            document.getElementById("taskNameLi").appendChild(trNode);
-          
-
-          
-          //document.getElementById("studentNameLi").innerHTML = studentList;
-
+          document.getElementById("taskNameLi").innerHTML = taskList;
+        });
         //document.getElementById("classNameLi").innerHTML = classesList;
+      }
+    });
 
-  
-  
+  };
 
   //Create table
   // var mountains = [];
@@ -272,4 +258,4 @@ firebase.auth().onAuthStateChanged(function (user) {
 //     // No user is signed in.
 //     // window.location = "http://behavv.com/index.html";
 //   }
-        })}})}})
+
