@@ -29,6 +29,8 @@ var studentsList;
 var studentTest;
 var classRef = firebase.database().ref('classes');
 var classesList;
+var tasks = [];
+var taskList;
 
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -48,6 +50,24 @@ firebase.auth().onAuthStateChanged(function (user) {
         });
         classes.push(childCData.className);
         classesList = classes.toString();
+        schoolName = user.displayName;
+        var ctext = document.getElementById('classNameLi').nodevalue;
+        var tasksRef = firebase.database().ref("Schools/liberty/classes/" + ctext + "/Tasks/");
+        tasksRef.on('value', function (snapshot) {
+          console.log(snapshot);
+          snapshot.forEach(function (childSnapshot) {
+            console.log(childSnapshot);
+            var childData = childSnapshot.val();
+            tasksRef.on('child_added', function (snapshot) {
+              //Do something with the data
+              //document.getElementById("classNameLi").innerHTML = childData.className;
+            });
+            tasks.push(childData);
+            taskList = tasks.toString();
+      
+          });
+          document.getElementById("taskNameLi").innerHTML = taskList;
+        });
 
       });
       var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
@@ -61,6 +81,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       });
       for (i = 0; i < classes.length; i++) {
         var node = document.createElement('ul');
+        var cnode = document.getElementsById('ul').nodevalue;
         node.classList.add("classList"); /*adds classList as class on ul*/
         var textNode = document.createTextNode(classes[i]);
         node.appendChild(textNode);
@@ -154,17 +175,16 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 })
 
-var tasks = [];
-var taskList;
+
 //Show tasks as table
-firebase.auth().onAuthStateChanged(function (user) {
+/*firebase.auth().onAuthStateChanged(function (user) {
   //if (user) {
   //uid = user.uid;
  // email = user.email;
 
   schoolName = user.displayName;
+  var ctext = document.getElementById('classNameLi').nodevalue;
   var tasksRef = firebase.database().ref("Schools/liberty/classes/" + ctext + "/Tasks/");
-  var ctext = document.getElementById('classNameLi').value;
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
@@ -185,3 +205,4 @@ firebase.auth().onAuthStateChanged(function (user) {
     //window.location = "http://behavv.com/index.html";
  // }
 });
+*/
