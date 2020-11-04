@@ -46,37 +46,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     email = user.email;
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
-<<<<<<< Updated upstream
-     classRef.on('value', function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {
-        childCData = childSnapshot.val();
-        var select = document.getElementById("classList")
-        classRef.on('child_added', function (snapshot) {
-          //Do something with the data
-          //document.getElementById("classNameLi").innerHTML = childData.className;
-
-        });
-        classes.push(childCData.className);
-        classesList = classes.toString();
-        schoolName = user.displayName;
-        var ctext = document.getElementById('classNameLi').nodevalue;
-        var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + cnode + "/Tasks/");
-        tasksRef.on('value', function (snapshot) {
-          console.log(snapshot);
-          snapshot.forEach(function (childSnapshot) {
-            console.log(childSnapshot);
-            var childData = childSnapshot.val();
-            tasksRef.on('child_added', function (snapshot) {
-              //Do something with the data
-              //document.getElementById("classNameLi").innerHTML = childData.className;
-            });
-            tasks.push(childData);
-            taskList = tasks.toString();
-      
-          });
-          document.getElementById("taskNameLi").innerHTML = taskList;
-        });
-=======
     var studentNameRef = firebase.database().ref('Schools/' + schoolName + "/students");
     studentNameRef.on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
@@ -122,31 +91,13 @@ firebase.auth().onAuthStateChanged(function (user) {
           var textNode = document.createTextNode("Class: " + classes[i] + " Students: " + studentsList);
           node.appendChild(textNode);
           document.getElementById("classNameLi").appendChild(node);
->>>>>>> Stashed changes
 
         
         }
         //document.getElementById("classNameLi").innerHTML = classesList;
       });
-<<<<<<< Updated upstream
-      for (i = 0; i < classes.length; i++) {
-        var node = document.createElement('ul');
-        var cnode = document.getElementsByTagName('ul').value;
-        node.classList.add("classList"); /*adds classList as class on ul*/
-        var textNode = document.createTextNode(classes[i]);
-        node.appendChild(textNode);
-        document.getElementById("classNameLi").appendChild(node);
-      }
-      //document.getElementById("classNameLi").innerHTML = classesList;
-    });
-  } else {
-    // No user is signed in.
-    // window.location = "http://behavv.com/index.html";
-  }
-=======
     
 };
->>>>>>> Stashed changes
 });
 //Create table
 var mountains = [];
@@ -258,9 +209,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     //window.location = "http://behavv.com/index.html";
  // }
 });
-<<<<<<< Updated upstream
-*/
-=======
 
 // var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
 //     classRef.on('value', function (snapshot) {
@@ -293,4 +241,3 @@ firebase.auth().onAuthStateChanged(function (user) {
 //     // window.location = "http://behavv.com/index.html";
 //   }
   
->>>>>>> Stashed changes
