@@ -164,7 +164,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
   schoolName = user.displayName;
   var tasksRef = firebase.database().ref("Schools/liberty/classes/" + ctext + "/Tasks/");
-  var ctext = document.getElementById('ul').value;
+  var ctext = document.getElementById('classNameLi').value;
   tasksRef.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
