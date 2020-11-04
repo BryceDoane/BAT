@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       });
       for (i = 0; i < classes.length; i++) {
         var node = document.createElement('ul');
-        var cnode = document.getElementsByTagName('ul').nodevalue;
+        var cnode = document.getElementsByTagName('ul').value;
         node.classList.add("classList"); /*adds classList as class on ul*/
         var textNode = document.createTextNode(classes[i]);
         node.appendChild(textNode);
