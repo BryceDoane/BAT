@@ -52,7 +52,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         classesList = classes.toString();
         schoolName = user.displayName;
         var ctext = document.getElementById('classNameLi').nodevalue;
-        var tasksRef = firebase.database().ref("Schools/liberty/classes/" + ctext + "/Tasks/");
+        var tasksRef = firebase.database().ref("Schools/liberty/classes/" + cnode + "/Tasks/");
         tasksRef.on('value', function (snapshot) {
           console.log(snapshot);
           snapshot.forEach(function (childSnapshot) {
@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       });
       for (i = 0; i < classes.length; i++) {
         var node = document.createElement('ul');
-        var cnode = document.getElementsById('ul').nodevalue;
+        var cnode = document.getElementsByTagName('ul').nodevalue;
         node.classList.add("classList"); /*adds classList as class on ul*/
         var textNode = document.createTextNode(classes[i]);
         node.appendChild(textNode);
