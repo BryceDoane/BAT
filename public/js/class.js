@@ -92,7 +92,7 @@ function newTask() {
   var taskName = document.getElementById("taskName").value;
   var select = document.getElementById("classList");
   var classSelect = select.options[select.selectedIndex].value;
-  var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + classSelect + "/Tasks/" + taskName + "/");
+  var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + classSelect + "/Tasks/" + taskName + "/").child(taskName);
   classModal.style.display = "none";
   classRef2.set({taskName: taskName});
   location.reload();
