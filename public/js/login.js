@@ -70,7 +70,7 @@
       // document.getElementById('signed-in-user').textContent = email;
       // document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
       // document.getElementById('loginbtn').textContent = 'Sign out';
-      window.location = "/public/dashboard.html";
+      window.location = "/dashboard.html";
 
       // [END_EXCLUDE]
       } else {
