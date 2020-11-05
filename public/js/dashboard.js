@@ -69,6 +69,8 @@ firebase.auth().onAuthStateChanged(function (user) {
         classes.push(childCData.className);
         classesList = classes.toString();
 
+        
+        
       });
 
       for (i = 0; i < classes.length; i++) {
@@ -87,17 +89,14 @@ firebase.auth().onAuthStateChanged(function (user) {
           studentsList = students.toString();
           //console.log(studentsList);
         });
-        var node = document.createElement('ul');
-        node.classList.add("classList"); /*adds classList as class on ul*/
-        var textNode = document.createTextNode("Class: " + classes[i] + " Students: " + studentsList);
-        node.appendChild(textNode);
-        document.getElementById("classNameLi").appendChild(node);
+      
 
 
       }
       for (i = 0; i <= classes.length; i++) {
         var ctext = classes[i];//document.getElementById('classNameLi').nodevalue;
         var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + ctext + "/Tasks");
+        
 
         tasksRef.on('value', function (snapshot) {
           //console.log(snapshot.val());
@@ -108,6 +107,22 @@ firebase.auth().onAuthStateChanged(function (user) {
             //console.log(childData);
             console.log(tasks);
             taskList = tasks.toString();
+              //EachTask2class
+              var tasksReff = firebase.database().ref("Schools/" + schoolName + "/classes/" + ctext + "/tasks/");
+              var node = document.createElement('ul');
+              node.classList.add("classList"); /*adds classList as class on ul*/
+              var textNode = document.createTextNode("Class: " + classes[i] + tasks.taskList + " Students: " + studentsList);
+              node.appendChild(textNode);
+              document.getElementById("classNameLi").appendChild(node);
+              
+          
+        //
+        var node = document.createElement('ul');
+        node.classList.add("tasks"); /*adds classList as class on ul*/
+
+        var textNode = document.createTextNode("Class: " + classes[i] + tasks[i].taskName + " Students: " + studentsList);
+        node.appendChild(textNode);
+        document.getElementById("classNameLi").appendChild(node);
 
           });
          
@@ -117,7 +132,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       tasks.forEach(tasks => {
         var trNode = document.createElement('tr');
         //document.getElementById("taskNameLi").appendChild(trNode);
-        var node = document.createElement('td');
+        var node = document.createElement('th');
         node.classList.add("thID");
         var textNode = document.createTextNode(tasks.taskName);
         console.log(textNode);
@@ -132,8 +147,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         
         //document.getElementById("classNameLi").innerHTML = classesList;
       }
-     
-
+   
   //Create table
   // var mountains = [];
 
