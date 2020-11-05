@@ -42,9 +42,26 @@ font-size: 25px;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  text-align: center;
+  border-radius: 10px;
+  width: 30%; /* Could be more or less, depending on screen size */
 }
-
+.modal-content button {
+  background-color: lightgreen;
+  border-radius: 10px;
+  height: 30px;
+  width: 100px;
+}
+.modal-content .deletebtn {
+  background-color: rgb(209, 72, 44)!important;
+  border-radius: 10px;
+  color: white;
+  height: 30px;
+  width: 100px;
+}
+.modal-content button:hover {
+  cursor: pointer;
+}
 /* The Close Button */
 .close, .close2 {
   color: #aaa;
@@ -96,6 +113,9 @@ font-size: 25px;
     background-color: rgba(255, 253, 253, 0.2);
     display: block;
   }
+  .sidenav a.selected {
+    background-color: blue;
+  }
   
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
@@ -111,7 +131,6 @@ font-size: 25px;
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     right: 0;
-    border-bottom-right-radius: 25px;
     background-image: url("../assets/img/memphis-colorful.png");
     overflow-x: hidden; /* Disable horizontal scroll */
     box-shadow: 5px 5px 5px grey;
@@ -312,7 +331,7 @@ font-size: 25px;
     border-radius: 10PX;;
   }
   .thID{
-    width: 20%;
+    width: 10%;
   }
   #studentNameLi td{
     text-align: center;
