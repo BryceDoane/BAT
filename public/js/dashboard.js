@@ -62,23 +62,22 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         taskRef.on('value', function (snapshot2) {
           snapshot2.forEach(function (childSnapshot2) {
-            
-            console.log(childCData.className);
-            
+
+            //console.log(childCData.className);
             temp.push(childSnapshot2.val().taskName)
-            console.log(childSnapshot2.val().taskName);
+            //console.log(childSnapshot2.val().taskName);
           })
         })
-        
+
         var select = document.getElementById("classList")
-        console.log(temp);
+
         classes.push(childCData.className);
         classesList = classes.toString();
 
         
         
       });
-
+      console.log(temp);
       var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
       studentRef.on('value', function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
@@ -86,7 +85,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           studentsList.push(childSData);
         });
         //studentTest = studentsList.toString();
-        console.log(studentTest);
+        //console.log(studentTest);
       });
 
       for (i = 0; i < classes.length; i++) {
@@ -108,70 +107,6 @@ firebase.auth().onAuthStateChanged(function (user) {
       
 
 
-//Create table
-// var mountains = [];
-
-// function generateClassesTable(mountains) {
-
-//   let table = document.querySelector("table");
-//   //let data = Object.keys(mountains[0]);
-//   generateTable(table, mountains);
-//   generateTableHead(table, data);
-
-//   function generateTableHead(table, data) {
-//     let thead = table.createTHead();
-//     let row = thead.insertRow();
-//     for (let key of data) {
-//       let th = document.createElement("th");
-//       let text = document.createTextNode(key);
-//       th.appendChild(text);
-//       row.appendChild(th);
-//     }
-//   }
-
-//   function generateTable(table, data) {
-//     for (let element of data) {
-//       let row = table.insertRow();
-//       for (key in element) {
-//         let cell = row.insertCell();
-//         let text = document.createTextNode(element[key]);
-//         cell.appendChild(text);
-//       }
-//     }
-//   }
-//   mountains = [];
-// }
-
-// var classesRef = firebase.database().ref('classes');
-// var classesList;
-// classesRef.on('value', function (snapshot) {
-//   snapshot.forEach(function (childSnapshot) {
-//     var childData = childSnapshot.val();
-//     classesRef.on('child_added', function (snapshot) {
-//       //Do something with the data
-//       //document.getElementById("classNameLi").innerHTML = childData.className;
-
-//     });
-//     classes.push(childData.className);
-//     classes.push(childData.Tasks);
-//   });
-//   for (i = 0; i < (classes.length / 2); i++) {
-//     var td = document.createElement('TABLE');
-//     document.getElementById("classNameLi").appendChild(td);
-//     mountains = [
-//       { StudentName: "Bryce", Bring_Pencils: 1, Bring_Homework: 1, Task4: 3, task3: 9 },
-//       { name: "Gage", task1: 4, task2: 5, task3: 3, task4: 6 },
-//       { name: "Matt", task1: 2, task2: 2, task3: 3, task4: 6 },
-//       { name: "Eddie", task1: 5, task2: 3, task3: 3, task4: 6 },
-//       { name: "Pat", task1: 3, task2: 4, task3: 3, task4: 6 }
-//     ];
-
-//   }
-
-//   //generateClassesTable(mountains);
-// });
-
-
       }
       for (i = 0; i <= classes.length; i++) {
         var ctext = classes[i];//document.getElementById('classNameLi').nodevalue;
@@ -185,7 +120,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             tasks.push(childData);
             tasksID.push(childSnapshot.val().taskName);
             //console.log(childData);
-            console.log(tasks);
+            //console.log(tasks);
             taskList = tasks.toString();
               //EachTask2class
               var tasksReff = firebase.database().ref("Schools/" + schoolName + "/classes/" + ctext + "/tasks/");
@@ -205,132 +140,71 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("classNameLi").appendChild(node);
 
           });
-         
+
         });
-  
+
       };
-      tasks.forEach(tasks => {
-        var trNode = document.createElement('tr');
-        //document.getElementById("taskNameLi").appendChild(trNode);
-        var node = document.createElement('th');
-        node.classList.add("thID");
-        var textNode = document.createTextNode(tasks.taskName);
-        console.log(textNode);
-        //var textNode2 = document.createTextNode(students.studentName);
-        var node2 = document.createElement('td');
-        node.appendChild(textNode);
-        trNode.appendChild(node);
-       // trNode.appendChild(node2);
-        document.getElementById("taskNameLi").appendChild(node);
-      })
-        });
-        
-        //document.getElementById("classNameLi").innerHTML = classesList;
-      }
-   
-  //Create table
-  // var mountains = [];
-
-
-  // function generateClassesTable(mountains) {
-
-  //   let table = document.querySelector("table");
-  //   let data = Object.keys(mountains[0]);
-  //   generateTable(table, mountains);
-  //   generateTableHead(table, data);
-
-
-var tasks = [];
-var taskList;
-//Show tasks as table
-firebase.auth().onAuthStateChanged(function (user) {
-  //if (user) {
-  //uid = user.uid;
-  // email = user.email;
-
-  schoolName = user.displayName;
-  var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/MGMT/Tasks/");
-  tasksRef.on('value', function (snapshot) {
-    console.log(snapshot);
-
-  //   function generateTableHead(table, data) {
-  //     let thead = table.createTHead();
-  //     let row = thead.insertRow();
-  //     for (let key of data) {
-  //       let th = document.createElement("th");
-  //       let text = document.createTextNode(key);
-  //       th.appendChild(text);
-  //       row.appendChild(th);
-  //     }
-  //   }
-
-  //   function generateTable(table, data) {
-  //     for (let element of data) {
-  //       let row = table.insertRow();
-  //       for (key in element) {
-  //         let cell = row.insertCell();
-  //         let text = document.createTextNode(element[key]);
-  //         cell.appendChild(text);
-  //       }
-  //     }
-  //   }
-  //   mountains = [];
-  //}
-
-  var classesRef = firebase.database().ref('classes');
-  var classesList;
-  classesRef.on('value', function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
-      var childData = childSnapshot.val();
-      classesRef.on('child_added', function (snapshot) {
-        //Do something with the data
-        //document.getElementById("classNameLi").innerHTML = childData.className;
-
-      });
-      classes.push(childData.className);
-      classes.push(childData.Tasks);
     });
 
-    document.getElementById("taskNameLi").innerHTML = taskList;
-  });//}
-  // else {
-  // No user is signed in.
-  //window.location = "http://behavv.com/index.html";
-  // }
-    for (i = 0; i < (classes.length / 2); i++) {
-      var td = document.createElement('TABLE');
-      document.getElementById("classNameLi").appendChild(td);
-      mountains = [
-        { StudentName: "Bryce", Bring_Pencils: 1, Bring_Homework: 1, Task4: 3, task3: 9 },
-        { name: "Gage", task1: 4, task2: 5, task3: 3, task4: 6 },
-        { name: "Matt", task1: 2, task2: 2, task3: 3, task4: 6 },
-        { name: "Eddie", task1: 5, task2: 3, task3: 3, task4: 6 },
-        { name: "Pat", task1: 3, task2: 4, task3: 3, task4: 6 }
-      ];
+    //document.getElementById("classNameLi").innerHTML = classesList;
+  }
 
-    }
+  var tasks = [];
+  var taskList;
+  //Show tasks as table
+    schoolName = user.displayName;
+    var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/MGMT/Tasks/");
+    tasksRef.on('value', function (snapshot) {
+      //console.log(snapshot);
 
-    //generateClassesTable(mountains);
-  });
+      var classesRef = firebase.database().ref('classes');
+      var classesList;
+      classesRef.on('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          var childData = childSnapshot.val();
+          classesRef.on('child_added', function (snapshot) {
+            //Do something with the data
+            //document.getElementById("classNameLi").innerHTML = childData.className;
 
-  //log out functionality on top right
-  function signout() {
-    firebase.auth().signOut();
-    alert("signed out");
-  };
-  const sout = document.getElementById("lout");
-  sout.addEventListener('click', signout);
+          });
+          classes.push(childData.className);
+          classes.push(childData.Tasks);
+        });
 
-  //gets signed in user
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user != null) {
-      document.getElementById("linu").innerHTML = user.email;
-    } else {
-      document.getElementById("linu");
-    }
-  })
-});
+        document.getElementById("taskNameLi").innerHTML = taskList;
+      });
 
+      for (i = 0; i < (classes.length / 2); i++) {
+        var td = document.createElement('TABLE');
+        document.getElementById("classNameLi").appendChild(td);
+        mountains = [
+          { StudentName: "Bryce", Bring_Pencils: 1, Bring_Homework: 1, Task4: 3, task3: 9 },
+          { name: "Gage", task1: 4, task2: 5, task3: 3, task4: 6 },
+          { name: "Matt", task1: 2, task2: 2, task3: 3, task4: 6 },
+          { name: "Eddie", task1: 5, task2: 3, task3: 3, task4: 6 },
+          { name: "Pat", task1: 3, task2: 4, task3: 3, task4: 6 }
+        ];
+
+      }
+    });
+
+    //log out functionality on top right
+    function signout() {
+      firebase.auth().signOut();
+      alert("signed out");
+    };
+    const sout = document.getElementById("lout");
+    sout.addEventListener('click', signout);
+
+    //gets signed in user
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user != null) {
+        document.getElementById("linu").innerHTML = user.email;
+      } else {
+        document.getElementById("linu");
+      }
+    })
+})
 //Show tasks as table
 // firebase.auth().onAuthStateChanged(function (user) {
 //   if (user) {
