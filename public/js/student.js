@@ -196,6 +196,7 @@ function checkClass() {
       else {
         alert("class does not exist");
         location.reload();
+        setTimeout();
       }});
     });
   }
@@ -207,6 +208,7 @@ function checkClass() {
       if (snapshot.hasChild(document.getElementById("studentcid").value)) {
     addStudentClass();
     location.reload();
+    setTimeout();
 
    }
       else {
