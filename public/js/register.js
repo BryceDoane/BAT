@@ -69,6 +69,7 @@ function saveMessage(fname, email, school, password){
     var errorCode = error.code;
     var errorMessage = error.message;
     if (errorCode == 'auth/email-already-in-use') {
+      school = " ";
       alert('Email already in use');
     } 
     else {
