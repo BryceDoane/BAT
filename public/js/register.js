@@ -17,7 +17,7 @@
 // Reference messages collection
 var messagesRef = firebase.database().ref('user');
 var loginTest = firebase.database().ref('user')
-
+var schools = [];
 
 // Listen for form submit
 document.getElementById('signup').addEventListener('submit', submitForm);
@@ -39,17 +39,7 @@ function submitForm(e){
   
   saveMessage(fname,email, school, password);
 
-  // Show alert
-  document.querySelector('.alert').style.display = 'block';
-
-  // Hide alert after 3 seconds
-  setTimeout(function(){
-    document.querySelector('.alert').style.display = 'none';
-  },3000);
-
-  // Clear form
-  // document.getElementById('signup').reset();
-
+  
 }
 
 // Function to get form values
@@ -69,7 +59,6 @@ function saveMessage(fname, email, school, password){
     var errorCode = error.code;
     var errorMessage = error.message;
     if (errorCode == 'auth/email-already-in-use') {
-      school = " ";
       alert('Email already in use');
     } 
     else {
@@ -82,13 +71,35 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in.
     var uid = user.uid;
     //var schoolName = user.displayName;
-    console.log(school);
-    firebase.database().ref('Schools/' + school + '/Users').push({ name: fname, email: email, uid: uid, schoolName: school });
-}else{
+  
+    firebase.database().ref('Schools/' + school + "/Users").orderByChild("email").equalTo(email).once("value", function(snapshot) {
+     var emailSnapshot = snapshot.val();
+     
+      if (emailSnapshot){
+        return(school);
+        
+      }else{
+          firebase.database().ref('Schools/' + school + '/Users').push({ name: fname, email: email, uid: uid, schoolName: school });
+          // Show alert
+            document.querySelector('.alert').style.display = 'block';
 
-};
+            // Hide alert after 3 seconds
+            setTimeout(function(){
+              document.querySelector('.alert').style.display = 'none';
+            },3000);
+
+            // Clear form
+            // document.getElementById('signup').reset();
+
+        }
+
+  }); 
+}
 });
 }
+
+
+
 /*function saveUser(fname, email){
   var user = firebase.auth().currentUser;
   if (user) {
