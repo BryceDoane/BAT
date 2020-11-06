@@ -41,6 +41,8 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 
  Lance from StackOverFlow for the dashboard current date script. https://stackoverflow.com/questions/32540044/html-display-current-date/32540196
 
+ subtlepatterns.com for the background designs
+
 
 
 # Change Log
