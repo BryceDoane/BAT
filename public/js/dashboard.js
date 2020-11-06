@@ -83,11 +83,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           var temp2 = temp[i];
           //console.log(temp2);
           if (temp2.includes("ClassName")) {
-            var node = document.createElement('h1');
-            var textNode = document.createTextNode(temp[i]);
-            node.appendChild(textNode);
-            document.getElementById("classNameLi").appendChild(node)
-            for (j = 0; j <= (students.length - 1); j++) {
+            for (j = 0; j <= (students.length -1); j++) {
               var trNode = document.createElement('tr');
               document.getElementById("classNameLi").appendChild(trNode);
               var dnode = document.createElement('td');
@@ -96,14 +92,28 @@ firebase.auth().onAuthStateChanged(function (user) {
               trNode.appendChild(dnode);
               document.getElementById("classNameLi").appendChild(trNode)
             }
+            var node = document.createElement('h1');
+            var textNode = document.createTextNode(temp[i]);
+            node.appendChild(textNode);
+            document.getElementById("classNameLi").appendChild(node)
+            
+            //
+            var nodee = document.createElement('tr');
+            nodee.classList.add("tr");
+            var textNodee = document.createTextNode("");
+            nodee.appendChild(textNodee);
+            document.getElementById("classNameLi").appendChild(nodee)
+            //
+           
           }
           else {
-
+    
             var node = document.createElement('th');
             node.classList.add("thID");
             var textNode = document.createTextNode(temp[i]);
             node.appendChild(textNode);
             document.getElementById("classNameLi").appendChild(node)
+            
 
           }
           
