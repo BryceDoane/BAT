@@ -182,9 +182,11 @@ function addStudentClass(){
   var studentcid = document.getElementById("studentcid").value;
   var className = document.getElementById("className").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
-  addStuClass.set({studentcid : studentcid});
+  var addstuName = firebase.database().ref("Schools/" + userSchool + "/students").child(studentcid.studentName.val());
+  addStuClass.set({studentcid : studentcid, studentName: addstuName});
   alert(studentcid + "has been added to" + className);
-  location.reload();
+  location.reload()
+  setTimeout();
 }
 function checkClass() {
   var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
