@@ -62,94 +62,90 @@ firebase.auth().onAuthStateChanged(function (user) {
       snapshot.forEach(function (childSnapshot) {
         var childCData = childSnapshot.val();
         var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + childSnapshot.val().className + "/Tasks");
-        var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + childSnapshot.val().className + "/Student List");
+
         temp.push("ClassName: " + childCData.className);
+        temp.push(" ");
 
         taskRef.on('value', function (snapshot2) {
           snapshot2.forEach(function (childSnapshot2) {
             temp.push(childSnapshot2.val().taskName)
           })
         })
-        stuRef.on('value', function (snapshot3) {
-          snapshot3.forEach(function (childSnapshot3) {
-            students.push(childSnapshot3.val().studentName);
-          })
-        })
+
         var select = document.getElementById("classList")
         classes.push(childCData.className);
         classesList = classes.toString();
         //console.log(temp);
-        for (i = 0; i <= (temp.length - 1); i++) {
-          var temp2 = temp[i];
-          //console.log(temp2);
-          if (temp2.includes("ClassName")) {
-            for (j = 0; j <= (students.length -1); j++) {
-              var trNode = document.createElement('tr');
-              document.getElementById("classNameLi").appendChild(trNode);
-              var dnode = document.createElement('td');
-              var textNode2 = document.createTextNode(students[j]);
-              dnode.appendChild(textNode2);
-              trNode.appendChild(dnode);
-              document.getElementById("classNameLi").appendChild(trNode)
-            }
-            var node = document.createElement('h1');
-            var textNode = document.createTextNode(temp[i]);
-            node.appendChild(textNode);
-            document.getElementById("classNameLi").appendChild(node)
-            
-            //
-            var nodee = document.createElement('tr');
-            nodee.classList.add("tr");
-            var textNodee = document.createTextNode("");
-            nodee.appendChild(textNodee);
-            document.getElementById("classNameLi").appendChild(nodee)
-            //
-           
-          }
-          else {
-    
-            var node = document.createElement('th');
-            node.classList.add("thID");
-            var textNode = document.createTextNode(temp[i]);
-            node.appendChild(textNode);
-            document.getElementById("classNameLi").appendChild(node)
-            
-
-          }
-          
-
-        };
-        //console.log(temp);
-        var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
-        studentRef.on('value', function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
-            var childSData = childSnapshot.val();
-            studentsList.push(childSData);
-          });
-          //studentTest = studentsList.toString();
-          //console.log(studentTest);
-        });
-
-        // for (i = 0; i < classes.length; i++) {
-        //   students = [];
-
-        //   var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
-        //   studentRef.on('value', function (snapshot) {
-        //     snapshot.forEach(function (childSnapshot) {
-        //       var childSData = childSnapshot.val();
-        //       var identifier = childSData.studentcid;
-        //       var finder = studentsNamesList.indexOf(identifier);
-        //       finder = finder - 1;
-        //       students.push(studentsNamesList[finder]);
-        //     });
-        //     studentsList = students.toString();
-        //     //console.log(studentsList);
+        // var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
+        // studentRef.on('value', function (snapshot) {
+        //   snapshot.forEach(function (childSnapshot) {
+        //     var childSData = childSnapshot.val();
+        //     studentsList.push(childSData);
+        //     console.log(studentsList);
         //   });
-        // }
+        //   //studentTest = studentsList.toString();
+        //   //console.log(studentTest);
+        // });
       });
+      for (i = 0; i <= (temp.length - 1); i++) {
+        var temp2 = temp[i];
+        if (temp2.includes("ClassName")) {
+          students = [];
+          temp3 = temp2.replace('ClassName: ', "");
+          var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
+          var node = document.createElement('h1');
+          var textNode = document.createTextNode(temp[i]);
+          node.appendChild(textNode);
+          document.getElementById("classNameLi").appendChild(node)
+
+          
+          stuRef.on('value', function (snapshot3) {
+            //console.log(snapshot3.val());
+            snapshot3.forEach(function (childSnapshot3) {
+              students.push(childSnapshot3.val().studentName);
+            })
+            console.log(students);
+          })
+          for (j = 0; j <= (students.length - 1); j++) {
+            var trNode = document.createElement('tr');
+            document.getElementById("classNameLi").appendChild(trNode);
+            var dnode = document.createElement('td');
+            var textNode2 = document.createTextNode(students[j]);
+            dnode.appendChild(textNode2);
+            trNode.appendChild(dnode);
+            document.getElementById("classNameLi").appendChild(trNode)
+          }
+        }
+        else {
+          var node = document.createElement('th');
+          node.classList.add("thID");
+          var textNode = document.createTextNode(temp[i]);
+          node.appendChild(textNode);
+          document.getElementById("classNameLi").appendChild(node)
+        }
+
+      };
     });
   }
 })
+
+// for (i = 0; i < classes.length; i++) {
+//   students = [];
+
+//   var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
+//   studentRef.on('value', function (snapshot) {
+//     snapshot.forEach(function (childSnapshot) {
+//       var childSData = childSnapshot.val();
+//       var identifier = childSData.studentcid;
+//       var finder = studentsNamesList.indexOf(identifier);
+//       finder = finder - 1;
+//       students.push(studentsNamesList[finder]);
+//     });
+//     studentsList = students.toString();
+//     //console.log(studentsList);
+//   });
+// }
+
 
 // for (i = 0; i <= classes.length; i++) {
 //   var ctext = classes[i];//document.getElementById('classNameLi').nodevalue;
