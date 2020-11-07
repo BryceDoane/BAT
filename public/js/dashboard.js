@@ -94,11 +94,17 @@ firebase.auth().onAuthStateChanged(function (user) {
           temp3 = temp2.replace('ClassName: ', "");
           var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
           var node = document.createElement('h1');
-          var textNode = document.createTextNode(temp[i]);
+          var textNode = document.createTextNode(temp3);
           node.appendChild(textNode);
           document.getElementById("classNameLi").appendChild(node)
+          var tablenode = document.createElement('table');
+          tablenode.Id = "tableID";
+          let newRow = tablenode.insertRow(-1);
+          // let newCell = newRow.insertCell(0);
+          // let newText = document.createTextNode('');
+          // newCell.appendChild(newText);
+          document.getElementById("classNameLi").appendChild(tablenode);
 
-          
           stuRef.on('value', function (snapshot3) {
             //console.log(snapshot3.val());
             snapshot3.forEach(function (childSnapshot3) {
@@ -107,24 +113,44 @@ firebase.auth().onAuthStateChanged(function (user) {
             console.log(students);
           })
           for (j = 0; j <= (students.length - 1); j++) {
-            var trNode = document.createElement('tr');
-            document.getElementById("classNameLi").appendChild(trNode);
-            var dnode = document.createElement('td');
-            var textNode2 = document.createTextNode(students[j]);
-            dnode.appendChild(textNode2);
-            trNode.appendChild(dnode);
-            document.getElementById("classNameLi").appendChild(trNode)
+            let newRow = tablenode.insertRow(-1);
+            let newCell = newRow.insertCell(0);
+            let newText = document.createTextNode(students[j]);
+            newCell.appendChild(newText);
+            // var divnode = document.createElement('div');
+            // divnode.id = "taskID";
+            // var trNode = document.createElement('tr');
+            // trNode.id = "nodeID";
+            // //document.getElementById("classNameLi").appendChild(divnode);
+            // document.getElementById("classNameLi").appendChild(trNode);
+            // var dnode = document.createElement('td');
+            // var textNode2 = document.createTextNode(students[j]);
+            // dnode.appendChild(textNode2);
+            // trNode.appendChild(dnode);
+            // document.getElementById("classNameLi").appendChild(trNode)
           }
         }
         else {
-          var node = document.createElement('th');
-          node.classList.add("thID");
-          var textNode = document.createTextNode(temp[i]);
-          node.appendChild(textNode);
-          document.getElementById("classNameLi").appendChild(node)
+          // Insert a row at the end of the table
+          let newRow = tablenode.rows[0];
+          let newCell = newRow.insertCell(-1);
+          let newText = document.createTextNode(temp[i]);
+          newCell.appendChild(newText);
+          // let newRow = tablenode.insertRow(-1);
+          // let newCell = newRow.insertCell(0);
+          // let newText = document.createTextNode(temp[i]);
+          // newCell.appendChild(newText);
+          // var node = document.createElement('th');
+          // node.classList.add("thID");
+          // var textNode = document.createTextNode(temp[i]);
+          // node.appendChild(textNode);
+          // document.getElementById("classNameLi").appendChild(node)
         }
 
+
       };
+      // var table = document.getElementById('tableID');
+
     });
   }
 })
