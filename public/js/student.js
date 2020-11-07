@@ -51,6 +51,7 @@ function close() {
 var uid;
 var userEmail;
 var userSchool;
+var studentCName;
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
@@ -182,10 +183,22 @@ function addStudentClass(){
   var studentcid = document.getElementById("studentcid").value;
   var className = document.getElementById("className").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
-  var addstuName = firebase.database().ref("Schools/" + userSchool + "/students").child(studentcid.studentName.val());
-  addStuClass.set({studentcid : studentcid, studentName: addstuName});
-  alert(studentcid + "has been added to" + className);
-  location.reload()
+  var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/");
+ 
+addStuName.on('value', function (snapshot) {
+    console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      console.log(childSnapshot);
+      var childSNData = childSnapshot.val();
+        studentCName = childSNData
+    });
+  })
+    
+      
+
+  addStuClass.set({studentcid : studentcid, studentName : studentCName});
+  alert(studentCName +" " + "has been added to" + " " + className);
+  location.reload();
   setTimeout();
 }
 function checkClass() {
@@ -209,12 +222,12 @@ function checkClass() {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("studentcid").value)) {
     addStudentClass();
-    location.reload();
-    setTimeout();
+    
 
    }
       else {
         alert("student ID does not exist");
+        setTimeout();
       }
     });})}
   
