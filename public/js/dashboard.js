@@ -30,15 +30,33 @@ var studentNames = [];
 var studentNamesList;
 var studentTest;
 var classRef = firebase.database().ref('classes');
-var classesList;
+var taskCount = 0;
 
 var temp = [];
 var tasks = [];
 var tasksID = [];
 var taskList;
-
+var dTable;
 var gorger;
 var gorgerr;
+
+
+var formModal = document.getElementById("formModal");
+var infobtn = document.getElementById("addInfoModal");
+var span1 = document.getElementsByClassName("close")[0];
+
+infobtn.onclick = function () {
+  formModal.style.display = "block";
+}
+span1.onclick = function () {
+  formModal.style.display = "none";
+}
+window.onclick = function (event) {
+  if (event.target == formModal) {
+    formModal.style.display = "none";
+  }
+}
+
 
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -74,7 +92,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         var select = document.getElementById("classList")
         classes.push(childCData.className);
-        classesList = classes.toString();
         //console.log(temp);
         // var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
         // studentRef.on('value', function (snapshot) {
@@ -90,6 +107,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       for (i = 0; i <= (temp.length - 1); i++) {
         var temp2 = temp[i];
         if (temp2.includes("ClassName")) {
+          taskCount = 0;
           students = [];
           temp3 = temp2.replace('ClassName: ', "");
           var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
@@ -99,24 +117,28 @@ firebase.auth().onAuthStateChanged(function (user) {
           document.getElementById("classNameLi").appendChild(node)
           var tablenode = document.createElement('table');
           tablenode.Id = "tableID";
+          dTable = tablenode;
+
           let newRow = tablenode.insertRow(-1);
           // let newCell = newRow.insertCell(0);
           // let newText = document.createTextNode('');
           // newCell.appendChild(newText);
           document.getElementById("classNameLi").appendChild(tablenode);
+          //classCount++;
+          //console.log(classCount);
 
           stuRef.on('value', function (snapshot3) {
             //console.log(snapshot3.val());
             snapshot3.forEach(function (childSnapshot3) {
               students.push(childSnapshot3.val().studentName);
             })
-            console.log(students);
           })
           for (j = 0; j <= (students.length - 1); j++) {
             let newRow = tablenode.insertRow(-1);
             let newCell = newRow.insertCell(0);
             let newText = document.createTextNode(students[j]);
             newCell.appendChild(newText);
+            //console.log(tablenode.rows[0].cells.length);
             // var divnode = document.createElement('div');
             // divnode.id = "taskID";
             // var trNode = document.createElement('tr');
@@ -136,24 +158,33 @@ firebase.auth().onAuthStateChanged(function (user) {
           let newCell = newRow.insertCell(-1);
           let newText = document.createTextNode(temp[i]);
           newCell.appendChild(newText);
-          // let newRow = tablenode.insertRow(-1);
-          // let newCell = newRow.insertCell(0);
-          // let newText = document.createTextNode(temp[i]);
-          // newCell.appendChild(newText);
-          // var node = document.createElement('th');
-          // node.classList.add("thID");
-          // var textNode = document.createTextNode(temp[i]);
-          // node.appendChild(textNode);
-          // document.getElementById("classNameLi").appendChild(node)
+          taskCount++;
+          var rows = tablenode.getElementsByTagName("tr");
+          
+          if(taskCount != 1){
+            addCell(rows);
+          }
+
+
         }
 
 
       };
+
+
       // var table = document.getElementById('tableID');
 
     });
   }
 })
+
+function addCell(rows){
+  for (k = 1; k <= (rows.length - 1); k++) {
+    let blankCell = rows[k].insertCell(-1);
+    let blankText = document.createTextNode("");
+    blankCell.appendChild(blankText);
+  }
+}
 
 // for (i = 0; i < classes.length; i++) {
 //   students = [];
@@ -173,27 +204,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 // }
 
 
-// for (i = 0; i <= classes.length; i++) {
-//   var ctext = classes[i];//document.getElementById('classNameLi').nodevalue;
-//   var tasksRef = firebase.database().ref("Schools/" + schoolName + "/classes/" + ctext + "/Tasks");
-
-
-//   tasksRef.on('value', function (snapshot) {
-//     //console.log(snapshot.val());
-//     snapshot.forEach(function (childSnapshot) {
-//       var childData = childSnapshot.val();
-//       tasks.push(childData);
-//       tasksID.push(childSnapshot.val().taskName);
-//       //console.log(childData);
-//       //console.log(tasks);
-//       taskList = tasks.toString();
-//         //EachTask2class
-//        // var tasksReff = firebase.database().ref("Schools/" + schoolName + "/classes/" + ctext + "/tasks/");
-//         var node = document.createElement('ul');
-//         node.classList.add("classList"); /*adds classList as class on ul*/
-//         var textNode = document.createTextNode("Class: " + classes[i] + " Students: " + studentsList);
-//         node.appendChild(textNode);
-//         //document.getElementById("classNameLi").appendChild(node);
 
 
 //   //
@@ -246,106 +256,4 @@ firebase.auth().onAuthStateChanged(function (user) {
   //       classes.push(childData.className);
   //       classes.push(childData.Tasks);
   //     });
-
-  //     //document.getElementById("taskNameLi").innerHTML = taskList;
-  //   });
-  //   //trying to seperate tasks
-  //   // /tasksReff.on('value', function (snapshot) {
-  //   //   snapshot.forEach(function (childSnapshot) {
-  //   //     var childData = childSnapshot.val();
-  //   //     tasksReff.on('child_added', function (snapshot) {
-  //   //       //Do something with the data
-  //   //       //document.getElementById("classNameLi").innerHTML = childData.className;
-
-  //   //     });
-  //   //     crash.push(childData.className);
-  //   //     classes.push(childData.Tasks);
-  //   //   });
-
-  //   //   document.getElementById("taskNameLi").innerHTML = taskList;
-  //   // });
-
-  //   // for (i = 0; i < (classes.length / 2); i++) {
-  //   //   var td = document.createElement('TABLE');
-  //   //   document.getElementById("classNameLi").appendChild(td);
-  //   //   mountains = [
-  //   //     { StudentName: "Bryce", Bring_Pencils: 1, Bring_Homework: 1, Task4: 3, task3: 9 },
-  //   //     { name: "Gage", task1: 4, task2: 5, task3: 3, task4: 6 },
-  //   //     { name: "Matt", task1: 2, task2: 2, task3: 3, task4: 6 },
-  //   //     { name: "Eddie", task1: 5, task2: 3, task3: 3, task4: 6 },
-  //   //     { name: "Pat", task1: 3, task2: 4, task3: 3, task4: 6 }
-  //   //   ];
-
-  //   // }
-  // });
-
-
-
-
-
-
-
-
-//Show tasks as table
-// firebase.auth().onAuthStateChanged(function (user) {
-//   if (user) {
-//     uid = user.uid;
-//     email = user.email;
-
-//     schoolName = user.displayName;
-//     var ctext = classes[1];//document.getElementById('classNameLi').nodevalue;
-//     //console.log(classes);
-//     var tasksRef = firebase.database().ref("Schools/liberty/classes/" + ctext + "/Tasks/");
-//     tasksRef.on('value', function (snapshot) {
-//       //console.log(snapshot);
-//       snapshot.forEach(function (childSnapshot) {
-//         console.log(childSnapshot);
-//         var childData = childSnapshot.val();
-//         tasksRef.on('child_added', function (snapshot) {
-//           //Do something with the data
-//           //document.getElementById("classNameLi").innerHTML = childData.className;
-//         });
-//         tasks.push(childData);
-//         taskList = tasks.toString();
-
-//       });
-//       document.getElementById("taskNameLi").innerHTML = taskList;
-//     });
-//   }
-//   else {
-//     // No user is signed in.
-//     //window.location = "http://behavv.com/index.html";
-//   }
-// });
-
-// var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
-//     classRef.on('value', function (snapshot) {
-//       snapshot.forEach(function (childSnapshot) {
-//         var childCData = childSnapshot.val();
-//         var select = document.getElementById("classList")
-//         classRef.on('child_added', function (snapshot) {
-//           //Do something with the data
-//           //document.getElementById("classNameLi").innerHTML = childData.className;
-
-//         });
-//         classes.push(childCData.className);
-//         classesList = classes.toString();
-
-//       });
-
-//       for (i = 0; i < classes.length; i++) {
-//         var node = document.createElement('ul');
-//         node.classList.add("classList"); /*adds classList as class on ul*/
-//         var textNode = document.createTextNode(classes[i]);
-//         node.appendChild(textNode);
-//         document.getElementById("classNameLi").appendChild(node);
-
-
-//       }
-//       //document.getElementById("classNameLi").innerHTML = classesList;
-//     });
-//   } else {
-//     // No user is signed in.
-//     // window.location = "http://behavv.com/index.html";
-//   }
 

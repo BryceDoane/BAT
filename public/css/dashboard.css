@@ -7,10 +7,6 @@ html{
   background-image: url("../assets/img/prism2.png");
 }
 
-html{
-  background-image: url("../assets/img/prism2.png");
-}
-
 body{
   background-image: url("../assets/img/prism2.png");
     color:2#6f42c1;
@@ -180,6 +176,13 @@ font-size: 25px;
     background-color: transparent;
   }
 
+ .dashboard .modal p {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    color: blue;
+  }
+
   #myBtn, .dashboard button{
     display: inline-block;
     width:40%;
@@ -210,10 +213,6 @@ font-size: 25px;
     background-color: transparent;
   }
 
-  .dashboard div{
-    background-color: transparent;
-  }
-
   .dashboard h1, .dashboard h3{
     color: black;
     background-color: transparent;
@@ -222,8 +221,9 @@ font-size: 25px;
   .dashboard table{
     display: inline-block;
     border-collapse: collapse;
-    width:40%;
+    width:80%;
     margin-left: 20px;
+    background-color: transparent;
   }
 
   .dashboard table th{
