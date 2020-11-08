@@ -179,55 +179,56 @@ window.onclick = function (event) {
   }
 }
 //adds students to class
-function addStudentClass(){
+function addStudentClass() {
   var studentcid = document.getElementById("studentcid").value;
   var className = document.getElementById("className").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
   var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/");
- 
-addStuName.on('value', function (snapshot) {
+
+  addStuName.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
       console.log(childSnapshot);
       var childSNData = childSnapshot.val();
-        studentCName = childSNData
+      studentCName = childSNData
     });
-  })
-    
-      
 
-  addStuClass.set({studentcid : studentcid, studentName : studentCName});
-  alert(studentCName +" " + "has been added to" + " " + className);
-  location.reload();
-  setTimeout();
-}
+
+    addStuClass.set({ studentcid: studentcid, studentName: studentCName });
+    //alert(studentCName + " " + "has been added to" + " " + className);
+    location.reload();
+  })
+
+};
 function checkClass() {
   var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("className").value)) {
-    checkStudent();
-   }
+        checkStudent();
+      }
       else {
-        alert("class does not exist");
+       alert("class does not exist");
         location.reload();
         setTimeout();
-      }});
+      }
     });
-  }
+  });
+}
 
-  function checkStudent(){
+function checkStudent() {
   var classRef = firebase.database().ref('Schools/' + userSchool + "/students");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("studentcid").value)) {
-    addStudentClass();
-    
+        addStudentClass();
 
-   }
+      }
       else {
-        alert("student ID does not exist");
+        //alert("student ID does not exist");
+        location.reload();
         setTimeout();
       }
-    });})}
-  
+    });
+  })
+}
