@@ -182,35 +182,46 @@ font-size: 25px;
     margin: auto;
     color: blue;
   }
-
   #myBtn, .dashboard button{
     display: inline-block;
-    width:40%;
-    margin-left: 100px;
-    padding: 1em;
+    width:60%;
+    margin-left: px;
+    padding: 1.5em;
     border: 1px solid #6f42c1;
     background:#c9e6ff;
-    border:0;
+    
+    border-color: black;
     margin-top: 10px;
-    text-transform: uppercase;
+   padding-right:110px;
+  text-transform: uppercase;
+  
   }
   #myBtn:hover, #myBtn:focus, .dashboard button:hover, .dashboard button:focus{
     background:#6f42c1;
     color:#ffffff;
     outline:0;
+    padding left
+    align-content: left;
     transition: background-color 2s ease-out;
   }
 
   @media(min-width:800px){
     .dashboard form{
-        display: grid;
-        grid-template-columns: 1fr 2fr;
+      padding-left: ;
+        grid-template-columns: 1fr 4fr;
         background-color: transparent;
+        
     }
 
   .dashboard p, .dashboard label{
     color: black;
     background-color: transparent;
+  }
+
+  #mbutton{
+    align-content: center;
+    padding-right:21px;
+    padding-bottom: 27px;
   }
 
   .dashboard h1, .dashboard h3{
