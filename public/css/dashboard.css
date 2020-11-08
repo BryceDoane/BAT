@@ -200,14 +200,14 @@ font-size: 25px;
     background:#6f42c1;
     color:#ffffff;
     outline:0;
-    padding left
+  
     align-content: left;
     transition: background-color 2s ease-out;
   }
 
   @media(min-width:800px){
     .dashboard form{
-      padding-left: ;
+
         grid-template-columns: 1fr 4fr;
         background-color: transparent;
         
