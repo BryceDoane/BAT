@@ -73,6 +73,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     console.log(user);
     classRef = firebase.database().ref('Schools/' + schoolName);
   } else {
+    window.location.replace("http://www.behavv.com");
     // No user is signed in.
   }
 });

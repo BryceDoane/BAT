@@ -60,7 +60,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     userEmail = user.email;
   }
   else {
-    // No user is signed in.
+    window.location.replace("http://www.behavv.com");
   }
 });
 

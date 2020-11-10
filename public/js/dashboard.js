@@ -160,8 +160,8 @@ firebase.auth().onAuthStateChanged(function (user) {
           newCell.appendChild(newText);
           taskCount++;
           var rows = tablenode.getElementsByTagName("tr");
-          
-          if(taskCount != 1){
+
+          if (taskCount != 1) {
             addCell(rows);
           }
 
@@ -175,10 +175,12 @@ firebase.auth().onAuthStateChanged(function (user) {
       // var table = document.getElementById('tableID');
 
     });
+  }else{
+    window.location.replace("http://www.behavv.com");
   }
 })
 
-function addCell(rows){
+function addCell(rows) {
   for (k = 1; k <= (rows.length - 1); k++) {
     let blankCell = rows[k].insertCell(-1);
     var ddnode = document.createElement('input');

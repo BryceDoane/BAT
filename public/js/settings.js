@@ -29,7 +29,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       document.getElementById("emailVerifiedBool").innerHTML = "True";
     }
   } else {
-    console.log("false");
+    window.location.replace("http://www.behavv.com");
   }
 })
 //}
