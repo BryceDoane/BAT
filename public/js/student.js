@@ -57,9 +57,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
     userSchool = user.displayName;
-    email = user.email;
-    console.log(uid);
-    console.log(email);
+    userEmail = user.email;
   }
   else {
     // No user is signed in.
@@ -71,7 +69,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 function newStudent() {
   var dCheck = true;
   var IDList = [];
-  var studentName = document.getElementById("studentName").value;
+  var studentfName = document.getElementById("studentfName").value;
+  var studentlName = document.getElementById("studentlName").value;
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
   firebase.database().ref('Schools/' + userSchool + "/students/")
@@ -90,7 +89,7 @@ function newStudent() {
   }
   console.log(dCheck);
   if (dCheck == true) {
-    firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentName: studentName, studentID: studentID });
+    firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentFName: studentfName, studentLName: studentlName, studentID: studentID });
     location.reload();
     //studentID = null;
   }
@@ -107,9 +106,9 @@ firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
   var studentRef = firebase.database().ref('Schools/' + userSchool + "/students");
   studentRef.on('value', function (snapshot) {
-    console.log(snapshot);
+    //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
-      console.log(childSnapshot);
+      //console.log(childSnapshot);
       var childData = childSnapshot.val();
 
       studentRef.on('child_added', function (snapshot) {
@@ -117,6 +116,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         //document.getElementById("classNameLi").innerHTML = childData.className;
       });
       students.push(childData);
+      //console.log(students);
       studentID.push(childData.studentID);
 
       studentList = students.toString();
@@ -128,12 +128,16 @@ firebase.auth().onAuthStateChanged(function (user) {
       var node = document.createElement('td');
       node.classList.add("thID");
       var textNode = document.createTextNode(students.studentID);
-      var textNode2 = document.createTextNode(students.studentName);
+      var textNode2 = document.createTextNode(students.studentFName);
+      var textNode3 = document.createTextNode(students.studentLName);
       var node2 = document.createElement('td');
+      var node3 = document.createElement('td');
       node.appendChild(textNode);
-      node2.appendChild(textNode2);
+      node2.appendChild(textNode3);
+      node3.appendChild(textNode2);
       trNode.appendChild(node);
       trNode.appendChild(node2);
+      trNode.appendChild(node3);
       document.getElementById("studentNameLi").appendChild(trNode);
     })
     //document.getElementById("studentNameLi").innerHTML = studentList;
