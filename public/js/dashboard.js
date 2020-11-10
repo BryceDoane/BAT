@@ -181,33 +181,33 @@ firebase.auth().onAuthStateChanged(function (user) {
 function addCell(rows){
   for (k = 1; k <= (rows.length - 1); k++) {
     let blankCell = rows[k].insertCell(-1);
-    var ddnode = document.createElement('select');
-    var ddonode = document.createElement('option');
-    var ddonode2 = document.createElement('option');
-    var ddonode3 = document.createElement('option');
-    var ddonode4 = document.createElement('option');
-    var ddonode5 = document.createElement('option');
-    var ddonodesel = document.createElement('option')
+    var ddnode = document.createElement('input');
+    // var ddonode = document.createElement('option');
+    // var ddonode2 = document.createElement('option');
+    // var ddonode3 = document.createElement('option');
+    // var ddonode4 = document.createElement('option');
+    // var ddonode5 = document.createElement('option');
+    // var ddonodesel = document.createElement('option')
 
-    let opTextsel = document.createTextNode("Select a value");
-    let opText = document.createTextNode("1");
-    let opText2 = document.createTextNode("2");
-    let opText3 = document.createTextNode("3");
-    let opText4 = document.createTextNode("4");
-    let opText5 = document.createTextNode("5");
-    ddonodesel.appendChild(opTextsel);
-    ddonode.appendChild(opText);
-    ddonode2.appendChild(opText2);
-    ddonode3.appendChild(opText3);
-    ddonode4.appendChild(opText4);
-    ddonode5.appendChild(opText5);
+    //let opTextsel = document.createTextNode("Select a value");
+    // let opText = document.createTextNode("1");
+    // let opText2 = document.createTextNode("2");
+    // let opText3 = document.createTextNode("3");
+    // let opText4 = document.createTextNode("4");
+    // let opText5 = document.createTextNode("5");
+    // ddonodesel.appendChild(opTextsel);
+    // ddonode.appendChild(opText);
+    // ddonode2.appendChild(opText2);
+    // ddonode3.appendChild(opText3);
+    // ddonode4.appendChild(opText4);
+    // ddonode5.appendChild(opText5);
 
-    ddnode.appendChild(ddonodesel);
-    ddnode.appendChild(ddonode);
-    ddnode.appendChild(ddonode2);
-    ddnode.appendChild(ddonode3);
-    ddnode.appendChild(ddonode4);
-    ddnode.appendChild(ddonode5);
+    // ddnode.appendChild(ddonodesel);
+    // ddnode.appendChild(ddonode);
+    // ddnode.appendChild(ddonode2);
+    // ddnode.appendChild(ddonode3);
+    // ddnode.appendChild(ddonode4);
+    // ddnode.appendChild(ddonode5);
     blankCell.appendChild(ddnode);
   }
 }
