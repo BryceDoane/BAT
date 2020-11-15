@@ -11,7 +11,24 @@
 </head>
 
 <body>
-    <div class="container">
+    
+    <div class='container'>
+        <h3 class='brand'>Login</h3>
+        <div class='registration'>
+        <form id="login">
+            <p class='full'>
+                <label>Email Address<span class="req">*</span></label>
+                <input type="email" id="email" name="name">
+                <label>Password<span class="req">*</span></label>
+                <input type="password" id="password" name="name">
+                <button id="loginbtn" type="submit" event="submit" class="button button-block">Get
+                    Started</button>
+                <button id="myBtn" type="button" class="button button-block">Forgot Password</button>
+            </p>
+        </form>
+    </div>
+    </div>
+    <!-- <div class="container">
         <h1 class="brand">
             Behavv
         </h1>
@@ -43,11 +60,11 @@
                         </p>
                     </form>
                 </div>
-            </div>
+            </div> -->
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                     <div class="modal-content">
                     <form id="login2">
                     <img class="lock" src="assets/img/Lock/favicon.ico">
                     <span class="close">&times;</span>
@@ -64,7 +81,7 @@
                 </div>
             
             </div>
-    </div>
+    </div> 
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="js/login.js"></script>
