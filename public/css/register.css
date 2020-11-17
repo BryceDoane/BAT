@@ -63,6 +63,16 @@
     height: 1.5em;
     opacity: .5;
   }
+  .hr-text2 {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+  }
     .hr-text:before {
       content: '';
       background: linear-gradient(to right, transparent, #818078, transparent);
@@ -83,12 +93,39 @@
       color: #818078;
       background-color: #fcfcfa;
     }
+    .hr-text2:before {
+        content: '';
+        background: linear-gradient(to right, transparent, #818078, transparent);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+      }
+      .hr-text2:after {
+        content: attr(data-content);
+        position: relative;
+        display: inline-block;
+        color: black;
+    
+        padding: 0 .5em;
+        line-height: 1.5em;
+        color: #818078;
+        background-color: lightgrey;
+      }
     a {
         text-align: center;
         margin: auto;
     }
     #login {
         text-align: center;
+    }
+    #loginbtn {
+        color: white;
+        background-color: #6f42c1 !important;
+    }
+    #loginbtn:hover {
+        cursor: pointer;
     }
 
   
@@ -128,6 +165,12 @@ ul{
     list-style:none;
     padding:0;
 }
+.logo{
+    width: 180px;
+    height: 50px;
+    margin-top: 5px;
+}
+
 .brand{
     text-align:center;
 }
@@ -159,13 +202,25 @@ ul{
     width: 100%;
 }
 
-#myBtn, .registration form button, .registration form input, .registration form textarea{
+.registration form input, .registration form textarea{
+    width:100%;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 1em;
+    border: 1px solid #6f42c1;
+    border-radius: 10px;
+}
+#myBtn, .registration form button{
     width:100%;
     margin-left: auto;
     padding: 1em;
     border: 1px solid #6f42c1;
     border-radius: 25px;
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-size: 15px;
+  }
 #myBtn, .registration form button{
     background:#c9e6ff;
     border:0;
@@ -177,6 +232,7 @@ ul{
     color:#ffffff;
     border-radius: 25px;
     outline:none;
+    cursor: pointer;
     transition: background-color 2s ease-out;
 }
 input:focus{
