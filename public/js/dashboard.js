@@ -176,7 +176,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     });
   }else{
-    window.location.replace("http://www.behavv.com");
+    // window.location.replace("http://www.behavv.com");
   }
 })
 
@@ -184,6 +184,7 @@ function addCell(rows) {
   for (k = 1; k <= (rows.length - 1); k++) {
     let blankCell = rows[k].insertCell(-1);
     var ddnode = document.createElement('input');
+    ddnode.value = "1";
     // var ddonode = document.createElement('option');
     // var ddonode2 = document.createElement('option');
     // var ddonode3 = document.createElement('option');
