@@ -289,7 +289,7 @@ saveButton.onclick = function (){
 for(i = 0; i < classes.length; i++){
   className = classes[i];
   var taskNumber = 0;
-  firebase.database().ref('Schools/' + school + "classes/" + className + "/Tasks").orderByChild("tasks").once("value", function(snapshot) {
+  firebase.database().ref('Schools/' + schoolName + "classes/" + className + "/Tasks").orderByChild("tasks").once("value", function(snapshot) {
   snapshot.forEach(function (childSnapshot) {
     taskNumber = taskNumber + 1;
   });
@@ -298,14 +298,14 @@ for(i = 0; i < classes.length; i++){
     for(p = 1; p < rowsNumber; p++){
       var currentDate = m + "-" + d + "-" + y;
       var studentName = document.getElementById(className).rows[p].cells[0].innerHTML;
-      firebase.database().ref('Schools/' + school + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function(snapshot) {
+      firebase.database().ref('Schools/' + schoolName + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function(snapshot) {
         
         var dateSnapshot = snapshot.val();
         
         if (dateSnapshot){
           
         }else{
-          firebase.database().ref('Schools/' + school + '/dailyReports/' + currentDate).push({});
+          firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate).push({});
         }
         });
         
@@ -313,7 +313,7 @@ for(i = 0; i < classes.length; i++){
         var taskName = document.getElementById(className).rows[0].cells[j].innerHTML;
         var ratingValue = document.getElementById(className).rows[p].cells[j].firstChild.value;
         if(ratingValue){
-          firebase.database().ref('Schools/' + school + '/dailyReports/' + currentDate +"/" + className +"/"+ studentName + '/'+ taskName).set({rating: ratingValue});
+          firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate +"/" + className +"/"+ studentName + '/'+ taskName).set({rating: ratingValue});
         }
         
       };
