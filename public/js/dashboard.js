@@ -58,7 +58,7 @@ window.onclick = function (event) {
 }
 
 
-
+firebase.auth().signInWithEmailAndPassword("dailyreports@gmail.com", "123456");
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
@@ -116,7 +116,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           node.appendChild(textNode);
           document.getElementById("classNameLi").appendChild(node)
           var tablenode = document.createElement('table');
-          tablenode.Id = "tableID";
+          tablenode.setAttribute("id", temp3);
           dTable = tablenode;
 
           let newRow = tablenode.insertRow(-1);
@@ -176,7 +176,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     });
   }else{
-    window.location.replace("http://www.behavv.com");
+    //window.location.replace("http://www.behavv.com");
   }
 })
 
@@ -284,4 +284,39 @@ firebase.auth().onAuthStateChanged(function (user) {
   //       classes.push(childData.className);
   //       classes.push(childData.Tasks);
   //     });
-
+var className;
+saveButton.onclick = function (){
+for(i = 0; i < classes.length; i++){
+  className = classes[i];
+  var taskNumber = 0;
+  firebase.database().ref('Schools/' + school + "classes/" + className + "/Tasks").orderByChild("tasks").once("value", function(snapshot) {
+  snapshot.forEach(function (childSnapshot) {
+    taskNumber = taskNumber + 1;
+  });
+  });
+    var rowsNumber = document.getElementById(className).rows.length;
+    for(p = 1; p < rowsNumber; p++){
+      var currentDate = m + "-" + d + "-" + y;
+      var studentName = document.getElementById(className).rows[p].cells[0].innerHTML;
+      firebase.database().ref('Schools/' + school + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function(snapshot) {
+        
+        var dateSnapshot = snapshot.val();
+        
+        if (dateSnapshot){
+          
+        }else{
+          firebase.database().ref('Schools/' + school + '/dailyReports/' + currentDate).push({});
+        }
+        });
+        
+      for(j = 1; j < taskNumber + 1; j++){
+        var taskName = document.getElementById(className).rows[0].cells[j].innerHTML;
+        var ratingValue = document.getElementById(className).rows[p].cells[j].firstChild.value;
+        if(ratingValue){
+          firebase.database().ref('Schools/' + school + '/dailyReports/' + currentDate +"/" + className +"/"+ studentName + '/'+ taskName).set({rating: ratingValue});
+        }
+        
+      };
+    };
+};
+};
