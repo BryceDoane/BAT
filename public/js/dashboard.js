@@ -287,6 +287,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 var className;
 saveButton.onclick = function (){
 for(i = 0; i < classes.length; i++){
+  console.log(schoolName);
   className = classes[i];
   var taskNumber = 0;
   firebase.database().ref('Schools/' + schoolName + "classes/" + className + "/Tasks").orderByChild("tasks").once("value", function(snapshot) {
