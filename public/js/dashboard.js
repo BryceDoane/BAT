@@ -176,7 +176,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     });
   }else{
-    //window.location.replace("http://www.behavv.com");
+    window.location.replace("http://www.behavv.com");
   }
 })
 
