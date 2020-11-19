@@ -95,7 +95,7 @@
 
       document.getElementById('registeracc').addEventListener('click', registerram);
       
-      function registerram() { window.location = "register.html";
+      function registerram() { window.location.replace('https://behavv.com/register.html');
 
       }
     
