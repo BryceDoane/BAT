@@ -93,11 +93,7 @@
       initApp();
       };
 
-      document.getElementById('registeracc').addEventListener('click', registerram);
-      
-      function registerram() { window.location.replace('https://behavv.com/register.html');
-
-      }
+    
     
       // Get the modal
 var modal = document.getElementById("myModal");
