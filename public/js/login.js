@@ -93,7 +93,12 @@
       initApp();
       };
 
+      document.getElementById('registeracc').addEventListener('click', registerram);
+      
+      function registerram() { window.location = "register.html";
 
+      }
+    
       // Get the modal
 var modal = document.getElementById("myModal");
 
