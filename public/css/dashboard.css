@@ -84,7 +84,7 @@ font-size: 25px;
     top: 0; /* Stay at the top */
     left: 0;
     box-shadow: 5px 5px 5px grey;
-
+    cursor: pointer;
 
     overflow-x: hidden; /* Disable horizontal scroll */
   }
@@ -117,6 +117,7 @@ font-size: 25px;
   .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
     color: #000000;
     background-color: #b3a5d9;
+    cursor: pointer;
   }
 
   .topnav {
@@ -458,3 +459,10 @@ font-size: 25px;
     margin-bottom: 0px !important;
   }
 }
+
+a.active{
+  background:#6f42c1;
+  color:#ffffff;
+}
+
+/* Style the active class (and buttons on mouse-over) */
