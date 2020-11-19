@@ -114,7 +114,7 @@ font-size: 25px;
   }
   
   /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
+  .sidenav a:hover, .sidenav a:active, .sidenav a:focus {
     color: #000000;
     background-color: #b3a5d9;
   }
@@ -209,7 +209,7 @@ font-size: 25px;
   text-transform: uppercase;
   
   }
-  #myBtn:hover, #myBtn:focus, .dashboard button:hover, .dashboard button:focus, dashboard button:active, button:active #myBtn:active {
+  #myBtn:hover, #myBtn:focus, #myBtn:active, .dashboard button:hover, .dashboard button:focus .dashboard button:active {
     background:#6f42c1;
     color:#ffffff;
     outline:0;
