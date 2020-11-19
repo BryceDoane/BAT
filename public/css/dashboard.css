@@ -209,7 +209,7 @@ font-size: 25px;
   text-transform: uppercase;
   
   }
-  #myBtn:hover, #myBtn:focus, #myBtn:active, .dashboard button:hover, .dashboard button:focus {
+  #myBtn:hover, #myBtn:focus, #myBtn:active, .dashboard button:hover {
     background:#6f42c1;
     color:#ffffff;
     outline:0;
