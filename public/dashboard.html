@@ -31,67 +31,8 @@
     <div class="dashboard">
         <h1>Dashboard</h1>
         <h1 id="date"></h1>
-        <button id="addInfoModal">Enter Information</button><button id="saveButton">Save Information</button>
+        <button id="saveButton">Save Information</button>
         <p id="classNameLi"></p>
-
-        <div id="formModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>Enter Student Ratings</h2>
-                </div>
-                <div class="modal-body">
-                    <div id="rateStudents">
-                        <h3>Add Information</h3>
-                        <form id="addInfo">
-                            <p>
-                                
-                            
-                                <label for="dClassList">Choose a class:</label>
-                                <select name="dClassList" id="dClassList">
-                                    <option value="1">n/a</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <h2></h2>
-                                <label for="StudentList">Choose a Student:</label>
-                                <select name="StudentList" id="StudentList">
-                                    <option value="1">n/a</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <h2></h2>
-                                <label for="TaskList">Choose a Task:</label>
-                        
-                                <select name="TaskList" id="TaskList"></select>
-                                <h1></h1>
-                                <label for="PerformanceScore"> Enter Task Rating:</label>
-                                <select name="PerformanceScore" id="PerformanceScore">
-                                    <option value="1">n/a</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <h3></h3>
-                                <button id="mbutton" type="submit" event="submit" class="button button-block">
-                                    Submit</button>
-                            </p>
-
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
