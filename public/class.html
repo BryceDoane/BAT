@@ -45,6 +45,8 @@
                 <form id="newClassForm">
                     <p>Please enter class name</p>
                     <input type="text" id="className">
+                    <p>Please enter a class short name</p>
+                    <input type="text" id="classShort">
                     <hr>
             </div>
             <div class="modal-body">
@@ -89,15 +91,17 @@
                 <hr>
                 <form id="deleteTaskForm">
                     <label for="dtClassList">Choose a class:</label>
-                    <select name="dtClassList" id="dtClassList">
+                    <select onchange ="changeTask();" name="dtClassList" id="dtClassList">
+                        <option value=></option>
                         <!-- Autofill from Database Later -->
                         <!-- <option value="Math">Math</option>
                       <option value="Reading">Reading</option>
                       <option value="History">History</option>
                       <option value="Art">Art</option> -->
                     </select>
-                    <label for="classList">Choose a Task:</label>
-                    <input type="text" name="taskList" id="taskList">
+                    <label for="taskList">Choose a Task:</label>
+                    <select name="dtTaskList" id="dtTaskList"></select>
+                
                     <!--<select name="taskList" id="taskList">-->
                         <!-- Autofill from Database Later -->
                         <!-- <option value="Math">Math</option>
