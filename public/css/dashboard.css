@@ -377,7 +377,7 @@ font-size: 25px;
 
   #myBtn, .students button{
     display: inline-block;
-    width:40%;
+    width:25%;
     margin-left: 100px;
     padding: 1em;
     border: 1px solid #6f42c1;
@@ -431,7 +431,7 @@ span.slider{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: rgb(43, 43, 219);
   -webkit-transition: .4s;
   transition: 1.0s;
 }
@@ -449,11 +449,11 @@ span.slider{
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #6f42c1;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #6f42c1;
 }
 
 input:checked + .slider:before {
@@ -469,7 +469,34 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/* End slider */
 
+.reports h1{
+  background-color: transparent;
+  display: inline-block;
+}
+
+.reports h2{
+  background-color: transparent;
+}
+
+#myBtn, .reports button{
+  display: block;
+  width:40%;
+  margin-left: 0px;
+  padding: 1em;
+  border: 1px solid #6f42c1;
+  background:#c9e6ff;
+  border:0;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+#myBtn:hover, #myBtn:focus, .reports button:hover, .reports button:focus{
+  background:#6f42c1;
+  color:#ffffff;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
 
   /* USER SETTINGS */
   .settings {

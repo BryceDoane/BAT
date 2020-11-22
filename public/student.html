@@ -32,6 +32,7 @@
         <h1>Students</h1>
         <button id="addStudentModal">Add Student</button>
         <button id="addStuClassModal">Add Student to Class</button>
+        <button id="deleteStudentModalBtn">Delete Student</button>
         <table id="studentNameLi">
             <tr>
                 <th>Student ID</th>
@@ -88,6 +89,26 @@
             </div>
         </div>
     </div>
+
+    <div id="deleteStudentModel" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close3">&times;</span>
+                <h2>Delete Student</h2>
+            </div>
+            <div class="modal-body">
+                <form id="delStudentForm">
+                    <p>Please enter student ID number</p>
+                    <input type="text" id="studentID">
+                    <hr>
+                </form>
+                <button value="Submit" onclick="delStudent()">Delete</button>
+
+            </div>
+        </div>
+    </div>
+
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
