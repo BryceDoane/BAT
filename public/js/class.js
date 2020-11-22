@@ -16,6 +16,7 @@ firebase.initializeApp(firebaseConfig);
 // Get the modal
 var classModal = document.getElementById("classModal");
 var deleteModal = document.getElementById("deleteModal");
+var classDetailsModal = document.getElementById("classDetailsModal");
 
 // Get the button that opens the modal
 var addClassbtn = document.getElementById("addClassModal");
@@ -24,6 +25,7 @@ var deleteClassbtn = document.getElementById("deleteClassModal");
 // Get the <span> element that closes the modal
 var span1 = document.getElementsByClassName("close")[0];
 var span2 = document.getElementsByClassName("close2")[0];
+var span3 = document.getElementsByClassName("close3")[0];
 
 // When the user clicks on the button, open the modal 
 addClassbtn.onclick = function () {
@@ -33,12 +35,16 @@ deleteClassbtn.onclick = function () {
   deleteModal.style.display = "block";
 }
 
+
 // When the user clicks on <span> (x), close the modal
 span1.onclick = function () {
   classModal.style.display = "none";
 }
 span2.onclick = function () {
   deleteModal.style.display = "none";
+}
+span3.onclick = function () {
+  classDetailsModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -73,7 +79,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     console.log(user);
     classRef = firebase.database().ref('Schools/' + schoolName);
   } else {
-    window.location.replace("http://www.behavv.com");
+    //window.location.replace("http://www.behavv.com");
     // No user is signed in.
   }
 });
@@ -95,7 +101,7 @@ function newTask() {
   var classSelect = select.options[select.selectedIndex].value;
   var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + classSelect + "/Tasks/" + taskName + "/");
   classModal.style.display = "none";
-  classRef2.set({taskName: taskName});
+  classRef2.set({ taskName: taskName });
   location.reload();
 }
 function deleteClass() {
@@ -156,22 +162,43 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
 
     classes.forEach(classes => {
-      var node = document.createElement('div');
+      var node = document.createElement('button');
       node.classList.add("card");
-      node.id = "card";
+      node.id = "cardbtn";
       node.style.background = getRandomColor();
       var textNode = document.createTextNode(classes);
       node.appendChild(textNode);
       document.getElementById("classNameLi").appendChild(node);
     });
+    var openClassbtn = document.getElementById("cardbtn");
+    openClassbtn.addEventListener("click", function () {
+      classDetailsModal.style.display = "block";
+      var localClass = openClassbtn.textContent;
+      console.log(localClass);
+      document.getElementById('classNameDisplay').innerHTML = localClass;
+      var classRef2 = firebase.database().ref('Schools/' + schoolName + "/classes/" + localClass + "/Tasks");
+      classRef2.on('value', function (snapshot) {
+        
+        console.log(snapshot.val());
+      })
+    });
+
+    // openClassbtn.onclick = function () {
+    //   classDetailsModal.style.display = "block";
+    // }
+
     //document.getElementById("classNameLi").innerHTML = classesList;
   })
+
 })
+
+
+
 
 function getRandomColor() {
 
   items = ['#B28DFF', '#BFFCC6', '#FFBEBC', '#853EFF', '#FFF5BA', '#C4FAF8', '#BAFFC9', '#BAE1FF', '#ffb3ba', '#AEC6CF', '#D7ECD9', '#FCECF5'];
-  return items[Math.floor(Math.random()*items.length)];
+  return items[Math.floor(Math.random() * items.length)];
 
 }
 //log out functionality on top right
