@@ -56,6 +56,14 @@ window.onclick = function (event) {
 function close() {
   studentModal.style.display = "none";
 }
+window.onclick = function (event) {
+  if (event.target == delStudentModel) {
+    delStudentModel.style.display = "none";
+  }
+}
+function close() {
+  delStudentModel.style.display = "none";
+}
 
 var uid;
 var userEmail;
@@ -103,6 +111,26 @@ function newStudent() {
     //studentID = null;
   }
 
+}
+
+//Delete Student model
+function delStudent(){
+  var IDList = [];
+  var studentID = document.getElementById("studentID").value;
+  delStudentModel.style.display = "none";
+  firebase.database().ref('Schools/' + userSchool + "/students/")
+
+  for (i = 0; i <= IDList.length; i++) {
+    if (IDList[i] == (studentID)) {
+      var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/");
+      delStudRef.remove();
+      location.reload();
+      break;
+    }  else if (i + 1 == IDList.length){
+      alert("A student with this ID doesn't exist");
+      break;
+    }
+  }
 }
 
 //Fills student info to webpage
