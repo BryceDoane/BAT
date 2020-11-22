@@ -16,11 +16,11 @@ firebase.initializeApp(firebaseConfig);
 
 // Get the modal
 var studentModal = document.getElementById("studentModal");
-var delStudentModel = document.getElementById("deleteStudentModal");
+var delStudentModel = document.getElementById("delStudentModel");
 
 // Get the button that opens the modal
 var addStudentbtn = document.getElementById("addStudentModal");
-var delStudentbtn = document.getElementById("deleteStudentModalBtn");
+var delStudentbtn = document.getElementById("delStuBtn");
 
 
 // Get the <span> element that closes the modal

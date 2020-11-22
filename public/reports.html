@@ -32,22 +32,18 @@
         <h1>Reports</h1>
         <!-- Rounded switch -->
         <div class="selector">
-            <p>Students</p>
             <label class="switch">
              <input type="checkbox">
-             <span class="slider"></span>
+             <span class="slider">Classes Student</span>
             </label>
-            <p>Classes</p>
         </div>
         <h2>Please select a student to generate a report for:</h2>
-        <select name="dClassList" id="dClassList">
-            <option value="0">Student 1</option>
-            <option value="1">Student 2</option>
-            <option value="2">Student 3</option>
-            <option value="3">Student 4</option>
-            <option value="4">Student 5</option>
-            <option value="5">Student 6</option>
-        </select>
+        <form id= "delStudent">
+            <div><input type="checkbox">Student 1</input></div>
+            <div><input type="checkbox">Student 2</input></div>
+            <div><input type="checkbox">Student 3</input></div>
+            <div><input type="checkbox">Student 4</input></div>
+        </form>
         <button id="createreport">Generate Report</button>
        
     </div>
