@@ -281,3 +281,10 @@ font-size: 25px;
   #lout {
     margin-bottom: 0px !important;
   }
+
+  a.active{
+    background:#6f42c1;
+    color:#ffffff;
+  }
+  
+  /* Style the active class (and buttons on mouse-over) */

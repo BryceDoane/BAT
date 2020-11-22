@@ -61,12 +61,14 @@ window.onclick = function (event) {
 var uid = "";
 var userEmail;
 var schoolName;
+var tasks;
 var classes = [];
-var tasks = [];
 var classRef = firebase.database().ref('Schools/');
 var classesandtasks = [];
 var classesList;
 var studentName;
+var taskss = [];
+
 
 //User State Listener
 firebase.auth().onAuthStateChanged(function (user) {
@@ -87,10 +89,11 @@ var classAdded = false;
 //Takes in class name from modal form
 function newClass() {
   var className = document.getElementById("className").value;
+  var classShort = document.getElementById("classShort").value;
   //var UID = user.uid;
   classModal.style.display = "none";
   //firebase.database().ref('classes').push({ className: className, UID: uid });
-  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className });
+  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className, classShort: classShort });
   //firebase.database().ref(schoolName).child("classes").child(className).child("Tasks").set({ taskName: ""});
   location.reload();
 }
@@ -115,8 +118,9 @@ function deleteClass() {
 }
 function deleteTask() {
   var select3 = document.getElementById("dtClassList");
-  var select4 = document.getElementById("taskList").value;
+  var select4 = document.getElementById("dtTaskList").value;
   var dtClassSelect = select3.options[select3.selectedIndex].value;
+  console.log(select3);
   //var taskSelect = select4.options[select4.selectedIndex].value;
   var taskRef = firebase.database().ref('Schools/' + schoolName + '/classes/' + dtClassSelect + "/Tasks/" + select4);
   deleteModal.style.display = "none";
@@ -158,6 +162,9 @@ firebase.auth().onAuthStateChanged(function (user) {
       //classes.push(tasks);
       classesList = classes.toString();
       console.log(classes);
+
+
+
 
     });
 
@@ -253,4 +260,29 @@ window.onclick = function (event) {
       }
     }
   }
+}
+//Delete Task dropdown
+function changeTask() {
+  var selectt = document.getElementById("dtTaskList");
+  var length = selectt.options.length;
+  for (i = length - 1; i >= 0; i--) {
+    selectt.options[i] = null;
+  }
+  var classListDelete = document.getElementById("dtClassList").value;
+  var TaskReff = firebase.database().ref('Schools/' + schoolName + "/classes/" + classListDelete + "/Tasks/");
+  TaskReff.on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val().taskName;
+
+      var dtSelect = document.getElementById("dtTaskList");
+
+      var option3 = document.createElement("option");
+
+      option3.value = childData.charAt(0).toUpperCase() + childData.slice(1);
+      option3.text = childData.charAt(0).toUpperCase() + childData.slice(1);
+
+      dtSelect.appendChild(option3);
+
+    })
+  })
 }
