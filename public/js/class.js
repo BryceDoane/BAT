@@ -68,6 +68,7 @@ var classesandtasks = [];
 var classesList;
 var studentName;
 var taskss = [];
+var classbtn;
 
 
 //User State Listener
@@ -78,7 +79,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //console.log(uid);
     userEmail = user.email;
     document.getElementById("linu").innerHTML = userEmail;
-    console.log(user);
+    //console.log(user);
     classRef = firebase.database().ref('Schools/' + schoolName);
   } else {
     //window.location.replace("http://www.behavv.com");
@@ -161,7 +162,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       //var tasks = (JSON.stringify(childData.Tasks));
       //classes.push(tasks);
       classesList = classes.toString();
-      console.log(classes);
+      //console.log(classes);
 
 
 
@@ -175,20 +176,11 @@ firebase.auth().onAuthStateChanged(function (user) {
       node.style.background = getRandomColor();
       var textNode = document.createTextNode(classes);
       node.appendChild(textNode);
+      var temp = 'showClass("' + classes + '")';
+      node.setAttribute("onclick", temp);
       document.getElementById("classNameLi").appendChild(node);
     });
-    var openClassbtn = document.getElementById("cardbtn");
-    openClassbtn.addEventListener("click", function () {
-      classDetailsModal.style.display = "block";
-      var localClass = openClassbtn.textContent;
-      console.log(localClass);
-      document.getElementById('classNameDisplay').innerHTML = localClass;
-      var classRef2 = firebase.database().ref('Schools/' + schoolName + "/classes/" + localClass + "/Tasks");
-      classRef2.on('value', function (snapshot) {
-        
-        console.log(snapshot.val());
-      })
-    });
+
 
     // openClassbtn.onclick = function () {
     //   classDetailsModal.style.display = "block";
@@ -200,7 +192,17 @@ firebase.auth().onAuthStateChanged(function (user) {
 })
 
 
+function showClass(className) {
+  classDetailsModal.style.display = "block";
+  var localClass = className;
+  console.log(localClass);
+  document.getElementById('classNameDisplay').innerHTML = localClass;
+  var classRef2 = firebase.database().ref('Schools/' + schoolName + "/classes/" + localClass + "/Tasks");
+  classRef2.on('value', function (snapshot) {
 
+    console.log(snapshot.val());
+  })
+}
 
 function getRandomColor() {
 
