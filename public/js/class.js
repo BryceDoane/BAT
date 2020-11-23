@@ -50,7 +50,7 @@ span3.onclick = function () {
   classDetailsModal.style.display = "none";
 
   
-  var elements = document.getElementsByTagName('label')
+  var elements = document.getElementsByTagName('td')
 while (elements[0]) elements[0].parentNode.removeChild(elements[0])
 }
 
