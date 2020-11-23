@@ -322,3 +322,14 @@ for(i = 0; i < classes.length; i++){
     };
 };
 };
+
+
+
+/*
+Research toward color boxes on dashboard
+https://www.w3schools.com/Jsref/prop_style_backgroundcolor.asp
+
+document.body.style.backgroundColor = "red"; //makes body elements red
+document.getElementById("myDiv").style.backgroundColor = "lightblue";
+
+*/
