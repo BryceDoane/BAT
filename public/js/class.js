@@ -35,6 +35,8 @@ deleteClassbtn.onclick = function () {
   deleteModal.style.display = "block";
 }
 
+var node = [];
+var trNode=[];
 
 // When the user clicks on <span> (x), close the modal
 span1.onclick = function () {
@@ -44,7 +46,12 @@ span2.onclick = function () {
   deleteModal.style.display = "none";
 }
 span3.onclick = function () {
+ 
   classDetailsModal.style.display = "none";
+
+  
+  var elements = document.getElementsByTagName('label')
+while (elements[0]) elements[0].parentNode.removeChild(elements[0])
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -198,9 +205,76 @@ function showClass(className) {
   console.log(localClass);
   document.getElementById('classNameDisplay').innerHTML = localClass;
   var classRef2 = firebase.database().ref('Schools/' + schoolName + "/classes/" + localClass + "/Tasks");
-  classRef2.on('value', function (snapshot) {
+  classRef2.on('value', function (snapshot) 
+ {
 
     console.log(snapshot.val());
+
+ 
+students = [];
+studentID = [];
+stuID = [];
+stuNamee = [];
+firebase.auth().onAuthStateChanged(function (user) {
+  userSchool = user.displayName;
+  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/"+ localClass + "/Student List");
+  studentRef.on('value', function (snapshot) {
+    //console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      //console.log(childSnapshot);
+      var childData = childSnapshot.val();
+      
+      stuName = (childData.studentName);
+      stuID = (childData.studentcid);
+      
+      //console.log(stuName);
+      
+
+      studentRef.on('child_added', function (snapshot) {
+        //Do something with the data
+        //document.getElementById("classNameLi").innerHTML = childData.className;
+      });
+      students.push(childData);
+      
+      //console.log(childData);
+      //console.log(students);
+      studentID.push(childData.studentID);
+    
+      studentList = students.toString();
+//console.log(studentList);
+  
+    
+    //var length = students.vallength;
+   //for (i = length - 1; i >= 0; i--) {
+      //students[i] = null;
+   // }
+   
+      var trNode = document.createElement('tr');
+      document.getElementById("studentsLi").appendChild(trNode);
+      var node = document.createElement('td');
+      node.classList.add("thIDD");
+      var textNode = document.createTextNode(stuName);
+      //var textNode2 = document.createTextNode(stuName);
+      var textNode2 = document.createTextNode(stuID);
+      console.log(stuName);
+      var node2 = document.createElement('td');
+      var node3 = document.createElement('td');
+      node.appendChild(textNode);
+     
+      node3.appendChild(textNode2);
+      trNode.appendChild(node);
+     // trNode.appendChild(node2);
+      trNode.appendChild(node3);
+      document.getElementById("studentsLi").appendChild(trNode);
+    
+      
+    
+  });
+    //document.getElementById("studentNameLi").innerHTML = studentList;
+  });
+
+})
+
   })
 }
 
@@ -260,6 +334,7 @@ window.onclick = function (event) {
       if (openDropdown.classList.contains('show')) {
         openDropdown.classList.remove('show');
       }
+ 
     }
   }
 }
@@ -288,3 +363,4 @@ function changeTask() {
     })
   })
 }
+
