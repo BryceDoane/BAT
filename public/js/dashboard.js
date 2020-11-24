@@ -41,24 +41,24 @@ var gorger;
 var gorgerr;
 
 
-var formModal = document.getElementById("formModal");
-var infobtn = document.getElementById("addInfoModal");
-var span1 = document.getElementsByClassName("close")[0];
+// var formModal = document.getElementById("formModal");
+// var infobtn = document.getElementById("addInfoModal");
+// var span1 = document.getElementsByClassName("close")[0];
 
-infobtn.onclick = function () {
-  formModal.style.display = "block";
-}
-span1.onclick = function () {
-  formModal.style.display = "none";
-}
-window.onclick = function (event) {
-  if (event.target == formModal) {
-    formModal.style.display = "none";
-  }
-}
+//  infobtn.onclick = function () {
+//  formModal.style.display = "block";
+// }
+// span1.onclick = function () {
+//   formModal.style.display = "none";
+// }
+// window.onclick = function (event) {
+//   if (event.target == formModal) {
+//     formModal.style.display = "none";
+//   }
+// }
 
 
-firebase.auth().signInWithEmailAndPassword("dailyreports@gmail.com", "123456");
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
@@ -176,7 +176,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     });
   }else{
-     window.location.replace("http://www.behavv.com");
+     //window.location.replace("http://www.behavv.com");
   }
 })
 
