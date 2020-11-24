@@ -29,7 +29,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       document.getElementById("emailVerifiedBool").innerHTML = "True";
     }
   } else {
-    window.location.replace("http://www.behavv.com");
+   window.location.replace("http://www.behavv.com");
   }
 })
 //}
@@ -54,9 +54,17 @@ const conf = document.getElementById("confirmation");
 //variable for delete button
 const dbutton = document.getElementById("delb");
 
+var del ="";
 //function for delting user
 function deleteu() {
   const confp = conf.value;
+  firebase.database().ref('Schools/' + school + "/Users").orderByChild('uid').equalTo(uid).once("value", function(snapshot) {
+    snapshot.forEach((function(child) {
+      del = child.key;
+     })); 
+    console.log(del);
+    firebase.database().ref('Schools/' + school + "/Users/" + del).remove();
+  });
   alert("Account Deleted");
   if (confp == "Yes") {
     const user = firebase.auth().currentUser;
