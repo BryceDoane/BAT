@@ -77,6 +77,12 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 4. Dashboard UI redesign on the frontend
 5. User dashboard pages now show information on a per-user basis
 
+## V1.5
+1. Dashboard now has functionality to save user input data
+2. Classes redesigned to utilize cards to display class information
+3. Register and Login UI redesign
+4. Reports page creation on the front end
+
 ## Future Releases
 
-In Version 1.5, we will focus on efforts on the rating system and how to store tha data that will be used in reports later.
+In Version 1.6, we will focus our efforts on building out backend for reports page to create and share reports of student behavior tracking.
