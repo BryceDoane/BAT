@@ -14,13 +14,14 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var emailVerified;
 var userSchool;
+var uid;
 //function verifyEmail(){
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     var user = firebase.auth().currentUser;
     //console.log("true");
     emailVerified = user.emailVerified;
-    var uid = user.uid;
+    uid = user.uid;
     userSchool = user.displayName;
     var email = user.email;
     document.getElementById("email").placeholder = email;
@@ -58,12 +59,11 @@ var del ="";
 //function for delting user
 function deleteu() {
   const confp = conf.value;
-  firebase.database().ref('Schools/' + school + "/Users").orderByChild('uid').equalTo(uid).once("value", function(snapshot) {
+  firebase.database().ref('Schools/' + userSchool + "/Users").orderByChild('uid').equalTo(uid).once("value", function(snapshot) {
     snapshot.forEach((function(child) {
       del = child.key;
      })); 
-    console.log(del);
-    firebase.database().ref('Schools/' + school + "/Users/" + del).remove();
+    firebase.database().ref('Schools/' + userSchool + "/Users/" + del).remove();
   });
   alert("Account Deleted");
   if (confp == "Yes") {
