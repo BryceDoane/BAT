@@ -58,6 +58,74 @@ var gorgerr;
 // }
 
 
+window.onload = function () {
+  var chart = new CanvasJS.Chart("chartContainer", {
+    title: {
+      text: "Students Tasks"
+    },
+    data: [
+      {
+        // Change type to "doughnut", "line", "splineArea", etc.
+        type: "column",
+        dataPoints: [
+          { label: "Brought Homework", y: 5 },
+          { label: "Listened", y: 4 },
+          { label: "banana", y: 3 },
+          // { label: "mango",  y: 30  },
+          // { label: "grape",  y: 28  }
+        ]
+
+      },
+      {
+
+        type: "column",
+        dataPoints: [
+          { label: "Brought Homework", y: 8 },
+          { label: "Listened", y: 12 },
+          { label: "banana", y: 1 },
+          // { label: "mango",  y: 30  },
+          // { label: "grape",  y: 28  }
+        ]
+
+      },
+    ]
+  });
+  var chart2 = new CanvasJS.Chart("chartContainer2", {
+    title: {
+      text: "Second Chart"
+    },
+    data: [
+      {
+        // Change type to "doughnut", "line", "splineArea", etc.
+        type: "column",
+        dataPoints: [
+          { label: "Brought Homework", y: 5 },
+          { label: "Listened", y: 4 },
+          { label: "banana", y: 3 },
+          // { label: "mango",  y: 30  },
+          // { label: "grape",  y: 28  }
+        ]
+
+      },
+      {
+
+        type: "column",
+        dataPoints: [
+          { label: "Brought Homework", y: 8 },
+          { label: "Listened", y: 12 },
+          { label: "banana", y: 1 },
+          // { label: "mango",  y: 30  },
+          // { label: "grape",  y: 28  }
+        ]
+
+      },
+    ]
+  });
+  chart.render();
+  chart2.render();
+}
+
+
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
@@ -175,8 +243,8 @@ firebase.auth().onAuthStateChanged(function (user) {
       // var table = document.getElementById('tableID');
 
     });
-  }else{
-     //window.location.replace("http://www.behavv.com");
+  } else {
+    //window.location.replace("http://www.behavv.com");
   }
 })
 
@@ -269,58 +337,58 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("linu");
   }
 });
-  // tasksRef.on('value', function (snapshot) {
-  //   //console.log(snapshot);
-  //   console.log()
-  //   var classesRef = firebase.database().ref('classes');
-  //   var classesList;
-  //   classesRef.on('value', function (snapshot) {
-  //     snapshot.forEach(function (childSnapshot) {
-  //       var childData = childSnapshot.val();
-  //       classesRef.on('child_added', function (snapshot) {
-  //         //Do something with the data
-  //         //document.getElementById("classNameLi").innerHTML = childData.className;
+// tasksRef.on('value', function (snapshot) {
+//   //console.log(snapshot);
+//   console.log()
+//   var classesRef = firebase.database().ref('classes');
+//   var classesList;
+//   classesRef.on('value', function (snapshot) {
+//     snapshot.forEach(function (childSnapshot) {
+//       var childData = childSnapshot.val();
+//       classesRef.on('child_added', function (snapshot) {
+//         //Do something with the data
+//         //document.getElementById("classNameLi").innerHTML = childData.className;
 
-  //       });
-  //       classes.push(childData.className);
-  //       classes.push(childData.Tasks);
-  //     });
+//       });
+//       classes.push(childData.className);
+//       classes.push(childData.Tasks);
+//     });
 var className;
-saveButton.onclick = function (){
-for(i = 0; i < classes.length; i++){
-  console.log(schoolName);
-  className = classes[i];
-  var taskNumber = 0;
-  firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Tasks").orderByChild("tasks").once("value", function(snapshot) {
-  snapshot.forEach(function (childSnapshot) {
-    taskNumber = taskNumber + 1;
-  });
-  });
+saveButton.onclick = function () {
+  for (i = 0; i < classes.length; i++) {
+    console.log(schoolName);
+    className = classes[i];
+    var taskNumber = 0;
+    firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Tasks").orderByChild("tasks").once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        taskNumber = taskNumber + 1;
+      });
+    });
     var rowsNumber = document.getElementById(className).rows.length;
-    for(p = 1; p < rowsNumber; p++){
+    for (p = 1; p < rowsNumber; p++) {
       var currentDate = m + "-" + d + "-" + y;
       var studentName = document.getElementById(className).rows[p].cells[0].innerHTML;
-      firebase.database().ref('Schools/' + schoolName + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function(snapshot) {
-        
+      firebase.database().ref('Schools/' + schoolName + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function (snapshot) {
+
         var dateSnapshot = snapshot.val();
-        
-        if (dateSnapshot){
-          
-        }else{
+
+        if (dateSnapshot) {
+
+        } else {
           firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate).push({});
         }
-        });
-        
-      for(j = 1; j < taskNumber + 1; j++){
+      });
+
+      for (j = 1; j < taskNumber + 1; j++) {
         var taskName = document.getElementById(className).rows[0].cells[j].innerHTML;
         var ratingValue = document.getElementById(className).rows[p].cells[j].firstChild.value;
-        if(ratingValue){
-          firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate +"/" + className +"/"+ studentName + '/'+ taskName).set({rating: ratingValue});
+        if (ratingValue) {
+          firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
         }
-        
+
       };
     };
-};
+  };
 };
 
 

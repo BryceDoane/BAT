@@ -1,6 +1,6 @@
 {
-  "name": "cis411_lab0",
-  "version": "0.0.1",
+  "name": "Behavv",
+  "version": "1.0.1",
   "description": "GitHub and CircleCI building a simple GraphQL service",
   "engines": {
     "node": "11.x",

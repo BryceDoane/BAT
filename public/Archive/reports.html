@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User dashboard</title>
+    <title>Generate Reports</title>
     <link rel="stylesheet" href="css/dashboard.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
@@ -15,7 +15,7 @@
 <body>
     <div class="sidenav" id = "sidenav">
         <img src="assets/img/logo.png" width="200" height="80" class="logo">
-        <a href="dashboard.html" ><img src="assets/img/dashboardicon.png" class="icon" /> Dashboard</a>
+        <a href="dashboard.html"><img src="assets/img/dashboardicon.png" class="icon" /> Dashboard</a>
         <a href="class.html"><img src="assets/img/iconclass.png" class="icon" /> Classes</a>
         <a href="student.html"><img src="assets/img/iconstudent.png" class="icon" /> Students</a>
         <a href="reports.html" class ="active"><img src="assets/img/iconreport.png" class="icon" /> Reports</a>
@@ -28,11 +28,24 @@
         <button id="linu" class="dropbtn" onclick="window.location.href='accountsettings.html'"></button>
     </div>
     <!-- Page content -->
-    <div class="dashboard">
-        <h1>Dashboard</h1>
-        <h1 id="date"></h1>
-        <button id="saveButton">Save Information</button>
-        <p id="classNameLi"></p>
+    <div class="reports">
+        <h1>Reports</h1>
+        <!-- Rounded switch -->
+        <div class="selector">
+            <label class="switch">
+             <input type="checkbox">
+             <span class="slider">Classes Student</span>
+            </label>
+        </div>
+        <h2>Please select a student to generate a report for:</h2>
+        <form id= "delStudent">
+            <div><input type="checkbox">Student 1</input></div>
+            <div><input type="checkbox">Student 2</input></div>
+            <div><input type="checkbox">Student 3</input></div>
+            <div><input type="checkbox">Student 4</input></div>
+        </form>
+        <button id="createreport">Generate Report</button>
+       
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
