@@ -93,11 +93,19 @@ const newpass = document.getElementById("submitnp");
 
   
   const reset = () => { 
-    const newpass = document.getElementById("submitnp");
+    var auth = firebase.auth();
     var user = firebase.auth().currentUser;
 
-    user.sendEmailVerification().then(function() {
-      alert("password reset email has been sent");
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user != null) {
+        document.getElementById("linu").innerHTML = user.email;
+      } else {
+        document.getElementById("linu");
+       } alert("password reset email has been sent!");
+    })
+    var emailAddress = user.email;
+    auth.sendPasswordResetEmail(emailAddress).then(function() {
+      
     }).catch(function(error) {
       // An error happened.
     });}
