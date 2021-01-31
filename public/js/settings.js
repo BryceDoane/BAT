@@ -89,14 +89,36 @@ dbutton.addEventListener('click', deleteu);
 //update password functionality 
 const newPassword = document.getElementById("newpassword");
 const newpass = document.getElementById("submitnp");
-const updatep = () => {
-  const uppass = newPassword.value;
-  const user = firebase.auth().currentUser;
-  user.updatePassword(uppass).then(function () {
+
+
+  
+  const reset = () => { 
+    const newpass = document.getElementById("submitnp");
+    var user = firebase.auth().currentUser;
+
+    user.sendEmailVerification().then(function() {
+      alert("password reset email has been sent");
+    }).catch(function(error) {
+      // An error happened.
+    });}
+  //listens for click to submit button for forgot password
+  
+
+newpass.addEventListener('click', reset);
+
+/*const updatep = () => {
+var user = firebase.auth().currentUser;
+  var newPassword = document.getElementById("newpassword").value;
+  
+
+  user.updatePassword(newPassword).then(function() {
     // Update successful.
-  }).catch(function (error) {
-    // An error happened.*/
-  })
+  }).catch(function(error) {
+    
+  });
+  if(newPassword.length > 5) {alert("password has been updated");
+  }
+  else{alert("password needs to be more than 5 characters")}
 }
 
 newpass.addEventListener('click', updatep);
@@ -115,7 +137,7 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-  });
+  });*/
 
 //gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {
