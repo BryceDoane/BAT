@@ -17,7 +17,7 @@
         <img src="assets/img/logo.png" width="200" height="80" class="logo">
         <a href="dashboard.html"><img src="assets/img/dashboardicon.png" class="icon" /> Dashboard</a>
         <a href="class.html"><img src="assets/img/iconclass.png" class="icon" /> Classes</a>
-        <a href="student.html"><img src="assets/img/iconstudent.png" class="icon" /> Students</a>
+        <a href="student.html"class ="active"><img src="assets/img/iconstudent.png" class="icon" /> Students</a>
         <a href="reports.html"><img src="assets/img/iconreport.png" class="icon" /> Reports</a>
         <a href="accountsettings.html"><img src="assets/img/iconsettings.png" class="icon" /> Settings</a>
         <a href="index.html" id="lout"><img src="assets/img/iconlogout.png" class="icon" /> Log Out</a>
@@ -30,13 +30,14 @@
     <!-- Page content -->
     <div class="students">
         <h1>Students</h1>
-        <button id="addStudentModal">Add Student</button>
+        <button id="addStudentModal">Add or Remove Student</button>
         <button id="addStuClassModal">Add Student to Class</button>
         <table id="studentNameLi">
             <tr>
                 <th>Student ID</th>
-                <th>Name</th>
-                <th>Classes</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Student Notes</th>
             </tr>
         </table>
 
@@ -46,19 +47,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2>Add Student</h2>
+                <h2>Add or Remove Student</h2>
             </div>
             <div class="modal-body">
                 <form id="newStudentForm">
-                    <p>Please enter student name</p>
-                    <input type="text" id="studentName">
-                    <hr>
+                    <p>Please enter student first name</p>
+                    <input type="text" id="studentfName">
+                    <p>Please enter student last name</p>
+                    <input type="text" id="studentlName">
                     <p>Please enter student ID number</p>
                     <input type="text" id="studentID">
-                    <hr>
-
                 </form>
                 <button value="Submit" onclick="newStudent()">Submit</button>
+                <hr>
+                <form id="delStudentForm">
+                    <p>Enter Student ID to delete</p>
+                    <input type="text" id="studentID">
+                </form>
+                <button value="Submit" onclick="delStudent()">Delete</button>
+
 
             </div>
         </div>
@@ -85,6 +92,7 @@
             </div>
         </div>
     </div>
+
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>

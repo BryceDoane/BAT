@@ -16,7 +16,7 @@
     <div class="sidenav">
         <img src="assets/img/logo.png" class="logo">
         <a href="dashboard.html"><img src="assets/img/dashboardicon.png" class="icon" /> Dashboard</a>
-        <a href="class.html"><img src="assets/img/iconclass.png" class="icon" /> Classes</a>
+        <a href="class.html" class ="active"><img src="assets/img/iconclass.png" class="icon" /> Classes</a>
         <a href="student.html"><img src="assets/img/iconstudent.png" class="icon" /> Students</a>
         <a href="reports.html"><img src="assets/img/iconreport.png" class="icon" /> Reports</a>
         <a href="accountsettings.html"><img src="assets/img/iconsettings.png" class="icon" /> Settings</a>
@@ -34,6 +34,34 @@
         <hr><div id="classNameLi"></div>
     </div>
 
+    <div id="classDetailsModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close3">&times;</span>
+                <h2 id="classNameDisplay"></h2>
+                <hr>
+            </div>
+            <h3>Tasks</h3>
+            <div class="modal-body" id="classDetails">
+
+            </div>
+            <h3>Students</h3>
+            <div class="modal-body" id="classStuDetails">
+                <table id="studentsLi">
+                <tr>
+                <th>Name</th>
+                <th>Student ID</th>
+                </tr>
+                </table>
+            </div>
+        </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+
     <div id="classModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -45,10 +73,12 @@
                 <form id="newClassForm">
                     <p>Please enter class name</p>
                     <input type="text" id="className">
+                    <p>Please enter a class short name</p>
+                    <input type="text" id="classShort">
                     <hr>
             </div>
             <div class="modal-body">
-                </form>
+                <form>
                 <button value="Submit" onclick="newClass();">Add Class</button>
                 <hr>
                 <form id="newTaskForm">
@@ -85,19 +115,21 @@
             </div>
             <div class="modal-body">
                 </form>
-                <button value="Submit" onclick="deleteClass();">Delete Class</button>
+                <button value="Submit" class="deletebtn" onclick="deleteClass();">Delete Class</button>
                 <hr>
                 <form id="deleteTaskForm">
                     <label for="dtClassList">Choose a class:</label>
-                    <select name="dtClassList" id="dtClassList">
+                    <select onchange ="changeTask();" name="dtClassList" id="dtClassList">
+                        <option value=></option>
                         <!-- Autofill from Database Later -->
                         <!-- <option value="Math">Math</option>
                       <option value="Reading">Reading</option>
                       <option value="History">History</option>
                       <option value="Art">Art</option> -->
                     </select>
-                    <label for="classList">Choose a Task:</label>
-                    <input type="text" name="taskList" id="taskList">
+                    <label for="taskList">Choose a Task:</label>
+                    <select name="dtTaskList" id="dtTaskList"></select>
+                
                     <!--<select name="taskList" id="taskList">-->
                         <!-- Autofill from Database Later -->
                         <!-- <option value="Math">Math</option>
@@ -106,7 +138,7 @@
                       <option value="Art">Art</option> -->
                     <!--</select>-->
                     <br><br>
-                    <button value="Submit" onclick="deleteTask()">Delete Task</button>
+                    <button value="Submit" class="deletebtn" onclick="deleteTask()">Delete Task</button>
                 </form>
             </div>
         </div>

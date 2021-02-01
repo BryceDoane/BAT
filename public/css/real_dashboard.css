@@ -1,5 +1,4 @@
 * {
-    background-color: aliceblue;
     box-sizing: border-box;
 }
 html{
@@ -282,47 +281,7 @@ font-size: 25px;
   .dashboard table tr:hover {background-color: #6d6d6d;}
   /* Dashboard Table Formatting END*/
 
-  /* CLASSES */
-  .classes {
-    margin-left: 15%; /* Same as the width of the sidebar */
-    margin-top: 100px;
-    background-color: transparent;
-  }
-
-  .classes h1{
-    color: black;
-    background-color: transparent;
-  }
-
-  .classes div{
-    background-color: transparent;
-  }
-  .classes hr{
-    margin-top: 30px;
-  }
-  #classNameLi {
-    margin-top: 30px;
-  }
-  .card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    font-size: 20px;
-    border-radius: 15px;
-    text-align: center;
-    padding-top: 4%;
-    padding-bottom: 5%;
-    width: 30%;
-    height: 125px;
-    display: inline-block;
-    margin: 10px;
-    cursor: pointer;
-  }
   
-  /* On mouse-over, add a deeper shadow */
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
   #myBtn, .classes button{
     display: inline-block;
     width:40%;
@@ -369,26 +328,11 @@ font-size: 25px;
   .thID{
     width: 10%;
     
-
   }
 
   #studentsLi{
     
     margin-left: 130px;
-  }
-  .thIDD{
-    width: 10%;
- 
-  
-    
- 
-    
-
-  }
-  #studentNameLi td{
-    text-align: center;
-    background-color: lightgrey;
-    border-radius: 5PX;;
   }
 
   #myBtn, .students button{
@@ -409,179 +353,6 @@ font-size: 25px;
     transition: background-color 2s ease-out;
   }
 
-/* REPORTS */
-.reports {
-    
-  margin-left: 15%; /* Same as the width of the sidebar */
-  margin-top: 100px;
-  background-color: transparent;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 110px;
-  height: 34px;
-}
-
-.selector {
-  background-color: transparent;
-}
-
-.selector p{
-  background-color: transparent;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-span.slider{
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgb(43, 43, 219);
-  -webkit-transition: .4s;
-  transition: 1.0s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 52px;
-  left: 2px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #6f42c1;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #6f42c1;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(54px);
-  -ms-transform: translateX(54px);
-  transform: translateX(54px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-/* End slider */
-
-.reports h1{
-  background-color: transparent;
-  display: inline-block;
-}
-
-.reports h2{
-  background-color: transparent;
-}
-
-.reports form{
-  display: block;
-  background-color: transparent;
-}
-
-.reports form input{
-  display: block;
-}
-
-.reports form div{
-  background-color: transparent;
-}
-
-.reports form div input{
-  background-color: transparent;
-  display: inline;
-}
-
-#myBtn, .reports button{
-  display: block;
-  width:40%;
-  margin-left: 0px;
-  padding: 1em;
-  border: 1px solid #6f42c1;
-  background:#c9e6ff;
-  border:0;
-  margin-top: 10px;
-  text-transform: uppercase;
-}
-#myBtn:hover, #myBtn:focus, .reports button:hover, .reports button:focus{
-  background:#6f42c1;
-  color:#ffffff;
-  outline:0;
-  transition: background-color 2s ease-out;
-}
-
-  /* USER SETTINGS */
-  .settings {
-    margin-left: 15%; /* Same as the width of the sidebar */
-    margin-top: 100px;
-    background-color: transparent;
-  }
-
-  .settings h1, .settings h3{
-    color: black;
-    background-color: transparent;
-  }
-
-  .settings div{
-    color: black;
-    background-color: transparent;
-  }
-
-  .settings p{
-    color: black;
-    background-color: transparent;
-  }
-
-  .settings form{
-    color: black;
-    background-color: transparent;
-  }
-
-  label{
-    color: black;
-    background-color: transparent;
-  }
-
-  #myBtn, .settings button{
-    display: inline-block;
-    width:20%;
-    margin-left: 100px;
-    padding: 1em;
-    border: 1px solid #6f42c1;
-    background:#c9e6ff;
-    border:0;
-    margin-top: 10px;
-    text-transform: uppercase;
-  }
-  #myBtn:hover, #myBtn:focus, .settings button:hover, .settings button:focus{
-    background:#6f42c1;
-    color:#ffffff;
-    outline:0;
-    transition: background-color 2s ease-out;
-  }
-  
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

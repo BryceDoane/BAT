@@ -11,7 +11,23 @@
 </head>
 
 <body>
-    <div class="container">
+    
+    <div class='container'>
+        <img src="assets/img/logo.png" class="logo">
+        <div class='registration'>
+        <form id="login">
+            <p class='full'>
+                <input type="email" id="email" name="name" placeholder="Email" style="font-size:15px;">
+                <input type="password" id="password" name="name" placeholder="Password" style="font-size:15px;">
+                <button id="loginbtn" type="submit" event="submit" class="button button-block">Login</button>
+                <button id="myBtn" type="button" class="button button-block">Forgot Password</button>
+            </p>
+            <hr class="hr-text2" data-content="OR">
+            <a href ="register.html">Create an Account</a><br><br>
+        </form>
+    </div>
+    </div>
+    <!-- <div class="container">
         <h1 class="brand">
             Behavv
         </h1>
@@ -43,11 +59,11 @@
                         </p>
                     </form>
                 </div>
-            </div>
+            </div> -->
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                     <div class="modal-content">
                     <form id="login2">
                     <img class="lock" src="assets/img/Lock/favicon.ico">
                     <span class="close">&times;</span>
@@ -56,7 +72,7 @@
                         <p>Enter your email and we'll send you a link to reset your password.</p>
                         <input placeholder="Email" type="email" id= "emailf" class="forgotpass-email" name="emailf" size="35%">
                         <hr class="hr-text" data-content="OR">
-                        <a href src="register.html">Create an Account</href><br><br>
+                        <a href="index.html">Create an Account</a><br><br>
                         <button id="forgotPassCancel" class="button button-block"
                             onclick="window.close()">Cancel</button><button type = "submit" id ="fpass" class="button button-block">Submit</button>
                         </form>
@@ -64,7 +80,7 @@
                 </div>
             
             </div>
-    </div>
+    </div> 
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="js/login.js"></script>

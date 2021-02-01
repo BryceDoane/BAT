@@ -63,6 +63,16 @@
     height: 1.5em;
     opacity: .5;
   }
+  .hr-text2 {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+  }
     .hr-text:before {
       content: '';
       background: linear-gradient(to right, transparent, #818078, transparent);
@@ -83,12 +93,39 @@
       color: #818078;
       background-color: #fcfcfa;
     }
+    .hr-text2:before {
+        content: '';
+        background: linear-gradient(to right, transparent, #818078, transparent);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+      }
+      .hr-text2:after {
+        content: attr(data-content);
+        position: relative;
+        display: inline-block;
+        color: black;
+    
+        padding: 0 .5em;
+        line-height: 1.5em;
+        color: #818078;
+        background-color: lightgrey;
+      }
     a {
         text-align: center;
         margin: auto;
     }
     #login {
         text-align: center;
+    }
+    #loginbtn {
+        color: white;
+        background-color: #6f42c1 !important;
+    }
+    #loginbtn:hover {
+        cursor: pointer;
     }
 
   
@@ -115,20 +152,30 @@ body{
     padding:1em;
 }
 .container{
-    max-width:1000px;
+    max-width:500px;
     margin-left:auto;
     margin-right:auto;
+    margin-top:8%;
+    border-radius: 25px;
     padding:1em;
+    background-color: lightgrey;
+    box-shadow: 3px 5px 9px 0 rgb(0,0,0);
 }
 ul{
     list-style:none;
     padding:0;
 }
+.logo{
+    width: 180px;
+    height: 50px;
+    margin-top: 5px;
+}
+
 .brand{
     text-align:center;
 }
 .wrapper{
-    box-shadow: 0 0 20px 0 rgb(60, 1, 94);
+    
     background-color: white;
 }
 .wrapper > *{
@@ -142,9 +189,6 @@ ul{
     text-align:center;
     margin: 0 0 1rem 0;
 }
-.registration{
-    background:#ffffff;
-}
 .alert{
     text-align: center;
     padding:10px;
@@ -153,20 +197,30 @@ ul{
     margin-bottom: 10px;
     display: none;
 }
-.registration form label{
-    display:block;
+.registration{
+    margin-right: auto;
+    width: 100%;
 }
-.registration form p{
-    margin:0;
-}
-.registration form .full{
-    grid-column:1/3;
-}
-#myBtn, .registration form button, .registration form input, .registration form textarea{
+
+.registration form input, .registration form textarea{
     width:100%;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding: 1em;
     border: 1px solid #6f42c1;
+    border-radius: 10px;
 }
+#myBtn, .registration form button{
+    width:100%;
+    margin-left: auto;
+    padding: 1em;
+    border: 1px solid #6f42c1;
+    border-radius: 25px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-size: 15px;
+  }
 #myBtn, .registration form button{
     background:#c9e6ff;
     border:0;
@@ -176,8 +230,14 @@ ul{
 #myBtn:hover, #myBtn:focus, .registration form button:hover, .registration form button:focus{
     background:#6f42c1;
     color:#ffffff;
-    outline:0;
+    border-radius: 25px;
+    outline:none;
+    cursor: pointer;
     transition: background-color 2s ease-out;
+}
+input:focus{
+    outline:none;
+    border-radius: 25px;
 }
 /*.wrapper form input{
     background:#6f42c1;
@@ -186,7 +246,7 @@ ul{
     transition: background-color 2s ease-out;
 }*/
 
-/* Large Screens */
+/* Large Screens 
 @media(min-width:800px){
     .wrapper{
         display: grid;
@@ -200,4 +260,4 @@ ul{
     .wrapper > *{
         padding: 2em;
     }
-}
+}*/

@@ -14,13 +14,14 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var emailVerified;
 var userSchool;
+var uid;
 //function verifyEmail(){
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     var user = firebase.auth().currentUser;
     //console.log("true");
     emailVerified = user.emailVerified;
-    var uid = user.uid;
+    uid = user.uid;
     userSchool = user.displayName;
     var email = user.email;
     document.getElementById("email").placeholder = email;
@@ -29,7 +30,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       document.getElementById("emailVerifiedBool").innerHTML = "True";
     }
   } else {
-    console.log("false");
+   window.location.replace("http://www.behavv.com");
   }
 })
 //}
@@ -54,9 +55,16 @@ const conf = document.getElementById("confirmation");
 //variable for delete button
 const dbutton = document.getElementById("delb");
 
+var del ="";
 //function for delting user
 function deleteu() {
   const confp = conf.value;
+  firebase.database().ref('Schools/' + userSchool + "/Users").orderByChild('uid').equalTo(uid).once("value", function(snapshot) {
+    snapshot.forEach((function(child) {
+      del = child.key;
+     })); 
+    firebase.database().ref('Schools/' + userSchool + "/Users/" + del).remove();
+  });
   alert("Account Deleted");
   if (confp == "Yes") {
     const user = firebase.auth().currentUser;
@@ -81,14 +89,44 @@ dbutton.addEventListener('click', deleteu);
 //update password functionality 
 const newPassword = document.getElementById("newpassword");
 const newpass = document.getElementById("submitnp");
-const updatep = () => {
-  const uppass = newPassword.value;
-  const user = firebase.auth().currentUser;
-  user.updatePassword(uppass).then(function () {
+
+
+  
+  const reset = () => { 
+    var auth = firebase.auth();
+    var user = firebase.auth().currentUser;
+
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user != null) {
+        document.getElementById("linu").innerHTML = user.email;
+      } else {
+        document.getElementById("linu");
+       } alert("password reset email has been sent!");
+    })
+    var emailAddress = user.email;
+    auth.sendPasswordResetEmail(emailAddress).then(function() {
+      
+    }).catch(function(error) {
+      // An error happened.
+    });}
+  //listens for click to submit button for forgot password
+  
+
+newpass.addEventListener('click', reset);
+
+/*const updatep = () => {
+var user = firebase.auth().currentUser;
+  var newPassword = document.getElementById("newpassword").value;
+  
+
+  user.updatePassword(newPassword).then(function() {
     // Update successful.
-  }).catch(function (error) {
-    // An error happened.*/
-  })
+  }).catch(function(error) {
+    
+  });
+  if(newPassword.length > 5) {alert("password has been updated");
+  }
+  else{alert("password needs to be more than 5 characters")}
 }
 
 newpass.addEventListener('click', updatep);
@@ -107,7 +145,7 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-  });
+  });*/
 
 //gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {

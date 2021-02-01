@@ -16,19 +16,25 @@ firebase.initializeApp(firebaseConfig);
 
 // Get the modal
 var studentModal = document.getElementById("studentModal");
+//var delStudentModel = document.getElementById("delStudentModel");
 
 // Get the button that opens the modal
 var addStudentbtn = document.getElementById("addStudentModal");
+//var delStudentbtn = document.getElementById("delStuBtn");
 
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 var span2 = document.getElementsByClassName("close2")[0];
+//var span3 = document.getElementsByClassName("close3")[0];
 
 // When the user clicks on the button, open the modal 
 addStudentbtn.onclick = function () {
   studentModal.style.display = "block";
 }
+// delStudentbtn.onclick = function () {
+//   delStudentModal.style.display = "block";
+// }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
@@ -37,6 +43,9 @@ span.onclick = function () {
 span2.onclick = function () {
   addStuClass.style.display = "none";
 }
+// span3.onclick = function () {
+//   delStudentModel.style.display = "none";
+// }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
@@ -47,21 +56,28 @@ window.onclick = function (event) {
 function close() {
   studentModal.style.display = "none";
 }
+window.onclick = function (event) {
+  if (event.target == delStudentModel) {
+    delStudentModel.style.display = "none";
+  }
+}
+function close() {
+  delStudentModel.style.display = "none";
+}
 
 var uid;
 var userEmail;
 var userSchool;
+var studentCName;
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
     userSchool = user.displayName;
-    email = user.email;
-    console.log(uid);
-    console.log(email);
+    userEmail = user.email;
   }
   else {
-    // No user is signed in.
+    //window.location.replace("http://www.behavv.com");
   }
 });
 
@@ -70,7 +86,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 function newStudent() {
   var dCheck = true;
   var IDList = [];
-  var studentName = document.getElementById("studentName").value;
+  var studentfName = document.getElementById("studentfName").value;
+  var studentlName = document.getElementById("studentlName").value;
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
   firebase.database().ref('Schools/' + userSchool + "/students/")
@@ -89,11 +106,31 @@ function newStudent() {
   }
   console.log(dCheck);
   if (dCheck == true) {
-    firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentName: studentName, studentID: studentID });
+    firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentFName: studentfName, studentLName: studentlName, studentID: studentID });
     location.reload();
     //studentID = null;
   }
 
+}
+
+//Delete Student model
+function delStudent(){
+  var IDList = [];
+  var studentID = document.getElementById("studentID").value;
+  studentModal.style.display = "none";
+  firebase.database().ref('Schools/' + userSchool + "/students/")
+
+  for (i = 0; i <= IDList.length; i++) {
+    if (IDList[i] == (studentID)) {
+      var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/");
+      delStudRef.remove();
+      location.reload();
+      break;
+    }  else if (i + 1 == IDList.length){
+      alert("A student with this ID doesn't exist");
+      break;
+    }
+  }
 }
 
 //Fills student info to webpage
@@ -106,9 +143,9 @@ firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
   var studentRef = firebase.database().ref('Schools/' + userSchool + "/students");
   studentRef.on('value', function (snapshot) {
-    console.log(snapshot);
+    //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
-      console.log(childSnapshot);
+      //console.log(childSnapshot);
       var childData = childSnapshot.val();
 
       studentRef.on('child_added', function (snapshot) {
@@ -116,6 +153,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         //document.getElementById("classNameLi").innerHTML = childData.className;
       });
       students.push(childData);
+      //console.log(students);
       studentID.push(childData.studentID);
 
       studentList = students.toString();
@@ -127,12 +165,16 @@ firebase.auth().onAuthStateChanged(function (user) {
       var node = document.createElement('td');
       node.classList.add("thID");
       var textNode = document.createTextNode(students.studentID);
-      var textNode2 = document.createTextNode(students.studentName);
+      var textNode2 = document.createTextNode(students.studentFName);
+      var textNode3 = document.createTextNode(students.studentLName);
       var node2 = document.createElement('td');
+      var node3 = document.createElement('td');
       node.appendChild(textNode);
-      node2.appendChild(textNode2);
+      node2.appendChild(textNode3);
+      node3.appendChild(textNode2);
       trNode.appendChild(node);
       trNode.appendChild(node2);
+      trNode.appendChild(node3);
       document.getElementById("studentNameLi").appendChild(trNode);
     })
     //document.getElementById("studentNameLi").innerHTML = studentList;
@@ -178,39 +220,56 @@ window.onclick = function (event) {
   }
 }
 //adds students to class
-function addStudentClass(){
+function addStudentClass() {
   var studentcid = document.getElementById("studentcid").value;
   var className = document.getElementById("className").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
-  addStuClass.set({studentcid : studentcid});
-  alert(studentcid + "has been added to" + className);
-  location.reload();
-}
+  var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/");
+
+  addStuName.on('value', function (snapshot) {
+    console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      console.log(childSnapshot);
+      var childSNData = childSnapshot.val();
+      studentCName = childSNData
+    });
+
+
+    addStuClass.set({ studentcid: studentcid, studentName: studentCName });
+    //alert(studentCName + " " + "has been added to" + " " + className);
+    location.reload();
+  })
+
+};
 function checkClass() {
   var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("className").value)) {
-    checkStudent();
-   }
+        checkStudent();
+      }
       else {
-        alert("class does not exist");
+       alert("class does not exist");
         location.reload();
-      }});
+        setTimeout();
+      }
     });
-  }
+  });
+}
 
-  function checkStudent(){
+function checkStudent() {
   var classRef = firebase.database().ref('Schools/' + userSchool + "/students");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("studentcid").value)) {
-    addStudentClass();
-    location.reload();
+        addStudentClass();
 
-   }
-      else {
-        alert("student ID does not exist");
       }
-    });})}
-  
+      else {
+        //alert("student ID does not exist");
+        location.reload();
+        setTimeout();
+      }
+    });
+  })
+}

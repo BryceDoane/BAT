@@ -1,0 +1,290 @@
+* {
+    background-color: aliceblue;
+    box-sizing: border-box;
+}
+html{
+  
+  background-image: url("../assets/img/prism2.png");
+}
+
+body{
+  background-image: url("../assets/img/prism2.png");
+    color:2#6f42c1;
+    line-height:1.6;
+    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
+    padding:1em;
+    background-image: url("../assets/img/prism2.png");
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+ .classList {
+font-weight: bold;
+font-size: 25px;
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  text-align: center;
+  border-radius: 10px;
+  width: 30%; /* Could be more or less, depending on screen size */
+}
+.modal-content button {
+  background-color: lightgreen;
+  border-radius: 10px;
+  height: 30px;
+  width: 100px;
+}
+.modal-content .deletebtn {
+  background-color: rgb(209, 72, 44)!important;
+  border-radius: 10px;
+  color: white;
+  height: 30px;
+  width: 100px;
+}
+.modal-content button:hover {
+  cursor: pointer;
+}
+/* The Close Button */
+.close, .close2 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.close2:hover,
+.close2:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 15%; /* Set the width of the sidebar */
+    background-image: url("../assets/img/memphis-colorful.png");
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    box-shadow: 5px 5px 5px grey;
+
+
+    overflow-x: hidden; /* Disable horizontal scroll */
+  }
+   .sidenav img {
+     background-color: transparent;
+   }
+   .sidenav .logo {
+    margin-top: 60px;
+    width: 180px;
+    height: 50px;
+   }
+   .sidenav .icon {
+    height: 35px;
+    width: 35px;
+   }
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 10px 16px 16px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    background-color: rgba(255, 253, 253, 0.2);
+    display: block;
+  }
+  .sidenav a.selected {
+    background-color: blue;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #000000;
+    background-color: #b3a5d9;
+  }
+
+  .topnav {
+    display: flex;
+    width: 85%; /* Full-height: remove this if you want "auto" height */
+    height: 117px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-image: url("../assets/img/memphis-colorful.png");
+    overflow-x: hidden; /* Disable horizontal scroll */
+    box-shadow: 5px 5px 5px grey;
+  }
+  
+  .topnav h1 {
+    padding: 50px 0px 0px 20px;
+    /*    color: #6f42c1; */
+    color: black;
+    text-shadow: #000000;
+    font-style: italic;
+    background-color: transparent;
+    font-size: 30px;
+    text-shadow: -1px 1px 2px #6f42c1
+    1px 1px 2px #6f42c1,
+    1px -1px 0 #6f42c1,
+    -1px -1px 0 #6f42c1;
+  }
+.topnav button{
+    padding: 8px 8px 6px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    right:10px;;
+    bottom: 10px;
+    text-shadow: -1px 1px 2px #000,
+    1px 1px 2px #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+    border-radius: 25px;
+  }
+  .topnav a:hover {
+    color: #fff;
+    /* background-color: #b3a5d9; */
+  }
+  .user{
+    background-color: black !important;
+  }
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    font-size: 20px;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 4%;
+    padding-bottom: 5%;
+    width: 30%;
+    height: 125px;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  #myBtn:hover, #myBtn:focus, .classes button:hover, .classes button:focus{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+    transition: background-color 2s ease-out;
+  }
+  /* USER SETTINGS */
+  .settings {
+    margin-left: 15%; /* Same as the width of the sidebar */
+    margin-top: 100px;
+    background-color: transparent;
+  }
+
+  .settings h1, .settings h3{
+    color: black;
+    background-color: transparent;
+  }
+
+  .settings div{
+    color: black;
+    background-color: transparent;
+  }
+
+  .settings p{
+    color: black;
+    background-color: transparent;
+  }
+
+  .settings form{
+    color: black;
+    background-color: transparent;
+  }
+  .settings input{
+      background-color: transparent;
+      outline: none;
+      font-size: 15px;
+      margin-right: 0 !important;
+  }
+  .info{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+  .info::selection{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+  ::placeholder{
+      color: black;
+      font-size: 15px;
+  }
+
+  label{
+    color: black;
+    background-color: transparent;
+  }
+
+  #myBtn, .settings button{
+    display: inline-block;
+    width:20%;
+    margin-left: 100px;
+    padding: 1em;
+    border: 1px solid #6f42c1;
+    background:#c9e6ff;
+    border:0;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  #myBtn:hover, #myBtn:focus, .settings button:hover, .settings button:focus{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+    transition: background-color 2s ease-out;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+    .topnav {padding-top: 15px;}
+    .topnav a {font-size: 12px;}
+    .topnav h1{font-size: 24px;}
+  }
+
+  #linu{
+    background-color: lightgrey;
+    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
+    padding-right: 10px;
+  }
+
+  #lout {
+    margin-bottom: 0px !important;
+  }
+
+  a.active{
+    background:#6f42c1;
+    color:#ffffff;
+  }
+  
+  /* Style the active class (and buttons on mouse-over) */

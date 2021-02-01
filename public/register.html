@@ -10,47 +10,27 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="brand">
-            Behavv
-        </h1>
-        <div class="wrapper">
-            <div class="company-info">
-                <h3>Behavv</h3>
-                <div class="alert">Signup info stored</div>
-                <ul>
-                    <li>The New Way to Monitor</li>
-                    <li>Behavv Dev Team</li>
-                    <li>Messiah University</li>
-                </ul>
-            </div>
+        <img src="assets/img/logo.png" class="logo">
             <div class="registration">
                 <div id="signup">
-                <h3>Register</h3>
+                <h3 class='brand'>Create an account to get started!</h3>
                 <form class="signup" id="signup">
                     <p>
-                        <label>Name<span class="req">*</span></label>
-                        <input type="text" id="fname" name="name">
-
-                        <label>Email Address<span class="req">*</span></label>
-                        <input type="email" id="email" name="name">
-                        <label>School<span class="req">*</span></label>
-                        <input id="school" name="name">
-
-                        <label>Create Password<span class="req">*</span></label>
-                        <input type="password" id="password" name="name">
-                    
-                    
-                        <label>Confirm Password<span class="req">*</span></label>
-                        <input id = password2 type="password" name="name">
+                        <input type="text" id="fname" name="name" style="font-size:15px;" placeholder="Name"> 
+                        <input type="email" id="email" name="name" style="font-size:15px;" placeholder="Email">
+                        <input id="school" name="name" style="font-size:15px;" placeholder="School Name">
+                        <input type="password" id="password" name="name" style="font-size:15px;" placeholder="Password">
+                        <input id = password2 type="password" name="name" style="font-size:15px;" placeholder="Confirm Password">
                     </p>
                     <p class="full">
-                        <button type="submit" event="submit" class="button button-block">Get Started</button>
+                        <button type="submit" event="submit" id="loginbtn" class="button button-block">Create Account</button>
+                        <hr class="hr-text2" data-content="OR">
+                        <button type="submit" event="submit" class="button button-block" onclick="window.location.href='/login.html'">Go to login</button>
                     </p>
                 </form>
                 </div>
             </div>
         </div>
-    </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
