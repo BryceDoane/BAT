@@ -59,6 +59,78 @@ var gorgerr;
 
 
 window.onload = function () {
+  var oChart = new CanvasJS.Chart("chartContainer3", {
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    //exportEnabled: true,
+    animationEnabled: true,
+    title: {
+      text: "Students Ratings Across Classes",
+    },
+    data: [{
+      type: "pie",
+      startAngle: 25,
+      toolTipContent: "<b>{label}</b>: {y}%",
+      // showInLegend: "true",
+      // legendText: "{label}",
+      indexLabelFontSize: 16,
+      // indexLabel: "{label} - {y}%",
+      dataPoints: [
+        { y: 50, label: "5" },
+        { y: 20, label: "4" },
+        { y: 20, label: "3" },
+        { y: 5, label: "2" },
+        { y: 5, label: "1" },
+      ]
+    }]
+  });
+  var oChart1 = new CanvasJS.Chart("chartContainer4", {
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    //exportEnabled: true,
+    animationEnabled: true,
+    title: {
+      text: "Students Ratings Across Classes"
+    },
+    data: [{
+      type: "pie",
+      startAngle: 25,
+      toolTipContent: "<b>{label}</b>: {y}%",
+      showInLegend: "true",
+      legendText: "{label}",
+      indexLabelFontSize: 16,
+      indexLabel: "{label} - {y}%",
+      dataPoints: [
+        { y: 50, label: "5" },
+        { y: 20, label: "4" },
+        { y: 20, label: "3" },
+        { y: 5, label: "2" },
+        { y: 5, label: "1" },
+      ]
+    }]
+  });
+  var oChart2 = new CanvasJS.Chart("chartContainer5", {
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    //exportEnabled: true,
+    animationEnabled: true,
+    title: {
+      text: "Students Ratings Across Classes"
+    },
+    data: [{
+      type: "pie",
+      startAngle: 25,
+      toolTipContent: "<b>{label}</b>: {y}%",
+      showInLegend: "true",
+      legendText: "{label}",
+      indexLabelFontSize: 16,
+      indexLabel: "{label} - {y}%",
+      dataPoints: [
+        { y: 50, label: "5" },
+        { y: 20, label: "4" },
+        { y: 20, label: "3" },
+        { y: 5, label: "2" },
+        { y: 5, label: "1" },
+      ]
+    }]
+  });
   var chart = new CanvasJS.Chart("chartContainer", {
     title: {
       text: "Students Tasks"
@@ -121,8 +193,12 @@ window.onload = function () {
       },
     ]
   });
+  oChart.render();
+  oChart1.render();
+  oChart2.render();
   chart.render();
   chart2.render();
+  
 }
 
 
