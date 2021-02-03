@@ -147,6 +147,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     snapshot.forEach(function (childSnapshot) {
       //console.log(childSnapshot);
       var childData = childSnapshot.val();
+      console.log(childData);
 
       studentRef.on('child_added', function (snapshot) {
         //Do something with the data

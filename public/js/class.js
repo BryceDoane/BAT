@@ -140,7 +140,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   classRef.on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       var childData = childSnapshot.val().className;
-      //console.log(childData);
+      console.log(childData);
       var select = document.getElementById("classList");
       var dSelect = document.getElementById("dClassList");
       var dtSelect = document.getElementById("dtClassList");

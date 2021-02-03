@@ -68,19 +68,17 @@
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h2>Add Class or Task</h2>
-                <hr>
             </div>
             <div class="modal-body">
                 <form id="newClassForm">
-                    <p>Please enter class name <input type="text" id="className"></p>
-                    <p>Please enter a class short name <input type="text" id="classShort"></p>
+                <input type="text" id="className" placeholder="Class Name" >
+                </form>
             </div>
             <div class="modal-body">
                 <form>
                 <button value="Submit" onclick="newClass();">Add Class</button>
                 <hr>
                 <form id="newTaskForm">
-                    <label for="classList">Choose a class:</label>
                     <select name="classList" id="classList">
                         <!-- Autofill from Database Later -->
                         <!-- <option value="Math">Math</option>
@@ -89,8 +87,7 @@
                       <option value="Art">Art</option> -->
                     </select>
                     <br><br>
-                    <p>Please enter a task:</p>
-                    <input type="text" id="taskName">
+                    <input type="text" id="taskName" placeholder="Task Name">
                     <hr>
                     <button value="Submit" onclick="newTask()">Add Task</button>
                 </form>
