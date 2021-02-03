@@ -1,5 +1,5 @@
 * {
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     box-sizing: border-box;
 }
 html{
@@ -38,7 +38,7 @@ font-size: 25px;
   background-color: white;
 }
 .modal-content {
-  background-color: lightgrey;
+  background-color: white;
   /* background-color: #fefefe; */
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
