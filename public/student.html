@@ -48,23 +48,24 @@
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h2>Add or Remove Student</h2>
+                <hr id="hrmodal">
             </div>
             <div class="modal-body">
                 <form id="newStudentForm">
-                    <p>Please enter student first name</p>
-                    <input type="text" id="studentfName">
-                    <p>Please enter student last name</p>
-                    <input type="text" id="studentlName">
-                    <p>Please enter student ID number</p>
-                    <input type="text" id="studentID">
+
+                    <input type="text" id="studentfName" placeholder="First Name">
+
+                    <input type="text" id="studentlName" placeholder="Last Name">
+
+                    <input type="text" id="studentID" placeholder="ID Number">
                 </form>
                 <button value="Submit" onclick="newStudent()">Submit</button>
-                <hr>
+                <hr id="hrmodal">
                 <form id="delStudentForm">
                     <p>Enter Student ID to delete</p>
                     <input type="text" id="studentID">
                 </form>
-                <button value="Submit" onclick="delStudent()">Delete</button>
+                <button value="Submit" onclick="delStudent()" class="deletebtn">Delete</button>
 
 
             </div>
@@ -76,15 +77,13 @@
             <div class="modal-header">
                 <span class="close2">&times;</span>
                 <h2>Add Student to a Class</h2>
+                <hr id="hrmodal">
             </div>
             <div class="modal-body">
                 <form id="newStudentForm">
-                    <p>Please enter a Student ID</p>
-                    <input type="text" id="studentcid">
-                    <hr>
-                    <p>Please enter a class</p>
-                    <input type="text" id="className">
-                    <hr>
+                    <input type="text" id="studentcid" placeholder="ID Number">
+                    <input type="text" id="className" placeholder="Class Name">
+
 
                 </form>
                 <button id = SCButton onclick="checkClass()" value="Submit" >Submit</button>
