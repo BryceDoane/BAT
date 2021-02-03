@@ -33,6 +33,23 @@ font-weight: bold;
 font-size: 25px;
 }
 /* Modal Content/Box */
+input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid black;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#hrmodal{
+margin-bottom: 10%;
+}
+select{
+  font-size: 30px;
+  width:90%;
+  margin: 5%;
+}
 .modal-header{
   margin: 0px;
   background-color: white;
@@ -49,19 +66,28 @@ font-size: 25px;
 }
 .modal-content button {
   background-color: lightgreen;
-  border-radius: 10px;
+  border-radius: 20px;
+  color: black;
+  font-size: 15px;
+  margin-left: 2%;
   height: 30px;
-  width: 100px;
+  width: 125px;
+  box-shadow: 1px 1px grey;
 }
 .modal-content .deletebtn {
   background-color: rgb(209, 72, 44)!important;
-  border-radius: 10px;
-  color: white;
+  border-radius: 20px;
+  color: black;
+  font-size: 15px;
+  margin-left: 2%;
   height: 30px;
-  width: 100px;
+  width: 130px;
+  box-shadow: 1px 1px grey;
 }
 .modal-content button:hover {
   cursor: pointer;
+  opacity: 70%;
+  color: black;
 }
 /* The Close Button */
 .close, .close2, .close3 {
@@ -383,12 +409,6 @@ font-size: 25px;
   }
   .thIDD{
     width: 10%;
- 
-  
-    
- 
-    
-
   }
   #studentNameLi td{
     text-align: center;
