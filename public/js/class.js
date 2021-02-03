@@ -135,6 +135,10 @@ function deleteTask() {
   taskRef.remove();
   location.reload();
 }
+
+ColorPickIndex = 0;
+ColorList = ['#B28DFF', '#BFFCC6', '#FFBEBC', '#853EFF', '#FFF5BA', '#C4FAF8', '#BAFFC9', '#BAE1FF', '#ffb3ba', '#AEC6CF', '#D7ECD9', '#FCECF5'];
+
 firebase.auth().onAuthStateChanged(function (user) {
   var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
   classRef.on('value', function (snapshot) {
@@ -180,7 +184,11 @@ firebase.auth().onAuthStateChanged(function (user) {
       var node = document.createElement('button');
       node.classList.add("card");
       node.id = "cardbtn";
-      node.style.background = getRandomColor();
+      node.style.background = ColorList[ColorPickIndex];
+      ColorPickIndex ++;
+      if(ColorPickIndex >= 11){
+        ColorPickIndex = 0;
+      }
       var textNode = document.createTextNode(classes);
       node.appendChild(textNode);
       var temp = 'showClass("' + classes + '")';
@@ -278,12 +286,6 @@ firebase.auth().onAuthStateChanged(function (user) {
   })
 }
 
-function getRandomColor() {
-
-  items = ['#B28DFF', '#BFFCC6', '#FFBEBC', '#853EFF', '#FFF5BA', '#C4FAF8', '#BAFFC9', '#BAE1FF', '#ffb3ba', '#AEC6CF', '#D7ECD9', '#FCECF5'];
-  return items[Math.floor(Math.random() * items.length)];
-
-}
 //log out functionality on top right
 function signout() {
   firebase.auth().signOut();

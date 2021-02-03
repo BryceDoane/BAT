@@ -16,7 +16,7 @@ body{
     background-image: url("../assets/img/prism2.png");
 }
 /* The Modal (background) */
-.modal {
+.settings .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -33,8 +33,8 @@ font-weight: bold;
 font-size: 25px;
 }
 /* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
+.settings .modal-content {
+  background-color: #f1f1f1fb;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
@@ -42,20 +42,20 @@ font-size: 25px;
   border-radius: 10px;
   width: 30%; /* Could be more or less, depending on screen size */
 }
-.modal-content button {
-  background-color: lightgreen;
+.settings .modal-content button {
+  background-color: #c9e6ff;
   border-radius: 10px;
   height: 30px;
   width: 100px;
 }
-.modal-content .deletebtn {
+.settings .modal-content .deletebtn {
   background-color: rgb(209, 72, 44)!important;
   border-radius: 10px;
   color: white;
   height: 30px;
   width: 100px;
 }
-.modal-content button:hover {
+.settings .modal-content button:hover {
   cursor: pointer;
 }
 /* The Close Button */
@@ -65,7 +65,9 @@ font-size: 25px;
   font-size: 28px;
   font-weight: bold;
 }
-
+.settings .modal h3{
+  background-color: #ffffff00;
+}
 .close:hover,
 .close:focus,
 .close2:hover,
