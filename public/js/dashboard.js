@@ -133,7 +133,72 @@ window.onload = function () {
   });
 
 }
+
+ 
+  
+     
+    // Define the chart to be drawn.
    
+          
+    google.charts.load('current', {packages: ['corechart']});
+           
+        
+    function drawChart(name) {
+      // Define the chart to be drawn.
+
+      var data = this["marker"+ name]
+      
+     data = new google.visualization.DataTable();
+      data.addColumn('string', 'Element');
+      data.addColumn('number', 'Percentage');
+      data.addRows([
+        ['Nitrogen', 0.78],
+        ['Oxygen', 0.21],
+        ['Other', 0.01]
+      ]);
+
+      // Instantiate and draw the chart.
+     var chart = this.chart
+     console.log(chart);
+      chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+      chart.draw(data, null);
+      
+      var text = document.createTextNode(name);
+   
+     
+      
+      var tag = document.createElement("p");
+      var newRDiv = document.createElement("div");
+      newRDiv.appendChild(tag);
+      console.log(true);
+
+      tag.appendChild(text);
+      var element = document.getElementById("myPieChart");
+      element.appendChild(newRDiv);
+      
+   
+    }
+    google.charts.setOnLoadCallback(drawChart);
+ 
+       
+firebase.auth().onAuthStateChanged(function (user) {
+  userSchool = user.displayName;
+  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes");
+  studentRef.on('value', function (snapshot) {
+    //console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+    
+      var className = childData.className 
+      className = className.replace(/\s+/g, '');
+      //console.log(childData.className);
+     drawChart(className);
+      console.log(drawChart);
+      
+      //console.log(childSnapshot);
+  
+})})})
+
 
 
     
@@ -197,6 +262,20 @@ window.onload = function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
@@ -214,6 +293,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //   studentsNamesList = studentNames; //.toString();
     //   //console.log(studentsNamesList);
     // });
+    
     classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var childCData = childSnapshot.val();
@@ -313,6 +393,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       // var table = document.getElementById('tableID');
 
     });
+    
   } else {
     //window.location.replace("http://www.behavv.com");
   }
