@@ -134,53 +134,43 @@ window.onload = function () {
 
 }
 
- 
-  
-     
-    // Define the chart to be drawn.
-   
-          
-    google.charts.load('current', {packages: ['corechart']});
-           
-        
-    function drawChart(name) {
-      // Define the chart to be drawn.
 
-      var data = this["marker"+ name]
-      
-     data = new google.visualization.DataTable();
-      data.addColumn('string', 'Element');
-      data.addColumn('number', 'Percentage');
-      data.addRows([
-        ['Nitrogen', 0.78],
-        ['Oxygen', 0.21],
-        ['Other', 0.01]
-      ]);
 
-      // Instantiate and draw the chart.
-     var chart = this.chart
-     console.log(chart);
-      chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
-      chart.draw(data, null);
-      
-      var text = document.createTextNode(name);
-   
-     
-      
-      var tag = document.createElement("p");
-      var newRDiv = document.createElement("div");
-      newRDiv.appendChild(tag);
-      console.log(true);
 
-      tag.appendChild(text);
-      var element = document.getElementById("myPieChart");
-      element.appendChild(newRDiv);
-      
-   
-    }
-    google.charts.setOnLoadCallback(drawChart);
- 
-       
+// Define the chart to be drawn.
+
+
+google.charts.load('current', { packages: ['corechart'] });
+
+
+function drawChart(name) {
+  console.log(name);
+  // Define the chart to be drawn.
+
+  var data = this["marker" + name]
+  var options = {
+    title: name
+    ,width:400
+    ,height:300
+  };
+
+  data = new google.visualization.DataTable();
+  data.addColumn('string', 'Element');
+  data.addColumn('number', 'Percentage');
+  data.addRows([
+    ['Nitrogen', 0.78],
+    ['Oxygen', 0.21],
+    ['Other', 0.01]
+  ]);
+
+  // Instantiate and draw the chart.
+  var chart = this.chart
+  chart = new google.visualization.PieChart(document.getElementById(name));
+  chart.draw(data, options);
+}
+google.charts.setOnLoadCallback(drawChart);
+
+
 firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
   var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes");
@@ -188,93 +178,91 @@ firebase.auth().onAuthStateChanged(function (user) {
     //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
       var childData = childSnapshot.val();
-    
-      var className = childData.className 
-      className = className.replace(/\s+/g, '');
+
+      var className = childData.className;
+      className = className.replace(/\s/g, '');
+      classes.push(className);
       //console.log(childData.className);
-     drawChart(className);
-      console.log(drawChart);
-      
+      //drawChart(className);
+
       //console.log(childSnapshot);
-  
-})})})
+
+    })
+    for (i = 0; i <= (classes.length - 1); i++) {
+      var text = document.createTextNode(classes[i]);
+      var tag = document.createElement("p");
+      var newRDiv = document.createElement("div");
+      newRDiv.appendChild(tag);
+      tag.appendChild(text);
+      newRDiv.id = classes[i];
+      newRDiv.className = "graphs";
+      var element = document.getElementById("myPieChart");
+      element.appendChild(newRDiv);
+      drawChart(classes[i]);
+    }
+  })
+})
 
 
 
-    
-      function newChart(){ 
-     
-    const newDiv = document.createElement("div");
 
-    // and give it some content
-    const chart = new CanvasJS.Chart("div1",
+function newChart() {
+
+  const newDiv = document.createElement("div");
+
+  // and give it some content
+  const chart = new CanvasJS.Chart("div1",
     {
-      title:{
+      title: {
         text: "Number of Students in Each Room"
       },
-      axisX:{
+      axisX: {
         title: "Rooms"
       },
-      axisY:{
+      axisY: {
         title: "percentage"
       },
       data: [
-      {
-        type: "stackedColumn100",
-        legendText: "Boys",
-        showInLegend: "true",
-        indexLabel: "#percent %",
-        indexLabelPlacement: "inside",
-        indexLabelFontColor: "white",
-        dataPoints: [
-          {  y: 40, label: "Cafeteria"},
-          {  y: 10, label: "Lounge" },
-          {  y: 72, label: "Games Room" },
-          {  y: 30, label: "Lecture Hall" },
-          {  y: 21, label: "Library"}
-        ]
-      },
-      {
-        type: "stackedColumn100",
-        legendText: "Girls",
-        showInLegend: "true",
-        indexLabel: "#percent %",
-        indexLabelPlacement: "inside",
-        indexLabelFontColor: "white",
-        dataPoints: [
-          {  y: 20, label: "Cafeteria"},
-          {  y: 14, label: "Lounge" },
-          {  y: 40, label: "Games Room" },
-          {  y: 43, label: "Lecture Hall" },
-          {  y: 17, label: "Library"}
-        ]
+        {
+          type: "stackedColumn100",
+          legendText: "Boys",
+          showInLegend: "true",
+          indexLabel: "#percent %",
+          indexLabelPlacement: "inside",
+          indexLabelFontColor: "white",
+          dataPoints: [
+            { y: 40, label: "Cafeteria" },
+            { y: 10, label: "Lounge" },
+            { y: 72, label: "Games Room" },
+            { y: 30, label: "Lecture Hall" },
+            { y: 21, label: "Library" }
+          ]
+        },
+        {
+          type: "stackedColumn100",
+          legendText: "Girls",
+          showInLegend: "true",
+          indexLabel: "#percent %",
+          indexLabelPlacement: "inside",
+          indexLabelFontColor: "white",
+          dataPoints: [
+            { y: 20, label: "Cafeteria" },
+            { y: 14, label: "Lounge" },
+            { y: 40, label: "Games Room" },
+            { y: 43, label: "Lecture Hall" },
+            { y: 17, label: "Library" }
+          ]
 
-      },
-    ]
-  });
+        },
+      ]
+    });
   oChart.render();
   oChart1.render();
   oChart2.render();
   chart.render();
   chart2.render();
-  
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
@@ -293,7 +281,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //   studentsNamesList = studentNames; //.toString();
     //   //console.log(studentsNamesList);
     // });
-    
+
     classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var childCData = childSnapshot.val();
@@ -332,7 +320,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           var node = document.createElement('h1');
           var textNode = document.createTextNode(temp3);
           node.appendChild(textNode);
-         // document.getElementById("classNameLi").appendChild(node)
+          // document.getElementById("classNameLi").appendChild(node)
           var tablenode = document.createElement('table');
           tablenode.setAttribute("id", temp3);
           dTable = tablenode;
@@ -393,7 +381,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       // var table = document.getElementById('tableID');
 
     });
-    
+
   } else {
     //window.location.replace("http://www.behavv.com");
   }

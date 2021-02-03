@@ -253,6 +253,9 @@ font-size: 25px;
     background-color: transparent;
     
   }
+  .classCharts{
+    height: 1000px;
+  }
   .dashboard input{
     width: 50px;
     padding: 5px;
