@@ -131,63 +131,57 @@ window.onload = function () {
       ]
     }]
   });
-  var chart = new CanvasJS.Chart("chartContainer", {
-    title: {
-      text: "Students Tasks"
-    },
-    data: [
-      {
-        // Change type to "doughnut", "line", "splineArea", etc.
-        type: "column",
-        dataPoints: [
-          { label: "Brought Homework", y: 5 },
-          { label: "Listened", y: 4 },
-          { label: "banana", y: 3 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
-        ]
 
+}
+   
+
+
+    
+      function newChart(){ 
+     
+    const newDiv = document.createElement("div");
+
+    // and give it some content
+    const chart = new CanvasJS.Chart("div1",
+    {
+      title:{
+        text: "Number of Students in Each Room"
+      },
+      axisX:{
+        title: "Rooms"
+      },
+      axisY:{
+        title: "percentage"
+      },
+      data: [
+      {
+        type: "stackedColumn100",
+        legendText: "Boys",
+        showInLegend: "true",
+        indexLabel: "#percent %",
+        indexLabelPlacement: "inside",
+        indexLabelFontColor: "white",
+        dataPoints: [
+          {  y: 40, label: "Cafeteria"},
+          {  y: 10, label: "Lounge" },
+          {  y: 72, label: "Games Room" },
+          {  y: 30, label: "Lecture Hall" },
+          {  y: 21, label: "Library"}
+        ]
       },
       {
-
-        type: "column",
+        type: "stackedColumn100",
+        legendText: "Girls",
+        showInLegend: "true",
+        indexLabel: "#percent %",
+        indexLabelPlacement: "inside",
+        indexLabelFontColor: "white",
         dataPoints: [
-          { label: "Brought Homework", y: 8 },
-          { label: "Listened", y: 12 },
-          { label: "banana", y: 1 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
-        ]
-
-      },
-    ]
-  });
-  var chart2 = new CanvasJS.Chart("chartContainer2", {
-    title: {
-      text: "Second Chart"
-    },
-    data: [
-      {
-        // Change type to "doughnut", "line", "splineArea", etc.
-        type: "column",
-        dataPoints: [
-          { label: "Brought Homework", y: 5 },
-          { label: "Listened", y: 4 },
-          { label: "banana", y: 3 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
-        ]
-
-      },
-      {
-
-        type: "column",
-        dataPoints: [
-          { label: "Brought Homework", y: 8 },
-          { label: "Listened", y: 12 },
-          { label: "banana", y: 1 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
+          {  y: 20, label: "Cafeteria"},
+          {  y: 14, label: "Lounge" },
+          {  y: 40, label: "Games Room" },
+          {  y: 43, label: "Lecture Hall" },
+          {  y: 17, label: "Library"}
         ]
 
       },
@@ -258,7 +252,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           var node = document.createElement('h1');
           var textNode = document.createTextNode(temp3);
           node.appendChild(textNode);
-          document.getElementById("classNameLi").appendChild(node)
+         // document.getElementById("classNameLi").appendChild(node)
           var tablenode = document.createElement('table');
           tablenode.setAttribute("id", temp3);
           dTable = tablenode;
@@ -267,7 +261,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           // let newCell = newRow.insertCell(0);
           // let newText = document.createTextNode('');
           // newCell.appendChild(newText);
-          document.getElementById("classNameLi").appendChild(tablenode);
+          //document.getElementById("classNameLi").appendChild(tablenode);
           //classCount++;
           //console.log(classCount);
 
@@ -429,8 +423,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 //       classes.push(childData.className);
 //       classes.push(childData.Tasks);
 //     });
-var className;
-saveButton.onclick = function () {
+//var className;
+/*saveButton.onclick = function () {
   for (i = 0; i < classes.length; i++) {
     console.log(schoolName);
     className = classes[i];
