@@ -70,18 +70,23 @@
                 </form>
                 <hr>
                 <h3>Delete Account</h3>
-                <form>
-                    <p>
-                        <label>Warning! This action is permanent and cannot be undone.
-                            To confirm, please type "Yes" in the textbox.
-                        </label>
-                        <input type="text" id="confirmation" name="name">
-                    </p>
+                <button id="openModal" type="submit" class="button button-block">Delete</button>
+                <div id="delAccountModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+                            <hr>
+                        </div>
+                        <h3>Are You Sure You Wish to Delete Your Account?</h3>
+                        <div class="modal-body">
+                            <button id="confirm" type="submit" class="button button-block">Delete</button>
+                            <button id="cancel" type="submit" class="button button-block">Go Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <p class="full">
-                        <button id="delb" type="submit" class="button button-block">Delete</button>
-                    </p>
-                </form>
             </div>
         </div>
     </div>

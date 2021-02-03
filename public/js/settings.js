@@ -15,6 +15,39 @@ firebase.initializeApp(firebaseConfig);
 var emailVerified;
 var userSchool;
 var uid;
+
+//MODALS
+// Get the modal
+var delAccountModal = document.getElementById("delAccountModal");
+// Get the button that opens the modal
+var openModal = document.getElementById("openModal");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on the button, open the modal 
+openModal.onclick = function () {
+delAccountModal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  delAccountModal.style.display = "none";
+}
+window.onclick = function (event) {
+  if (event.target == delAccountModal) {
+    delAccountModal.style.display = "none";
+  }
+}
+// Get the go back button to close the modal
+var closeModal = document.getElementById("cancel");
+// When the user clicks on go back button
+closeModal.onclick = function () {
+  delAccountModal.style.display = "none";
+}
+// Get the confirm button to delete account
+var delConfirm = document.getElementById("confirm");
+// When the user clicks on go back button
+closeModal.onclick = deleteu(); //line 93
+
+
 //function verifyEmail(){
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
