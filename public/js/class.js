@@ -223,9 +223,32 @@ students = [];
 studentID = [];
 stuID = [];
 stuNamee = [];
+taskList = []; 
 firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
   var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/"+ localClass + "/Student List");
+  var taskListRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + localClass + "/Tasks");
+  taskListRef.on('value', function (snapshot) {
+    //console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+      console.log(childData.taskName);
+      taskList.push(childData.taskName);
+;
+
+      //Modal Tasks in Class List
+   var pNode = document.createElement('p');
+   document.getElementById('classTaskDetails').appendChild(pNode);
+   var taskElementList = document.createElement('p');
+   taskElementList.classList.add("CardTaskList");
+   var textNode3 = document.createTextNode(childData.taskName); 
+   console.log(taskList); //log
+   taskElementList.appendChild(textNode3);
+   pNode.appendChild(taskElementList);
+   document.getElementById("classTaskDetails").appendChild(pNode);
+    })})
+
+
   studentRef.on('value', function (snapshot) {
     //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
@@ -256,7 +279,10 @@ firebase.auth().onAuthStateChanged(function (user) {
    //for (i = length - 1; i >= 0; i--) {
       //students[i] = null;
    // }
-   
+  
+
+
+   //Modal Student in Class List
       var trNode = document.createElement('tr');
       document.getElementById("studentsLi").appendChild(trNode);
       var node = document.createElement('td');
