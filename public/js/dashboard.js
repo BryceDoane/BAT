@@ -516,7 +516,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 };
 
 
-
 /*
 Research toward color boxes on dashboard
 https://www.w3schools.com/Jsref/prop_style_backgroundcolor.asp
