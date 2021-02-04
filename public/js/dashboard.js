@@ -39,6 +39,7 @@ var taskList;
 var dTable;
 var gorger;
 var gorgerr;
+var cumul = 0;
 
 
 // var formModal = document.getElementById("formModal");
@@ -391,6 +392,37 @@ saveButton.onclick = function () {
   };
 };
 
+var studentList = [];
+function taskPercentDone(className, taskName){
+  cumul = 0;
+  firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
+    snapshot.forEach(function(item){
+      var itum = item.val();
+      itum = itum.studentName;
+      studentList.push(itum);
+    });
+    for (m = 0; m < studentList.length; m++) {
+      firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+        var tSnap = snapshot.val();
+        tSnap = tSnap.rating;
+        tSnap = parseInt(tSnap);
+        cumul += tSnap;
+      });
+    }
+    }); 
+};
+
+//Example of taskPercentDone Usage needs className and taskName defined before it can run.
+// firebase.auth().onAuthStateChanged(function (user) {
+//   if (user != null) {
+//     taskPercentDone(className, taskName);
+//   setTimeout(function(){
+//   console.log(((cumul/(studentList.length * 5)) * 100) + "%");
+//  },1500); 
+//   } else {
+//     console.log("User not logged in.");
+//   }
+// });
 
 
 /*
