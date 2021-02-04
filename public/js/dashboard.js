@@ -461,6 +461,27 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("linu");
   }
 });
+
+var studentList = [];
+var cumul = 0;
+ function taskPercentDone(className, taskName){
+   cumul = 0;
+   firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
+     snapshot.forEach(function(item){
+       var itum = item.val();
+       itum = itum.studentName;
+       studentList.push(itum);
+     });
+     for (m = 0; m < studentList.length; m++) {
+       firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+         var tSnap = snapshot.val();
+         tSnap = tSnap.rating;
+         tSnap = parseInt(tSnap);
+         cumul += tSnap;
+       });
+     }
+     }); 
+ };
 // tasksRef.on('value', function (snapshot) {
 //   //console.log(snapshot);
 //   console.log()
