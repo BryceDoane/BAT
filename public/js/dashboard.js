@@ -123,36 +123,94 @@ function drawOChart() {
 google.charts.load('current', { packages: ['corechart'] });
 
 function drawChart(name) {
+  firebase.auth().onAuthStateChanged(function (user) {
+    userSchool = user.displayName;
+    var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/Mathology/Tasks/");
+    studentRef.on('value', function (snapshot) {
+      //console.log(snapshot);
+      snapshot.forEach(function (childSnapshot) {
+        var childData = childSnapshot.val();
+  
+        var taskName = childData.taskName;
+        
+        taskName = taskName.replace(/\s/g, '');
+        tasks.push(taskName);
+        console.log(taskName);
+        //console.log(childData.className);
+        //drawChart(className);
+        var data = this["marker" + name]
+        var options = {
+          title: name
+          , width: 500
+          , height: 300
+          , isStacked: 'percent'
+          , titleTextStyle: {
+            color: 'black',
+            fontSize: 20,
+          },
+          colors: ['green', 'red'],
+          legend: 'none',
+        };
+      
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
+          [taskName, 10, 30, ''],
+          [taskName, 15, 30, ''],
+          [taskName, 30, 30, '']
+        ]);
+      
+        // Instantiate and draw the chart.
+        var chart = this.chart
+        chart = new google.visualization.BarChart(document.getElementById(name));
+        chart.draw(data, options);
+        //console.log(childSnapshot);
+  
+      })
+    
+    })
+  })
+  
   console.log(name);
   // Define the chart to be drawn.
 
-  var data = this["marker" + name]
-  var options = {
-    title: name
-    , width: 500
-    , height: 300
-    , isStacked: 'percent'
-    , titleTextStyle: {
-      color: 'black',
-      fontSize: 20,
-    },
-    colors: ['green', 'red'],
-    legend: 'none',
-  };
-
-  var data = google.visualization.arrayToDataTable([
-    ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
-    ['Task 1', 10, 30, ''],
-    ['Task 2', 15, 30, ''],
-    ['Task 3', 30, 30, '']
-  ]);
-
-  // Instantiate and draw the chart.
-  var chart = this.chart
-  chart = new google.visualization.BarChart(document.getElementById(name));
-  chart.draw(data, options);
+  
 }
 google.charts.setOnLoadCallback(drawChart);
+firebase.auth().onAuthStateChanged(function (user) {
+  userSchool = user.displayName;
+  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/mathology/tasks/");
+  studentRef.on('value', function (snapshot) {
+    //console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+
+      var taskName = childData.taskName;
+      taskName = taskName.replace(/\s/g, '');
+      tasks.push(taskName);
+      //console.log(childData.className);
+      //drawChart(className);
+
+      //console.log(childSnapshot);
+
+    })
+    for (i = 0; i <= (classes.length - 1); i++) {
+      var text = document.createTextNode(classes[i]);
+      var tag = document.createElement("p");
+      var newRDiv = document.createElement("div");
+      newRDiv.appendChild(tag);
+      tag.appendChild(text);
+      newRDiv.id = classes[i];
+      newRDiv.className = "graphs";
+      var element = document.getElementById("myPieChart");
+      element.appendChild(newRDiv);
+      drawChart(classes[i]);
+    }
+  })
+})
+
+
+
+
 
 
 firebase.auth().onAuthStateChanged(function (user) {
