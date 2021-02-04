@@ -81,16 +81,16 @@ function verifyEmail() {
     });
   }
 }
-
 const auth = firebase.auth();
 //variable for forgot password email field
-const conf = document.getElementById("confirmation");
+
 //variable for delete button
 const dbutton = document.getElementById("delb");
 
 var del ="";
-//function for delting user
+//function for deleting user
 function deleteu() {
+  const conf = document.getElementById("confirm");
   const confp = conf.value;
   firebase.database().ref('Schools/' + userSchool + "/Users").orderByChild('uid').equalTo(uid).once("value", function(snapshot) {
     snapshot.forEach((function(child) {
@@ -101,7 +101,7 @@ function deleteu() {
   alert("Account Deleted");
   if (confp == "Yes") {
     const user = firebase.auth().currentUser;
-    window.location = "https://behavior-analysis-tracker.web.app/login.html";
+    window.location = "https://behavv.com/login.html";
     user.delete().then(function hey() {
     }).catch(function (error) {
       // An error happened.

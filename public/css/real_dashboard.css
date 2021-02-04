@@ -256,6 +256,16 @@ font-size: 25px;
   .classCharts{
     height: 1000px;
   }
+  #myPieChart{
+    height: 200px;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .graphs{
+    display: inline-flex;
+    margin: 3px 3px 3px 3px;
+  }
   .dashboard input{
     width: 50px;
     padding: 5px;

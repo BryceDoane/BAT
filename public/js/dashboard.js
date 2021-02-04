@@ -57,91 +57,70 @@ var gorgerr;
 //   }
 // }
 
+function drawOChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Task', 'Number of Ratings'],
+    ['5', 11],
+    ['4', 2],
+    ['3', 2],
+    ['2', 2],
+    ['1', 7]
+  ]);
 
-window.onload = function () {
-  var oChart = new CanvasJS.Chart("chartContainer3", {
-    theme: "light2", // "light1", "light2", "dark1", "dark2"
-    //exportEnabled: true,
-    animationEnabled: true,
-    title: {
-      text: "Students Ratings Across Classes",
+  var options1 = {
+    title: 'Total Ratings',
+    pieHole: 0.4,
+    legend: 'none',
+    titleTextStyle: {
+      color: 'black',
+      fontSize: 20,
     },
-    data: [{
-      type: "pie",
-      startAngle: 25,
-      toolTipContent: "<b>{label}</b>: {y}%",
-      // showInLegend: "true",
-      // legendText: "{label}",
-      indexLabelFontSize: 16,
-      // indexLabel: "{label} - {y}%",
-      dataPoints: [
-        { y: 50, label: "5" },
-        { y: 20, label: "4" },
-        { y: 20, label: "3" },
-        { y: 5, label: "2" },
-        { y: 5, label: "1" },
-      ]
-    }]
-  });
-  var oChart1 = new CanvasJS.Chart("chartContainer4", {
-    theme: "light2", // "light1", "light2", "dark1", "dark2"
-    //exportEnabled: true,
-    animationEnabled: true,
-    title: {
-      text: "Students Ratings Across Classes"
-    },
-    data: [{
-      type: "pie",
-      startAngle: 25,
-      toolTipContent: "<b>{label}</b>: {y}%",
-      showInLegend: "true",
-      legendText: "{label}",
-      indexLabelFontSize: 16,
-      indexLabel: "{label} - {y}%",
-      dataPoints: [
-        { y: 50, label: "5" },
-        { y: 20, label: "4" },
-        { y: 20, label: "3" },
-        { y: 5, label: "2" },
-        { y: 5, label: "1" },
-      ]
-    }]
-  });
-  var oChart2 = new CanvasJS.Chart("chartContainer5", {
-    theme: "light2", // "light1", "light2", "dark1", "dark2"
-    //exportEnabled: true,
-    animationEnabled: true,
-    title: {
-      text: "Students Ratings Across Classes"
-    },
-    data: [{
-      type: "pie",
-      startAngle: 25,
-      toolTipContent: "<b>{label}</b>: {y}%",
-      showInLegend: "true",
-      legendText: "{label}",
-      indexLabelFontSize: 16,
-      indexLabel: "{label} - {y}%",
-      dataPoints: [
-        { y: 50, label: "5" },
-        { y: 20, label: "4" },
-        { y: 20, label: "3" },
-        { y: 5, label: "2" },
-        { y: 5, label: "1" },
-      ]
-    }]
-  });
+  };
 
+  var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
+
+  var data2 = google.visualization.arrayToDataTable([
+    ['Year', 'Sales', 'Expenses'],
+    ['Monday', 1000, 400],
+    ['Tuesday', 1170, 460],
+    ['Wednesday', 660, 1120],
+    ['Thursday', 1030, 540],
+    ['Friday', 1030, 540],
+  ]);
+  var options2 = {
+    title: 'Weekly Comparison',
+    pieHole: 0.4,
+    legend: 'none',
+    titleTextStyle: {
+      color: 'black',
+      fontSize: 20,
+    },
+  };
+
+  var chart2 = new google.visualization.ColumnChart(document.getElementById('chartContainer4'));
+
+  // var data3 = new google.visualization.DataTable();
+  // data3.addColumn('string', 'Name');
+  // data3.addColumn('number', 'Salary');
+  // data3.addColumn('boolean', 'Full Time Employee');
+  // data3.addRows([
+  //   ['Mike',  {v: 10000, f: '$10,000'}, true],
+  //   ['Jim',   {v:8000,   f: '$8,000'},  false],
+  //   ['Alice', {v: 12500, f: '$12,500'}, true],
+  //   ['Bob',   {v: 7000,  f: '$7,000'},  true]
+  // ]);
+  // var options3 = {
+  //   title: 'My Daily Activities',
+  // };
+
+  // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
+
+  chart.draw(data, options1);
+  chart2.draw(data2, options2);
+  // chart3.draw(data3, options3);
 }
-
-
-
-
 // Define the chart to be drawn.
-
-
 google.charts.load('current', { packages: ['corechart'] });
-
 
 function drawChart(name) {
   console.log(name);
@@ -150,22 +129,27 @@ function drawChart(name) {
   var data = this["marker" + name]
   var options = {
     title: name
-    ,width:400
-    ,height:300
+    , width: 500
+    , height: 300
+    , isStacked: 'percent'
+    , titleTextStyle: {
+      color: 'black',
+      fontSize: 20,
+    },
+    colors: ['green', 'red'],
+    legend: 'none',
   };
 
-  data = new google.visualization.DataTable();
-  data.addColumn('string', 'Element');
-  data.addColumn('number', 'Percentage');
-  data.addRows([
-    ['Nitrogen', 0.78],
-    ['Oxygen', 0.21],
-    ['Other', 0.01]
+  var data = google.visualization.arrayToDataTable([
+    ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
+    ['Task 1', 10, 30, ''],
+    ['Task 2', 15, 30, ''],
+    ['Task 3', 30, 30, '']
   ]);
 
   // Instantiate and draw the chart.
   var chart = this.chart
-  chart = new google.visualization.PieChart(document.getElementById(name));
+  chart = new google.visualization.BarChart(document.getElementById(name));
   chart.draw(data, options);
 }
 google.charts.setOnLoadCallback(drawChart);
@@ -270,6 +254,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     email = user.email;
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+    drawOChart();
     //var studentNameRef = firebase.database().ref('Schools/' + schoolName + "/students");
     // studentNameRef.on('value', function (snapshot) {
     //   snapshot.forEach(function (childSnapshot) {
@@ -422,7 +407,7 @@ function addCell(rows) {
   }
 }
 
-// for (i = 0; i < classes.length; i++) {
+// for (i = 0; i < classes.length; {
 //   students = [];
 
 //   var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
