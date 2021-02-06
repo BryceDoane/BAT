@@ -70,3 +70,9 @@ workflows:
             branches:
               only:
                 - dev
+      - build_master:
+          filters:
+            branches:
+              only:
+                - master
+    
