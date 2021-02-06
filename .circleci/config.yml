@@ -7,6 +7,7 @@ jobs:
             - image: circleci/node:10.16.0
         working_directory: ~/repo
         steps:
+            - run: echo "this is the master build job"
             - slack/status:
                 # color: '#66f442'
                 fail_only: false
@@ -35,6 +36,7 @@ jobs:
             - image: circleci/node:10.16.0
         working_directory: ~/repo
         steps:
+            - run: echo "this is the dev build job"
             - slack/status:
                 # color: '#66f442'
                 fail_only: false
