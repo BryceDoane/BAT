@@ -19,7 +19,7 @@ Node.js: https://nodejs.org/en/
 
 (2.) Fork the project repository at https://github.com/BryceDoane/BAT
 
-(3.) Use the terminal or Github Desktop to download the repo to the local machine
+(3.) Use the terminal or Github Desktop to download the repo to the local machine. For development purposes, use the dev branch until code is further tested.
 
 (4.) Open the project in VS Code. Most of the active code can be found in the "public" folder.
 
@@ -83,6 +83,12 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 3. Register and Login UI redesign
 4. Reports page creation on the front end
 
+## V1.6
+1. Redesigned dashboard to better display overview of information using graphs and charts
+2. Cards on classes page now show detailed class information when clicked
+3. Other minor visual improvements
+4. Confirmation before deleting account or changing password
+
 ## Future Releases
 
-In Version 1.6, we will focus our efforts on building out backend for reports page to create and share reports of student behavior tracking.
+In Version 1.7, we will focus our efforts on building out the backend for the reports page to create and share reports of student behavior tracking.
