@@ -63,7 +63,7 @@ workflows:
   version: 2
   build_master:
     jobs:
-      - build_development
+      - build_development:
           filters:
             branches:
               only:
