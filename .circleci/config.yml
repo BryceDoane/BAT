@@ -1,11 +1,11 @@
 orbs:
-  slack: circleci/slack@4.2.1
+  slack: circleci/slack@3.4.2
 version: 2.1
 jobs:
-    build_master:
+    build:
         docker:
             - image: circleci/node:10.16.0
-        working_directory: ~/origin
+        working_directory: ~/repo
         steps:
             - slack/status:
                 # color: '#66f442'
@@ -30,52 +30,5 @@ jobs:
             - run:
                   name: Firebase Deploy
                   command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
-    build_dev:
-        docker:
-            - image: circleci/node:10.16.0
-        working_directory: ~/dev
-        steps:
-            - slack/status:
-                # color: '#66f442'
-                fail_only: false
-                # message: Project deploy started
-            - checkout
-            # Download and cache dependencies
-            - restore_cache:
-                  keys:
-                      - v1-dependencies-{{ checksum "package.json" }}
-                      - v1-dependencies-
-            - run:
-                  name: Install Dependencies
-                  command: npm install
-            - save_cache:
-                  key: v1-npm-deps-{{ checksum "package-lock.json" }}
-                  paths:
-                      - ./node_modules
-            - run:
-                  name: Build
-                  command: npm build
-            - run:
-                  name: Firebase Deploy
-                  command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
-workflows:
-version: '2'
-  build_dev:    
-    jobs:
-      - build_dev:
-        filters:
-          branches:
-            only:
-              - development
-  build_master:    
-    jobs:
-      - build_master:
-        filters:
-          branches:
-            only:
-              - master
-
-            
-
 
 
