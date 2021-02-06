@@ -74,7 +74,7 @@ workflows:
           filters:
             branches:
               only:
-                - development
+                - dev
    build_master:    
     jobs:
       - build_master:
