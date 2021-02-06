@@ -30,7 +30,7 @@ jobs:
             - run:
                   name: Firebase Deploy
                   command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
-        build_development:
+    build_development:
         docker:
             - image: circleci/node:10.16.0
         working_directory: ~/repo
