@@ -60,20 +60,20 @@ jobs:
                   command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 workflows:
 version: '2'
-    build_dev:    
-        jobs:
-          - build_dev:
-                filters:
-                branches:
-                    only:
-                        - dev
-    build_master:    
-        jobs:
-            - build_master:
-                    filters:
-                    branches:
-                        only:
-                            - master
+  build_dev:    
+    jobs:
+      - build_dev:
+        filters:
+        branches:
+          only:
+            - dev
+  build_master:    
+    jobs:
+      - build_master:
+        filters:
+        branches:
+          only:
+            - master
 
             
 
