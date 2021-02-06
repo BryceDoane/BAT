@@ -64,16 +64,16 @@ version: '2'
     jobs:
       - build_dev:
         filters:
-        branches:
-          only:
-            - dev
+          branches:
+            only:
+              - dev
   build_master:    
     jobs:
       - build_master:
         filters:
-        branches:
-          only:
-            - master
+          branches:
+            only:
+              - master
 
             
 
