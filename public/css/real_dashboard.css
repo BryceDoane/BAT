@@ -11,7 +11,8 @@ body{
     color:2#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-    padding:1em;
+    padding:2em;
+    border-radius: 10px;;
     background-image: url("../assets/img/prism2.png");
 }
 /* The Modal (background) */
@@ -252,6 +253,19 @@ font-size: 25px;
     background-color: transparent;
     
   }
+  .classCharts{
+    height: 1000px;
+  }
+  #myPieChart{
+    height: 200px;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .graphs{
+    display: inline-flex;
+    margin: 3px 3px 3px 3px;
+  }
   .dashboard input{
     width: 50px;
     padding: 5px;
@@ -352,6 +366,11 @@ font-size: 25px;
     outline:0;
     transition: background-color 2s ease-out;
   }
+
+  .charts{
+    border:rgb(209, 72, 44);
+  };
+ 
 
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {

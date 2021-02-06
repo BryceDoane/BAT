@@ -43,8 +43,8 @@
                 <hr>
             </div>
             <h3>Tasks</h3>
-            <div class="modal-body" id="classDetails">
-
+            <div class="modal-body" id="classTaskDetails">
+                <!-- JS inserts information here -->
             </div>
             <h3>Students</h3>
             <div class="modal-body" id="classStuDetails">
@@ -68,22 +68,20 @@
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h2>Add Class or Task</h2>
+                <hr id="hrmodal">
             </div>
             <div class="modal-body">
                 <form id="newClassForm">
-                    <p>Please enter class name</p>
-                    <input type="text" id="className">
-                    <p>Please enter a class short name</p>
-                    <input type="text" id="classShort">
-                    <hr>
+                <input type="text" id="className" placeholder="Class"><button value="Submit" onclick="newClass();">Add Class</button>
+                </form>
             </div>
             <div class="modal-body">
                 <form>
-                <button value="Submit" onclick="newClass();">Add Class</button>
-                <hr>
+                
+                <hr id="hrmodal">
                 <form id="newTaskForm">
-                    <label for="classList">Choose a class:</label>
                     <select name="classList" id="classList">
+                        <option value="">Select a class</option>
                         <!-- Autofill from Database Later -->
                         <!-- <option value="Math">Math</option>
                       <option value="Reading">Reading</option>
@@ -91,9 +89,7 @@
                       <option value="Art">Art</option> -->
                     </select>
                     <br><br>
-                    <p>Please enter a task:</p>
-                    <input type="text" id="taskName">
-                    <hr>
+                    <input type="text" id="taskName" placeholder="Task">
                     <button value="Submit" onclick="newTask()">Add Task</button>
                 </form>
             </div>
@@ -106,29 +102,28 @@
             <div class="modal-header">
                 <span class="close2">&times;</span>
                 <h2>Delete Class or Task</h2>
+                <hr id="hrmodal">
 
             </div>
             <div class="modal-body">
                 <form id="deleteClassForm">
-                    <label for="dClassList">Choose a class:</label>
-                    <select name="dClassList" id="dClassList"></select>
+                    <select name="dClassList" id="dClassList"><option value="">Select a class</option></select>
             </div>
             <div class="modal-body">
                 </form>
                 <button value="Submit" class="deletebtn" onclick="deleteClass();">Delete Class</button>
-                <hr>
+                <hr id="hrmodal">
                 <form id="deleteTaskForm">
-                    <label for="dtClassList">Choose a class:</label>
                     <select onchange ="changeTask();" name="dtClassList" id="dtClassList">
-                        <option value=></option>
+                        <option value="">Select a class</option>
                         <!-- Autofill from Database Later -->
                         <!-- <option value="Math">Math</option>
                       <option value="Reading">Reading</option>
                       <option value="History">History</option>
                       <option value="Art">Art</option> -->
                     </select>
-                    <label for="taskList">Choose a Task:</label>
-                    <select name="dtTaskList" id="dtTaskList"></select>
+                    <br>
+                    <select name="dtTaskList" id="dtTaskList"><option value="">Select a task</option></select>
                 
                     <!--<select name="taskList" id="taskList">-->
                         <!-- Autofill from Database Later -->

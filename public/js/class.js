@@ -135,12 +135,16 @@ function deleteTask() {
   taskRef.remove();
   location.reload();
 }
+
+ColorPickIndex = 0;
+ColorList = ['#B28DFF', '#BFFCC6', '#FFBEBC', '#853EFF', '#FFF5BA', '#C4FAF8', '#BAFFC9', '#BAE1FF', '#ffb3ba', '#AEC6CF', '#D7ECD9', '#FCECF5'];
+
 firebase.auth().onAuthStateChanged(function (user) {
   var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
   classRef.on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       var childData = childSnapshot.val().className;
-      //console.log(childData);
+      console.log(childData);
       var select = document.getElementById("classList");
       var dSelect = document.getElementById("dClassList");
       var dtSelect = document.getElementById("dtClassList");
@@ -180,7 +184,11 @@ firebase.auth().onAuthStateChanged(function (user) {
       var node = document.createElement('button');
       node.classList.add("card");
       node.id = "cardbtn";
-      node.style.background = getRandomColor();
+      node.style.background = ColorList[ColorPickIndex];
+      ColorPickIndex ++;
+      if(ColorPickIndex >= 11){
+        ColorPickIndex = 0;
+      }
       var textNode = document.createTextNode(classes);
       node.appendChild(textNode);
       var temp = 'showClass("' + classes + '")';
@@ -215,9 +223,32 @@ students = [];
 studentID = [];
 stuID = [];
 stuNamee = [];
+taskList = []; 
 firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
   var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/"+ localClass + "/Student List");
+  var taskListRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + localClass + "/Tasks");
+  taskListRef.on('value', function (snapshot) {
+    //console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+      console.log(childData.taskName);
+      taskList.push(childData.taskName);
+;
+
+      //Modal Tasks in Class List
+   var pNode = document.createElement('p');
+   document.getElementById('classTaskDetails').appendChild(pNode);
+   var taskElementList = document.createElement('p');
+   taskElementList.classList.add("CardTaskList");
+   var textNode3 = document.createTextNode(childData.taskName); 
+   console.log(taskList); //log
+   taskElementList.appendChild(textNode3);
+   pNode.appendChild(taskElementList);
+   document.getElementById("classTaskDetails").appendChild(pNode);
+    })})
+
+
   studentRef.on('value', function (snapshot) {
     //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
@@ -248,7 +279,10 @@ firebase.auth().onAuthStateChanged(function (user) {
    //for (i = length - 1; i >= 0; i--) {
       //students[i] = null;
    // }
-   
+  
+
+
+   //Modal Student in Class List
       var trNode = document.createElement('tr');
       document.getElementById("studentsLi").appendChild(trNode);
       var node = document.createElement('td');
@@ -278,12 +312,6 @@ firebase.auth().onAuthStateChanged(function (user) {
   })
 }
 
-function getRandomColor() {
-
-  items = ['#B28DFF', '#BFFCC6', '#FFBEBC', '#853EFF', '#FFF5BA', '#C4FAF8', '#BAFFC9', '#BAE1FF', '#ffb3ba', '#AEC6CF', '#D7ECD9', '#FCECF5'];
-  return items[Math.floor(Math.random() * items.length)];
-
-}
 //log out functionality on top right
 function signout() {
   firebase.auth().signOut();

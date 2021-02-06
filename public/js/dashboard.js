@@ -58,75 +58,254 @@ var cumul = 0;
 //   }
 // }
 
+function drawOChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Task', 'Number of Ratings'],
+    ['5', 11],
+    ['4', 2],
+    ['3', 2],
+    ['2', 2],
+    ['1', 7]
+  ]);
 
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {
-    title: {
-      text: "Students Tasks"
+  var options1 = {
+    title: 'Total Ratings',
+    pieHole: 0.4,
+    legend: 'none',
+    titleTextStyle: {
+      color: 'black',
+      fontSize: 20,
     },
-    data: [
-      {
-        // Change type to "doughnut", "line", "splineArea", etc.
-        type: "column",
-        dataPoints: [
-          { label: "Brought Homework", y: 5 },
-          { label: "Listened", y: 4 },
-          { label: "banana", y: 3 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
-        ]
+  };
 
-      },
-      {
+  var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
 
-        type: "column",
-        dataPoints: [
-          { label: "Brought Homework", y: 8 },
-          { label: "Listened", y: 12 },
-          { label: "banana", y: 1 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
-        ]
-
-      },
-    ]
-  });
-  var chart2 = new CanvasJS.Chart("chartContainer2", {
-    title: {
-      text: "Second Chart"
+  var data2 = google.visualization.arrayToDataTable([
+    ['Year', 'Sales', 'Expenses'],
+    ['Monday', 1000, 400],
+    ['Tuesday', 1170, 460],
+    ['Wednesday', 660, 1120],
+    ['Thursday', 1030, 540],
+    ['Friday', 1030, 540],
+  ]);
+  var options2 = {
+    title: 'Weekly Comparison',
+    pieHole: 0.4,
+    legend: 'none',
+    titleTextStyle: {
+      color: 'black',
+      fontSize: 20,
     },
-    data: [
-      {
-        // Change type to "doughnut", "line", "splineArea", etc.
-        type: "column",
-        dataPoints: [
-          { label: "Brought Homework", y: 5 },
-          { label: "Listened", y: 4 },
-          { label: "banana", y: 3 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
-        ]
+  };
 
+  var chart2 = new google.visualization.ColumnChart(document.getElementById('chartContainer4'));
+
+  // var data3 = new google.visualization.DataTable();
+  // data3.addColumn('string', 'Name');
+  // data3.addColumn('number', 'Salary');
+  // data3.addColumn('boolean', 'Full Time Employee');
+  // data3.addRows([
+  //   ['Mike',  {v: 10000, f: '$10,000'}, true],
+  //   ['Jim',   {v:8000,   f: '$8,000'},  false],
+  //   ['Alice', {v: 12500, f: '$12,500'}, true],
+  //   ['Bob',   {v: 7000,  f: '$7,000'},  true]
+  // ]);
+  // var options3 = {
+  //   title: 'My Daily Activities',
+  // };
+
+  // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
+
+  chart.draw(data, options1);
+  chart2.draw(data2, options2);
+  // chart3.draw(data3, options3);
+}
+// Define the chart to be drawn.
+google.charts.load('current', { packages: ['corechart'] });
+
+function drawChart(name) {
+  firebase.auth().onAuthStateChanged(function (user) {
+    userSchool = user.displayName;
+    var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/Mathology/Tasks/");
+    studentRef.on('value', function (snapshot) {
+      //console.log(snapshot);
+      snapshot.forEach(function (childSnapshot) {
+        var childData = childSnapshot.val();
+  
+        var taskName = childData.taskName;
+        
+        taskName = taskName.replace(/\s/g, '');
+        tasks.push(taskName);
+        console.log(taskName);
+        //console.log(childData.className);
+        //drawChart(className);
+        var data = this["marker" + name]
+        var options = {
+          title: name
+          , width: 500
+          , height: 300
+          , isStacked: 'percent'
+          , titleTextStyle: {
+            color: 'black',
+            fontSize: 20,
+          },
+          colors: ['green', 'red'],
+          legend: 'none',
+        };
+      
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
+          [taskName, 10, 30, ''],
+          [taskName, 15, 30, ''],
+          [taskName, 30, 30, '']
+        ]);
+      
+        // Instantiate and draw the chart.
+        var chart = this.chart
+        chart = new google.visualization.BarChart(document.getElementById(name));
+        chart.draw(data, options);
+        //console.log(childSnapshot);
+  
+      })
+    
+    })
+  })
+  
+  console.log(name);
+  // Define the chart to be drawn.
+
+  
+}
+google.charts.setOnLoadCallback(drawChart);
+firebase.auth().onAuthStateChanged(function (user) {
+  userSchool = user.displayName;
+  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/mathology/tasks/");
+  studentRef.on('value', function (snapshot) {
+    //console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+
+      var taskName = childData.taskName;
+      taskName = taskName.replace(/\s/g, '');
+      tasks.push(taskName);
+      //console.log(childData.className);
+      //drawChart(className);
+
+      //console.log(childSnapshot);
+
+    })
+    for (i = 0; i <= (classes.length - 1); i++) {
+      var text = document.createTextNode(classes[i]);
+      var tag = document.createElement("p");
+      var newRDiv = document.createElement("div");
+      newRDiv.appendChild(tag);
+      tag.appendChild(text);
+      newRDiv.id = classes[i];
+      newRDiv.className = "graphs";
+      var element = document.getElementById("myPieChart");
+      element.appendChild(newRDiv);
+      drawChart(classes[i]);
+    }
+  })
+})
+
+
+
+
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+  userSchool = user.displayName;
+  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes");
+  studentRef.on('value', function (snapshot) {
+    //console.log(snapshot);
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+
+      var className = childData.className;
+      className = className.replace(/\s/g, '');
+      classes.push(className);
+      //console.log(childData.className);
+      //drawChart(className);
+
+      //console.log(childSnapshot);
+
+    })
+    for (i = 0; i <= (classes.length - 1); i++) {
+      var text = document.createTextNode(classes[i]);
+      var tag = document.createElement("p");
+      var newRDiv = document.createElement("div");
+      newRDiv.appendChild(tag);
+      tag.appendChild(text);
+      newRDiv.id = classes[i];
+      newRDiv.className = "graphs";
+      var element = document.getElementById("myPieChart");
+      element.appendChild(newRDiv);
+      drawChart(classes[i]);
+    }
+  })
+})
+
+
+
+
+function newChart() {
+
+  const newDiv = document.createElement("div");
+
+  // and give it some content
+  const chart = new CanvasJS.Chart("div1",
+    {
+      title: {
+        text: "Number of Students in Each Room"
       },
-      {
-
-        type: "column",
-        dataPoints: [
-          { label: "Brought Homework", y: 8 },
-          { label: "Listened", y: 12 },
-          { label: "banana", y: 1 },
-          // { label: "mango",  y: 30  },
-          // { label: "grape",  y: 28  }
-        ]
-
+      axisX: {
+        title: "Rooms"
       },
-    ]
-  });
+      axisY: {
+        title: "percentage"
+      },
+      data: [
+        {
+          type: "stackedColumn100",
+          legendText: "Boys",
+          showInLegend: "true",
+          indexLabel: "#percent %",
+          indexLabelPlacement: "inside",
+          indexLabelFontColor: "white",
+          dataPoints: [
+            { y: 40, label: "Cafeteria" },
+            { y: 10, label: "Lounge" },
+            { y: 72, label: "Games Room" },
+            { y: 30, label: "Lecture Hall" },
+            { y: 21, label: "Library" }
+          ]
+        },
+        {
+          type: "stackedColumn100",
+          legendText: "Girls",
+          showInLegend: "true",
+          indexLabel: "#percent %",
+          indexLabelPlacement: "inside",
+          indexLabelFontColor: "white",
+          dataPoints: [
+            { y: 20, label: "Cafeteria" },
+            { y: 14, label: "Lounge" },
+            { y: 40, label: "Games Room" },
+            { y: 43, label: "Lecture Hall" },
+            { y: 17, label: "Library" }
+          ]
+
+        },
+      ]
+    });
+  oChart.render();
+  oChart1.render();
+  oChart2.render();
   chart.render();
   chart2.render();
+
 }
-
-
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
@@ -134,6 +313,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     email = user.email;
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
+    drawOChart();
     //var studentNameRef = firebase.database().ref('Schools/' + schoolName + "/students");
     // studentNameRef.on('value', function (snapshot) {
     //   snapshot.forEach(function (childSnapshot) {
@@ -145,6 +325,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //   studentsNamesList = studentNames; //.toString();
     //   //console.log(studentsNamesList);
     // });
+
     classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var childCData = childSnapshot.val();
@@ -183,7 +364,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           var node = document.createElement('h1');
           var textNode = document.createTextNode(temp3);
           node.appendChild(textNode);
-          document.getElementById("classNameLi").appendChild(node)
+          // document.getElementById("classNameLi").appendChild(node)
           var tablenode = document.createElement('table');
           tablenode.setAttribute("id", temp3);
           dTable = tablenode;
@@ -192,7 +373,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           // let newCell = newRow.insertCell(0);
           // let newText = document.createTextNode('');
           // newCell.appendChild(newText);
-          document.getElementById("classNameLi").appendChild(tablenode);
+          //document.getElementById("classNameLi").appendChild(tablenode);
           //classCount++;
           //console.log(classCount);
 
@@ -244,6 +425,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       // var table = document.getElementById('tableID');
 
     });
+
   } else {
     //window.location.replace("http://www.behavv.com");
   }
@@ -284,7 +466,7 @@ function addCell(rows) {
   }
 }
 
-// for (i = 0; i < classes.length; i++) {
+// for (i = 0; i < classes.length; {
 //   students = [];
 
 //   var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
@@ -338,6 +520,27 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("linu");
   }
 });
+
+var studentList = [];
+var cumul = 0;
+ function taskPercentDone(className, taskName){
+   cumul = 0;
+   firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
+     snapshot.forEach(function(item){
+       var itum = item.val();
+       itum = itum.studentName;
+       studentList.push(itum);
+     });
+     for (m = 0; m < studentList.length; m++) {
+       firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+         var tSnap = snapshot.val();
+         tSnap = tSnap.rating;
+         tSnap = parseInt(tSnap);
+         cumul += tSnap;
+       });
+     }
+     }); 
+ };
 // tasksRef.on('value', function (snapshot) {
 //   //console.log(snapshot);
 //   console.log()
@@ -354,8 +557,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 //       classes.push(childData.className);
 //       classes.push(childData.Tasks);
 //     });
-var className;
-saveButton.onclick = function () {
+//var className;
+/*saveButton.onclick = function () {
   for (i = 0; i < classes.length; i++) {
     console.log(schoolName);
     className = classes[i];
@@ -423,7 +626,6 @@ function taskPercentDone(className, taskName){
 //     console.log("User not logged in.");
 //   }
 // });
-
 
 /*
 Research toward color boxes on dashboard
