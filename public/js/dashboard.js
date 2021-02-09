@@ -29,6 +29,7 @@ var studentsList;
 var studentNames = [];
 var studentNamesList;
 var studentTest;
+var userSchool;
 var classRef = firebase.database().ref('classes');
 var taskCount = 0;
 
@@ -76,6 +77,10 @@ function drawOChart() {
       color: 'black',
       fontSize: 20,
     },
+    chartArea: {
+      // leave room for y-axis labels
+      width: '30%'
+    },
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
@@ -96,6 +101,10 @@ function drawOChart() {
       color: 'black',
       fontSize: 20,
     },
+    // chartArea: {
+    //   // leave room for y-axis labels
+    //   width: '60%'
+    // },
   };
 
   var chart2 = new google.visualization.ColumnChart(document.getElementById('chartContainer4'));
@@ -124,19 +133,20 @@ function drawOChart() {
 google.charts.load('current', { packages: ['corechart'] });
 
 function drawChart(name) {
-  firebase.auth().onAuthStateChanged(function (user) {
-    userSchool = user.displayName;
-    var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/Mathology/Tasks/");
-    studentRef.on('value', function (snapshot) {
+  if (typeof(name) == "undefined"){
+    return
+  }
+    // userSchool = user.displayName;
+    var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes");
+    //studentRef.on('value', function (snapshot) {
       //console.log(snapshot);
-      snapshot.forEach(function (childSnapshot) {
-        var childData = childSnapshot.val();
-  
-        var taskName = childData.taskName;
-        
-        taskName = taskName.replace(/\s/g, '');
-        tasks.push(taskName);
-        console.log(taskName);
+      // snapshot.forEach(function (childSnapshot) {
+      //   var childData = childSnapshot.val();
+      //   var taskName = childData.taskName;
+
+        // taskName = taskName.replace(/\s/g, '');
+        // tasks.push(taskName);
+        // console.log(taskName);
         //console.log(childData.className);
         //drawChart(className);
         var data = this["marker" + name]
@@ -153,11 +163,11 @@ function drawChart(name) {
           legend: 'none',
         };
       
-        var data = google.visualization.arrayToDataTable([
+        var data = new google.visualization.arrayToDataTable([
           ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
-          [taskName, 10, 30, ''],
-          [taskName, 15, 30, ''],
-          [taskName, 30, 30, '']
+          ['taskName', 10, 30, ''],
+          ['taskName', 15, 30, ''],
+          ['taskName', 30, 30, '']
         ]);
       
         // Instantiate and draw the chart.
@@ -166,10 +176,10 @@ function drawChart(name) {
         chart.draw(data, options);
         //console.log(childSnapshot);
   
-      })
+      //})
     
-    })
-  })
+    //})
+  
   
   console.log(name);
   // Define the chart to be drawn.
@@ -204,6 +214,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       newRDiv.className = "graphs";
       var element = document.getElementById("myPieChart");
       element.appendChild(newRDiv);
+      console.log(classes[i])
       drawChart(classes[i]);
     }
   })
