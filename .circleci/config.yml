@@ -40,6 +40,8 @@ jobs:
             - slack/status:
                 #color: "#30d9ff"
                 fail_only: false
+            - slack/status: 
+                color: "#30d9ff"
                 message: Beta Deploy Successful
             - checkout
             # Download and cache dependencies
