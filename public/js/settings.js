@@ -104,7 +104,7 @@ function deleteu() {
     window.location = "https://behavv.com/login.html";
     user.delete().then(function hey() {
     }).catch(function (error) {
-      // An error happened.
+      // An error happened
     });
   }
 }
