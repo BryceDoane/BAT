@@ -38,9 +38,11 @@ jobs:
         steps:
             - run: echo "this is the dev build job"
             - slack/status:
-                # color: '#66f442'
+                #color: "#30d9ff"
                 fail_only: false
-                # message: Project deploy started
+            - slack/notify: 
+                color: "#30d9ff"
+                message: Beta Deploy Successful
             - checkout
             # Download and cache dependencies
             - restore_cache:

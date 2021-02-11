@@ -85,31 +85,33 @@ const auth = firebase.auth();
 //variable for forgot password email field
 
 //variable for delete button
-const dbutton = document.getElementById("delb");
+const dbutton = document.getElementById("confirm");
 
 var del ="";
 //function for deleting user
 function deleteu() {
   const conf = document.getElementById("confirm");
   const confp = conf.value;
-  firebase.database().ref('Schools/' + userSchool + "/Users").orderByChild('uid').equalTo(uid).once("value", function(snapshot) {
+  /*firebase.database().ref('Schools/' + userSchool + "/Users").orderByChild('uid').equalTo(uid).once("value", function(snapshot) {
     snapshot.forEach((function(child) {
       del = child.key;
-     })); 
+     })); */
     firebase.database().ref('Schools/' + userSchool + "/Users/" + del).remove();
-  });
-  alert("Account Deleted");
-  if (confp == "Yes") {
-    const user = firebase.auth().currentUser;
+  };
+  
+function deleteuser(){
+    var user = firebase.auth().currentUser;
     window.location = "https://behavv.com/login.html";
     user.delete().then(function hey() {
     }).catch(function (error) {
-      // An error happened
+      // An error happened.
+      alert("Account Deleted");
+
     });
   }
-}
+
 //listens for click to submit button for delete account
-dbutton.addEventListener('click', deleteu);
+dbutton.addEventListener('click', deleteuser);
 
   //log out functionality on top right
   function signout(){firebase.auth().signOut();
