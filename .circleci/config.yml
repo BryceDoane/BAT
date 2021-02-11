@@ -40,7 +40,7 @@ jobs:
             - slack/status:
                 #color: "#30d9ff"
                 fail_only: false
-            - slack/status: 
+            - slack/notify: 
                 color: "#30d9ff"
                 message: Beta Deploy Successful
             - checkout
