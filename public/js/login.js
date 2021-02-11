@@ -12,6 +12,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  const analytics = firebase.analytics();
 
 /**
      * Handles the sign in button press.
@@ -66,6 +67,7 @@
       if (user) {
       // User is signed in.
       var email = user.email;
+      firebase.analytics().logEvent('login');
       // alert("signed in as " + email);
       // document.getElementById('signed-in-user').textContent = email;
       // document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
