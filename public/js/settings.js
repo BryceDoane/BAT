@@ -106,6 +106,7 @@ function deleteuser(){
     }).catch(function (error) {
       // An error happened.
       alert("Account Deleted");
+
     });
   }
 
