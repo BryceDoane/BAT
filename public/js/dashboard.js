@@ -41,6 +41,8 @@ var dTable;
 var gorger;
 var gorgerr;
 var cumul = 0;
+var content;
+var content2;
 
 
 // var formModal = document.getElementById("formModal");
@@ -79,11 +81,16 @@ function drawOChart() {
     },
     chartArea: {
       // leave room for y-axis labels
-      width: '30%'
+      width: '90%'
     },
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
+  google.visualization.events.addListener(chart, 'ready', function () {
+    content = chart.getImageURI()
+    //content = '<img src="' + chart.getImageURI() + '">';
+    // $('#chartContainer3').append(content);
+  });
 
   var data2 = google.visualization.arrayToDataTable([
     ['Year', 'Sales', 'Expenses'],
@@ -108,6 +115,11 @@ function drawOChart() {
   };
 
   var chart2 = new google.visualization.ColumnChart(document.getElementById('chartContainer4'));
+  google.visualization.events.addListener(chart2, 'ready', function () {
+    content2 = chart2.getImageURI()
+    //content = '<img src="' + chart.getImageURI() + '">';
+    // $('#chartContainer3').append(content);
+  });
 
   // var data3 = new google.visualization.DataTable();
   // data3.addColumn('string', 'Name');
@@ -260,63 +272,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-function newChart() {
-
-  const newDiv = document.createElement("div");
-
-  // and give it some content
-  const chart = new CanvasJS.Chart("div1",
-    {
-      title: {
-        text: "Number of Students in Each Room"
-      },
-      axisX: {
-        title: "Rooms"
-      },
-      axisY: {
-        title: "percentage"
-      },
-      data: [
-        {
-          type: "stackedColumn100",
-          legendText: "Boys",
-          showInLegend: "true",
-          indexLabel: "#percent %",
-          indexLabelPlacement: "inside",
-          indexLabelFontColor: "white",
-          dataPoints: [
-            { y: 40, label: "Cafeteria" },
-            { y: 10, label: "Lounge" },
-            { y: 72, label: "Games Room" },
-            { y: 30, label: "Lecture Hall" },
-            { y: 21, label: "Library" }
-          ]
-        },
-        {
-          type: "stackedColumn100",
-          legendText: "Girls",
-          showInLegend: "true",
-          indexLabel: "#percent %",
-          indexLabelPlacement: "inside",
-          indexLabelFontColor: "white",
-          dataPoints: [
-            { y: 20, label: "Cafeteria" },
-            { y: 14, label: "Lounge" },
-            { y: 40, label: "Games Room" },
-            { y: 43, label: "Lecture Hall" },
-            { y: 17, label: "Library" }
-          ]
-
-        },
-      ]
-    });
-  oChart.render();
-  oChart1.render();
-  oChart2.render();
-  chart.render();
-  chart2.render();
-
-}
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
@@ -552,6 +507,26 @@ var cumul = 0;
      }
      }); 
  };
+
+ function genPDF() {
+  //alert("test");
+  var doc = new jsPDF();
+  doc.text(20, 20, 'TestPDF');
+  doc.addImage(content2, 'PNG', 10, 20, 100, 50);
+  doc.addImage(content, 'PNG', 120, 20, 65, 55);
+  doc.addPage();
+  margins = {
+    top: 70,
+    bottom: 40,
+    left: 30,
+    width: 550
+  };
+  console.log(content);
+  console.log(content2);
+
+
+  doc.save('test.pdf');
+}
 // tasksRef.on('value', function (snapshot) {
 //   //console.log(snapshot);
 //   console.log()
