@@ -89,6 +89,7 @@ function newStudent() {
   var studentfName = document.getElementById("studentfName").value;
   var studentlName = document.getElementById("studentlName").value;
   var studentID = document.getElementById("studentID").value;
+  var studentNotes = document.getElementById("studentNotes").value;
   studentModal.style.display = "none";
   firebase.database().ref('Schools/' + userSchool + "/students/")
   //.child(studentName).set({ SUID: studentID, studentName: studentName });
@@ -106,7 +107,7 @@ function newStudent() {
   }
   console.log(dCheck);
   if (dCheck == true) {
-    firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentFName: studentfName, studentLName: studentlName, studentID: studentID });
+    firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentFName: studentfName, studentLName: studentlName, studentID: studentID, notes: studentNotes });
     location.reload();
     //studentID = null;
   }
@@ -114,7 +115,7 @@ function newStudent() {
 }
 
 //Delete Student model
-function delStudent(){
+function delStudent() {
   var IDList = [];
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
@@ -126,7 +127,7 @@ function delStudent(){
       delStudRef.remove();
       location.reload();
       break;
-    }  else if (i + 1 == IDList.length){
+    } else if (i + 1 == IDList.length) {
       alert("A student with this ID doesn't exist");
       break;
     }
@@ -168,14 +169,22 @@ firebase.auth().onAuthStateChanged(function (user) {
       var textNode = document.createTextNode(students.studentID);
       var textNode2 = document.createTextNode(students.studentFName);
       var textNode3 = document.createTextNode(students.studentLName);
+      if (students.notes === undefined) {
+        var textNode4 = document.createTextNode("None");
+      } else {
+        var textNode4 = document.createTextNode(students.notes);
+      }
       var node2 = document.createElement('td');
       var node3 = document.createElement('td');
+      var node4 = document.createElement('td');
       node.appendChild(textNode);
       node2.appendChild(textNode3);
       node3.appendChild(textNode2);
+      node4.appendChild(textNode4);
       trNode.appendChild(node);
       trNode.appendChild(node2);
       trNode.appendChild(node3);
+      trNode.appendChild(node4);
       document.getElementById("studentNameLi").appendChild(trNode);
     })
     //document.getElementById("studentNameLi").innerHTML = studentList;
@@ -250,7 +259,7 @@ function checkClass() {
         checkStudent();
       }
       else {
-       alert("class does not exist");
+        alert("class does not exist");
         location.reload();
         setTimeout();
       }
