@@ -38,7 +38,7 @@ jobs:
         steps:
             - run: echo "this is the dev build job"
             - slack/status:
-                color: '#effc30'
+                color: '#30d9ff'
                 fail_only: false
                 # message: Project deploy started
             - checkout
