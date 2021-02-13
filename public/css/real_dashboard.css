@@ -92,6 +92,8 @@ font-size: 25px;
   }
    .sidenav img {
      background-color: transparent;
+     align-content: center;
+  
    }
    .sidenav .logo {
     margin-top: 60px;
@@ -101,6 +103,10 @@ font-size: 25px;
    .sidenav .icon {
     height: 35px;
     width: 35px;
+    align-content: center;
+    position: relative; top:7px
+  
+  
    }
   /* The navigation menu links */
   .sidenav a {

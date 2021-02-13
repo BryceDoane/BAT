@@ -34,6 +34,7 @@
       return;
       }
       
+      
         //
       // Sign in with email and pass.
       // [START authwithemail]
@@ -42,17 +43,27 @@
       var errorCode = error.code;
       var errorMessage = error.message;
       // [START_EXCLUDE]
+      
       if (errorCode === 'auth/wrong-password') {
       alert('Wrong password.');
+      var failedAttempts = 0;
+      console.log(failedAttempts);
+      failedAttempts++;
+      console.log(failedAttempts);
       } else {
       alert(errorMessage);
       }
       console.log(error);
-      document.getElementById('loginbtn').disabled = false;
+      document.getElementById('loginbtn').disabled = false;})
       // [END_EXCLUDE]
-      });
+    
+    
+    
+    
+    
+  
       // [END authwithemail]
-      }
+        }
       document.getElementById('loginbtn').disabled = true;
       }
       /**
@@ -167,4 +178,3 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   });
 
    
-  
