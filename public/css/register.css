@@ -261,3 +261,7 @@ input:focus{
         padding: 2em;
     }
 }*/
+
+#failedText{
+    color: red;
+}

@@ -16,7 +16,7 @@
 
 /**
      * Handles the sign in button press.
-     */
+     */var failedAttempts = 0;
     function toggleSignIn() {
       if (firebase.auth().currentUser) {
       // [START signout]
@@ -33,7 +33,9 @@
       alert('Please enter a password.');
       return;
       }
+
       
+    
       
         //
       // Sign in with email and pass.
@@ -46,26 +48,23 @@
       
       if (errorCode === 'auth/wrong-password') {
       alert('Wrong password.');
-      var failedAttempts = 0;
-      console.log(failedAttempts);
-      failedAttempts++;
-      console.log(failedAttempts);
+      
+     const failed = failedAttempts++;
+      console.log(failed);
+      document.getElementById("failedText").innerHTML = "Failed attempts:   " + failed;
+      
       } else {
       alert(errorMessage);
+      
       }
       console.log(error);
       document.getElementById('loginbtn').disabled = false;})
       // [END_EXCLUDE]
-    
-    
-    
-    
-    
-  
-      // [END authwithemail]
+    // [END authwithemail]
         }
       document.getElementById('loginbtn').disabled = true;
       }
+      
       /**
            * initApp handles setting up UI event listeners and registering Firebase auth listeners:
            *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
