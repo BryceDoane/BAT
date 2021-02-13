@@ -16,7 +16,7 @@
 
 /**
      * Handles the sign in button press.
-     */var failedAttempts = 0;
+     */var failedAttempts = 1;
     function toggleSignIn() {
       if (firebase.auth().currentUser) {
       // [START signout]
