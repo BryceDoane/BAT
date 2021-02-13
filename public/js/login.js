@@ -33,8 +33,7 @@
       alert('Please enter a password.');
       return;
       }
-      var failedAttempts = 0;
-      console.log(failedAttempts);
+      
       
         //
       // Sign in with email and pass.
@@ -47,6 +46,8 @@
       
       if (errorCode === 'auth/wrong-password') {
       alert('Wrong password.');
+      var failedAttempts = 0;
+      console.log(failedAttempts);
       failedAttempts++;
       console.log(failedAttempts);
       } else {
