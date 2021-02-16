@@ -27,7 +27,6 @@ var firebaseConfig = {
   var studentNames = [];
   var studentNamesList;
   var studentTest;
-  var classRef = firebase.database().ref('classes');
   var taskCount = 0;
   
   var temp = [];
@@ -38,35 +37,38 @@ var firebaseConfig = {
   var gorger;
   var gorgerr;
   var cumul = 0;
+  var classesList;
   
+  //gets the user's school name
+  firebase.auth().onAuthStateChanged(function (user) {
   
+    if (user){
+      schoolName = user.displayName;
+    }
+  });
+
   
-  var classRef = firebase.database().ref('classes');
-   
+  var classRef = firebase.database().ref("Schools/" + schoolName + "/classes");
    classRef.on('value', function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
+          console.log("running");
           var childCData = childSnapshot.val();
-          var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + childSnapshot.val().className + "/Tasks");
-  
+          var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + childCData.className+ "/Tasks");
           temp.push("ClassName: " + childCData.className);
-          temp.push(" ");
+          //temp.push(" ");
 
           taskRef.on('value', function (snapshot) {
-            console.log(snapshot);
-            console.log()
-            var classesRef = firebase.database().ref('classes');
-            var classesList;
-           classesRef.on('value', function (snapshot) {
+            
+           classRef.on('value', function (snapshot) {
               snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
-                classesRef.on('child_added', function (snapshot) {
+                classRef.on('child_added', function (snapshot) {
                   //Do something with the data
               document.getElementById("classNameLi").innerHTML = childData.className;
          
                 });
-               
                 classes.push(childData.className);
-                classes.push(childData.Tasks);
+                //classes.push(childData.Tasks);
                });
             });
          var className;
@@ -113,20 +115,22 @@ var firebaseConfig = {
               temp.push(childSnapshot2.val().taskName)
             })
           })
-  
+          
+          
           var select = document.getElementById("classList")
           classes.push(childCData.className);
-        console.log(temp);
-           var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
-           studentRef.on('value', function (snapshot) {
-             snapshot.forEach(function (childSnapshot) {
-               var childSData = childSnapshot.val();
-              studentsList.push(childSData);
-               console.log(studentsList);
-             });
-           studentTest = studentsList.toString();
-             console.log(studentTest);
-           });
+          
+
+          //  var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + className + '/Student List');
+          //  studentRef.on('value', function (snapshot) {
+          //    snapshot.forEach(function (childSnapshot) {
+          //      var childSData = childSnapshot.val();
+          //     studentsList.push(childSData);
+          //      console.log(studentsList);
+          //    });
+          //  studentTest = studentsList.toString();
+          //    console.log(studentTest);
+          //  });
         });
         for (i = 0; i <= (temp.length - 1); i++) {
           var temp2 = temp[i];
@@ -148,8 +152,8 @@ var firebaseConfig = {
             let newText = document.createTextNode('');
             newCell.appendChild(newText);
             document.getElementById("classNameLi").appendChild(tablenode);
-            classCount++;
-            console.log(classCount);
+            //classCount++;
+            //console.log(classCount);
   
             stuRef.on('value', function (snapshot3) {
               //console.log(snapshot3.val());
@@ -182,7 +186,7 @@ var firebaseConfig = {
             let newCell = newRow.insertCell(-1);
             let newText = document.createTextNode(temp[i]);
             newCell.appendChild(newText);
-            taskCount++;
+            //taskCount++;
             var rows = tablenode.getElementsByTagName("tr");
   
             if (taskCount != 1) {
@@ -208,39 +212,39 @@ var firebaseConfig = {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
       ddnode.value = "1";
-      var ddonode = document.createElement('option');
-       var ddonode2 = document.createElement('option');
-       var ddonode3 = document.createElement('option');
-      var ddonode4 = document.createElement('option');
-       var ddonode5 = document.createElement('option');
-       var ddonodesel = document.createElement('option')
+      // var ddonode = document.createElement('option');
+      //  var ddonode2 = document.createElement('option');
+      //  var ddonode3 = document.createElement('option');
+      // var ddonode4 = document.createElement('option');
+      //  var ddonode5 = document.createElement('option');
+      //  var ddonodesel = document.createElement('option')
   
-      let opTextsel = document.createTextNode("Select a value");
-       let opText = document.createTextNode("1");
-       let opText2 = document.createTextNode("2");
-       let opText3 = document.createTextNode("3");
-       let opText4 = document.createTextNode("4");
-       let opText5 = document.createTextNode("5");
-       ddonodesel.appendChild(opTextsel);
-       ddonode.appendChild(opText);
-       ddonode2.appendChild(opText2);
-       ddonode3.appendChild(opText3);
-       ddonode4.appendChild(opText4);
-       ddonode5.appendChild(opText5);
+      // let opTextsel = document.createTextNode("Select a value");
+      //  let opText = document.createTextNode("1");
+      //  let opText2 = document.createTextNode("2");
+      //  let opText3 = document.createTextNode("3");
+      //  let opText4 = document.createTextNode("4");
+      //  let opText5 = document.createTextNode("5");
+      //  ddonodesel.appendChild(opTextsel);
+      //  ddonode.appendChild(opText);
+      //  ddonode2.appendChild(opText2);
+      //  ddonode3.appendChild(opText3);
+      //  ddonode4.appendChild(opText4);
+      //  ddonode5.appendChild(opText5);
   
-       ddnode.appendChild(ddonodesel);
-       ddnode.appendChild(ddonode);
-       ddnode.appendChild(ddonode2);
-      ddnode.appendChild(ddonode3);
-       ddnode.appendChild(ddonode4);
-       ddnode.appendChild(ddonode5);
+      //  ddnode.appendChild(ddonodesel);
+      //  ddnode.appendChild(ddonode);
+      //  ddnode.appendChild(ddonode2);
+      // ddnode.appendChild(ddonode3);
+      //  ddnode.appendChild(ddonode4);
+      //  ddnode.appendChild(ddonode5);
       blankCell.appendChild(ddnode);
     }
   }
-  
+  console.log(classes);
   for (i = 0; i < classes.length; i++){
      students = [];
-studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
+    studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
     studentRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
          var childSData = childSnapshot.val();
@@ -287,47 +291,26 @@ studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" 
     }
   });
   
-  var studentList = [];
-  var cumul = 0;
-   function taskPercentDone(className, taskName){
-     cumul = 0;
-     firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
-       snapshot.forEach(function(item){
-         var itum = item.val();
-         itum = itum.studentName;
-         studentList.push(itum);
-       });
-       for (m = 0; m < studentList.length; m++) {
-         firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
-           var tSnap = snapshot.val();
-           tSnap = tSnap.rating;
-           tSnap = parseInt(tSnap);
-           cumul += tSnap;
-         });
-       }
-       }); 
-   };
-
   
-  var studentList = [];
-  function taskPercentDone(className, taskName){
-    cumul = 0;
-    firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
-      snapshot.forEach(function(item){
-        var itum = item.val();
-        itum = itum.studentName;
-        studentList.push(itum);
-      });
-      for (m = 0; m < studentList.length; m++) {
-        firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
-          var tSnap = snapshot.val();
-          tSnap = tSnap.rating;
-          tSnap = parseInt(tSnap);
-          cumul += tSnap;
+    var studentList = [];
+    function taskPercentDone(className, taskName){
+      cumul = 0;
+      firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
+        snapshot.forEach(function(item){
+          var itum = item.val();
+          itum = itum.studentName;
+          studentList.push(itum);
         });
-      }
-      }); 
-  }
+        for (m = 0; m < studentList.length; m++) {
+          firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+            var tSnap = snapshot.val();
+            tSnap = tSnap.rating;
+            tSnap = parseInt(tSnap);
+            cumul += tSnap;
+          });
+        }
+        }); 
+    }
   
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
