@@ -12,6 +12,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const analytics = firebase.analytics();
 
 n = new Date();
 y = n.getFullYear();
@@ -510,6 +511,7 @@ var cumul = 0;
 
  function genPDF() {
   //alert("test");
+  analytics.logEvent('download_report');
   var doc = new jsPDF();
   doc.text(20, 20, 'TestPDF');
   doc.addImage(content2, 'PNG', 10, 20, 100, 50);
