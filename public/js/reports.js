@@ -41,11 +41,11 @@ var firebaseConfig = {
   
   //gets the user's school name
   firebase.auth().onAuthStateChanged(function (user) {
-  
-    if (user){
+    if (user) {
+      uid = user.uid;
       schoolName = user.displayName;
+      userEmail = user.email;
     }
-  });
 
   
   var classRef = firebase.database().ref("Schools/" + schoolName + "/classes");
@@ -312,6 +312,8 @@ var firebaseConfig = {
         }); 
     }
   
+  });
+ 
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
   //   if (user != null) {

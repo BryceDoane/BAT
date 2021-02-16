@@ -1,13 +1,29 @@
+var firebaseConfig = {
+  apiKey: "AIzaSyB9Y2gGnOUC9tG_4piaqqCEhMxdi5yxQDI",
+  authDomain: "behavior-analysis-tracker.firebaseapp.com",
+  databaseURL: "https://behavior-analysis-tracker.firebaseio.com",
+  projectId: "behavior-analysis-tracker",
+  storageBucket: "behavior-analysis-tracker.appspot.com",
+  messagingSenderId: "392015561610",
+  appId: "1:392015561610:web:d9d2686cb3c9b312e4fe73",
+  measurementId: "G-EM4XVKW2YS"
+};
+firebase.initializeApp(firebaseConfig);
+const analytics = firebase.analytics();
+analytics.logEvent('page_view');
+
 /*!
     * Start Bootstrap - Creative v6.0.1 (https://startbootstrap.com/themes/creative)
     * Copyright 2013-2020 Start Bootstrap
     * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-creative/blob/master/LICENSE)
     */
-    (function($) {
+
+
+(function ($) {
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
       target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -21,7 +37,7 @@
   });
 
   // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
+  $('.js-scroll-trigger').click(function () {
     $('.navbar-collapse').collapse('hide');
   });
 
@@ -32,7 +48,7 @@
   });
 
   // Collapse Navbar
-  var navbarCollapse = function() {
+  var navbarCollapse = function () {
     if ($("#mainNav").offset().top > 100) {
       $("#mainNav").addClass("navbar-scrolled");
     } else {
