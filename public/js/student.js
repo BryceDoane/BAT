@@ -13,7 +13,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const analytics = firebase.analytics();
+//const analytics = firebase.analytics();
 
 // Get the modal
 var studentModal = document.getElementById("studentModal");
@@ -117,14 +117,22 @@ function newStudent() {
 
 //Delete Student model
 function delStudent() {
-  var IDList = [];
+
+  var studentDID = document.getElementById("studentDID").value;
+  var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentDID + "/");
+  delStudRef.remove();
+  studentModal.style.display = "none";
+  //location.reload();
+  
+  
+    /*var IDList = [];
   var studentID = document.getElementById("studentID").value;
   studentModal.style.display = "none";
   firebase.database().ref('Schools/' + userSchool + "/students/")
 
   for (i = 0; i <= IDList.length; i++) {
     if (IDList[i] == (studentID)) {
-      var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/");
+      var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentID);
       delStudRef.remove();
       location.reload();
       break;
@@ -132,8 +140,10 @@ function delStudent() {
       alert("A student with this ID doesn't exist");
       break;
     }
-  }
+  }*/
 }
+  deleteClassBtn.addEventListener('click', delStudent());
+
 
 //Fills student info to webpage
 
@@ -199,6 +209,7 @@ function signout() {
 };
 const sout = document.getElementById("lout");
 sout.addEventListener('click', signout);
+
 
 //gets signed in user
 firebase.auth().onAuthStateChanged(function (user) {

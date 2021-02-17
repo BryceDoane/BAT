@@ -176,6 +176,8 @@ function drawChart(name) {
           legend: 'none',
         };
       
+
+        
         var data = new google.visualization.arrayToDataTable([
           ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
           ['taskName', 10, 30, ''],
@@ -527,7 +529,7 @@ var cumul = 0;
   console.log(content2);
 
 
-  doc.save('test.pdf');
+  doc.save('test.pdf'); 
 }
 // tasksRef.on('value', function (snapshot) {
 //   //console.log(snapshot);
