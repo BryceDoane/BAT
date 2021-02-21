@@ -44,6 +44,8 @@ var gorgerr;
 var cumul = 0;
 var content;
 var content2;
+var ratingsData = [];
+var ratingData = [];
 
 
 // var formModal = document.getElementById("formModal");
@@ -178,13 +180,87 @@ function drawChart(name) {
       
 
         
-        var data = new google.visualization.arrayToDataTable([
+     
+       
+              
+          
+            var data = new google.visualization.arrayToDataTable([
           ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
-          ['taskName', 10, 30, ''],
-          ['taskName', 15, 30, ''],
-          ['taskName', 30, 30, '']
+        
+          ["Ex", 10, 30, ''],
+
+    
         ]);
+        
+        // calculating date to reference for daily report
+        var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = m + '-' + dd + '-' + yyyy;
+console.log(today);
+
+
+        // referencing student list
+var studentRep= firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Student List/");
+studentRep.on('value', function (snapshot) {
+  snapshot.forEach(function (childsSnapshot) {
+    var studentData = childsSnapshot.val();
+    studentsData = studentData.studentName;
+    //console.log(studentsData);
+  })})
+
+          // referencing tasks list
+          var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Tasks/");
+          taskRef.on('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+              var childData = childSnapshot.val();
+              taskData = childData.taskName;
+              //console.log(taskData);
+              data.addRow([taskData, 20, 20, ""]);
+           
+            })})
+
+            // referencing student rating
+  var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/"  + classes[i] + "/" + studentsData);
+  ratingRep.on('value', function (snapshot) {
+    snapshot.forEach(function (childsSnapshot) {
+      var ratingData = childsSnapshot.val();
+      var ratingsData = ratingData.rating;
+      console.log(ratingsData);
       
+      
+    })
+  })
+        
+  
+    function sum( obj ) {
+  var sum = 0;
+  for( var el in obj ) {
+    if( obj.hasOwnProperty( el ) ) {
+      sum += parseFloat( obj[el] );
+    }
+  }
+  return sum;
+}
+    
+var sample = parseInt(ratingsData)
+console.log("hello" + sample)
+var summed = sum( sample );
+console.log( "sum: "+ summed );
+
+console.log(
+  [ratingsData[i]].reduce((a, b) => a + b, 0)
+)
+
+  
+
+      
+        
+        
+  
+   
         // Instantiate and draw the chart.
         var chart = this.chart
         chart = new google.visualization.BarChart(document.getElementById(name));
@@ -196,7 +272,7 @@ function drawChart(name) {
     //})
   
   
-  console.log(name);
+  //console.log(name);
   // Define the chart to be drawn.
 
   
@@ -204,7 +280,7 @@ function drawChart(name) {
 google.charts.setOnLoadCallback(drawChart);
 firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
-  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/mathology/tasks/");
+  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes/tasks/");
   studentRef.on('value', function (snapshot) {
     //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
@@ -220,7 +296,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     })
     for (i = 0; i <= (classes.length - 1); i++) {
-      var text = document.createTextNode(classes[i]);
+       text = document.createTextNode(classes[i]);
       var tag = document.createElement("p");
       var newRDiv = document.createElement("div");
       newRDiv.appendChild(tag);
@@ -249,7 +325,8 @@ firebase.auth().onAuthStateChanged(function (user) {
       var childData = childSnapshot.val();
 
       var className = childData.className;
-      className = className.replace(/\s/g, '');
+      //className = className.replace(/\s/g, '');
+    
       classes.push(className);
       //console.log(childData.className);
       //drawChart(className);
@@ -258,7 +335,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     })
     for (i = 0; i <= (classes.length - 1); i++) {
-      var text = document.createTextNode(classes[i]);
+      const text = document.createTextNode(classes[i]);
       var tag = document.createElement("p");
       var newRDiv = document.createElement("div");
       newRDiv.appendChild(tag);
