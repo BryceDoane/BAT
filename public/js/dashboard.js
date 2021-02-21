@@ -223,18 +223,39 @@ studentRep.on('value', function (snapshot) {
             })})
 
             // referencing student rating
+            
   var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/"  + classes[i] + "/" + studentsData);
+  
   ratingRep.on('value', function (snapshot) {
+    let totalRating = [];
     snapshot.forEach(function (childsSnapshot) {
       var ratingData = childsSnapshot.val();
-      var ratingsData = ratingData.rating;
-      console.log(ratingsData);
+     ratingsData = ratingData.rating
+      //console.log(ratingsData)
+    var totalArray = [];
       
+totalArray = ratingsData
+
+    
+ 
+      totalRating.push(totalArray)
       
-    })
+     
+    });
+    var sumTotalRating = sum(totalRating)
+    //console.log(sumTotalRating)
+   let schoolTotal = [];
+    var schoolsTotal = [];
+    schoolsTotal = sumTotalRating;
+    console.log(schoolsTotal)
+    schoolTotal.push(schoolsTotal);
+    //console.log(schoolTotal)
+    //console.log("all =" + sum(schoolsTotal))
   })
-        
-  
+ 
+ 
+  //console.log(sum(total += ratingsData))
+
     function sum( obj ) {
   var sum = 0;
   for( var el in obj ) {
@@ -244,15 +265,9 @@ studentRep.on('value', function (snapshot) {
   }
   return sum;
 }
-    
-var sample = parseInt(ratingsData)
-console.log("hello" + sample)
-var summed = sum( sample );
-console.log( "sum: "+ summed );
+  
 
-console.log(
-  [ratingsData[i]].reduce((a, b) => a + b, 0)
-)
+
 
   
 
