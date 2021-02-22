@@ -46,6 +46,12 @@ var content;
 var content2;
 var ratingsData = [];
 var ratingData = [];
+var totalRatingss = [];
+var totalRatingArr = [];
+var ratingSum = [];
+var finalList = [];
+
+
 
 
 // var formModal = document.getElementById("formModal");
@@ -223,34 +229,55 @@ studentRep.on('value', function (snapshot) {
             })})
 
             // referencing student rating
-            
+         var totalArray = [];  
+        var totalRating = []; 
   var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/"  + classes[i] + "/" + studentsData);
   
   ratingRep.on('value', function (snapshot) {
-    let totalRating = [];
+    
     snapshot.forEach(function (childsSnapshot) {
-      var ratingData = childsSnapshot.val();
+      
+      ratingData = childsSnapshot.val();
      ratingsData = ratingData.rating
-      //console.log(ratingsData)
-    var totalArray = [];
+      console.log(ratingsData)
+    
       
 totalArray = ratingsData
 
     
  
       totalRating.push(totalArray)
+
+      
+
       
      
+
+      //console.log(children)
     });
+    
+    ratingSum = sum(totalRating)
+    finalList.push(ratingSum)
+    
+    //console.log(finalList)
+  finalSum = sum(finalList)
+  console.log(finalSum)
+
     var sumTotalRating = sum(totalRating)
     //console.log(sumTotalRating)
-   let schoolTotal = [];
-    var schoolsTotal = [];
+   
     schoolsTotal = sumTotalRating;
-    console.log(schoolsTotal)
-    schoolTotal.push(schoolsTotal);
-    //console.log(schoolTotal)
+   // console.log(schoolsTotal)
+ 
+    
+   
+
+    
     //console.log("all =" + sum(schoolsTotal))
+
+  
+
+    
   })
  
  
@@ -322,6 +349,8 @@ firebase.auth().onAuthStateChanged(function (user) {
       element.appendChild(newRDiv);
       console.log(classes[i])
       drawChart(classes[i]);
+      taskPercentDone(className, taskName);
+      console.log
     }
   })
 })
@@ -676,7 +705,7 @@ var cumul = 0;
     };
   };
 };
-
+*/
 var studentList = [];
 function taskPercentDone(className, taskName){
   cumul = 0;
@@ -715,5 +744,4 @@ https://www.w3schools.com/Jsref/prop_style_backgroundcolor.asp
 
 document.body.style.backgroundColor = "red"; //makes body elements red
 document.getElementById("myDiv").style.backgroundColor = "lightblue";
-
 */
