@@ -51,6 +51,11 @@ var totalRatingArr = [];
 var ratingSum = [];
 var finalList = [];
 
+var arrayFive = [];
+var arrayMain =[];
+var firstArr = [];
+var lastArr = [];
+
 
 
 
@@ -231,37 +236,51 @@ studentRep.on('value', function (snapshot) {
             // referencing student rating
          var totalArray = [];  
         var totalRating = []; 
-  var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/"  + classes[i] + "/" + studentsData);
+  var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/"  + classes[i] + "/" + studentsData + "/");
   
   ratingRep.on('value', function (snapshot) {
     
     snapshot.forEach(function (childsSnapshot) {
       
       ratingData = childsSnapshot.val();
+      //console.log(ratingData)
      ratingsData = ratingData.rating
-      console.log(ratingsData)
-    
+     // console.log(ratingsData)
+  
+   
+   
+     if(ratingsData == 4){arrayFive = ratingsData
+      arrayMain.push(arrayFive)
       
-totalArray = ratingsData
-
+      
+    }
+    else{
+      console.log("false")
+    }
+    //console.log(ratingsData)
+ 
     
  
-      totalRating.push(totalArray)
+totalArray = ratingsData
+totalRating.push(totalArray)
 
-      
-
-      
      
-
-      //console.log(children)
     });
     
+    var g = sum(arrayMain)
+//console.log(g);
+firstArr = g
+    lastArr.push(firstArr)
+    console.log(lastArr[5])
+
+
+    //console.log(sum(arrayMain))
     ratingSum = sum(totalRating)
     finalList.push(ratingSum)
     
     //console.log(finalList)
   finalSum = sum(finalList)
-  console.log(finalSum)
+  //console.log(finalSum)
 
     var sumTotalRating = sum(totalRating)
     //console.log(sumTotalRating)
