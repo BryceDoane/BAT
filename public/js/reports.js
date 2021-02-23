@@ -10,6 +10,7 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  //const analytics = firebase.analytics();
   
   n = new Date();
   y = n.getFullYear();
@@ -18,6 +19,8 @@ var firebaseConfig = {
   document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
   //current date script by Lance on StackOverflow
   
+  // import { content, content2 } from "./dashboard.js";
+
   var uid;
   var userEmail;
   var schoolName;
@@ -314,6 +317,34 @@ var firebaseConfig = {
   
   });
  
+  function genPDF() {
+    //alert("test");
+    //analytics.logEvent('download_report');
+    var doc = new jsPDF();
+    doc.text(20, 20, 'TestPDF');
+    // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
+    // doc.addImage(content, 'PNG', 120, 20, 65, 55);
+    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000}
+    );
+    doc.addImage(content2, 'PNG', 10, 20, 100, 50);
+    doc.addImage(content, 'PNG', 120, 20, 65, 55);
+    doc.addPage();
+
+  
+    // var source = window.document.getElementsByTagName("body")[0];
+    // doc.fromHTML(
+    //     source,
+    //     15,
+    //     15,
+    //     {
+    //       'width': 180
+    //     });
+    //  console.log(source);
+    // console.log(content2);
+  
+  
+    doc.save('test.pdf'); 
+  }
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
   //   if (user != null) {

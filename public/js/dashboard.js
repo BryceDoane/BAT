@@ -167,6 +167,7 @@ function drawOChart() {
 
   chart.draw(data, options1);
   chart2.draw(data2, options2);
+  // export {content, content2 };
   // chart3.draw(data3, options3);
 }
 // Define the chart to be drawn.
