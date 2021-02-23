@@ -14,11 +14,25 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
+var weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 n = new Date();
 y = n.getFullYear();
-m = n.getMonth() + 1;
-d = n.getDate();
-document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+m = monthNames[n.getMonth()];
+d1 = n.getDay();
+d = weekday[n.getDay()];
+document.getElementById("date").innerHTML = d + ", " + m + " " + d1 + ", " + y;
 //current date script by Lance on StackOverflow
 
 var uid;
@@ -665,8 +679,17 @@ var cumul = 0;
     left: 30,
     width: 550
   };
-  console.log(content);
-  console.log(content2);
+
+  // var source = window.document.getElementsByTagName("body")[0];
+  // doc.fromHTML(
+  //     source,
+  //     15,
+  //     15,
+  //     {
+  //       'width': 180
+  //     });
+  //  console.log(source);
+  // console.log(content2);
 
 
   doc.save('test.pdf'); 

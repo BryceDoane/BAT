@@ -39,8 +39,8 @@
     </div>
     <!-- Page content -->
     <div id="dashboardPDF" class="dashboard">
-        <h1>Dashboard</h1>
-        <h1 id="date"></h1>
+        <div id="dashboardhead"><h1>Dashboard - </h1><h1 id="date"></h1><button id="clickMe" onclick="genPDF();">Download</button></div>        
+
         <h1>Overview</h1>
         <hr>
         <div class="dashboardCharts">
@@ -51,7 +51,7 @@
         </div>
         
         <h1>Class Breakdown</h1>
-        <button id="clickMe" onclick="genPDF();">Download</button>
+
         <hr>
         <div id="myPieChart"></div>
         <div class="classCharts">
