@@ -29,7 +29,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 n = new Date();
 y = n.getFullYear();
-m = n.getMonth(); 
+m = n.getMonth();
 d1 = n.getDay();
 d = weekday[n.getDay()];
 document.getElementById("date").innerHTML = d + ", " + m + " " + d1 + ", " + y;
@@ -66,10 +66,10 @@ var ratingSum = [];
 var finalList = [];
 
 var arrayFive = [];
-var arrayMain =[];
+var arrayMain = [];
 var firstArr = [];
 var lastArr = [];
-
+var brycesArray = [];
 
 
 
@@ -174,191 +174,196 @@ function drawOChart() {
 google.charts.load('current', { packages: ['corechart'] });
 
 function drawChart(name) {
-  if (typeof(name) == "undefined"){
+  if (typeof (name) == "undefined") {
     return
   }
-    // userSchool = user.displayName;
-    var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes");
-    //studentRef.on('value', function (snapshot) {
-      //console.log(snapshot);
-      // snapshot.forEach(function (childSnapshot) {
-      //   var childData = childSnapshot.val();
-      //   var taskName = childData.taskName;
+  // userSchool = user.displayName;
+  var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes");
+  //studentRef.on('value', function (snapshot) {
+  //console.log(snapshot);
+  // snapshot.forEach(function (childSnapshot) {
+  //   var childData = childSnapshot.val();
+  //   var taskName = childData.taskName;
 
-        // taskName = taskName.replace(/\s/g, '');
-        // tasks.push(taskName);
-        // console.log(taskName);
-        //console.log(childData.className);
-        //drawChart(className);
-        var data = this["marker" + name]
-        var options = {
-          title: name
-          , width: 500
-          , height: 300
-          , isStacked: 'percent'
-          , titleTextStyle: {
-            color: 'black',
-            fontSize: 20,
-          },
-          colors: ['green', 'red'],
-          legend: 'none',
-        };
-      
-
-        
-     
-       
-              
-          
-            var data = new google.visualization.arrayToDataTable([
-          ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
-        
-          ["Ex", 10, 30, ''],
-
-    
-        ]);
-        
-        // calculating date to reference for daily report
-        var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var m = String(today.getMonth() + 1).padStart(1, '0'); //January is 0!
-var yyyy = today.getFullYear();
-
-today = m + '-' + dd + '-' + yyyy;
-console.log(today);
+  // taskName = taskName.replace(/\s/g, '');
+  // tasks.push(taskName);
+  // console.log(taskName);
+  //console.log(childData.className);
+  //drawChart(className);
+  var data = this["marker" + name]
+  var options = {
+    title: name
+    , width: 500
+    , height: 300
+    , isStacked: 'percent'
+    , titleTextStyle: {
+      color: 'black',
+      fontSize: 20,
+    },
+    colors: ['green', 'red'],
+    legend: 'none',
+  };
 
 
-        // referencing student list
-var studentRep= firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Student List/");
-studentRep.on('value', function (snapshot) {
-  snapshot.forEach(function (childsSnapshot) {
-    var studentData = childsSnapshot.val();
-    studentsData = studentData.studentName;
-    //console.log(studentsData);
-  })})
 
-          // referencing tasks list
-          var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Tasks/");
-          taskRef.on('value', function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-              var childData = childSnapshot.val();
-              taskData = childData.taskName;
-              //console.log(taskData);
-              data.addRow([taskData, 20, 20, ""]);
-           
-            })})
 
-            // referencing student rating
-         var totalArray = [];  
-        var totalRating = []; 
-  var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/"  + classes[i] + "/" + studentsData + "/");
-  
-  ratingRep.on('value', function (snapshot) {
-    
+
+
+
+  var data = new google.visualization.arrayToDataTable([
+    ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
+
+    ["Ex", 10, 30, ''],
+
+
+  ]);
+
+  // calculating date to reference for daily report
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var m = String(today.getMonth() + 1).padStart(1, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = m + '-' + dd + '-' + yyyy;
+  //console.log(today);
+
+
+  // referencing student list
+  var studentRep = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Student List/");
+  studentRep.on('value', function (snapshot) {
     snapshot.forEach(function (childsSnapshot) {
-      
+      var studentData = childsSnapshot.val();
+      studentsData = studentData.studentName;
+      //console.log(studentsData);
+    })
+  })
+
+  // referencing tasks list
+  var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Tasks/");
+  taskRef.on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+      taskData = childData.taskName;
+      //console.log(taskData);
+      data.addRow([taskData, 20, 20, ""]);
+
+    })
+  })
+
+  // referencing student rating
+  var totalArray = [];
+  var totalRating = [];
+  var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/" + classes[i] + "/" + studentsData + "/");
+  ratingRep.on('value', function (snapshot) {
+
+    snapshot.forEach(function (childsSnapshot) {
+
       ratingData = childsSnapshot.val();
       //console.log(ratingData)
-     ratingsData = ratingData.rating
-     console.log(ratingsData)
-  
-      
-   
-     if(ratingsData == 1){arrayFive = ratingsData
-      arrayMain.push(arrayFive)
-     
-      
-      
-    }
-    else{
-      //console.log("false")
-    }
-    //console.log(ratingsData)
- 
-    //console.log(arrayMain.length)
-    var r = arrayMain.length
-    //console.log(r)
+      ratingsData = ratingData.rating;
+      //console.log(ratingsData);
+      brycesArray.push(ratingsData);
 
-//console.log(totalRating)
 
-     
+
+      if (ratingsData == 1) {
+        arrayFive = ratingsData
+        arrayMain.push(arrayFive)
+
+
+
+      }
+      else {
+        //console.log("false")
+      }
+      //console.log(ratingsData)
+
+      //console.log(arrayMain.length)
+      var r = arrayMain.length
+      //console.log(r)
+
+      //console.log(totalRating)
+
+
     });
+
     totalArray = ratingsData
-totalRating.push(totalArray)
-console.log
-    
+    totalRating.push(totalArray)
+    console.log
+
     var g = arrayMain.length
-//console.log(g);
-firstArr = g
+    //console.log(g);
+    firstArr = g
     lastArr.push(firstArr)
     //console.log(lastArr.slice(-1))
-   
+
 
 
     //console.log(sum(arrayMain))
     ratingSum = sum(totalRating)
     finalList.push(ratingSum)
-    
+
     //console.log(finalList)
-  finalSum = sum(finalList)
-  //console.log(finalSum)
+    finalSum = sum(finalList)
+    //console.log(finalSum)
 
     var sumTotalRating = sum(totalRating)
     //console.log(sumTotalRating)
-   
+
     schoolsTotal = sumTotalRating;
-   // console.log(schoolsTotal)
- 
-    
-   
+    // console.log(schoolsTotal)
 
-    
+
+
+
+
     //console.log("all =" + sum(schoolsTotal))
+    console.log(brycesArray);
+    //lastArr.push(brycesArray);
+  });
 
-  
 
-    
-  })
- 
- 
+    console.log(brycesArray);
+
   //console.log(sum(total += ratingsData))
 
-    function sum( obj ) {
-  var sum = 0;
-  for( var el in obj ) {
-    if( obj.hasOwnProperty( el ) ) {
-      sum += parseFloat( obj[el] );
+  function sum(obj) {
+    var sum = 0;
+    for (var el in obj) {
+      if (obj.hasOwnProperty(el)) {
+        sum += parseFloat(obj[el]);
+      }
     }
+    return sum;
   }
-  return sum;
-}
-  
+
+  //console.log(lastArr);
 
 
 
-  
 
-      
-        
-        
-  
-   
-        // Instantiate and draw the chart.
-        var chart = this.chart
-        chart = new google.visualization.BarChart(document.getElementById(name));
-        chart.draw(data, options);
-        //console.log(childSnapshot);
-  
-      //})
-    
-    //})
-  
-  
+
+
+
+
+
+  // Instantiate and draw the chart.
+  var chart = this.chart
+  chart = new google.visualization.BarChart(document.getElementById(name));
+  chart.draw(data, options);
+  //console.log(childSnapshot);
+
+  //})
+
+  //})
+
+
   //console.log(name);
   // Define the chart to be drawn.
 
-  
 }
+
+
 google.charts.setOnLoadCallback(drawChart);
 firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
@@ -378,7 +383,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     })
     for (i = 0; i <= (classes.length - 1); i++) {
-       text = document.createTextNode(classes[i]);
+      text = document.createTextNode(classes[i]);
       var tag = document.createElement("p");
       var newRDiv = document.createElement("div");
       newRDiv.appendChild(tag);
@@ -410,7 +415,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
       var className = childData.className;
       //className = className.replace(/\s/g, '');
-    
+
       classes.push(className);
       //console.log(childData.className);
       //drawChart(className);
@@ -653,26 +658,26 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 var studentList = [];
 var cumul = 0;
- function taskPercentDone(className, taskName){
-   cumul = 0;
-   firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
-     snapshot.forEach(function(item){
-       var itum = item.val();
-       itum = itum.studentName;
-       studentList.push(itum);
-     });
-     for (m = 0; m < studentList.length; m++) {
-       firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
-         var tSnap = snapshot.val();
-         tSnap = tSnap.rating;
-         tSnap = parseInt(tSnap);
-         cumul += tSnap;
-       });
-     }
-     }); 
- };
+function taskPercentDone(className, taskName) {
+  cumul = 0;
+  firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Student List").once("value", function (snapshot) {
+    snapshot.forEach(function (item) {
+      var itum = item.val();
+      itum = itum.studentName;
+      studentList.push(itum);
+    });
+    for (m = 0; m < studentList.length; m++) {
+      firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + '/' + className + "/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+        var tSnap = snapshot.val();
+        tSnap = tSnap.rating;
+        tSnap = parseInt(tSnap);
+        cumul += tSnap;
+      });
+    }
+  });
+};
 
- function genPDF() {
+function genPDF() {
   //alert("test");
   analytics.logEvent('download_report');
   var doc = new jsPDF();
@@ -699,7 +704,7 @@ var cumul = 0;
   // console.log(content2);
 
 
-  doc.save('test.pdf'); 
+  doc.save('test.pdf');
 }
 // tasksRef.on('value', function (snapshot) {
 //   //console.log(snapshot);
@@ -756,23 +761,23 @@ var cumul = 0;
 };
 */
 var studentList = [];
-function taskPercentDone(className, taskName){
+function taskPercentDone(className, taskName) {
   cumul = 0;
-  firebase.database().ref('Schools/' + schoolName + "/classes/" + className +"/Student List").once("value", function (snapshot) {
-    snapshot.forEach(function(item){
+  firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Student List").once("value", function (snapshot) {
+    snapshot.forEach(function (item) {
       var itum = item.val();
       itum = itum.studentName;
       studentList.push(itum);
     });
     for (m = 0; m < studentList.length; m++) {
-      firebase.database().ref('Schools/'+ schoolName +'/dailyReports/'+ currentDate + '/'+ className +"/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+      firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + '/' + className + "/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
         var tSnap = snapshot.val();
         tSnap = tSnap.rating;
         tSnap = parseInt(tSnap);
         cumul += tSnap;
       });
     }
-    }); 
+  });
 };
 
 //Example of taskPercentDone Usage needs className and taskName defined before it can run.
