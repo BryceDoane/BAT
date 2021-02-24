@@ -29,7 +29,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 n = new Date();
 y = n.getFullYear();
-m = monthNames[n.getMonth()];
+m = n.getMonth(); 
 d1 = n.getDay();
 d = weekday[n.getDay()];
 document.getElementById("date").innerHTML = d + ", " + m + " " + d1 + ", " + y;
@@ -59,7 +59,7 @@ var cumul = 0;
 var content;
 var content2;
 var ratingsData;
-var ratingData = [];
+var ratingData;
 var totalRatingss = [];
 var totalRatingArr = [];
 var ratingSum = [];
@@ -221,7 +221,7 @@ function drawChart(name) {
         // calculating date to reference for daily report
         var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var m = String(today.getMonth() + 1).padStart(1, '0'); //January is 0!
 var yyyy = today.getFullYear();
 
 today = m + '-' + dd + '-' + yyyy;
