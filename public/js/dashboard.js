@@ -44,7 +44,7 @@ var gorgerr;
 var cumul = 0;
 var content;
 var content2;
-var ratingsData = [];
+var ratingsData;
 var ratingData = [];
 var totalRatingss = [];
 var totalRatingArr = [];
@@ -245,33 +245,39 @@ studentRep.on('value', function (snapshot) {
       ratingData = childsSnapshot.val();
       //console.log(ratingData)
      ratingsData = ratingData.rating
-     // console.log(ratingsData)
+     console.log(ratingsData)
   
+      
    
-   
-     if(ratingsData == 4){arrayFive = ratingsData
+     if(ratingsData == 1){arrayFive = ratingsData
       arrayMain.push(arrayFive)
+     
       
       
     }
     else{
-      console.log("false")
+      //console.log("false")
     }
     //console.log(ratingsData)
  
-    
- 
-totalArray = ratingsData
-totalRating.push(totalArray)
+    //console.log(arrayMain.length)
+    var r = arrayMain.length
+    //console.log(r)
+
+//console.log(totalRating)
 
      
     });
+    totalArray = ratingsData
+totalRating.push(totalArray)
+console.log
     
-    var g = sum(arrayMain)
+    var g = arrayMain.length
 //console.log(g);
 firstArr = g
     lastArr.push(firstArr)
-    console.log(lastArr[5])
+    //console.log(lastArr.slice(-1))
+   
 
 
     //console.log(sum(arrayMain))
