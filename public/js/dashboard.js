@@ -12,23 +12,21 @@ var firebaseConfig = {
 };
 
 
-
-
-
-
 // Initialize Firebase
-function startData(){
-firebase.initializeApp(firebaseConfig);
-const analytics = firebase.analytics();}
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
+const analytics = firebase.analytics();
 
-const myPromise = new Promise((resolve, reject) => {
- startData()
-});
+// const myPromise = new Promise((resolve, reject) => {
+//  startData()
+// });
 
-myPromise
-  .then(loadData, console.log("Failed"))
-  
-function loadData(){
+// myPromise
+//   .then(loadData, console.log("Failed"))
+
 
 var weekday = new Array(7);
 weekday[0] = "Sunday";
@@ -43,16 +41,16 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-n = new Date();
-y = n.getFullYear();
-m = n.getMonth();
-d1 = n.getDay();
-d = weekday[n.getDay()];
+var n = new Date();
+var y = n.getFullYear();
+var m = n.getMonth();
+var d1 = n.getDay();
+var d = weekday[n.getDay()];
 document.getElementById("date").innerHTML = d + ", " + m + " " + d1 + ", " + y;
 //current date script by Lance on StackOverflow
 
 var uid;
-var userEmail;
+var email;
 var schoolName;
 var classes = [];
 var students = [];
@@ -86,7 +84,7 @@ var arrayMain = [];
 var firstArr = [];
 var lastArr = [];
 var brycesArray = [];
-
+var chartComplete;
 
 
 // var formModal = document.getElementById("formModal");
@@ -105,7 +103,17 @@ var brycesArray = [];
 //   }
 // }
 
-function drawOChart() {
+async function loadChartInfo() {
+  google.charts.load('current', { packages: ['corechart'] });
+  google.load('visualization', { packages: ['corechart'] });
+}
+
+
+google.charts.load('current', { packages: ['corechart'] });
+google.charts.load('visualization', { packages: ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
+async function drawOChart() {
+
   var data = google.visualization.arrayToDataTable([
     ['Task', 'Number of Ratings'],
     ['5', 11],
@@ -130,11 +138,6 @@ function drawOChart() {
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
-  google.visualization.events.addListener(chart, 'ready', function () {
-    content = chart.getImageURI()
-    //content = '<img src="' + chart.getImageURI() + '">';
-    // $('#chartContainer3').append(content);
-  });
 
   var data2 = google.visualization.arrayToDataTable([
     ['Year', 'Sales', 'Expenses'],
@@ -159,11 +162,7 @@ function drawOChart() {
   };
 
   var chart2 = new google.visualization.ColumnChart(document.getElementById('chartContainer4'));
-  google.visualization.events.addListener(chart2, 'ready', function () {
-    content2 = chart2.getImageURI()
-    //content = '<img src="' + chart.getImageURI() + '">';
-    // $('#chartContainer3').append(content);
-  });
+
 
   // var data3 = new google.visualization.DataTable();
   // data3.addColumn('string', 'Name');
@@ -180,15 +179,37 @@ function drawOChart() {
   // };
 
   // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
-
+  // drawCharts(data, options1);
+  // drawCharts(data, options1);
   chart.draw(data, options1);
+
+  // drawCharts(data2, options2)
+
+  // ch
+  // drawCharts(data2, options2);
   chart2.draw(data2, options2);
-  // export {content, content2 };
+
+  google.visualization.events.addListener(chart, 'ready', function () {
+    let content = chart.getImageURI();
+    // drawCharts(data2, options2);
+    //content = '<img src="' + chart.getImageURI() + '">';
+    // $('#chartContainer3').append(content);
+  });
+
+  google.visualization.events.addListener(chart2, 'ready', function () {
+    content2 = chart2.getImageURI()
+    //content = '<img src="' + chart.getImageURI() + '">';
+    // $('#chartContainer3').append(content);
+  });
+  content = chart.getImageURI();
+  content2 = chart2.getImageURI();
+  console.log(content, content2);
+  return content, content2
   // chart3.draw(data3, options3);
 }
+
 // Define the chart to be drawn.
 google.charts.load('current', { packages: ['corechart'] });
-
 function drawChart(name) {
   if (typeof (name) == "undefined") {
     return
@@ -206,7 +227,7 @@ function drawChart(name) {
   // console.log(taskName);
   //console.log(childData.className);
   //drawChart(className);
-  var data = this["marker" + name]
+  // var data = this["marker" + name]
   var options = {
     title: name
     , width: 500
@@ -262,8 +283,8 @@ function drawChart(name) {
       taskData = childData.taskName;
       //console.log(taskData);
       data.addRow([taskData, 20, 20, ""]);
-      
-     // data.addRow(["Test", , 20, ""]);
+
+      // data.addRow(["Test", , 20, ""]);
 
     })
   })
@@ -282,7 +303,7 @@ function drawChart(name) {
 
       console.log(ratingsData);
       firstArr = ratingsData
-   
+
       lastArr.push(ratingsData);
 
       //console.log(lastArr)
@@ -293,20 +314,18 @@ function drawChart(name) {
         let db = await this.customersRef.orderByChild("ticket").once('value')
         return customers
       }
-      
 
 
 
     });
 
-  
-  
-    
+
+
 
     var g = arrayMain.length
     //console.log(g);
     firstArr = g
-    
+
     //console.log(lastArr.slice(-1))
 
 
@@ -333,9 +352,9 @@ function drawChart(name) {
     //console.log(brycesArray);
     //lastArr.push(brycesArray);
   });
-  
+
   //console.log(lastArr)
-    //console.log(brycesArray);
+  //console.log(brycesArray);
 
   //console.log(sum(total += ratingsData))
 
@@ -373,6 +392,7 @@ function drawChart(name) {
   //console.log(name);
   // Define the chart to be drawn.
 
+
 }
 
 
@@ -394,7 +414,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       //console.log(childSnapshot);
 
     })
-    for (i = 0; i <= (classes.length - 1); i++) {
+    for (var i = 0; i <= (classes.length - 1); i++) {
       text = document.createTextNode(classes[i]);
       var tag = document.createElement("p");
       var newRDiv = document.createElement("div");
@@ -435,7 +455,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       //console.log(childSnapshot);
 
     })
-    for (i = 0; i <= (classes.length - 1); i++) {
+    for (var i = 0; i <= (classes.length - 1); i++) {
       const text = document.createTextNode(classes[i]);
       var tag = document.createElement("p");
       var newRDiv = document.createElement("div");
@@ -444,7 +464,10 @@ firebase.auth().onAuthStateChanged(function (user) {
       newRDiv.id = classes[i];
       newRDiv.className = "graphs";
       var element = document.getElementById("myPieChart");
-      element.appendChild(newRDiv);
+      if (newRDiv !== null){
+        element.appendChild(newRDiv);
+      }
+
       drawChart(classes[i]);
     }
   })
@@ -454,13 +477,17 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-firebase.auth().onAuthStateChanged(function (user) {
+firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
     uid = user.uid;
     email = user.email;
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
-    drawOChart();
+
+    google.charts.load('current', { packages: ['corechart'] });
+    google.load('visualization', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawOChart);
+    // await drawOChart();
     //var studentNameRef = firebase.database().ref('Schools/' + schoolName + "/students");
     // studentNameRef.on('value', function (snapshot) {
     //   snapshot.forEach(function (childSnapshot) {
@@ -501,12 +528,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         //   //console.log(studentTest);
         // });
       });
-      for (i = 0; i <= (temp.length - 1); i++) {
+      for (var i = 0; i <= (temp.length - 1); i++) {
         var temp2 = temp[i];
         if (temp2.includes("ClassName")) {
           taskCount = 0;
           students = [];
-          temp3 = temp2.replace('ClassName: ', "");
+          var temp3 = temp2.replace('ClassName: ', "");
           var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
           var node = document.createElement('h1');
           var textNode = document.createTextNode(temp3);
@@ -530,7 +557,7 @@ firebase.auth().onAuthStateChanged(function (user) {
               students.push(childSnapshot3.val().studentName);
             })
           })
-          for (j = 0; j <= (students.length - 1); j++) {
+          for (var j = 0; j <= (students.length - 1); j++) {
             let newRow = tablenode.insertRow(-1);
             let newCell = newRow.insertCell(0);
             let newText = document.createTextNode(students[j]);
@@ -579,7 +606,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 })
 
 function addCell(rows) {
-  for (k = 1; k <= (rows.length - 1); k++) {
+  for (var k = 1; k <= (rows.length - 1); k++) {
     let blankCell = rows[k].insertCell(-1);
     var ddnode = document.createElement('input');
     ddnode.value = "1";
@@ -773,24 +800,24 @@ function genPDF() {
 };
 */
 var studentList = [];
-function taskPercentDone(className, taskName) {
-  cumul = 0;
-  firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Student List").once("value", function (snapshot) {
-    snapshot.forEach(function (item) {
-      var itum = item.val();
-      itum = itum.studentName;
-      studentList.push(itum);
-    });
-    for (m = 0; m < studentList.length; m++) {
-      firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + '/' + className + "/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
-        var tSnap = snapshot.val();
-        tSnap = tSnap.rating;
-        tSnap = parseInt(tSnap);
-        cumul += tSnap;
-      });
-    }
-  });
-};
+// function taskPercentDone(className, taskName) {
+//   cumul = 0;
+//   firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Student List").once("value", function (snapshot) {
+//     snapshot.forEach(function (item) {
+//       var itum = item.val();
+//       itum = itum.studentName;
+//       studentList.push(itum);
+//     });
+//     for (m = 0; m < studentList.length; m++) {
+//       firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + '/' + className + "/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+//         var tSnap = snapshot.val();
+//         tSnap = tSnap.rating;
+//         tSnap = parseInt(tSnap);
+//         cumul += tSnap;
+//       });
+//     }
+//   });
+// };
 
 //Example of taskPercentDone Usage needs className and taskName defined before it can run.
 // firebase.auth().onAuthStateChanged(function (user) {
@@ -815,11 +842,15 @@ document.getElementById("myDiv").style.backgroundColor = "lightblue";
 //console.log(lastArr)
 
 
-  
-  //console.log(lastArr.length)
-  console.log(lastArr)
-  
-}
-window.onload = function() {
-  setTimeout(loadData, 3000);
-}
+
+//console.log(lastArr.length)
+// console.log(lastArr)
+
+
+
+// window.onload = function() {
+//   setTimeout(loadData, 3000);
+// };
+
+
+export { drawOChart, loadChartInfo };
