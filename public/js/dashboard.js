@@ -10,9 +10,25 @@ var firebaseConfig = {
   appId: "1:392015561610:web:d9d2686cb3c9b312e4fe73",
   measurementId: "G-EM4XVKW2YS"
 };
+
+
+
+
+
+
 // Initialize Firebase
+function startData(){
 firebase.initializeApp(firebaseConfig);
-const analytics = firebase.analytics();
+const analytics = firebase.analytics();}
+
+const myPromise = new Promise((resolve, reject) => {
+ startData()
+});
+
+myPromise
+  .then(loadData, console.log("Failed"))
+  
+function loadData(){
 
 var weekday = new Array(7);
 weekday[0] = "Sunday";
@@ -213,11 +229,11 @@ function drawChart(name) {
   var data = new google.visualization.arrayToDataTable([
     ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
 
-    ["Ex", 10, 30, ''],
+    ["Ex", 0, 0, ''],
 
 
   ]);
-
+  data.removeRow(0)
   // calculating date to reference for daily report
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
@@ -246,6 +262,8 @@ function drawChart(name) {
       taskData = childData.taskName;
       //console.log(taskData);
       data.addRow([taskData, 20, 20, ""]);
+      
+     // data.addRow(["Test", , 20, ""]);
 
     })
   })
@@ -261,40 +279,34 @@ function drawChart(name) {
       ratingData = childsSnapshot.val();
       //console.log(ratingData)
       ratingsData = ratingData.rating;
-      //console.log(ratingsData);
-      brycesArray.push(ratingsData);
+
+      console.log(ratingsData);
+      firstArr = ratingsData
+   
+      lastArr.push(ratingsData);
+
+      //console.log(lastArr)
 
 
 
-      if (ratingsData == 1) {
-        arrayFive = ratingsData
-        arrayMain.push(arrayFive)
-
-
-
+      loadFirebase = async () => {
+        let db = await this.customersRef.orderByChild("ticket").once('value')
+        return customers
       }
-      else {
-        //console.log("false")
-      }
-      //console.log(ratingsData)
+      
 
-      //console.log(arrayMain.length)
-      var r = arrayMain.length
-      //console.log(r)
-
-      //console.log(totalRating)
 
 
     });
 
-    totalArray = ratingsData
-    totalRating.push(totalArray)
-    console.log
+  
+  
+    
 
     var g = arrayMain.length
     //console.log(g);
     firstArr = g
-    lastArr.push(firstArr)
+    
     //console.log(lastArr.slice(-1))
 
 
@@ -318,12 +330,12 @@ function drawChart(name) {
 
 
     //console.log("all =" + sum(schoolsTotal))
-    console.log(brycesArray);
+    //console.log(brycesArray);
     //lastArr.push(brycesArray);
   });
-
-
-    console.log(brycesArray);
+  
+  //console.log(lastArr)
+    //console.log(brycesArray);
 
   //console.log(sum(total += ratingsData))
 
@@ -340,7 +352,7 @@ function drawChart(name) {
   //console.log(lastArr);
 
 
-
+  //console.log(lastArr)
 
 
 
@@ -799,3 +811,15 @@ https://www.w3schools.com/Jsref/prop_style_backgroundcolor.asp
 document.body.style.backgroundColor = "red"; //makes body elements red
 document.getElementById("myDiv").style.backgroundColor = "lightblue";
 */
+
+//console.log(lastArr)
+
+
+  
+  //console.log(lastArr.length)
+  console.log(lastArr)
+  
+}
+window.onload = function() {
+  setTimeout(loadData, 3000);
+}
