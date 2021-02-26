@@ -309,6 +309,10 @@ select{
     box-shadow: 3px 3px;
   }
 
+  .dcharts{
+    display:none !important;
+  }
+
   .dashboard table tr:nth-child(even) {background-color: #6d6d6d;}
   .dashboard table tr:hover {background-color: #6d6d6d;}
   /* Dashboard Table Formatting END*/

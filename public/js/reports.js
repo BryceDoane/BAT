@@ -9,13 +9,17 @@ var firebaseConfig = {
     measurementId: "G-EM4XVKW2YS"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+ }else {
+    firebase.app(); // if already initialized, use that one
+ }
   //const analytics = firebase.analytics();
   
-  n = new Date();
-  y = n.getFullYear();
-  m = n.getMonth() + 1;
-  d = n.getDate();
+  var n = new Date();
+  var y = n.getFullYear();
+  var m = n.getMonth() + 1;
+  var d = n.getDate();
   document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
   //current date script by Lance on StackOverflow
   
@@ -41,6 +45,10 @@ var firebaseConfig = {
   var gorgerr;
   var cumul = 0;
   var classesList;
+
+import { drawOChart, loadChartInfo } from './dashboard.js';
+
+// console.log(drawOChart());
   
   //gets the user's school name
   firebase.auth().onAuthStateChanged(function (user) {
@@ -100,7 +108,7 @@ var firebaseConfig = {
                  }
                });
          
-               for (j = 1; j < taskNumber + 1; j++) {
+               for (var j = 1; j < taskNumber + 1; j++) {
                  var taskName = document.getElementById(className).rows[0].cells[j].innerHTML;
                  var ratingValue = document.getElementById(className).rows[p].cells[j].firstChild.value;
                  if (ratingValue) {
@@ -140,7 +148,7 @@ var firebaseConfig = {
           if (temp2.includes("ClassName")) {
             taskCount = 0;
             students = [];
-            temp3 = temp2.replace('ClassName: ', "");
+            var temp3 = temp2.replace('ClassName: ', "");
             var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
             var node = document.createElement('h1');
             var textNode = document.createTextNode(temp3);
@@ -164,7 +172,7 @@ var firebaseConfig = {
                 students.push(childSnapshot3.val().studentName);
               })
             })
-            for (j = 0; j <= (students.length - 1); j++) {
+            for (var j = 0; j <= (students.length - 1); j++) {
               let newRow = tablenode.insertRow(-1);
               let newCell = newRow.insertCell(0);
               let newText = document.createTextNode(students[j]);
@@ -211,7 +219,7 @@ var firebaseConfig = {
   
   
   function addCell(rows) {
-    for (k = 1; k <= (rows.length - 1); k++) {
+    for (var k = 1; k <= (rows.length - 1); k++) {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
       ddnode.value = "1";
@@ -245,7 +253,7 @@ var firebaseConfig = {
     }
   }
   console.log(classes);
-  for (i = 0; i < classes.length; i++){
+  for (var i = 0; i < classes.length; i++){
      students = [];
     studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
     studentRef.on('value', function (snapshot) {
@@ -319,17 +327,18 @@ var firebaseConfig = {
  
   function genPDF() {
     //alert("test");
-    //analytics.logEvent('download_report');
+    analytics.logEvent('download_report');
     var doc = new jsPDF();
     doc.text(20, 20, 'TestPDF');
-    // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
-    // doc.addImage(content, 'PNG', 120, 20, 65, 55);
-    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000}
-    );
     doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     doc.addImage(content, 'PNG', 120, 20, 65, 55);
     doc.addPage();
-
+    margins = {
+      top: 70,
+      bottom: 40,
+      left: 30,
+      width: 550
+    };
   
     // var source = window.document.getElementsByTagName("body")[0];
     // doc.fromHTML(
@@ -343,7 +352,7 @@ var firebaseConfig = {
     // console.log(content2);
   
   
-    doc.save('test.pdf'); 
+    doc.save('test.pdf');
   }
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
