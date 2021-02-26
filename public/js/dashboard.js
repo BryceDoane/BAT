@@ -11,24 +11,12 @@ var firebaseConfig = {
   measurementId: "G-EM4XVKW2YS"
 };
 
-
-
-
-
-
 // Initialize Firebase
-function startData(){
 firebase.initializeApp(firebaseConfig);
-const analytics = firebase.analytics();}
+const analytics = firebase.analytics();
 
-const myPromise = new Promise((resolve, reject) => {
- startData()
-});
 
-myPromise
-  .then(loadData, console.log("Failed"))
-  
-function loadData(){
+
 
 var weekday = new Array(7);
 weekday[0] = "Sunday";
@@ -86,24 +74,10 @@ var arrayMain = [];
 var firstArr = [];
 var lastArr = [];
 var brycesArray = [];
+var data;
+var dataM;
 
 
-
-// var formModal = document.getElementById("formModal");
-// var infobtn = document.getElementById("addInfoModal");
-// var span1 = document.getElementsByClassName("close")[0];
-
-//  infobtn.onclick = function () {
-//  formModal.style.display = "block";
-// }
-// span1.onclick = function () {
-//   formModal.style.display = "none";
-// }
-// window.onclick = function (event) {
-//   if (event.target == formModal) {
-//     formModal.style.display = "none";
-//   }
-// }
 
 function drawOChart() {
   var data = google.visualization.arrayToDataTable([
@@ -165,19 +139,6 @@ function drawOChart() {
     // $('#chartContainer3').append(content);
   });
 
-  // var data3 = new google.visualization.DataTable();
-  // data3.addColumn('string', 'Name');
-  // data3.addColumn('number', 'Salary');
-  // data3.addColumn('boolean', 'Full Time Employee');
-  // data3.addRows([
-  //   ['Mike',  {v: 10000, f: '$10,000'}, true],
-  //   ['Jim',   {v:8000,   f: '$8,000'},  false],
-  //   ['Alice', {v: 12500, f: '$12,500'}, true],
-  //   ['Bob',   {v: 7000,  f: '$7,000'},  true]
-  // ]);
-  // var options3 = {
-  //   title: 'My Daily Activities',
-  // };
 
   // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
 
@@ -195,17 +156,7 @@ function drawChart(name) {
   }
   // userSchool = user.displayName;
   var studentRef = firebase.database().ref('Schools/' + userSchool + "/classes");
-  //studentRef.on('value', function (snapshot) {
-  //console.log(snapshot);
-  // snapshot.forEach(function (childSnapshot) {
-  //   var childData = childSnapshot.val();
-  //   var taskName = childData.taskName;
 
-  // taskName = taskName.replace(/\s/g, '');
-  // tasks.push(taskName);
-  // console.log(taskName);
-  //console.log(childData.className);
-  //drawChart(className);
   var data = this["marker" + name]
   var options = {
     title: name
@@ -226,7 +177,7 @@ function drawChart(name) {
 
 
 
-  var data = new google.visualization.arrayToDataTable([
+  data = new google.visualization.arrayToDataTable([
     ['Task', 'Completed', 'Incomplete', { role: 'annotation' }],
 
     ["Ex", 0, 0, ''],
@@ -234,6 +185,8 @@ function drawChart(name) {
 
   ]);
   data.removeRow(0)
+ 
+
   // calculating date to reference for daily report
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
@@ -263,11 +216,13 @@ function drawChart(name) {
       //console.log(taskData);
       data.addRow([taskData, 20, 20, ""]);
       
-     // data.addRow(["Test", , 20, ""]);
+
+      // data.addRow(["Test", , 20, ""]);
 
     })
   })
-
+ // data.addRow(["testing", 40, 20, ""])
+//console.log(taskData)
   // referencing student rating
   var totalArray = [];
   var totalRating = [];
@@ -280,74 +235,36 @@ function drawChart(name) {
       //console.log(ratingData)
       ratingsData = ratingData.rating;
 
-      console.log(ratingsData);
+     // console.log(ratingsData);
       firstArr = ratingsData
-   
+
       lastArr.push(ratingsData);
+      
+      console.log(ratingsData)
+      
 
       //console.log(lastArr)
-
+//console.log(lastArr);
 
 
       loadFirebase = async () => {
         let db = await this.customersRef.orderByChild("ticket").once('value')
         return customers
       }
-      
+
 
 
 
     });
 
-  
-  
-    
-
-    var g = arrayMain.length
-    //console.log(g);
-    firstArr = g
-    
-    //console.log(lastArr.slice(-1))
-
-
-
-    //console.log(sum(arrayMain))
-    ratingSum = sum(totalRating)
-    finalList.push(ratingSum)
-
-    //console.log(finalList)
-    finalSum = sum(finalList)
-    //console.log(finalSum)
-
-    var sumTotalRating = sum(totalRating)
-    //console.log(sumTotalRating)
-
-    schoolsTotal = sumTotalRating;
-    // console.log(schoolsTotal)
 
 
 
 
-
-    //console.log("all =" + sum(schoolsTotal))
-    //console.log(brycesArray);
-    //lastArr.push(brycesArray);
   });
   
-  //console.log(lastArr)
-    //console.log(brycesArray);
 
-  //console.log(sum(total += ratingsData))
 
-  function sum(obj) {
-    var sum = 0;
-    for (var el in obj) {
-      if (obj.hasOwnProperty(el)) {
-        sum += parseFloat(obj[el]);
-      }
-    }
-    return sum;
-  }
 
   //console.log(lastArr);
 
@@ -461,17 +378,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     schoolName = user.displayName;
     var classRef = firebase.database().ref('Schools/' + schoolName + "/classes");
     drawOChart();
-    //var studentNameRef = firebase.database().ref('Schools/' + schoolName + "/students");
-    // studentNameRef.on('value', function (snapshot) {
-    //   snapshot.forEach(function (childSnapshot) {
-    //     var childSNData = childSnapshot.val();
-    //     studentNames.push(childSNData.studentName);
-    //     studentNames.push(childSNData.studentID);
-    //     console.log(studentNames);
-    //   });
-    //   studentsNamesList = studentNames; //.toString();
-    //   //console.log(studentsNamesList);
-    // });
+
 
     classRef.on('value', function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
@@ -489,17 +396,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         var select = document.getElementById("classList")
         classes.push(childCData.className);
-        //console.log(temp);
-        // var studentRef = firebase.database().ref('Schools/' + "null" + "/classes" + "/Test Class 2" + '/Student List');
-        // studentRef.on('value', function (snapshot) {
-        //   snapshot.forEach(function (childSnapshot) {
-        //     var childSData = childSnapshot.val();
-        //     studentsList.push(childSData);
-        //     console.log(studentsList);
-        //   });
-        //   //studentTest = studentsList.toString();
-        //   //console.log(studentTest);
-        // });
+
       });
       for (i = 0; i <= (temp.length - 1); i++) {
         var temp2 = temp[i];
@@ -517,12 +414,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           dTable = tablenode;
 
           let newRow = tablenode.insertRow(-1);
-          // let newCell = newRow.insertCell(0);
-          // let newText = document.createTextNode('');
-          // newCell.appendChild(newText);
-          //document.getElementById("classNameLi").appendChild(tablenode);
-          //classCount++;
-          //console.log(classCount);
+
 
           stuRef.on('value', function (snapshot3) {
             //console.log(snapshot3.val());
@@ -535,18 +427,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             let newCell = newRow.insertCell(0);
             let newText = document.createTextNode(students[j]);
             newCell.appendChild(newText);
-            //console.log(tablenode.rows[0].cells.length);
-            // var divnode = document.createElement('div');
-            // divnode.id = "taskID";
-            // var trNode = document.createElement('tr');
-            // trNode.id = "nodeID";
-            // //document.getElementById("classNameLi").appendChild(divnode);
-            // document.getElementById("classNameLi").appendChild(trNode);
-            // var dnode = document.createElement('td');
-            // var textNode2 = document.createTextNode(students[j]);
-            // dnode.appendChild(textNode2);
-            // trNode.appendChild(dnode);
-            // document.getElementById("classNameLi").appendChild(trNode)
+
           }
         }
         else {
@@ -583,69 +464,17 @@ function addCell(rows) {
     let blankCell = rows[k].insertCell(-1);
     var ddnode = document.createElement('input');
     ddnode.value = "1";
-    // var ddonode = document.createElement('option');
-    // var ddonode2 = document.createElement('option');
-    // var ddonode3 = document.createElement('option');
-    // var ddonode4 = document.createElement('option');
-    // var ddonode5 = document.createElement('option');
-    // var ddonodesel = document.createElement('option')
-
-    //let opTextsel = document.createTextNode("Select a value");
-    // let opText = document.createTextNode("1");
-    // let opText2 = document.createTextNode("2");
-    // let opText3 = document.createTextNode("3");
-    // let opText4 = document.createTextNode("4");
-    // let opText5 = document.createTextNode("5");
-    // ddonodesel.appendChild(opTextsel);
-    // ddonode.appendChild(opText);
-    // ddonode2.appendChild(opText2);
-    // ddonode3.appendChild(opText3);
-    // ddonode4.appendChild(opText4);
-    // ddonode5.appendChild(opText5);
-
-    // ddnode.appendChild(ddonodesel);
-    // ddnode.appendChild(ddonode);
-    // ddnode.appendChild(ddonode2);
-    // ddnode.appendChild(ddonode3);
-    // ddnode.appendChild(ddonode4);
-    // ddnode.appendChild(ddonode5);
+    
     blankCell.appendChild(ddnode);
   }
 }
 
-// for (i = 0; i < classes.length; {
-//   students = [];
-
-//   var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
-//   studentRef.on('value', function (snapshot) {
-//     snapshot.forEach(function (childSnapshot) {
-//       var childSData = childSnapshot.val();
-//       var identifier = childSData.studentcid;
-//       var finder = studentsNamesList.indexOf(identifier);
-//       finder = finder - 1;
-//       students.push(studentsNamesList[finder]);
-//     });
-//     studentsList = students.toString();
-//     //console.log(studentsList);
-//   });
-// }
 
 
 
 
-//   //
-//   var node = document.createElement('ul');
-//   node.classList.add("tasks"); /*adds classList as class on ul*/
 
-//   var textNode = document.createTextNode("Task Name : " + temp + " Students: " + studentsList);
-//   node.appendChild(textNode);
-//   //document.getElementById("classNameLi").appendChild(node);
 
-//     });
-
-//   });
-
-// };
 
 
 var tasks = [];
@@ -704,74 +533,13 @@ function genPDF() {
     width: 550
   };
 
-  // var source = window.document.getElementsByTagName("body")[0];
-  // doc.fromHTML(
-  //     source,
-  //     15,
-  //     15,
-  //     {
-  //       'width': 180
-  //     });
-  //  console.log(source);
-  // console.log(content2);
+ 
+
 
 
   doc.save('test.pdf');
 }
-// tasksRef.on('value', function (snapshot) {
-//   //console.log(snapshot);
-//   console.log()
-//   var classesRef = firebase.database().ref('classes');
-//   var classesList;
-//   classesRef.on('value', function (snapshot) {
-//     snapshot.forEach(function (childSnapshot) {
-//       var childData = childSnapshot.val();
-//       classesRef.on('child_added', function (snapshot) {
-//         //Do something with the data
-//         //document.getElementById("classNameLi").innerHTML = childData.className;
 
-//       });
-//       classes.push(childData.className);
-//       classes.push(childData.Tasks);
-//     });
-//var className;
-/*saveButton.onclick = function () {
-  for (i = 0; i < classes.length; i++) {
-    console.log(schoolName);
-    className = classes[i];
-    var taskNumber = 0;
-    firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Tasks").orderByChild("tasks").once("value", function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {
-        taskNumber = taskNumber + 1;
-      });
-    });
-    var rowsNumber = document.getElementById(className).rows.length;
-    for (p = 1; p < rowsNumber; p++) {
-      var currentDate = m + "-" + d + "-" + y;
-      var studentName = document.getElementById(className).rows[p].cells[0].innerHTML;
-      firebase.database().ref('Schools/' + schoolName + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function (snapshot) {
-
-        var dateSnapshot = snapshot.val();
-
-        if (dateSnapshot) {
-
-        } else {
-          firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate).push({});
-        }
-      });
-
-      for (j = 1; j < taskNumber + 1; j++) {
-        var taskName = document.getElementById(className).rows[0].cells[j].innerHTML;
-        var ratingValue = document.getElementById(className).rows[p].cells[j].firstChild.value;
-        if (ratingValue) {
-          firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
-        }
-
-      };
-    };
-  };
-};
-*/
 var studentList = [];
 function taskPercentDone(className, taskName) {
   cumul = 0;
@@ -792,34 +560,6 @@ function taskPercentDone(className, taskName) {
   });
 };
 
-//Example of taskPercentDone Usage needs className and taskName defined before it can run.
-// firebase.auth().onAuthStateChanged(function (user) {
-//   if (user != null) {
-//     taskPercentDone(className, taskName);
-//   setTimeout(function(){
-//   console.log(((cumul/(studentList.length * 5)) * 100) + "%");
-//  },1500); 
-//   } else {
-//     console.log("User not logged in.");
-//   }
-// });
-
-/*
-Research toward color boxes on dashboard
-https://www.w3schools.com/Jsref/prop_style_backgroundcolor.asp
-
-document.body.style.backgroundColor = "red"; //makes body elements red
-document.getElementById("myDiv").style.backgroundColor = "lightblue";
-*/
-
-//console.log(lastArr)
 
 
-  
-  //console.log(lastArr.length)
-  console.log(lastArr)
-  
-}
-window.onload = function() {
-  setTimeout(loadData, 3000);
-}
+
