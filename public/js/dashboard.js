@@ -11,21 +11,11 @@ var firebaseConfig = {
   measurementId: "G-EM4XVKW2YS"
 };
 
-
 // Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-} else {
-  firebase.app(); // if already initialized, use that one
-}
+firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
-// const myPromise = new Promise((resolve, reject) => {
-//  startData()
-// });
 
-// myPromise
-//   .then(loadData, console.log("Failed"))
 
 
 var weekday = new Array(7);
@@ -41,16 +31,16 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-var n = new Date();
-var y = n.getFullYear();
-var m = n.getMonth();
-var d1 = n.getDay();
-var d = weekday[n.getDay()];
+n = new Date();
+y = n.getFullYear();
+m = n.getMonth();
+d1 = n.getDay();
+d = weekday[n.getDay()];
 document.getElementById("date").innerHTML = d + ", " + m + " " + d1 + ", " + y;
 //current date script by Lance on StackOverflow
 
 var uid;
-var email;
+var userEmail;
 var schoolName;
 var classes = [];
 var students = [];
@@ -84,36 +74,12 @@ var arrayMain = [];
 var firstArr = [];
 var lastArr = [];
 var brycesArray = [];
-var chartComplete;
+var data;
+var dataM;
 
 
-// var formModal = document.getElementById("formModal");
-// var infobtn = document.getElementById("addInfoModal");
-// var span1 = document.getElementsByClassName("close")[0];
 
-//  infobtn.onclick = function () {
-//  formModal.style.display = "block";
-// }
-// span1.onclick = function () {
-//   formModal.style.display = "none";
-// }
-// window.onclick = function (event) {
-//   if (event.target == formModal) {
-//     formModal.style.display = "none";
-//   }
-// }
-
-async function loadChartInfo() {
-  google.charts.load('current', { packages: ['corechart'] });
-  google.load('visualization', { packages: ['corechart'] });
-}
-
-
-google.charts.load('current', { packages: ['corechart'] });
-google.charts.load('visualization', { packages: ['corechart'] });
-google.charts.setOnLoadCallback(drawChart);
-async function drawOChart() {
-
+function drawOChart() {
   var data = google.visualization.arrayToDataTable([
     ['Task', 'Number of Ratings'],
     ['5', 11],
@@ -138,6 +104,11 @@ async function drawOChart() {
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
+  google.visualization.events.addListener(chart, 'ready', function () {
+    content = chart.getImageURI()
+    //content = '<img src="' + chart.getImageURI() + '">';
+    // $('#chartContainer3').append(content);
+  });
 
   var data2 = google.visualization.arrayToDataTable([
     ['Year', 'Sales', 'Expenses'],
@@ -162,41 +133,23 @@ async function drawOChart() {
   };
 
   var chart2 = new google.visualization.ColumnChart(document.getElementById('chartContainer4'));
-
-
-
-  // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
-  // drawCharts(data, options1);
-  // drawCharts(data, options1);
-  chart.draw(data, options1);
-
-  // drawCharts(data2, options2)
-
-  // ch
-  // drawCharts(data2, options2);
-  chart2.draw(data2, options2);
-
-  google.visualization.events.addListener(chart, 'ready', function () {
-    let content = chart.getImageURI();
-    // drawCharts(data2, options2);
-    //content = '<img src="' + chart.getImageURI() + '">';
-    // $('#chartContainer3').append(content);
-  });
-
   google.visualization.events.addListener(chart2, 'ready', function () {
     content2 = chart2.getImageURI()
     //content = '<img src="' + chart.getImageURI() + '">';
     // $('#chartContainer3').append(content);
   });
-  content = chart.getImageURI();
-  content2 = chart2.getImageURI();
-  console.log(content, content2);
-  return content, content2
+
+
+  // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
+
+  chart.draw(data, options1);
+  chart2.draw(data2, options2);
+  // export {content, content2 };
   // chart3.draw(data3, options3);
 }
-
 // Define the chart to be drawn.
 google.charts.load('current', { packages: ['corechart'] });
+
 function drawChart(name) {
   if (typeof (name) == "undefined") {
     return
@@ -262,6 +215,7 @@ function drawChart(name) {
       taskData = childData.taskName;
       //console.log(taskData);
       data.addRow([taskData, 20, 20, ""]);
+      
 
       // data.addRow(["Test", , 20, ""]);
 
@@ -286,7 +240,7 @@ function drawChart(name) {
 
       lastArr.push(ratingsData);
       
-      console.log(ratingsData)
+console.log
       
 
       //console.log(lastArr)
@@ -308,9 +262,7 @@ function drawChart(name) {
 
 
   });
-
-  //console.log(lastArr)
-  //console.log(brycesArray);
+  
 
 
 
@@ -338,7 +290,6 @@ function drawChart(name) {
   //console.log(name);
   // Define the chart to be drawn.
 
-
 }
 
 
@@ -360,7 +311,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       //console.log(childSnapshot);
 
     })
-    for (var i = 0; i <= (classes.length - 1); i++) {
+    for (i = 0; i <= (classes.length - 1); i++) {
       text = document.createTextNode(classes[i]);
       var tag = document.createElement("p");
       var newRDiv = document.createElement("div");
@@ -401,7 +352,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       //console.log(childSnapshot);
 
     })
-    for (var i = 0; i <= (classes.length - 1); i++) {
+    for (i = 0; i <= (classes.length - 1); i++) {
       const text = document.createTextNode(classes[i]);
       var tag = document.createElement("p");
       var newRDiv = document.createElement("div");
@@ -410,10 +361,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       newRDiv.id = classes[i];
       newRDiv.className = "graphs";
       var element = document.getElementById("myPieChart");
-      if (newRDiv !== null){
-        element.appendChild(newRDiv);
-      }
-
+      element.appendChild(newRDiv);
       drawChart(classes[i]);
     }
   })
@@ -423,7 +371,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-firebase.auth().onAuthStateChanged(async function (user) {
+firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     uid = user.uid;
     email = user.email;
@@ -450,12 +398,12 @@ firebase.auth().onAuthStateChanged(async function (user) {
         classes.push(childCData.className);
 
       });
-      for (var i = 0; i <= (temp.length - 1); i++) {
+      for (i = 0; i <= (temp.length - 1); i++) {
         var temp2 = temp[i];
         if (temp2.includes("ClassName")) {
           taskCount = 0;
           students = [];
-          var temp3 = temp2.replace('ClassName: ', "");
+          temp3 = temp2.replace('ClassName: ', "");
           var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
           var node = document.createElement('h1');
           var textNode = document.createTextNode(temp3);
@@ -474,7 +422,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
               students.push(childSnapshot3.val().studentName);
             })
           })
-          for (var j = 0; j <= (students.length - 1); j++) {
+          for (j = 0; j <= (students.length - 1); j++) {
             let newRow = tablenode.insertRow(-1);
             let newCell = newRow.insertCell(0);
             let newText = document.createTextNode(students[j]);
@@ -512,7 +460,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
 })
 
 function addCell(rows) {
-  for (var k = 1; k <= (rows.length - 1); k++) {
+  for (k = 1; k <= (rows.length - 1); k++) {
     let blankCell = rows[k].insertCell(-1);
     var ddnode = document.createElement('input');
     ddnode.value = "1";
@@ -593,37 +541,25 @@ function genPDF() {
 }
 
 var studentList = [];
-// function taskPercentDone(className, taskName) {
-//   cumul = 0;
-//   firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Student List").once("value", function (snapshot) {
-//     snapshot.forEach(function (item) {
-//       var itum = item.val();
-//       itum = itum.studentName;
-//       studentList.push(itum);
-//     });
-//     for (m = 0; m < studentList.length; m++) {
-//       firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + '/' + className + "/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
-//         var tSnap = snapshot.val();
-//         tSnap = tSnap.rating;
-//         tSnap = parseInt(tSnap);
-//         cumul += tSnap;
-//       });
-//     }
-//   });
-// };
+function taskPercentDone(className, taskName) {
+  cumul = 0;
+  firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Student List").once("value", function (snapshot) {
+    snapshot.forEach(function (item) {
+      var itum = item.val();
+      itum = itum.studentName;
+      studentList.push(itum);
+    });
+    for (m = 0; m < studentList.length; m++) {
+      firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + '/' + className + "/" + studentList[m] + "/" + taskName).once("value", function (snapshot) {
+        var tSnap = snapshot.val();
+        tSnap = tSnap.rating;
+        tSnap = parseInt(tSnap);
+        cumul += tSnap;
+      });
+    }
+  });
+};
 
 
 
 
-
-//console.log(lastArr.length)
-// console.log(lastArr)
-
-
-
-// window.onload = function() {
-//   setTimeout(loadData, 3000);
-// };
-
-
-export { drawOChart, loadChartInfo };
