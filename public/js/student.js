@@ -144,7 +144,6 @@ function delStudent() {
 }
   deleteClassBtn.addEventListener('click', delStudent());
 
-
 //Fills student info to webpage
 
 var students = [];
@@ -225,10 +224,31 @@ var addStuClass = document.getElementById("addStuClass");
 // Get the button that opens the modal
 var addStuClassbtn = document.getElementById("addStuClassModal");
 
-
+var opt;
 // When the user clicks on the button, open the modal
 addStuClassbtn.onclick = function () {
-  addStuClass.style.display = "block";
+   
+  var classGrab = firebase.database().ref("Schools/" + userSchool + "/classes");
+  classGrab.once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+      opt = child.child("className").val();
+      console.log(opt);
+      document.getElementById("class").innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+    });
+  });
+
+  var studentGrab = firebase.database().ref("Schools/" + userSchool + "/students");
+  studentGrab.once("value", function (snapshot) {
+    snapshot.forEach(function (child) {
+      opt = child.child("studentID").val();
+      console.log(opt);
+      document.getElementById("cid").innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+    });
+  });
+    
+  setTimeout(function(){
+    addStuClass.style.display = "block";
+  },250);
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -243,8 +263,8 @@ window.onclick = function (event) {
 }
 //adds students to class
 function addStudentClass() {
-  var studentcid = document.getElementById("studentcid").value;
-  var className = document.getElementById("className").value;
+  var studentcid = document.getElementById("cid").value;
+  var className = document.getElementById("class").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
   var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/");
 
@@ -263,11 +283,15 @@ function addStudentClass() {
   })
 
 };
+var select = document.getElementById("selectNumber"); 
+var options = ["1", "2", "3", "4", "5"]; 
+
+
 function checkClass() {
   var classRef = firebase.database().ref('Schools/' + userSchool + "/classes");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
-      if (snapshot.hasChild(document.getElementById("className").value)) {
+      if (snapshot.hasChild(document.getElementById("class").value)) {
         checkStudent();
       }
       else {
@@ -283,7 +307,7 @@ function checkStudent() {
   var classRef = firebase.database().ref('Schools/' + userSchool + "/students");
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
-      if (snapshot.hasChild(document.getElementById("studentcid").value)) {
+      if (snapshot.hasChild(document.getElementById("cid").value)) {
         addStudentClass();
 
       }
@@ -295,3 +319,4 @@ function checkStudent() {
     });
   })
 }
+
