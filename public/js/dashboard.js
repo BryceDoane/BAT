@@ -80,8 +80,10 @@ var arrayMain = [];
 var firstArr = [];
 var lastArr = [];
 var brycesArray = [];
-
-
+var studentsData;
+var ratingInfo = 0;
+var ratingTotal;
+var missingVal;
 
 // var formModal = document.getElementById("formModal");
 // var infobtn = document.getElementById("addInfoModal");
@@ -200,7 +202,7 @@ function drawChart(name) {
   // console.log(taskName);
   //console.log(childData.className);
   //drawChart(className);
-  var data = this["marker" + name]
+  // var data = this["marker" + name]
   var options = {
     title: name
     , width: 500
@@ -239,42 +241,55 @@ function drawChart(name) {
 
 
   // referencing student list
-  var studentRep = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Student List/");
+  var studentRep = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Student List");
+  //console.log(studentRep);
+  //console.log(studentRep.getChildrenCount());
+
+
   studentRep.on('value', function (snapshot) {
+
+    //gives calculates number total rating should be out of (student count * 5)
+    ratingTotal = (snapshot.numChildren() * 5);
+    //console.log(ratingTotal);
     snapshot.forEach(function (childsSnapshot) {
+      //console.log(snapshot.getChildrenCount());
       var studentData = childsSnapshot.val();
-      studentsData = studentData.studentName;
-      //console.log(studentsData);
+      studentsData = studentData.studentName
+      var newArray = [];
+      newArray.push(classes[i]);
+      newArray.push(studentsData);
+      brycesArray.push(newArray);
     })
   })
+//console.log(brycesArray);
 
-  // referencing tasks list
-  var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Tasks/");
-  taskRef.on('value', function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
-      var childData = childSnapshot.val();
-      taskData = childData.taskName;
-      //console.log(taskData);
-      data.addRow([taskData, 20, 20, ""]);
-      
-     // data.addRow(["Test", , 20, ""]);
 
-    })
-  })
+
 
   // referencing student rating
   var totalArray = [];
   var totalRating = [];
-  var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/" + classes[i] + "/" + studentsData + "/");
+
+  var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/" + classes[i]);
   ratingRep.on('value', function (snapshot) {
-
+  //console.log(snapshot.val());
     snapshot.forEach(function (childsSnapshot) {
-
+      //console.log(childsSnapshot.val());
+      var temp;
+      temp = childsSnapshot.child("Draw").child("rating").val();
+      //console.log(temp);
+      if(temp !== null){
+        temp = parseFloat(temp)
+        ratingInfo+=temp;
+      }else{
+        ratingInfo += 0;
+      }
+      //console.log(ratingInfo);
       ratingData = childsSnapshot.val();
       //console.log(ratingData)
       ratingsData = ratingData.rating;
 
-      console.log(ratingsData);
+      // console.log(ratingsData);
       firstArr = ratingsData
    
       lastArr.push(ratingsData);
@@ -295,8 +310,12 @@ function drawChart(name) {
     });
 
   
-  
-    
+  // console.log(ratingTotal);
+  // console.log("---")
+  // console.log(ratingInfo)
+  // console.log("===")
+  //   console.log(ratingTotal-ratingInfo);
+    missingVal = 15 - ratingInfo;
 
     var g = arrayMain.length
     //console.log(g);
@@ -351,7 +370,34 @@ function drawChart(name) {
 
 
 
+  // referencing tasks list
+  var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Tasks/");
+  taskRef.on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+      taskData = childData.taskName;
+      //console.log(taskData);
 
+      var ratingRep2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/" + classes[i]);
+      //console.log(ratingRep2);
+      ratingRep2.on('value', function (snapshot2) {
+        snapshot2.forEach(function (childSnapshot2) {
+          console.log(childSnapshot2.val());
+        childSnapshot2.forEach(function (grandchildSnapshot){
+          //console.log(grandchildSnapshot.val());
+        })
+      })
+    })
+
+      for(var j=0; j<=brycesArray.length;j++){
+//console.log(brycesArray);
+      }
+      data.addRow([taskData, 20, 20, ""]);
+      
+     // data.addRow(["Test", , 20, ""]);
+     ratingInfo = 0;
+    })
+  })
 
 
   // Instantiate and draw the chart.
@@ -578,32 +624,6 @@ function addCell(rows) {
     let blankCell = rows[k].insertCell(-1);
     var ddnode = document.createElement('input');
     ddnode.value = "1";
-    // var ddonode = document.createElement('option');
-    // var ddonode2 = document.createElement('option');
-    // var ddonode3 = document.createElement('option');
-    // var ddonode4 = document.createElement('option');
-    // var ddonode5 = document.createElement('option');
-    // var ddonodesel = document.createElement('option')
-
-    //let opTextsel = document.createTextNode("Select a value");
-    // let opText = document.createTextNode("1");
-    // let opText2 = document.createTextNode("2");
-    // let opText3 = document.createTextNode("3");
-    // let opText4 = document.createTextNode("4");
-    // let opText5 = document.createTextNode("5");
-    // ddonodesel.appendChild(opTextsel);
-    // ddonode.appendChild(opText);
-    // ddonode2.appendChild(opText2);
-    // ddonode3.appendChild(opText3);
-    // ddonode4.appendChild(opText4);
-    // ddonode5.appendChild(opText5);
-
-    // ddnode.appendChild(ddonodesel);
-    // ddnode.appendChild(ddonode);
-    // ddnode.appendChild(ddonode2);
-    // ddnode.appendChild(ddonode3);
-    // ddnode.appendChild(ddonode4);
-    // ddnode.appendChild(ddonode5);
     blankCell.appendChild(ddnode);
   }
 }
@@ -819,9 +839,10 @@ document.getElementById("myDiv").style.backgroundColor = "lightblue";
 
 //console.log(lastArr  
   //console.log(lastArr.length)
-  console.log(lastArr)
+  //console.log(lastArr)
   
 }
 window.onload = function() {
   setTimeout(loadData, 3000);
 }
+
