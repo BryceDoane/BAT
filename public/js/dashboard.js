@@ -17,16 +17,10 @@ var firebaseConfig = {
 
 
 // Initialize Firebase
-function startData(){
 firebase.initializeApp(firebaseConfig);
-const analytics = firebase.analytics();}
+const analytics = firebase.analytics();
 
-const myPromise = new Promise((resolve, reject) => {
- startData()
-});
 
-myPromise
-  .then(loadData, console.log("Failed"))
   
 function loadData(){
 
@@ -284,15 +278,7 @@ function drawChart(name) {
       firstArr = ratingsData
    
       lastArr.push(ratingsData);
-<<<<<<< HEAD
-<<<<<<< HEAD
-      
-console.log
-      
-=======
->>>>>>> parent of 71b549b8 (clean up)
-=======
->>>>>>> parent of 71b549b8 (clean up)
+
 
       //console.log(lastArr)
 
@@ -318,8 +304,6 @@ console.log
     
     //console.log(lastArr.slice(-1))
 
-<<<<<<< HEAD
-=======
 
 
     //console.log(sum(arrayMain))
@@ -336,30 +320,10 @@ console.log
     schoolsTotal = sumTotalRating;
     // console.log(schoolsTotal)
 
->>>>>>> parent of 71b549b8 (clean up)
-
-
-    //console.log(sum(arrayMain))
-    ratingSum = sum(totalRating)
-    finalList.push(ratingSum)
-
-    //console.log(finalList)
-    finalSum = sum(finalList)
-    //console.log(finalSum)
-
-<<<<<<< HEAD
-    var sumTotalRating = sum(totalRating)
-    //console.log(sumTotalRating)
-
-    schoolsTotal = sumTotalRating;
-    // console.log(schoolsTotal)
 
 
 
 
-
-=======
->>>>>>> parent of 71b549b8 (clean up)
     //console.log("all =" + sum(schoolsTotal))
     //console.log(brycesArray);
     //lastArr.push(brycesArray);
@@ -646,25 +610,6 @@ function addCell(rows) {
 
 // for (i = 0; i < classes.length; {
 //   students = [];
-<<<<<<< HEAD
-=======
-
-//   var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
-//   studentRef.on('value', function (snapshot) {
-//     snapshot.forEach(function (childSnapshot) {
-//       var childSData = childSnapshot.val();
-//       var identifier = childSData.studentcid;
-//       var finder = studentsNamesList.indexOf(identifier);
-//       finder = finder - 1;
-//       students.push(studentsNamesList[finder]);
-//     });
-//     studentsList = students.toString();
-//     //console.log(studentsList);
-//   });
-// }
-
-
->>>>>>> parent of 71b549b8 (clean up)
 
 //   var studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
 //   studentRef.on('value', function (snapshot) {
@@ -690,7 +635,6 @@ function addCell(rows) {
 
 //     });
 
-<<<<<<< HEAD
 //   //
 //   var node = document.createElement('ul');
 //   node.classList.add("tasks"); /*adds classList as class on ul*/
@@ -703,10 +647,6 @@ function addCell(rows) {
 
 //   });
 
-=======
-//   });
-
->>>>>>> parent of 71b549b8 (clean up)
 // };
 
 
@@ -812,15 +752,9 @@ function genPDF() {
       var currentDate = m + "-" + d + "-" + y;
       var studentName = document.getElementById(className).rows[p].cells[0].innerHTML;
       firebase.database().ref('Schools/' + schoolName + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function (snapshot) {
-<<<<<<< HEAD
 
         var dateSnapshot = snapshot.val();
 
-=======
-
-        var dateSnapshot = snapshot.val();
-
->>>>>>> parent of 71b549b8 (clean up)
         if (dateSnapshot) {
 
         } else {
@@ -875,33 +809,15 @@ function taskPercentDone(className, taskName) {
 /*
 Research toward color boxes on dashboard
 https://www.w3schools.com/Jsref/prop_style_backgroundcolor.asp
-<<<<<<< HEAD
 
 document.body.style.backgroundColor = "red"; //makes body elements red
 document.getElementById("myDiv").style.backgroundColor = "lightblue";
 */
-=======
-
-<<<<<<< HEAD
-document.body.style.backgroundColor = "red"; //makes body elements red
-document.getElementById("myDiv").style.backgroundColor = "lightblue";
-*/
-
-//console.log(lastArr)
->>>>>>> parent of 71b549b8 (clean up)
 
 //console.log(lastArr)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 71b549b8 (clean up)
-=======
-//console.log(lastArr)
-
-
->>>>>>> parent of bfba18a6 (adding to reports)
-  
+//console.log(lastArr  
   //console.log(lastArr.length)
   console.log(lastArr)
   
