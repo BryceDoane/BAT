@@ -882,6 +882,7 @@ document.getElementById("myDiv").style.backgroundColor = "lightblue";
 */
 =======
 
+<<<<<<< HEAD
 document.body.style.backgroundColor = "red"; //makes body elements red
 document.getElementById("myDiv").style.backgroundColor = "lightblue";
 */
@@ -895,6 +896,11 @@ document.getElementById("myDiv").style.backgroundColor = "lightblue";
 
 =======
 >>>>>>> parent of 71b549b8 (clean up)
+=======
+//console.log(lastArr)
+
+
+>>>>>>> parent of bfba18a6 (adding to reports)
   
   //console.log(lastArr.length)
   console.log(lastArr)

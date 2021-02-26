@@ -12,8 +12,8 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <script src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-        <!-- <script type="text/javascript" src="js/reports.js"></script>
-        <script type="module" src="js/dashboard.js"></script> -->
+        <script type="text/javascript" src="js/reports.js"></script>
+        <script type="module" src="js/dashboard.js"></script>
 </head>
 
 <body>
@@ -33,10 +33,8 @@
     </div>
     <!-- Page content -->
     <div class="dashboard">
-        <button id="clickMe" onclick="genPDF();">Download</button>
+    <button id="clickMe" onclick="genPDF();">Download</button>
         <h1 id="date"></h1>
-        <div id="chartContainer4" class="dcharts" style="height: 300px; width: 65%;display: inline-block;"></div>
-        <div id="chartContainer3" class="dcharts" style="height: 300px; width: 33%;display: inline-block;"></div>
         <button id="saveButton">Save Information</button>
         <p id="classNameLi"></p>
     </div>
@@ -44,6 +42,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
-    <script type="module" src="js/reports.js"></script>
+    <script src="js/reports.js"></script>
 
 </body>
