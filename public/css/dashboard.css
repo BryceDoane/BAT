@@ -332,7 +332,9 @@ select{
     margin-top: 30px;
   }
   #classNameLi {
-    margin-top: 30px;
+
+    width: 500px;
+    height: 1px;
   }
   .card {
     /* Add shadows to create the "card" effect */
