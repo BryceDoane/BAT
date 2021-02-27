@@ -1,0 +1,296 @@
+* {
+    /* background-color: aliceblue; */
+    box-sizing: border-box;
+}
+html{
+  
+  background-image: url("../assets/img/prism2.png");
+}
+
+.dashboard {
+    
+    margin-left: 15%; /* Same as the width of the sidebar */
+    margin-top: 100px;
+    background-color: transparent;
+  }
+
+body{
+  background-image: url("../assets/img/prism2.png");
+    color:2#6f42c1;
+    line-height:1.6;
+    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
+    padding:1em;
+    background-image: url("../assets/img/prism2.png");
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+ .classList {
+font-weight: bold;
+font-size: 25px;
+}
+/* Modal Content/Box */
+input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid black;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#hrmodal{
+margin-bottom: 10%;
+}
+select{
+  font-size: 30px;
+  width:90%;
+  margin: 5%;
+}
+.modal-header{
+  margin: 0px;
+  background-color: white;
+}
+.modal-content {
+  background-color: white;
+  /* background-color: #fefefe; */
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  text-align: center;
+  border-radius: 10px;
+  width: 30%; /* Could be more or less, depending on screen size */
+}
+.modal-content button {
+  background-color: lightgreen;
+  border-radius: 20px;
+  color: black;
+  font-size: 15px;
+  margin-left: 2%;
+  height: 30px;
+  width: 125px;
+  box-shadow: 1px 1px grey;
+}
+.modal-content .deletebtn {
+  background-color: rgb(209, 72, 44)!important;
+  border-radius: 20px;
+  color: black;
+  font-size: 15px;
+  margin-left: 2%;
+  height: 30px;
+  width: 130px;
+  box-shadow: 1px 1px grey;
+}
+.modal-content button:hover {
+  cursor: pointer;
+  opacity: 70%;
+  color: black;
+}
+/* The Close Button */
+.close, .close2, .close3 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.close2:hover,
+.close2:focus,
+.close3:hover,
+.close3:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 15%; /* Set the width of the sidebar */
+    background-image: url("../assets/img/memphis-colorful.png");
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    box-shadow: 5px 5px 5px grey;
+    cursor: pointer;
+
+    overflow-x: hidden; /* Disable horizontal scroll */
+  }
+   .sidenav img {
+     background-color: transparent;
+   }
+   .sidenav .logo {
+    margin-top: 60px;
+    width: 180px;
+    height: 50px;
+   }
+   .sidenav .icon {
+    height: 35px;
+    width: 35px;
+   }
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 10px 16px 16px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    background-color: rgba(255, 253, 253, 0.2);
+    display: block;
+  }
+  .sidenav a.selected {
+    background-color: blue;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
+    color: #000000;
+    background-color: #b3a5d9;
+    cursor: pointer;
+  }
+
+  .topnav {
+    display: flex;
+    width: 85%; /* Full-height: remove this if you want "auto" height */
+    height: 117px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-image: url("../assets/img/memphis-colorful.png");
+    overflow-x: hidden; /* Disable horizontal scroll */
+    box-shadow: 5px 5px 5px grey;
+  }
+  
+  .topnav h1 {
+    padding: 50px 0px 0px 20px;
+    /*    color: #6f42c1; */
+    color: black;
+    text-shadow: #000000;
+    font-style: italic;
+    background-color: transparent;
+    font-size: 30px;
+    text-shadow: -1px 1px 2px #6f42c1
+    1px 1px 2px #6f42c1,
+    1px -1px 0 #6f42c1,
+    -1px -1px 0 #6f42c1;
+  }
+.topnav button{
+    padding: 8px 8px 6px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    right:10px;;
+    bottom: 10px;
+    text-shadow: -1px 1px 2px #000,
+    1px 1px 2px #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+    border-radius: 25px;
+  }
+  .topnav a:hover {
+    color: #fff;
+    /* background-color: #b3a5d9; */
+  }
+  .user{
+    background-color: black !important;
+  }
+  /*-----------------------------------------------------*/
+  #linu{ /*Top button with account name*/
+    background-color: lightgrey;
+    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
+    padding-right: 10px;
+    text-transform: lowercase;
+  }
+
+  button{
+    display: inline-block;
+    width:30%;
+    padding: 1.5em;
+    border: 1px solid #6f42c1;
+    border-radius: 5px;
+    background:#c9e6ff;
+    
+    border-color: black;
+    margin-top: 10px;
+    margin-right: 10px;
+   text-transform: uppercase;
+  }
+  #myBtn {
+    display: inline-block;
+    width:60%;
+    margin-left: px;
+    padding: 1.5em;
+    border: 1px solid #6f42c1;
+    background:#c9e6ff;
+    
+    border-color: black;
+    margin-top: 10px;
+   padding-right:110px;
+  text-transform: uppercase;
+  
+  }
+  #myBtn:hover, #myBtn:focus, #myBtn:active, .dashboard button:hover {
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+  
+    align-content: left;
+    transition: background-color 2s ease-out;
+  }
+
+  table {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 15px;
+    border-collapse: collapse;
+  }
+
+  input {
+      width: 30%;
+      background-color: #bdbdbd;
+      border: 1px solid #000000;
+      margin-top: 18px;
+  }
+
+  th {
+    border: 2px solid #000000;
+    background-color: #6f42c1;
+  }
+
+  tr {
+    border: 2px solid #000000;
+    background-color: #bdbdbd;
+  }
+
+  td {
+    border: 2px solid #000000;
+    background-color: #bdbdbd;
+  }
+
+
+  .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
+    color: #000000;
+    background-color: #b3a5d9;
+    cursor: pointer;
+  }
+
+  .reportChart td:hover {background-color: #7a7a7a;}
+  .reportChart tr:nth-child(2) {background: #f2f2f2;}
