@@ -65,9 +65,9 @@
                 <hr id="hrmodal">
                 <form id="delStudentForm">
                     <p>Enter Student ID to delete</p>
-                    <input type="text" id="studentID">
+                    <input type="text" id="studentDID">
                 </form>
-                <button value="Submit" onclick="delStudent()" class="deletebtn">Delete</button>
+                <button id = deleteClassBtn value="Submit" onclick="delStudent()" class="deletebtn">Delete</button>
 
 
             </div>
@@ -83,8 +83,12 @@
             </div>
             <div class="modal-body">
                 <form id="newStudentForm">
-                    <input type="text" id="studentcid" placeholder="ID Number">
-                    <input type="text" id="className" placeholder="Class Name">
+                    <label for="cid">Student ID: </label>
+                        <select id="cid" placeholder="Student Id">
+                        </select>
+                        <label for="class">Class: </label>
+                        <select id="class" placeholder="Class">
+                        </select>
 
 
                 </form>

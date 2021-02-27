@@ -10,6 +10,7 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  //const analytics = firebase.analytics();
   
   n = new Date();
   y = n.getFullYear();
@@ -18,6 +19,8 @@ var firebaseConfig = {
   document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
   //current date script by Lance on StackOverflow
   
+  // import { content, content2 } from "./dashboard.js";
+
   var uid;
   var userEmail;
   var schoolName;
@@ -38,6 +41,7 @@ var firebaseConfig = {
   var gorgerr;
   var cumul = 0;
   var classesList;
+  var classCount = 0;
   
   //gets the user's school name
   firebase.auth().onAuthStateChanged(function (user) {
@@ -51,10 +55,12 @@ var firebaseConfig = {
   var classRef = firebase.database().ref("Schools/" + schoolName + "/classes");
    classRef.on('value', function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
-          console.log("running");
+          // console.log("running");
           var childCData = childSnapshot.val();
           var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + childCData.className+ "/Tasks");
           temp.push("ClassName: " + childCData.className);
+          classCount = classCount + 1;
+
           //temp.push(" ");
 
           taskRef.on('value', function (snapshot) {
@@ -145,6 +151,7 @@ var firebaseConfig = {
             // document.getElementById("classNameLi").appendChild(node)
             var tablenode = document.createElement('table');
             tablenode.setAttribute("id", temp3);
+            tablenode.setAttribute("class", "reportChart");
             dTable = tablenode;
   
             let newRow = tablenode.insertRow(-1);
@@ -192,20 +199,14 @@ var firebaseConfig = {
             if (taskCount != 1) {
               addCell(rows);
             }
-  
-  
+
           }
-  
-  
+
         };
-  
 
         // var table = document.getElementById('tableID');
   
       });
-  
-    
-  
   
   function addCell(rows) {
     for (k = 1; k <= (rows.length - 1); k++) {
@@ -241,7 +242,8 @@ var firebaseConfig = {
       blankCell.appendChild(ddnode);
     }
   }
-  console.log(classes);
+
+
   for (i = 0; i < classes.length; i++){
      students = [];
     studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
@@ -313,7 +315,36 @@ var firebaseConfig = {
     }
   
   });
- 
+  //console.log(temp);
+
+
+  function genPDF() {
+    //alert("test");
+    var classTitle;
+    console.log(classCount);
+    // for(var i = 0; i <= (temp.length - 1); i++){
+    //   // console.log(temp[i]);
+    //   if(temp[i] !== undefined){
+    //     // console.log(temp[i]);
+    //     if(temp[i].includes("Classname: ")){
+    //       console.log(console.log(temp[i]));
+    //   }
+    // }
+    // }
+    // console.log(classTitle);
+    //analytics.logEvent('download_report');
+    var doc = new jsPDF();
+    doc.internal.scaleFactor = 2.25;
+    doc.text(20, 20, 'TestPDF');
+    // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
+    // doc.addImage(content, 'PNG', 120, 20, 65, 55);
+    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000}
+    );
+    // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
+    // doc.addImage(content, 'PNG', 120, 20, 65, 55);
+    doc.addPage();
+    doc.save('test.pdf'); 
+  }
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
   //   if (user != null) {

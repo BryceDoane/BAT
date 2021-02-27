@@ -185,6 +185,16 @@ font-size: 25px;
     background-color: transparent;
   }
 
+  #clickMe{
+    position: absolute;
+    right: 3%;
+    width: 15%;
+  }
+  h1{
+      display: inline;
+    
+  }
+
  .dashboard .modal p {
     width: 100%;
     text-align: center;
