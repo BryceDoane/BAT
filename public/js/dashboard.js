@@ -678,7 +678,7 @@ function loadData() {
     var confirmLogout = confirm("Are you sure you wish to log out?");
     if(confirmLogout){
       firebase.auth().signOut();
-      window.location.href = "behavv.com";
+      window.location.href = "login.html";
       alert("signed out");
     }
   };
