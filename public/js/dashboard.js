@@ -675,8 +675,12 @@ function loadData() {
   //Show tasks as table
   //log out functionality on top right
   function signout() {
-    firebase.auth().signOut();
-    alert("signed out");
+    var confirmLogout = confirm("Are you sure you wish to log out?");
+    if(confirmLogout){
+      firebase.auth().signOut();
+      window.location.href = "behavv.com";
+      alert("signed out");
+    }
   };
   const sout = document.getElementById("lout");
   sout.addEventListener('click', signout);
