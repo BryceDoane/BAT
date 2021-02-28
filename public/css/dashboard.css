@@ -443,6 +443,41 @@ select{
   margin-top: 100px;
   background-color: transparent;
 }
+.reports table{
+  display: inline-block;
+  border-collapse: collapse;
+  width:80%;
+  margin-left: 20px;
+  background-color: transparent;
+  
+}
+.reports input{
+  width: 50px;
+  padding: 5px;
+  border: 2px solid transparent;
+}
+
+
+.reports table th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+  text-align: center;
+  background-color: #6f42c1;
+  color: white;
+  border: 2px solid #000000;
+  
+}
+
+.reports table tbody td{
+  border: 2px solid #d66d6d;
+  padding: 10px;
+  box-shadow: 3px 3px;
+}
+
+.reports table tr:nth-child(even) {background-color: #6d6d6d;}
+.reports table tr:hover {background-color: #d66d6d;}
 
 .switch {
   position: relative;

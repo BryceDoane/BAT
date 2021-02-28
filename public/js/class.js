@@ -208,6 +208,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 function showClass(className) {
+  const delNode = document.getElementById("classTaskDetails");
+   delNode.innerHTML = '';  //clears previous block clicked
   classDetailsModal.style.display = "block";
   var localClass = className;
   console.log(localClass);
@@ -236,13 +238,13 @@ firebase.auth().onAuthStateChanged(function (user) {
       taskList.push(childData.taskName);
 ;
 
-      //Modal Tasks in Class List
+      //Modal Tasks in Class List 
    var pNode = document.createElement('p');
    document.getElementById('classTaskDetails').appendChild(pNode);
    var taskElementList = document.createElement('p');
    taskElementList.classList.add("CardTaskList");
    var textNode3 = document.createTextNode(childData.taskName); 
-   console.log(taskList); //log
+   //console.log(taskList); //log
    taskElementList.appendChild(textNode3);
    pNode.appendChild(taskElementList);
    document.getElementById("classTaskDetails").appendChild(pNode);
@@ -314,8 +316,12 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 //log out functionality on top right
 function signout() {
-  firebase.auth().signOut();
-  alert("signed out");
+  var confirmLogout = confirm("Are you sure you wish to log out?");
+  if(confirmLogout){
+    firebase.auth().signOut();
+    window.location.href = "login.html";
+    alert("signed out");
+  }
 };
 const sout = document.getElementById("lout");
 sout.addEventListener('click', signout);

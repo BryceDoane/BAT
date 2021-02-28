@@ -16,7 +16,7 @@
 
 /**
      * Handles the sign in button press.
-     */var failedAttempts = 0;
+     */var failedAttempts = 1;
     function toggleSignIn() {
       if (firebase.auth().currentUser) {
       // [START signout]
@@ -82,7 +82,7 @@
       // document.getElementById('signed-in-user').textContent = email;
       // document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
       // document.getElementById('loginbtn').textContent = 'Sign out';
-      window.location = "/public/dashboard.html"; //CHANGE THIS LINE BEFORE PUSHING (remove the public before the /)
+      window.location = "/dashboard.html"; //CHANGE THIS LINE BEFORE PUSHING (remove the /public before the /)
 
       // [END_EXCLUDE]
       } else {
