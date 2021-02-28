@@ -267,7 +267,6 @@ var firebaseConfig = {
      };
   
   
-  var taskList;
   //Show tasks as table
   //log out functionality on top right
   function signout() {
@@ -313,48 +312,46 @@ var firebaseConfig = {
   
   });
 
+  var tableURI
   google.charts.load('current', {'packages':['table']});
   google.charts.setOnLoadCallback(drawTable);
   //console.log(temp);
   function drawTable(div, students, tasksl) {
     var data = new google.visualization.DataTable();
-    // console.log(tasksl);
+    // 
+
     data.addColumn('string', 'Name');
-
-
+if(tasksl !== undefined){
     for(var j = 0; j <= tasksl.length-1; j++){
-      console.log(tasksl[j])
       data.addColumn('string', tasksl[j]);
     };
+  }
+  if(students !== undefined){
     data.addRows(students.length);
     for(var i = 0; i <= students.length-1; i++){
       data.setCell(i, 0, students[i]);
     }
-
+  }
+  if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
     var table = new google.visualization.Table(document.getElementById(div));
-
     table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
   }
+    // tableURI = table.getImageURI;
+
+
+
+  }
+
 
 
   function genPDF() {
     //alert("test");
     var classTitle;
-    // console.log(classCount);
-    // for(var i = 0; i <= (temp.length - 1); i++){
-    //   // console.log(temp[i]);
-    //   if(temp[i] !== undefined){
-    //     // console.log(temp[i]);
-    //     if(temp[i].includes("Classname: ")){
-    //       console.log(console.log(temp[i]));
-    //   }
-    // }
-    // }
-    // console.log(classTitle);
-    //analytics.logEvent('download_report');
+
     var doc = new jsPDF();
     doc.internal.scaleFactor = 2.25;
     doc.text(20, 20, 'TestPDF');
+    doc.addImage(tableURI, 0, 0);
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
     doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000}
