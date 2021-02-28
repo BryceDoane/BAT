@@ -156,16 +156,16 @@ var firebaseConfig = {
             tablenode.setAttribute("id", temp3);
             document.getElementById("classNameLi").appendChild(tablenode);
 
-            // tablenode.setAttribute("class", "reportChart");
-            // dTable = tablenode;
+            tablenode.setAttribute("class", "reportChart");
+            dTable = tablenode;
   
             // let newRow = tablenode.insertRow(-1);
             // let newCell = newRow.insertCell(0);
             // let newText = document.createTextNode('');
             // newCell.appendChild(newText);
             // document.getElementById("classNameLi").appendChild(tablenode);
-            //classCount++;
-            //console.log(classCount);
+            // classCount++;
+            // console.log(classCount);
   
             stuRef.on('value', function (snapshot3) {
               //console.log(snapshot3.val());
@@ -198,6 +198,7 @@ var firebaseConfig = {
           });
           // console.log(tasksP);
           drawTable(temp3, students, tasksP);
+
             // for (j = 0; j <= (students.length - 1); j++) {
             //   let newRow = tablenode.insertRow(-1);
             //   let newCell = newRow.insertCell(0);
@@ -330,15 +331,26 @@ if(tasksl !== undefined){
     data.addRows(students.length);
     for(var i = 0; i <= students.length-1; i++){
       data.setCell(i, 0, students[i]);
+      for(var k = 1; k <= (data.getNumberOfColumns() - 1); k++){
+        data.setCell((i), k, '5');
     }
+    }
+
+//   for(var l = 1; l <= (data.getNumberOfRows() - 1); l++){
+//     data.setCell(l, 0, '5');
+// }
   }
   if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
     var table = new google.visualization.Table(document.getElementById(div));
     table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+
   }
     // tableURI = table.getImageURI;
 
 
+    console.log(data.getNumberOfColumns());
+
+    // data.setCell(0, 0, 'Mike');
 
   }
 
@@ -361,6 +373,8 @@ if(tasksl !== undefined){
     doc.addPage();
     doc.save('test.pdf'); 
   }
+
+
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
   //   if (user != null) {
