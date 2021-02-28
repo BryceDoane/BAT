@@ -20,7 +20,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
-
+import createTableR from './reports.js'
 
 function loadData() {
 

@@ -15,10 +15,10 @@ var firebaseConfig = {
 
   //const analytics = firebase.analytics();
   
-  n = new Date();
-  y = n.getFullYear();
-  m = n.getMonth() + 1;
-  d = n.getDate();
+  var n = new Date();
+  var y = n.getFullYear();
+  var m = n.getMonth() + 1;
+  var d = n.getDate();
   document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
   //current date script by Lance on StackOverflow
   
@@ -82,7 +82,7 @@ var firebaseConfig = {
             });
          var className;
          saveButton.onclick = function () {
-           for (i = 0; i < classes.length; i++) {
+           for (var i = 0; i < classes.length; i++) {
             //  console.log(schoolName);
              className = classes[i];
              var taskNumber = 0;
@@ -141,12 +141,12 @@ var firebaseConfig = {
           //    console.log(studentTest);
           //  });
         });
-        for (i = 0; i <= (temp.length - 1); i++) {
+        for (var i = 0; i <= (temp.length - 1); i++) {
           var temp2 = temp[i];
           if (temp2.includes("ClassName")) {
             taskCount = 0;
             students = [];
-            temp3 = temp2.replace('ClassName: ', "");
+            var temp3 = temp2.replace('ClassName: ', "");
             var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
             var node = document.createElement('h1');
             var textNode = document.createTextNode(temp3);
@@ -197,7 +197,7 @@ var firebaseConfig = {
             // });
           });
           // console.log(tasksP);
-          drawTable(temp3, students, tasksP);
+          drawTableR(temp3, students, tasksP);
 
             // for (j = 0; j <= (students.length - 1); j++) {
             //   let newRow = tablenode.insertRow(-1);
@@ -239,7 +239,7 @@ var firebaseConfig = {
   }
 
 
-  for (i = 0; i < classes.length; i++){
+  for (var i = 0; i < classes.length; i++){
      students = [];
     studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
     studentRef.on('value', function (snapshot) {
@@ -315,9 +315,9 @@ var firebaseConfig = {
 
   var tableURI
   google.charts.load('current', {'packages':['table']});
-  google.charts.setOnLoadCallback(drawTable);
+  google.charts.setOnLoadCallback(drawTableR);
   //console.log(temp);
-  function drawTable(div, students, tasksl) {
+  export default function drawTableR(div, students, tasksl) {
     var data = new google.visualization.DataTable();
     // 
 
@@ -375,6 +375,7 @@ if(tasksl !== undefined){
   }
 
 
+  // export { drawTableR } 
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
   //   if (user != null) {
