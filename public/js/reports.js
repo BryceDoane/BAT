@@ -15,10 +15,10 @@ var firebaseConfig = {
 
   //const analytics = firebase.analytics();
   
-  n = new Date();
-  y = n.getFullYear();
-  m = n.getMonth() + 1;
-  d = n.getDate();
+  var n = new Date();
+  var y = n.getFullYear();
+  var m = n.getMonth() + 1;
+  var d = n.getDate();
   document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
   //current date script by Lance on StackOverflow
   
@@ -82,7 +82,7 @@ var firebaseConfig = {
             });
          var className;
          saveButton.onclick = function () {
-           for (i = 0; i < classes.length; i++) {
+           for (var i = 0; i < classes.length; i++) {
             //  console.log(schoolName);
              className = classes[i];
              var taskNumber = 0;
@@ -141,12 +141,12 @@ var firebaseConfig = {
           //    console.log(studentTest);
           //  });
         });
-        for (i = 0; i <= (temp.length - 1); i++) {
+        for (var i = 0; i <= (temp.length - 1); i++) {
           var temp2 = temp[i];
           if (temp2.includes("ClassName")) {
             taskCount = 0;
             students = [];
-            temp3 = temp2.replace('ClassName: ', "");
+            var temp3 = temp2.replace('ClassName: ', "");
             var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
             var node = document.createElement('h1');
             var textNode = document.createTextNode(temp3);
@@ -156,16 +156,16 @@ var firebaseConfig = {
             tablenode.setAttribute("id", temp3);
             document.getElementById("classNameLi").appendChild(tablenode);
 
-            // tablenode.setAttribute("class", "reportChart");
-            // dTable = tablenode;
+            tablenode.setAttribute("class", "reportChart");
+            dTable = tablenode;
   
             // let newRow = tablenode.insertRow(-1);
             // let newCell = newRow.insertCell(0);
             // let newText = document.createTextNode('');
             // newCell.appendChild(newText);
             // document.getElementById("classNameLi").appendChild(tablenode);
-            //classCount++;
-            //console.log(classCount);
+            // classCount++;
+            // console.log(classCount);
   
             stuRef.on('value', function (snapshot3) {
               //console.log(snapshot3.val());
@@ -197,7 +197,8 @@ var firebaseConfig = {
             // });
           });
           // console.log(tasksP);
-          drawTable(temp3, students, tasksP);
+          drawTableR(temp3, students, tasksP);
+
             // for (j = 0; j <= (students.length - 1); j++) {
             //   let newRow = tablenode.insertRow(-1);
             //   let newCell = newRow.insertCell(0);
@@ -238,7 +239,7 @@ var firebaseConfig = {
   }
 
 
-  for (i = 0; i < classes.length; i++){
+  for (var i = 0; i < classes.length; i++){
      students = [];
     studentRef = firebase.database().ref('Schools/' + schoolName + "/classes" + "/" + classes[i] + "/Student List");
     studentRef.on('value', function (snapshot) {
@@ -267,7 +268,6 @@ var firebaseConfig = {
      };
   
   
-  var taskList;
   //Show tasks as table
   //log out functionality on top right
   function signout() {
@@ -313,48 +313,57 @@ var firebaseConfig = {
   
   });
 
+  var tableURI
   google.charts.load('current', {'packages':['table']});
-  google.charts.setOnLoadCallback(drawTable);
+  google.charts.setOnLoadCallback(drawTableR);
   //console.log(temp);
-  function drawTable(div, students, tasksl) {
+  export default function drawTableR(div, students, tasksl) {
     var data = new google.visualization.DataTable();
-    // console.log(tasksl);
+    // 
+
     data.addColumn('string', 'Name');
-
-
+if(tasksl !== undefined){
     for(var j = 0; j <= tasksl.length-1; j++){
-      console.log(tasksl[j])
       data.addColumn('string', tasksl[j]);
     };
+  }
+  if(students !== undefined){
     data.addRows(students.length);
     for(var i = 0; i <= students.length-1; i++){
       data.setCell(i, 0, students[i]);
+      for(var k = 1; k <= (data.getNumberOfColumns() - 1); k++){
+        data.setCell((i), k, '5');
+    }
     }
 
-    var table = new google.visualization.Table(document.getElementById(div));
-
-    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+//   for(var l = 1; l <= (data.getNumberOfRows() - 1); l++){
+//     data.setCell(l, 0, '5');
+// }
   }
+  if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
+    var table = new google.visualization.Table(document.getElementById(div));
+    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+
+  }
+    // tableURI = table.getImageURI;
+
+
+    console.log(data.getNumberOfColumns());
+
+    // data.setCell(0, 0, 'Mike');
+
+  }
+
 
 
   function genPDF() {
     //alert("test");
     var classTitle;
-    // console.log(classCount);
-    // for(var i = 0; i <= (temp.length - 1); i++){
-    //   // console.log(temp[i]);
-    //   if(temp[i] !== undefined){
-    //     // console.log(temp[i]);
-    //     if(temp[i].includes("Classname: ")){
-    //       console.log(console.log(temp[i]));
-    //   }
-    // }
-    // }
-    // console.log(classTitle);
-    //analytics.logEvent('download_report');
+
     var doc = new jsPDF();
     doc.internal.scaleFactor = 2.25;
     doc.text(20, 20, 'TestPDF');
+    doc.addImage(tableURI, 0, 0);
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
     doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000}
@@ -364,6 +373,9 @@ var firebaseConfig = {
     doc.addPage();
     doc.save('test.pdf'); 
   }
+
+
+  // export { drawTableR } 
   //Example of taskPercentDone Usage needs className and taskName defined before it can run.
   // firebase.auth().onAuthStateChanged(function (user) {
   //   if (user != null) {
