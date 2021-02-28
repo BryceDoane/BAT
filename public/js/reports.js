@@ -10,6 +10,9 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+
+
   //const analytics = firebase.analytics();
   
   n = new Date();
@@ -80,7 +83,7 @@ var firebaseConfig = {
          var className;
          saveButton.onclick = function () {
            for (i = 0; i < classes.length; i++) {
-             console.log(schoolName);
+            //  console.log(schoolName);
              className = classes[i];
              var taskNumber = 0;
              firebase.database().ref('Schools/' + schoolName + "/classes/" + className + "/Tasks").orderByChild("tasks").once("value", function (snapshot) {
@@ -118,7 +121,7 @@ var firebaseConfig = {
   
           taskRef.on('value', function (snapshot2) {
             snapshot2.forEach(function (childSnapshot2) {
-              temp.push(childSnapshot2.val().taskName)
+              tasks.push(childSnapshot2.val().taskName)
             })
           })
           
@@ -149,16 +152,18 @@ var firebaseConfig = {
             var textNode = document.createTextNode(temp3);
             node.appendChild(textNode);
             // document.getElementById("classNameLi").appendChild(node)
-            var tablenode = document.createElement('table');
+            var tablenode = document.createElement('div');
             tablenode.setAttribute("id", temp3);
-            tablenode.setAttribute("class", "reportChart");
-            dTable = tablenode;
-  
-            let newRow = tablenode.insertRow(-1);
-            let newCell = newRow.insertCell(0);
-            let newText = document.createTextNode('');
-            newCell.appendChild(newText);
             document.getElementById("classNameLi").appendChild(tablenode);
+
+            // tablenode.setAttribute("class", "reportChart");
+            // dTable = tablenode;
+  
+            // let newRow = tablenode.insertRow(-1);
+            // let newCell = newRow.insertCell(0);
+            // let newText = document.createTextNode('');
+            // newCell.appendChild(newText);
+            // document.getElementById("classNameLi").appendChild(tablenode);
             //classCount++;
             //console.log(classCount);
   
@@ -167,40 +172,54 @@ var firebaseConfig = {
               snapshot3.forEach(function (childSnapshot3) {
                 students.push(childSnapshot3.val().studentName);
               })
+              
             })
-            for (j = 0; j <= (students.length - 1); j++) {
-              let newRow = tablenode.insertRow(-1);
-              let newCell = newRow.insertCell(0);
-              let newText = document.createTextNode(students[j]);
-              newCell.appendChild(newText);
-              //console.log(tablenode.rows[0].cells.length);
-              // var divnode = document.createElement('div');
-              // divnode.id = "taskID";
-              // var trNode = document.createElement('tr');
-              // trNode.id = "nodeID";
-              // //document.getElementById("classNameLi").appendChild(divnode);
-              // document.getElementById("classNameLi").appendChild(trNode);
-              // var dnode = document.createElement('td');
-              // var textNode2 = document.createTextNode(students[j]);
-              // dnode.appendChild(textNode2);
-              // trNode.appendChild(dnode);
-              // document.getElementById("classNameLi").appendChild(trNode)
-            }
-          }
-          else {
-            // Insert a row at the end of the table
-            let newRow = tablenode.rows[0];
-            let newCell = newRow.insertCell(-1);
-            let newText = document.createTextNode(temp[i]);
-            newCell.appendChild(newText);
-            //taskCount++;
-            var rows = tablenode.getElementsByTagName("tr");
-  
-            if (taskCount != 1) {
-              addCell(rows);
-            }
+            var tasksP = [];
+            var className = temp[i].replace("ClassName: ", "");
+            var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + className + "/Tasks");
 
+            // console.log(classRef2);
+            classRef2.on('value', function (snapshot) {
+                // console.log(snapshot.val())
+                tasksP = Object.keys(snapshot.val())
+                // console.log(tasksP);
+
+              // var tempo = String(snapshot.val().className);
+              // console.log(tempo);
+              // // if(tempo.includes("Classname:")){
+              // //   var className = snapshot.val();
+              // // }
+              // // console.log(className);
+            // firebase.database().ref('Schools/' + schoolName + "/classes/" + "Mathology" + "/Tasks").orderByChild("tasks").once("value", function (snapshot) {
+            //   snapshot.forEach(function (childSnapshot) {
+            //     // taskNumber = taskNumber + 1;
+            //   });
+            // });
+          });
+          // console.log(tasksP);
+          drawTable(temp3, students, tasksP);
+            // for (j = 0; j <= (students.length - 1); j++) {
+            //   let newRow = tablenode.insertRow(-1);
+            //   let newCell = newRow.insertCell(0);
+            //   let newText = document.createTextNode(students[j]);
+            //   newCell.appendChild(newText);
+
+            // }
           }
+          // else {
+          //   // Insert a row at the end of the table
+          //   let newRow = tablenode.rows[0];
+          //   let newCell = newRow.insertCell(-1);
+          //   let newText = document.createTextNode(temp[i]);
+          //   newCell.appendChild(newText);
+          //   //taskCount++;
+          //   var rows = tablenode.getElementsByTagName("tr");
+  
+          //   if (taskCount != 1) {
+          //     addCell(rows);
+          //   }
+
+          // }
 
         };
 
@@ -213,32 +232,7 @@ var firebaseConfig = {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
       ddnode.value = "1";
-      // var ddonode = document.createElement('option');
-      //  var ddonode2 = document.createElement('option');
-      //  var ddonode3 = document.createElement('option');
-      // var ddonode4 = document.createElement('option');
-      //  var ddonode5 = document.createElement('option');
-      //  var ddonodesel = document.createElement('option')
-  
-      // let opTextsel = document.createTextNode("Select a value");
-      //  let opText = document.createTextNode("1");
-      //  let opText2 = document.createTextNode("2");
-      //  let opText3 = document.createTextNode("3");
-      //  let opText4 = document.createTextNode("4");
-      //  let opText5 = document.createTextNode("5");
-      //  ddonodesel.appendChild(opTextsel);
-      //  ddonode.appendChild(opText);
-      //  ddonode2.appendChild(opText2);
-      //  ddonode3.appendChild(opText3);
-      //  ddonode4.appendChild(opText4);
-      //  ddonode5.appendChild(opText5);
-  
-      //  ddnode.appendChild(ddonodesel);
-      //  ddnode.appendChild(ddonode);
-      //  ddnode.appendChild(ddonode2);
-      // ddnode.appendChild(ddonode3);
-      //  ddnode.appendChild(ddonode4);
-      //  ddnode.appendChild(ddonode5);
+
       blankCell.appendChild(ddnode);
     }
   }
@@ -273,7 +267,6 @@ var firebaseConfig = {
      };
   
   
-  var tasks = [];
   var taskList;
   //Show tasks as table
   //log out functionality on top right
@@ -319,13 +312,35 @@ var firebaseConfig = {
     }
   
   });
+
+  google.charts.load('current', {'packages':['table']});
+  google.charts.setOnLoadCallback(drawTable);
   //console.log(temp);
+  function drawTable(div, students, tasksl) {
+    var data = new google.visualization.DataTable();
+    // console.log(tasksl);
+    data.addColumn('string', 'Name');
+
+
+    for(var j = 0; j <= tasksl.length-1; j++){
+      console.log(tasksl[j])
+      data.addColumn('string', tasksl[j]);
+    };
+    data.addRows(students.length);
+    for(var i = 0; i <= students.length-1; i++){
+      data.setCell(i, 0, students[i]);
+    }
+
+    var table = new google.visualization.Table(document.getElementById(div));
+
+    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+  }
 
 
   function genPDF() {
     //alert("test");
     var classTitle;
-    console.log(classCount);
+    // console.log(classCount);
     // for(var i = 0; i <= (temp.length - 1); i++){
     //   // console.log(temp[i]);
     //   if(temp[i] !== undefined){

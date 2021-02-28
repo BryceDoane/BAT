@@ -101,6 +101,8 @@ font-size: 25px;
    .sidenav .icon {
     height: 35px;
     width: 35px;
+    align-content: center;
+    position: relative; top:7px
    }
   /* The navigation menu links */
   .sidenav a {

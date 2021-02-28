@@ -139,6 +139,8 @@ select{
    .sidenav .icon {
     height: 35px;
     width: 35px;
+    align-content: center;
+    position: relative; top:7px
    }
   /* The navigation menu links */
   .sidenav a {
@@ -343,3 +345,14 @@ select{
   .modal-header {
     background-color: #c9e6ff; 
   }
+
+  a.active{
+    background:#6f42c1;
+    color:#ffffff;
+  }
+  /* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .sidenav a:focus, .sidenav a:active {
+  color: #000000;
+  background-color: #b3a5d9;
+  cursor: pointer;
+}
