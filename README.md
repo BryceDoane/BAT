@@ -89,6 +89,14 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 3. Other minor visual improvements
 4. Confirmation before deleting account or changing password
 
+## V1.7 - Beta Begins
+1. Restyle some elements for a better user experience
+2. Graphs shown on dashboard and in report now pull information from database
+3. Tables on reports page now allow user to enter information and ratings
+4. Fixed countless functionality bugs
+
+This version is our minimum viable product, or the version that we believe fulfills our vision for this project, and could be used on a day-to-day basis. There may still be some bugs present, but all intended functionality is now in place.
+
 ## Future Releases
 
-In Version 1.7, we will focus our efforts on building out the backend for the reports page to create and share reports of student behavior tracking.
+In Version 1.8, we will continue to refine the user experience and fix bugs as they come up. There are now beta testers to help us through this process.

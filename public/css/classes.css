@@ -295,7 +295,7 @@ select{
   }
 
   h2 {
-      color:rgb(209, 72, 44);
+      color:#6f42c1;
   }
 
   table {
@@ -335,3 +335,11 @@ select{
 
   .modal-body td:hover {background-color: #7a7a7a;}
   .modal-body tr:nth-child(2) {background: #f2f2f2;}
+
+  .modal-content {
+      background-color: #c9e6ff; 
+  }
+
+  .modal-header {
+    background-color: #c9e6ff; 
+  }
