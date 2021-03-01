@@ -1,4 +1,7 @@
 // Your web app's Firebase configuration
+
+//import { json } from "express";
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
   apiKey: "AIzaSyB9Y2gGnOUC9tG_4piaqqCEhMxdi5yxQDI",
@@ -20,9 +23,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
-import createTableR from './reports.js'
 
-function loadData() {
+
 
   var weekday = new Array(7);
   weekday[0] = "Sunday";
@@ -85,6 +87,15 @@ function loadData() {
   var ratingTotal;
   var missingVal;
   var doneRating;
+  var rating1;
+  var rating2;
+  var rating3;
+  var rating4;
+  var rating5;
+  var data;
+  var ss;
+  var jsonTest;
+
 
   // var formModal = document.getElementById("formModal");
   // var infobtn = document.getElementById("addInfoModal");
@@ -102,16 +113,56 @@ function loadData() {
   //   }
   // }
 
-  function drawOChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Number of Ratings'],
-      ['5', 11],
-      ['4', 2],
-      ['3', 2],
-      ['2', 2],
-      ['1', 7]
-    ]);
+  
 
+ async function drawOChart() {
+
+  
+ 
+ console.log(typeof rating5)
+    data = google.visualization.arrayToDataTable([
+  
+      ['Task', 'Number of Ratings'],
+      ['6', "3"],
+      // ['4', rating4],
+      // ['3', rating3],
+      // ['2', rating2],
+      // ['1', rating1]
+      
+    ]);
+    async function ratingAppear(){
+      await addRowsC();
+    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
+  
+  
+
+    
+      jsonTest.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      console.log(ss)
+
+      console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+
+       
+       
+      });
+ 
+    }
+    ratingAppear();
+    console.log(rating5)
+   async function addRowsC(){  data.addRow(['5', rating5]);}
+    addRowsC();
+  
+   
+console.log(data)
     var options1 = {
       title: 'Total Ratings',
       pieHole: 0.4,
@@ -263,15 +314,56 @@ function loadData() {
       })
     })
     //console.log(brycesArray);
+var testJson;
+var gets;
 
 
 
+
+
+    async function firebaseDB() {
+      jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
+    return jsonTest}
+    
+    async function jsonDB() {
+      await firebaseDB();
+      jsonTest.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      console.log(ss)
+         rating5 = (ss.match(/5/g) || []).length;
+         rating4 = (ss.match(/4/g) || []).length;
+         rating3 = (ss.match(/3/g) || []).length;
+         rating2 = (ss.match(/2/g) || []).length;
+         rating1 = (ss.match(/1/g) || []).length;
+//console.log(count);
+       // console.log(count)
+        // if(ss !== undefined)
+        // ss.response.forEach(el => {
+        //   console.log(el);
+        // })
+
+      });
+
+    };
+    jsonDB();
+
+       //const parseT = JSON.parse(gets)
+      //console.log(parseT)
+     // console.log(sd.rating)
+       function getOccurrence(gets, value) {
+      return gets.filter((v) => (v === value)).length;
+  
+
+
+  console.log(getOccurrence(ds, 1));  }
 
     // referencing student rating
     var totalArray = [];
     var totalRating = [];
 
-    var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/" + classes[i]);
+    var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021" + "/" + classes[i] + "/" + studentsData + "/");
     ratingRep.on('value', function (snapshot) {
       //console.log(snapshot.val());
       snapshot.forEach(function (childsSnapshot) {
@@ -287,7 +379,7 @@ function loadData() {
         }
         //console.log(ratingInfo);
         ratingData = childsSnapshot.val();
-        //console.log(ratingData)
+       // console.log(ratingData)
         ratingsData = ratingData.rating;
 
         // console.log(ratingsData);
@@ -306,11 +398,12 @@ function loadData() {
         }
 
 
-
+     
 
       });
 
-
+      var ds = JSON.stringify(ratingData);
+      //console.log(ds)
       // console.log(ratingTotal);
       // console.log("---")
       // console.log(ratingInfo)
@@ -348,6 +441,22 @@ function loadData() {
       //console.log(brycesArray);
       //lastArr.push(brycesArray);
     });
+   
+ 
+    if (ratingData != undefined){   const ds = JSON.stringify(ratingData);
+      console.log(ds)
+      const sd = JSON.parse(ds)
+     // console.log(sd.rating)
+       function getOccurrence(ds, value) {
+      return ds.filter((v) => (v === value)).length;
+  }
+
+
+  console.log(getOccurrence(ds, 1));  }
+  
+
+ 
+  
 
     //console.log(lastArr)
     //console.log(brycesArray);
@@ -374,7 +483,7 @@ function loadData() {
       snapshot2.forEach(function (childSnapshot2) {
         // console.log(childSnapshot2.val());
         childSnapshot2.forEach(function (grandchildSnapshot) {
-          console.log(grandchildSnapshot.key);
+          //console.log(grandchildSnapshot.key);
         })
       })
     })
@@ -675,12 +784,8 @@ function loadData() {
   //Show tasks as table
   //log out functionality on top right
   function signout() {
-    var confirmLogout = confirm("Are you sure you wish to log out?");
-    if(confirmLogout){
-      firebase.auth().signOut();
-      window.location.href = "login.html";
-      alert("signed out");
-    }
+    firebase.auth().signOut();
+    alert("signed out");
   };
   const sout = document.getElementById("lout");
   sout.addEventListener('click', signout);
@@ -845,8 +950,6 @@ function loadData() {
   //console.log(lastArr.length)
   //console.log(lastArr)
 
-}
-window.onload = function () {
-  setTimeout(loadData, 3000);
-}
+ 
+
 
