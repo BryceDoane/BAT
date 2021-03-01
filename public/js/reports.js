@@ -40,12 +40,8 @@ var firebaseConfig = {
   var tasksID = [];
   var taskList;
   var dTable;
-  var gorger;
-  var gorgerr;
   var cumul = 0;
-  var classesList;
   var classCount = 0;
-  
   //gets the user's school name
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -73,7 +69,8 @@ var firebaseConfig = {
                 var childData = childSnapshot.val();
                 classRef.on('child_added', function (snapshot) {
                   //Do something with the data
-              document.getElementById("classNameLi").innerHTML = childData.className;
+              //document.getElementById("classNameLi").innerHTML = childData.className; //this line does something
+              
          
                 });
                 classes.push(childData.className);
@@ -81,6 +78,22 @@ var firebaseConfig = {
                });
             });
          var className;
+
+          //Makes Titles
+          //var insertTitle = document.getElementById("classNameLi")
+          //var textwords = "test";
+          //var textwords = classesList;
+          //insertTitle.innerHTML += textwords;
+          //document.getElementById("classNameLi").innerHTML += "Class #" + classCount; //this line does something
+         document.getElementById("classNameLi").innerHTML += "Class #" + classCount + "  "; //this line does something
+         
+        //  const newPara = document.createElement("p");
+        //  const newContent = document.createTextNode("Class #"+ classCount);
+        //  newPara.appendChild(newContent);
+        //  const placeObject = document.getElementById("TableNames");
+        //  console.log(placeObject);
+        //  document.body.insertBefore(newPara, placeObject); //this line causes issues
+
          saveButton.onclick = function () {
            for (var i = 0; i < classes.length; i++) {
             //  console.log(schoolName);
@@ -92,6 +105,7 @@ var firebaseConfig = {
                });
              });
              var rowsNumber = document.getElementById(className).rows.length;
+             
              for (p = 1; p < rowsNumber; p++) {
                var currentDate = m + "-" + d + "-" + y;
                var studentName = document.getElementById(className).rows[p].cells[0].innerHTML;
@@ -177,7 +191,6 @@ var firebaseConfig = {
             var tasksP = [];
             var className = temp[i].replace("ClassName: ", "");
             var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + className + "/Tasks");
-
             // console.log(classRef2);
             classRef2.on('value', function (snapshot) {
                 // console.log(snapshot.val())
@@ -198,7 +211,6 @@ var firebaseConfig = {
           });
           // console.log(tasksP);
           drawTableR(temp3, students, tasksP);
-
             // for (j = 0; j <= (students.length - 1); j++) {
             //   let newRow = tablenode.insertRow(-1);
             //   let newCell = newRow.insertCell(0);
@@ -319,7 +331,9 @@ var firebaseConfig = {
   //console.log(temp);
   export default function drawTableR(div, students, tasksl) {
     var data = new google.visualization.DataTable();
-    // 
+
+
+
 
     data.addColumn('string', 'Name');
 if(tasksl !== undefined){
@@ -343,7 +357,6 @@ if(tasksl !== undefined){
   if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
     var table = new google.visualization.Table(document.getElementById(div));
     table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-
   }
     // tableURI = table.getImageURI;
 
@@ -366,8 +379,7 @@ if(tasksl !== undefined){
     doc.addImage(tableURI, 0, 0);
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
-    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000}
-    );
+    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000});
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
     doc.addPage();

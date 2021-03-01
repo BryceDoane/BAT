@@ -78,7 +78,7 @@ select{
   font-size: 15px;
   margin-left: 2%;
   height: 30px;
-  width: 125px;
+  width: 200px;
   box-shadow: 1px 1px grey;
 }
 .modal-content .deletebtn {
@@ -88,7 +88,7 @@ select{
   font-size: 15px;
   margin-left: 2%;
   height: 30px;
-  width: 130px;
+  width: 200px;
   box-shadow: 1px 1px grey;
 }
 .modal-content button:hover {
