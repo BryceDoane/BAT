@@ -24,7 +24,7 @@ firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
 
-
+var date;
 
   var weekday = new Array(7);
   weekday[0] = "Sunday";
@@ -42,9 +42,11 @@ const analytics = firebase.analytics();
   n = new Date();
   y = n.getFullYear();
   m = n.getMonth();
+  m1 = monthNames[m];
   d1 = n.getDay();
   d = weekday[n.getDay()];
-  document.getElementById("date").innerHTML = d + ", " + m + " " + d1 + ", " + y;
+  document.getElementById("date").innerHTML = d + ", " + m1 + " " + d1 + ", " + y;
+  date = d + ", " + m1 + " " + d1 + ", " + y;
   //current date script by Lance on StackOverflow
 
   var uid;
@@ -95,6 +97,7 @@ const analytics = firebase.analytics();
   var data;
   var ss;
   var jsonTest;
+  var today;
 
 
   // var formModal = document.getElementById("formModal");
@@ -117,56 +120,50 @@ const analytics = firebase.analytics();
 
  async function drawOChart() {
 
-  
- 
- console.log(typeof rating5)
-    data = google.visualization.arrayToDataTable([
-  
-      ['Task', 'Number of Ratings'],
-      ['6', "3"],
-      // ['4', rating4],
-      // ['3', rating3],
-      // ['2', rating2],
-      // ['1', rating1]
-      
-    ]);
-    async function ratingAppear(){
-      await addRowsC();
-    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
-  
-  
+ var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work',     0]
+]);
 
+    async function ratingAppear(){
+      // await addRowsC();
+    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
     
       jsonTest.on('value', function (snapshot) {
         //console.log(snapshot)
         //snapshot.forEach(function (childsSnapshot) {
         ss = JSON.stringify(snapshot);
-      console.log(ss)
-
-      console.log(ss)
+      // console.log(ss)
       rating5 = (ss.match(/5/g) || []).length;
-      console.log(rating5);
+      // console.log(rating5);
       rating4 = (ss.match(/4/g) || []).length;
       rating3 = (ss.match(/3/g) || []).length;
       rating2 = (ss.match(/2/g) || []).length;
       rating1 = (ss.match(/1/g) || []).length;
+        
+      // console.log(rating5);
 
-       
-       
+      data.addRow(['Rating: 5', rating5]);
+      data.addRow(['Rating: 4', rating4]);
+      data.addRow(['Rating: 3', rating3]);
+      data.addRow(['Rating: 2', rating2]);
+      data.addRow(['Rating: 1', rating1]);
+
+      chart.draw(data, options1);
       });
- 
     }
+
     ratingAppear();
-    console.log(rating5)
-   async function addRowsC(){  data.addRow(['5', rating5]);}
-    addRowsC();
+
+    // await ratingAppear();
+    
+    // data.addRow(['5', rating5]);
+  // async function addRowsC(){  data.addRow(['5', rating5]);}
+  //   addRowsC();
   
-   
-console.log(data)
     var options1 = {
       title: 'Total Ratings',
       pieHole: 0.4,
-      legend: 'none',
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
@@ -175,23 +172,125 @@ console.log(data)
         // leave room for y-axis labels
         width: '90%'
       },
+      slices: {
+        1: { color: '#0066ff' },
+        2: { color: 'green' },
+        3: { color: '#ffbd00' },
+        4: { color: '#ff7326'},
+        5: { color: 'red'}
+      }
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
     google.visualization.events.addListener(chart, 'ready', function () {
-      content = chart.getImageURI()
+      
       //content = '<img src="' + chart.getImageURI() + '">';
       // $('#chartContainer3').append(content);
     });
 
+console.log(rating5);
+date = d + ", " + m1 + " " + d1 + ", " + y;
+
+var date2 = (m+1) + "-" + d1 + "-" + y;
+
+//UNCOMMENT THIS FOR TRUE DATA
+date2="2-27-2021";
+
+if(m1 = 'May' || 'July' || 'October' || 'December'){
+  d2 = 30;
+}
+else if(m1 = 'March'){
+  d2 = 28;
+}
+else{
+  d2 = 31;
+}
+
     var data2 = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['Monday', 1000, 400],
-      ['Tuesday', 1170, 460],
-      ['Wednesday', 660, 1120],
-      ['Thursday', 1030, 540],
-      ['Friday', 1030, 540],
+      ['Date', 'Tota Rating Count'],
+      [String(d2-3), 500],
+      [String(d2-2), 500],
     ]);
+
+    async function ratingAppear2(){
+      // await addRowsC();
+      var date2 = (m+1) + "-" + d1 + "-" + y;
+      console.log(date2)
+
+      //COMMENT THIS FOR TRUE DATA
+      date2="2-26-2021";
+
+      // var myCurrentDate=new Date();
+      // var myPastDate=new Date(myCurrentDate);
+      // myPastDate.setDate(myPastDate.getDate() - 3);
+      // console.log(myPastDate)
+
+    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-28-2021");
+    
+      jsonTest.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(28), ratingTotal])
+      chart2.draw(data2, options2);
+      });
+
+      jsonTest2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021");
+    
+      jsonTest2.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(27), ratingTotal])
+
+      chart2.draw(data2, options2);
+      });
+      
+      jsonTest3 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-26-2021");
+    
+      jsonTest3.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(26), ratingTotal])
+
+      chart2.draw(data2, options2);
+
+      });
+
+    }
+    ratingAppear2();
+
     var options2 = {
       title: 'Weekly Comparison',
       pieHole: 0.4,
@@ -229,8 +328,6 @@ console.log(data)
 
     // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
 
-    chart.draw(data, options1);
-    chart2.draw(data2, options2);
     // export {content, content2 };
     // chart3.draw(data3, options3);
   }
@@ -265,7 +362,6 @@ console.log(data)
         fontSize: 20,
       },
       colors: ['green', 'red'],
-      legend: 'none',
     };
 
 
@@ -331,7 +427,7 @@ var gets;
         //console.log(snapshot)
         //snapshot.forEach(function (childsSnapshot) {
         ss = JSON.stringify(snapshot);
-      console.log(ss)
+      // console.log(ss)
          rating5 = (ss.match(/5/g) || []).length;
          rating4 = (ss.match(/4/g) || []).length;
          rating3 = (ss.match(/3/g) || []).length;
