@@ -245,7 +245,15 @@ select{
   text-transform: uppercase;
   
   }
-  #myBtn:hover, #myBtn:focus, #myBtn:active, .dashboard button:hover {
+  #myBtn:hover, #myBtn:focus, #myBtn:active, .dashboard button:hover, #addClassModal:hover, #addClassModal:focus, #addClassModal:active {
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+  
+    align-content: left;
+    transition: background-color 2s ease-out;
+  }
+  #addClassModal:hover, #addClassModal:focus, #addClassModal:active{
     background:#6f42c1;
     color:#ffffff;
     outline:0;

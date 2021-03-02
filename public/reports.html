@@ -14,7 +14,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script> 
         <!-- <script type="text/javascript" src="js/reports.js"></script> -->
-        <script type="module" src="js/dashboard.js"></script>
         <script type="module" src="js/reports.js"></script>
 </head>
 
@@ -37,9 +36,24 @@
     <div class="dashboard">
     <button id="clickMe" onclick="genPDF();">Download</button>
         <h1 id="date"></h1>
-        <button id="saveButton">Save Information</button>
+        <button id="saveButton">Enter Information</button>
         <p id="classNameLi"></p>
         <div id="table_div"></div>
+    </div>
+
+    <div id="reportModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Add Ratings</h2>
+                <hr id="hrmodal">
+            </div>
+            <div class="modal-body" id='reportEnter'>
+
+            </div>
+            <button value="Submit" id="cancel">Cancel</button><button value="Submit" id="saveButtonR">Save Data</button>
+        </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>

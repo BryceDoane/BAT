@@ -712,6 +712,10 @@ a.active{
 .sidenav a.selected {
   background-color: blue;
 }
+a.active{
+  background:#6f42c1;
+  color:#ffffff;
+}
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
