@@ -1,4 +1,7 @@
 // Your web app's Firebase configuration
+
+//import { json } from "express";
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
   apiKey: "AIzaSyB9Y2gGnOUC9tG_4piaqqCEhMxdi5yxQDI",
@@ -20,9 +23,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
-import createTableR from './reports.js'
 
-function loadData() {
+var date;
 
   var weekday = new Array(7);
   weekday[0] = "Sunday";
@@ -40,9 +42,11 @@ function loadData() {
   n = new Date();
   y = n.getFullYear();
   m = n.getMonth();
+  m1 = monthNames[m];
   d1 = n.getDay();
   d = weekday[n.getDay()];
-  document.getElementById("date").innerHTML = d + ", " + m + " " + d1 + ", " + y;
+  document.getElementById("date").innerHTML = d + ", " + m1 + " " + d1 + ", " + y;
+  date = d + ", " + m1 + " " + d1 + ", " + y;
   //current date script by Lance on StackOverflow
 
   var uid;
@@ -85,6 +89,16 @@ function loadData() {
   var ratingTotal;
   var missingVal;
   var doneRating;
+  var rating1;
+  var rating2;
+  var rating3;
+  var rating4;
+  var rating5;
+  var data;
+  var ss;
+  var jsonTest;
+  var today;
+
 
   // var formModal = document.getElementById("formModal");
   // var infobtn = document.getElementById("addInfoModal");
@@ -102,20 +116,54 @@ function loadData() {
   //   }
   // }
 
-  function drawOChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Number of Ratings'],
-      ['5', 11],
-      ['4', 2],
-      ['3', 2],
-      ['2', 2],
-      ['1', 7]
-    ]);
+  
 
+ async function drawOChart() {
+
+ var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work',     0]
+]);
+
+    async function ratingAppear(){
+      // await addRowsC();
+    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
+    
+      jsonTest.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      // console.log(rating5);
+
+      data.addRow(['Rating: 5', rating5]);
+      data.addRow(['Rating: 4', rating4]);
+      data.addRow(['Rating: 3', rating3]);
+      data.addRow(['Rating: 2', rating2]);
+      data.addRow(['Rating: 1', rating1]);
+
+      chart.draw(data, options1);
+      });
+    }
+
+    ratingAppear();
+
+    // await ratingAppear();
+    
+    // data.addRow(['5', rating5]);
+  // async function addRowsC(){  data.addRow(['5', rating5]);}
+  //   addRowsC();
+  
     var options1 = {
       title: 'Total Ratings',
       pieHole: 0.4,
-      legend: 'none',
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
@@ -124,23 +172,125 @@ function loadData() {
         // leave room for y-axis labels
         width: '90%'
       },
+      slices: {
+        1: { color: '#0066ff' },
+        2: { color: 'green' },
+        3: { color: '#ffbd00' },
+        4: { color: '#ff7326'},
+        5: { color: 'red'}
+      }
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
     google.visualization.events.addListener(chart, 'ready', function () {
-      content = chart.getImageURI()
+      
       //content = '<img src="' + chart.getImageURI() + '">';
       // $('#chartContainer3').append(content);
     });
 
+console.log(rating5);
+date = d + ", " + m1 + " " + d1 + ", " + y;
+
+var date2 = (m+1) + "-" + d1 + "-" + y;
+
+//UNCOMMENT THIS FOR TRUE DATA
+date2="2-27-2021";
+
+if(m1 = 'May' || 'July' || 'October' || 'December'){
+  d2 = 30;
+}
+else if(m1 = 'March'){
+  d2 = 28;
+}
+else{
+  d2 = 31;
+}
+
     var data2 = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['Monday', 1000, 400],
-      ['Tuesday', 1170, 460],
-      ['Wednesday', 660, 1120],
-      ['Thursday', 1030, 540],
-      ['Friday', 1030, 540],
+      ['Date', 'Tota Rating Count'],
+      [String(d2-3), 500],
+      [String(d2-2), 500],
     ]);
+
+    async function ratingAppear2(){
+      // await addRowsC();
+      var date2 = (m+1) + "-" + d1 + "-" + y;
+      console.log(date2)
+
+      //COMMENT THIS FOR TRUE DATA
+      date2="2-26-2021";
+
+      // var myCurrentDate=new Date();
+      // var myPastDate=new Date(myCurrentDate);
+      // myPastDate.setDate(myPastDate.getDate() - 3);
+      // console.log(myPastDate)
+
+    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-28-2021");
+    
+      jsonTest.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(28), ratingTotal])
+      chart2.draw(data2, options2);
+      });
+
+      jsonTest2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021");
+    
+      jsonTest2.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(27), ratingTotal])
+
+      chart2.draw(data2, options2);
+      });
+      
+      jsonTest3 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-26-2021");
+    
+      jsonTest3.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(26), ratingTotal])
+
+      chart2.draw(data2, options2);
+
+      });
+
+    }
+    ratingAppear2();
+
     var options2 = {
       title: 'Weekly Comparison',
       pieHole: 0.4,
@@ -178,8 +328,6 @@ function loadData() {
 
     // var chart3 = new google.visualization.Table(document.getElementById('chartContainer5'));
 
-    chart.draw(data, options1);
-    chart2.draw(data2, options2);
     // export {content, content2 };
     // chart3.draw(data3, options3);
   }
@@ -214,7 +362,6 @@ function loadData() {
         fontSize: 20,
       },
       colors: ['green', 'red'],
-      legend: 'none',
     };
 
 
@@ -263,15 +410,56 @@ function loadData() {
       })
     })
     //console.log(brycesArray);
+var testJson;
+var gets;
 
 
 
+
+
+    async function firebaseDB() {
+      jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
+    return jsonTest}
+    
+    async function jsonDB() {
+      await firebaseDB();
+      jsonTest.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+         rating5 = (ss.match(/5/g) || []).length;
+         rating4 = (ss.match(/4/g) || []).length;
+         rating3 = (ss.match(/3/g) || []).length;
+         rating2 = (ss.match(/2/g) || []).length;
+         rating1 = (ss.match(/1/g) || []).length;
+//console.log(count);
+       // console.log(count)
+        // if(ss !== undefined)
+        // ss.response.forEach(el => {
+        //   console.log(el);
+        // })
+
+      });
+
+    };
+    jsonDB();
+
+       //const parseT = JSON.parse(gets)
+      //console.log(parseT)
+     // console.log(sd.rating)
+       function getOccurrence(gets, value) {
+      return gets.filter((v) => (v === value)).length;
+  
+
+
+  console.log(getOccurrence(ds, 1));  }
 
     // referencing student rating
     var totalArray = [];
     var totalRating = [];
 
-    var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + today + "/" + classes[i]);
+    var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021" + "/" + classes[i] + "/" + studentsData + "/");
     ratingRep.on('value', function (snapshot) {
       //console.log(snapshot.val());
       snapshot.forEach(function (childsSnapshot) {
@@ -287,7 +475,7 @@ function loadData() {
         }
         //console.log(ratingInfo);
         ratingData = childsSnapshot.val();
-        //console.log(ratingData)
+       // console.log(ratingData)
         ratingsData = ratingData.rating;
 
         // console.log(ratingsData);
@@ -306,11 +494,12 @@ function loadData() {
         }
 
 
-
+     
 
       });
 
-
+      var ds = JSON.stringify(ratingData);
+      //console.log(ds)
       // console.log(ratingTotal);
       // console.log("---")
       // console.log(ratingInfo)
@@ -348,6 +537,22 @@ function loadData() {
       //console.log(brycesArray);
       //lastArr.push(brycesArray);
     });
+   
+ 
+    if (ratingData != undefined){   const ds = JSON.stringify(ratingData);
+      console.log(ds)
+      const sd = JSON.parse(ds)
+     // console.log(sd.rating)
+       function getOccurrence(ds, value) {
+      return ds.filter((v) => (v === value)).length;
+  }
+
+
+  console.log(getOccurrence(ds, 1));  }
+  
+
+ 
+  
 
     //console.log(lastArr)
     //console.log(brycesArray);
@@ -374,7 +579,7 @@ function loadData() {
       snapshot2.forEach(function (childSnapshot2) {
         // console.log(childSnapshot2.val());
         childSnapshot2.forEach(function (grandchildSnapshot) {
-          console.log(grandchildSnapshot.key);
+          //console.log(grandchildSnapshot.key);
         })
       })
     })
@@ -675,12 +880,8 @@ function loadData() {
   //Show tasks as table
   //log out functionality on top right
   function signout() {
-    var confirmLogout = confirm("Are you sure you wish to log out?");
-    if(confirmLogout){
-      firebase.auth().signOut();
-      window.location.href = "login.html";
-      alert("signed out");
-    }
+    firebase.auth().signOut();
+    alert("signed out");
   };
   const sout = document.getElementById("lout");
   sout.addEventListener('click', signout);
@@ -845,8 +1046,6 @@ function loadData() {
   //console.log(lastArr.length)
   //console.log(lastArr)
 
-}
-window.onload = function () {
-  setTimeout(loadData, 3000);
-}
+ 
+
 
