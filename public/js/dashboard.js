@@ -98,23 +98,80 @@ var date;
   var ss;
   var jsonTest;
   var today;
+  var mydate;
+  var toDate;
+  var fiveDate;
+  var fourDate;
+  var threeDate;
+  var twoDate;
+  var oneDate;
+  var mdate;
+  var finalFDate;
+  var finalFrDate;
+  var finalTDate
+  var finalTwDate;
+  var finalODate;
+  var myOdate;
+  var myTwdate;
+  var myTdate;
+  var myFrdate;
+  var myFrdate;
 
 
-  // var formModal = document.getElementById("formModal");
-  // var infobtn = document.getElementById("addInfoModal");
-  // var span1 = document.getElementsByClassName("close")[0];
 
-  //  infobtn.onclick = function () {
-  //  formModal.style.display = "block";
-  // }
-  // span1.onclick = function () {
-  //   formModal.style.display = "none";
-  // }
-  // window.onclick = function (event) {
-  //   if (event.target == formModal) {
-  //     formModal.style.display = "none";
+
+   mydate = new Date();
+   //split  based on whitespace, then get except the first element
+   // and then join again
+   mdate = mydate.toDateString().split(' ').slice(1).join(' ');
+   //console.log(mDate)
+
+
+   myOdate = new Date();
+  // // split  based on whitespace, then get except the first element
+  // // and then join again
+   myOdate.setDate(myOdate.getDate() - 1);
+   finalODate = myOdate.toDateString().split(' ').slice(1).join(' ');
+
+
+   myTwdate = new Date();
+  // // split  based on whitespace, then get except the first element
+  // // and then join again
+   myTwdate.setDate(myTwdate.getDate() - 2);
+   finalTwDate = myTwdate.toDateString().split(' ').slice(1).join(' ');
+
+   myTdate = new Date();
+  // // split  based on whitespace, then get except the first element
+  // // and then join again
+   myTdate.setDate(myTdate.getDate() - 3);
+    finalTDate = myTdate.toDateString().split(' ').slice(1).join(' ');
+
+  // // split  based on whitespace, then get except the first element
+  // // and then join again
+  myFrdate = new Date();
+myFrdate.setDate(myFrdate.getDate() - 4);
+   finalFrDate = myFrdate.toDateString().split(' ').slice(1).join(' ');
+   
+   myFdate = new Date();
+   myFdate.setDate(myFdate.getDate() - 5);
+   finalFDate = myFdate.toDateString().split(' ').slice(1).join(' ');
+
+
+  // // var formModal = document.getElementById("formModal");
+  // // var infobtn = document.getElementById("addInfoModal");
+  // // var span1 = document.getElementsByClassName("close")[0];
+
+  // //  infobtn.onclick = function () {
+  // //  formModal.style.display = "block";
+  // // }
+  // // span1.onclick = function () {
+  // //   formModal.style.display = "none";
+  // // }
+  // // window.onclick = function (event) {
+  // /  if (event.target == formModal) {
+  //      formModal.style.display = "none";
   //   }
-  // }
+  //  }
 
   
 
@@ -124,16 +181,31 @@ var date;
   ['Task', 'Hours per Day'],
   ['Work',     0]
 ]);
-
+var today = new Date();
+var dd = String(today.getDate()).padStart(1, '0');
+var m = String(today.getMonth() + 1).padStart(1, '0'); //January is 0!
+var yyyy = today.getFullYear();
+var date = new Date();
+date.setDate(date.getDate() - 13);
+date.setHours(0,0,0,0)
+console.log(date);
+today = m + '-' + dd + '-' + yyyy;
+console.log(today)
+var geo;
     async function ratingAppear(){
       // await addRowsC();
-    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
+      console.log(mdate)
+    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate );
     
       jsonTest.on('value', function (snapshot) {
         //console.log(snapshot)
-        //snapshot.forEach(function (childsSnapshot) {
+       // snapshot.forEach(function (childsSnapshot) {
         ss = JSON.stringify(snapshot);
-      // console.log(ss)
+        
+        //var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+       console.log(ss)
+       // geo = JSON.parse(ss)
+  //console.log(geo.West.Particpate.rating)
       rating5 = (ss.match(/5/g) || []).length;
       // console.log(rating5);
       rating4 = (ss.match(/4/g) || []).length;
@@ -150,6 +222,7 @@ var date;
       data.addRow(['Rating: 1', rating1]);
 
       chart.draw(data, options1);
+       //}) 
       });
     }
 
@@ -183,7 +256,7 @@ var date;
 
     var chart = new google.visualization.PieChart(document.getElementById('chartContainer3'));
     google.visualization.events.addListener(chart, 'ready', function () {
-      
+    
       //content = '<img src="' + chart.getImageURI() + '">';
       // $('#chartContainer3').append(content);
     });
@@ -194,7 +267,7 @@ date = d + ", " + m1 + " " + d1 + ", " + y;
 var date2 = (m+1) + "-" + d1 + "-" + y;
 
 //UNCOMMENT THIS FOR TRUE DATA
-date2="2-27-2021";
+date2= mdate;
 
 if(m1 = 'May' || 'July' || 'October' || 'December'){
   d2 = 30;
@@ -207,25 +280,25 @@ else{
 }
 
     var data2 = google.visualization.arrayToDataTable([
-      ['Date', 'Tota Rating Count'],
-      [String(d2-3), 500],
-      [String(d2-2), 500],
+      ['Date', 'Total Rating Count'],
+      [String(d2-3), 20],
+     // [String(d2-2), 500],
     ]);
 
     async function ratingAppear2(){
       // await addRowsC();
       var date2 = (m+1) + "-" + d1 + "-" + y;
-      console.log(date2)
+     // console.log(date2)
 
       //COMMENT THIS FOR TRUE DATA
-      date2="2-26-2021";
+      date2=mdate;
 
       // var myCurrentDate=new Date();
       // var myPastDate=new Date(myCurrentDate);
       // myPastDate.setDate(myPastDate.getDate() - 3);
       // console.log(myPastDate)
 
-    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-28-2021");
+    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate);
     
       jsonTest.on('value', function (snapshot) {
         //console.log(snapshot)
@@ -240,12 +313,13 @@ else{
       rating1 = (ss.match(/1/g) || []).length;
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-      console.log(ratingTotal);
-      data2.addRow([String(28), ratingTotal])
+      console.log(finalFrDate);
+
+      data2.addRow([String(finalFrDate), ratingTotal])
       chart2.draw(data2, options2);
       });
 
-      jsonTest2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021");
+      jsonTest2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalODate);
     
       jsonTest2.on('value', function (snapshot) {
         //console.log(snapshot)
@@ -261,12 +335,13 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
       console.log(ratingTotal);
-      data2.addRow([String(27), ratingTotal])
+      data2.addRow([String(finalTDate), ratingTotal])
 
       chart2.draw(data2, options2);
       });
       
-      jsonTest3 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-26-2021");
+      jsonTest3 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalTwDate);
+
     
       jsonTest3.on('value', function (snapshot) {
         //console.log(snapshot)
@@ -282,13 +357,58 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
       console.log(ratingTotal);
-      data2.addRow([String(26), ratingTotal])
+      data2.addRow([String(finalTwDate), ratingTotal])
 
       chart2.draw(data2, options2);
 
       });
+      jsonTest4 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalTDate);
 
+    
+      jsonTest4.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(finalODate), ratingTotal])
+
+      chart2.draw(data2, options2);
+
+      });
+      jsonTest5 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalFrDate);
+
+    
+      jsonTest5.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+      console.log(ratingTotal);
+      data2.addRow([String(mdate), ratingTotal])
+
+      chart2.draw(data2, options2);
+
+      });
+    data2.removeRow(0)
     }
+    
     ratingAppear2();
 
     var options2 = {
@@ -418,7 +538,7 @@ var gets;
 
 
     async function firebaseDB() {
-      jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021/");
+      jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" +  mdate);
     return jsonTest}
     
     async function jsonDB() {
@@ -459,7 +579,7 @@ var gets;
     var totalArray = [];
     var totalRating = [];
 
-    var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + "2-27-2021" + "/" + classes[i] + "/" + studentsData + "/");
+    var ratingRep = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate + "/" + classes[i] + "/" + studentsData + "/");
     ratingRep.on('value', function (snapshot) {
       //console.log(snapshot.val());
       snapshot.forEach(function (childsSnapshot) {

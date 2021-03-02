@@ -45,6 +45,7 @@ var firebaseConfig = {
   var cumul = 0;
   var classesList;
   var classCount = 0;
+  var date;
 
 
   var reportModal = document.getElementById("reportModal");
@@ -123,12 +124,24 @@ var firebaseConfig = {
                    firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate).push({});
                  }
                });
-         
+
+var mydate;
+var finalDate;
+                mydate = new Date();
+// split  based on whitespace, then get except the first element
+// and then join again
+
+
+
+finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
+
+               
+                 
                for (var j = 1; j < taskNumber + 1; j++) {
                  var taskName = document.getElementById(className + "1").rows[0].cells[j].innerHTML;
                  var ratingValue = document.getElementById(className + "1").rows[p].cells[j].firstChild.value;
                  if (ratingValue) {
-                   firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
+                   firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + finalDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
                  }
          
                };
@@ -313,7 +326,9 @@ var firebaseConfig = {
       document.getElementById("linu");
     }
   });
-  
+  date = new Date();
+  date.setDate(date.getDate() - 13);
+date.setHours(0,0,0,0)
   
     var studentList = [];
     function taskPercentDone(className, taskName){
