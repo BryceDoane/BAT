@@ -42,6 +42,25 @@ var firebaseConfig = {
   var dTable;
   var cumul = 0;
   var classCount = 0;
+  var date;
+
+
+  var reportModal = document.getElementById("reportModal");
+  var openReportbtn = document.getElementById("saveButton");
+  var cancelbtn = document.getElementById("cancel");
+  var saveButton = document.getElementById("saveButtonR");
+  var span1 = document.getElementsByClassName("close")[0];
+
+  openReportbtn.onclick = function () {
+    reportModal.style.display = "block";
+  }
+  cancelbtn.onclick = function () {
+    reportModal.style.display = 'none';
+  }
+  span1.onclick = function () {
+    reportModal.style.display = "none";
+  }
+  
   //gets the user's school name
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -104,11 +123,11 @@ var firebaseConfig = {
                  taskNumber = taskNumber + 1;
                });
              });
-             var rowsNumber = document.getElementById(className).rows.length;
-             
-             for (p = 1; p < rowsNumber; p++) {
+             var rowsNumber = document.getElementById(className + "1").rows.length;
+             console.log(rowsNumber);
+             for (var p = 1; p < rowsNumber; p++) {
                var currentDate = m + "-" + d + "-" + y;
-               var studentName = document.getElementById(className).rows[p].cells[0].innerHTML;
+               var studentName = document.getElementById(className + "1").rows[p].cells[0].innerHTML;
                firebase.database().ref('Schools/' + schoolName + "/dailyReports").orderByKey().equalTo(currentDate).once("value", function (snapshot) {
          
                  var dateSnapshot = snapshot.val();
@@ -119,12 +138,24 @@ var firebaseConfig = {
                    firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate).push({});
                  }
                });
-         
-               for (j = 1; j < taskNumber + 1; j++) {
-                 var taskName = document.getElementById(className).rows[0].cells[j].innerHTML;
-                 var ratingValue = document.getElementById(className).rows[p].cells[j].firstChild.value;
+
+var mydate;
+var finalDate;
+                mydate = new Date();
+// split  based on whitespace, then get except the first element
+// and then join again
+
+
+
+finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
+
+               
+                 
+               for (var j = 1; j < taskNumber + 1; j++) {
+                 var taskName = document.getElementById(className + "1").rows[0].cells[j].innerHTML;
+                 var ratingValue = document.getElementById(className + "1").rows[p].cells[j].firstChild.value;
                  if (ratingValue) {
-                   firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + currentDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
+                   firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + finalDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
                  }
          
                };
@@ -135,7 +166,7 @@ var firebaseConfig = {
   
           taskRef.on('value', function (snapshot2) {
             snapshot2.forEach(function (childSnapshot2) {
-              tasks.push(childSnapshot2.val().taskName)
+              temp.push(childSnapshot2.val().taskName)
             })
           })
           
@@ -164,21 +195,26 @@ var firebaseConfig = {
             var stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + temp3 + "/Student List");
             var node = document.createElement('h1');
             var textNode = document.createTextNode(temp3);
+            var node2 = document.createElement('table');
             node.appendChild(textNode);
             // document.getElementById("classNameLi").appendChild(node)
             var tablenode = document.createElement('div');
             tablenode.setAttribute("id", temp3);
+            node2.setAttribute("id", temp3 + "1");
             document.getElementById("classNameLi").appendChild(tablenode);
+
+            document.getElementById('reportEnter').appendChild(node2);
+            node.setAttribute("class", "reportEntry");
 
             tablenode.setAttribute("class", "reportChart");
             dTable = tablenode;
   
-            // let newRow = tablenode.insertRow(-1);
-            // let newCell = newRow.insertCell(0);
-            // let newText = document.createTextNode('');
-            // newCell.appendChild(newText);
+            let newRow = node2.insertRow(-1);
+            let newCell = newRow.insertCell(0);
+            let newText = document.createTextNode('');
+            newCell.appendChild(newText);
             // document.getElementById("classNameLi").appendChild(tablenode);
-            // classCount++;
+            classCount++;
             // console.log(classCount);
   
             stuRef.on('value', function (snapshot3) {
@@ -211,28 +247,30 @@ var firebaseConfig = {
           });
           // console.log(tasksP);
           drawTableR(temp3, students, tasksP);
-            // for (j = 0; j <= (students.length - 1); j++) {
-            //   let newRow = tablenode.insertRow(-1);
-            //   let newCell = newRow.insertCell(0);
-            //   let newText = document.createTextNode(students[j]);
-            //   newCell.appendChild(newText);
 
-            // }
+            for (var j = 0; j <= (students.length - 1); j++) {
+              let newRow = node2.insertRow(-1);
+              let newCell = newRow.insertCell(0);
+              let newText = document.createTextNode(students[j]);
+              newCell.appendChild(newText);
+
+            }
           }
-          // else {
-          //   // Insert a row at the end of the table
-          //   let newRow = tablenode.rows[0];
-          //   let newCell = newRow.insertCell(-1);
-          //   let newText = document.createTextNode(temp[i]);
-          //   newCell.appendChild(newText);
-          //   //taskCount++;
-          //   var rows = tablenode.getElementsByTagName("tr");
-  
-          //   if (taskCount != 1) {
-          //     addCell(rows);
-          //   }
+          else {
+            // Insert a row at the end of the table
+            let newRow = node2.rows[0];
+            let newCell = newRow.insertCell(-1);
+            let newText = document.createTextNode(temp[i]);
+            newCell.appendChild(newText);
+            //taskCount++;
+            var rows = node2.getElementsByTagName("tr");
+            console.log(rows);
+            // console.log(taskCount);
+            if (taskCount != 1) {
+              addCell(rows);
+            }
 
-          // }
+          }
 
         };
 
@@ -241,11 +279,11 @@ var firebaseConfig = {
       });
   
   function addCell(rows) {
-    for (k = 1; k <= (rows.length - 1); k++) {
+    console.log(rows.length);
+    for (var k = 1; k <= (rows.length - 1); k++) {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
-      ddnode.value = "1";
-
+      ddnode.value = k;
       blankCell.appendChild(ddnode);
     }
   }
@@ -301,7 +339,9 @@ var firebaseConfig = {
       document.getElementById("linu");
     }
   });
-  
+  date = new Date();
+  date.setDate(date.getDate() - 13);
+date.setHours(0,0,0,0)
   
     var studentList = [];
     function taskPercentDone(className, taskName){
@@ -361,7 +401,7 @@ if(tasksl !== undefined){
     // tableURI = table.getImageURI;
 
 
-    console.log(data.getNumberOfColumns());
+    // console.log(data.getNumberOfColumns());
 
     // data.setCell(0, 0, 'Mike');
 
@@ -385,6 +425,7 @@ if(tasksl !== undefined){
     doc.addPage();
     doc.save('test.pdf'); 
   }
+
 
 
   // export { drawTableR } 
