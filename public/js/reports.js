@@ -157,7 +157,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
           })
           
           
-          var select = document.getElementById("classList")
+          var select = document.getElementById("classList");
           classes.push(childCData.className);
           
 
@@ -251,7 +251,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
             newCell.appendChild(newText);
             //taskCount++;
             var rows = node2.getElementsByTagName("tr");
-            console.log(rows);
+            // console.log(rows);
             // console.log(taskCount);
             if (taskCount != 1) {
               addCell(rows);
@@ -266,7 +266,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
       });
   
   function addCell(rows) {
-    console.log(rows.length);
+    // console.log(rows.length);
     for (var k = 1; k <= (rows.length - 1); k++) {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
@@ -357,39 +357,66 @@ date.setHours(0,0,0,0)
   google.charts.setOnLoadCallback(drawTableR);
   //console.log(temp);
   export default function drawTableR(div, students, tasksl) {
+    
     var data = new google.visualization.DataTable();
     // 
 
     data.addColumn('string', 'Name');
-if(tasksl !== undefined){
-    for(var j = 0; j <= tasksl.length-1; j++){
-      data.addColumn('string', tasksl[j]);
-    };
-  }
-  if(students !== undefined){
-    data.addRows(students.length);
-    for(var i = 0; i <= students.length-1; i++){
-      data.setCell(i, 0, students[i]);
-      for(var k = 1; k <= (data.getNumberOfColumns() - 1); k++){
-        data.setCell((i), k, '5');
-    }
+      if(tasksl !== undefined){
+        for(var j = 0; j <= tasksl.length-1; j++){
+        data.addColumn('string', tasksl[j]);
+        };
+      }
+      if(students !== undefined){
+        data.addRows(students.length);
+      for(var i = 0; i <= students.length-1; i++){
+        data.setCell(i, 0, students[i]);
+    //     for(var k = 1; k <= (data.getNumberOfColumns() - 1); k++){
+    //       data.setCell((i), k, ('john' + k));
+    // }
     }
 
 //   for(var l = 1; l <= (data.getNumberOfRows() - 1); l++){
 //     data.setCell(l, 0, '5');
 // }
   }
-  if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
-    var table = new google.visualization.Table(document.getElementById(div));
-    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-
-  }
-    // tableURI = table.getImageURI;
 
 
-    // console.log(data.getNumberOfColumns());
+  var mydate = new Date();
+  var mdate = mydate.toDateString().split(' ').slice(1).join(' ');
 
-    // data.setCell(0, 0, 'Mike');
+  var dbRatingRef = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate + "/" + div);
+  dbRatingRef.once("value", function (snapshot) {
+
+    // console.log(data.getColumnLabel(1));
+    snapshot.forEach(function(childSnapshot) {
+      // console.log(childSnapshot.key);
+      for(var k = 0; k<=data.getNumberOfRows() - 1; k++){
+        if(childSnapshot.key == data.getValue(k, 0)){
+          childSnapshot.forEach(function(grandChildSnapshot){
+            // console.log(grandChildSnapshot.val().rating);
+            for(var i = 0; (i<=data.getNumberOfColumns() - 1); i++){
+              if(grandChildSnapshot.key == (data.getColumnLabel(i))){
+                data.setCell(k, i, grandChildSnapshot.val().rating);
+              }
+            }
+            // console.log(grandChildSnapshot.key)
+    // console.log(grandChildSnapshot.val())
+          });
+        }
+      }
+    });
+
+    if(div !== undefined){
+      var table = new google.visualization.Table(document.getElementById(div));
+      if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
+        // var table = new google.visualization.Table(document.getElementById(div));
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+    
+      }
+    
+    };
+  });
 
   }
 
