@@ -20,7 +20,7 @@ var loginTest = firebase.database().ref('user')
 var schools = [];
 
 // Listen for form submit
-document.getElementById('signup').addEventListener('submit', submitForm);
+document.getElementById('loginbtn').addEventListener('click', submitForm);
 
 
 // Submit form
@@ -51,6 +51,12 @@ function getInputVal(id){
 function saveMessage(fname, email, school, password){
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then(function(result) {
+    
+    document.getElementById("createdText").innerHTML = "Account Created!";
+    setTimeout(window.location.reload.bind(window.location), 4000);
+
+    //alert("Account created - you can now login!");
+
     return result.user.updateProfile({
       displayName: school
     })
@@ -61,9 +67,8 @@ function saveMessage(fname, email, school, password){
     if (errorCode == 'auth/email-already-in-use') {
       alert('Email already in use');
     } 
-    else {
-      alert(errorMessage);
-    }
+  
+    
   });
 
 firebase.auth().onAuthStateChanged(function(user) {

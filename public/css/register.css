@@ -265,3 +265,8 @@ input:focus{
 #failedText{
     color: red;
 }
+#createdText{
+    color:rgb(31, 224, 31);
+    align-content: center;
+    text-align: center;
+}
