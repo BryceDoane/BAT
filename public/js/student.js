@@ -11,6 +11,9 @@ var firebaseConfig = {
   appId: "1:392015561610:web:d9d2686cb3c9b312e4fe73",
   measurementId: "G-EM4XVKW2YS"
 };
+var option;
+var selectObject;
+var opt;
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 //const analytics = firebase.analytics();
@@ -38,12 +41,7 @@ addStudentbtn.onclick = function () {
 // }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  studentModal.style.display = "none";
-}
-span2.onclick = function () {
-  addStuClass.style.display = "none";
-}
+
 // span3.onclick = function () {
 //   delStudentModel.style.display = "none";
 // }
@@ -244,9 +242,12 @@ addStuClassbtn.onclick = function () {
   var studentGrab = firebase.database().ref("Schools/" + userSchool + "/students");
   studentGrab.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
-      opt = child.child("studentID").val();
+      option = document.createElement("option");
+      option.text = child.child("studentID").val();
       console.log(opt);
-      document.getElementById("cid").innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+      var selectObject = document.getElementById("cid")//.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+      
+      selectObject.add(option)
     });
   });
     
@@ -324,3 +325,20 @@ function checkStudent() {
   })
 }
 
+span.onclick = function () {
+  studentModal.style.display = "none";
+ 
+}
+span2.onclick = function () {
+  addStuClass.style.display = "none";
+  var select = document.getElementById("class");
+var length = select.options.length;
+for (i = length-1; i >= 0; i--) {
+  select.options[i] = null;
+}
+var select = document.getElementById("cid");
+var length = select.options.length;
+for (i = length-1; i >= 0; i--) {
+  select.options[i] = null;
+}
+}
