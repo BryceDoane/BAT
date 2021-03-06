@@ -303,8 +303,6 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
        });
   
      };
-  
-  
   //Show tasks as table
   //log out functionality on top right
   function signout() {
@@ -370,7 +368,7 @@ date.setHours(0,0,0,0)
       if(students !== undefined){
         data.addRows(students.length);
       for(var i = 0; i <= students.length-1; i++){
-        data.setCell(i, 0, students[i]);
+        data.setCell(i, 0, students[i], students[i], {style: 'width:100px'});
     //     for(var k = 1; k <= (data.getNumberOfColumns() - 1); k++){
     //       data.setCell((i), k, ('john' + k));
     // }
@@ -397,7 +395,8 @@ date.setHours(0,0,0,0)
             // console.log(grandChildSnapshot.val().rating);
             for(var i = 0; (i<=data.getNumberOfColumns() - 1); i++){
               if(grandChildSnapshot.key == (data.getColumnLabel(i))){
-                data.setCell(k, i, grandChildSnapshot.val().rating);
+                data.setCell(k, i, grandChildSnapshot.val().rating, grandChildSnapshot.val().rating, {style: 'width:100px'});
+
               }
             }
             // console.log(grandChildSnapshot.key)
@@ -411,7 +410,7 @@ date.setHours(0,0,0,0)
       var table = new google.visualization.Table(document.getElementById(div));
       if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
         // var table = new google.visualization.Table(document.getElementById(div));
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+        table.draw(data, {showRowNumber: true, allowHtml: true});
     
       }
     
