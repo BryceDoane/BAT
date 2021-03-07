@@ -227,6 +227,8 @@ var addStuClass = document.getElementById("addStuClass");
 var addStuClassbtn = document.getElementById("addStuClassModal");
 
 var opt;
+
+
 // When the user clicks on the button, open the modal
 addStuClassbtn.onclick = function () {
    
@@ -243,7 +245,8 @@ addStuClassbtn.onclick = function () {
   studentGrab.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       option = document.createElement("option");
-      option.text = child.child("studentID").val();
+      option.text = child.child("studentFName").val();
+      //option.text.appendChild = child.child("studentLName").val();
       console.log(opt);
       var selectObject = document.getElementById("cid")//.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
       
@@ -255,6 +258,8 @@ addStuClassbtn.onclick = function () {
     addStuClass.style.display = "block";
   },250);
 }
+
+
 
 // When the user clicks on <span> (x), close the modal
 function closeasc() {
