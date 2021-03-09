@@ -43,7 +43,7 @@ var date;
   y = n.getFullYear();
   m = n.getMonth();
   m1 = monthNames[m];
-  d1 = n.getDay();
+  d1 = n.getDate();
   d = weekday[n.getDay()];
   document.getElementById("date").innerHTML = d + ", " + m1 + " " + d1 + ", " + y;
   date = d + ", " + m1 + " " + d1 + ", " + y;

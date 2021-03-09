@@ -97,11 +97,10 @@ var classAdded = false;
 //Takes in class name from modal form
 function newClass() {
   var className = document.getElementById("className").value;
-  var classShort = document.getElementById("classShort").value;
   //var UID = user.uid;
   classModal.style.display = "none";
   //firebase.database().ref('classes').push({ className: className, UID: uid });
-  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className, classShort: classShort });
+  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className });
   //firebase.database().ref(schoolName).child("classes").child(className).child("Tasks").set({ taskName: ""});
   location.reload();
 }
