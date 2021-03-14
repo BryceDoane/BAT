@@ -285,7 +285,7 @@ function addStudentClass() {
       console.log(childSnapshot);
       var childSNData = childSnapshot.val();
       studentCName = childSNData
-      
+
     });
 
 
@@ -295,6 +295,7 @@ function addStudentClass() {
   })
 
 };
+
 var select = document.getElementById("selectNumber"); 
 var options = ["1", "2", "3", "4", "5"]; 
 
@@ -349,3 +350,5 @@ for (i = length-1; i >= 0; i--) {
   select.options[i] = null;
 }
 }
+
+//adds students to class

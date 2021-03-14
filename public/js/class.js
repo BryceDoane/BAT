@@ -223,7 +223,7 @@ function showClass(className) {
 students = [];
 studentID = [];
 stuID = [];
-stuNamee = [];
+//stuNamee = [];
 taskList = []; 
 firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
@@ -281,6 +281,10 @@ firebase.auth().onAuthStateChanged(function (user) {
       //students[i] = null;
    // }
   
+
+
+
+
 
 
    //Modal Student in Class List
