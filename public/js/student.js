@@ -247,6 +247,7 @@ addStuClassbtn.onclick = function () {
       option = document.createElement("option");
       option.text = child.child("studentFName").val();
       //option.text.appendChild = child.child("studentLName").val();
+      //option.text = child.child("studentLName").val();
       console.log(opt);
       var selectObject = document.getElementById("cid")//.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
       
@@ -284,6 +285,7 @@ function addStudentClass() {
       console.log(childSnapshot);
       var childSNData = childSnapshot.val();
       studentCName = childSNData
+      
     });
 
 
