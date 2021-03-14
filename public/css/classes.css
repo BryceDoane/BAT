@@ -261,8 +261,15 @@ select{
   
     align-content: left;
     transition: background-color 2s ease-out;
-  }
-
+  } 
+  #deleteClassModal:hover, #deleteClassModal:focus, #deleteClassModal:active{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+  
+    align-content: left;
+    transition: background-color 2s ease-out;
+  } 
   .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
     color: #000000;
     background-color: #b3a5d9;
