@@ -113,14 +113,16 @@ function newStudent() {
 
 }
 
-//Delete Student model
+// //Delete Student model
+// deleteClassBtn.addEventListener('click', delStudent());
+
 function delStudent() {
 
   var studentDID = document.getElementById("studentDID").value;
   var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentDID + "/");
   delStudRef.remove();
   studentModal.style.display = "none";
-  //location.reload();
+  location.reload();
   
   
     /*var IDList = [];
@@ -140,7 +142,7 @@ function delStudent() {
     }
   }*/
 }
-  deleteClassBtn.addEventListener('click', delStudent());
+
 
 //Fills student info to webpage
 
