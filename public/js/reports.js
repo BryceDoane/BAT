@@ -147,6 +147,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
                };
              };
            };
+           location.reload();
          };
        });
   
