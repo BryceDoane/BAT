@@ -364,3 +364,10 @@ select{
   background-color: #b3a5d9;
   cursor: pointer;
 }
+
+.noClassText{
+  color:#6f42c1;
+  font-size: 25px;
+  text-align: center;
+  align-content: center;
+}

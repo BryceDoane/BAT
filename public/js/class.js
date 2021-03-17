@@ -178,6 +178,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
     });
+    var x = document.getElementById("deleteClassModal");
+  
 
     classes.forEach(classes => {
       var node = document.createElement('button');
@@ -187,6 +189,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       ColorPickIndex ++;
       if(ColorPickIndex >= 11){
         ColorPickIndex = 0;
+        
       }
       var textNode = document.createTextNode(classes);
       node.appendChild(textNode);
@@ -194,8 +197,17 @@ firebase.auth().onAuthStateChanged(function (user) {
       node.setAttribute("onclick", temp);
       document.getElementById("classNameLi").appendChild(node);
     });
-
-
+      if (typeof cardbtn === 'undefined') {  
+        var noClassTxt = document.getElementById("classNameLi").innerHTML = "<span class='noClassText'>Click the button above to add a class!</span>";
+        noClassTxt.id = "noClassText";
+      }
+      else{ noclassTxt.style.visibility = 'hidden';
+      }
+      // else{
+      //   alert("doesn't exist")
+      // }
+      //console.log(snapshot)
+  
     // openClassbtn.onclick = function () {
     //   classDetailsModal.style.display = "block";
     // }
@@ -400,4 +412,5 @@ function changeTask() {
     })
   })
 }
+
 
