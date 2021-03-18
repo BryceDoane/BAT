@@ -396,7 +396,22 @@ date.setHours(0,0,0,0)
             // console.log(grandChildSnapshot.val().rating);
             for(var i = 0; (i<=data.getNumberOfColumns() - 1); i++){
               if(grandChildSnapshot.key == (data.getColumnLabel(i))){
-                data.setCell(k, i, grandChildSnapshot.val().rating, grandChildSnapshot.val().rating, {style: 'width:100px'});
+                if(grandChildSnapshot.val().rating == '5'){
+                  var colorB = "lightgreen";
+                }
+                if(grandChildSnapshot.val().rating == '4'){
+                  var colorB = "lightblue";
+                }
+                if(grandChildSnapshot.val().rating == '3'){
+                  var colorB = "yellow";
+                }
+                if(grandChildSnapshot.val().rating == '2'){
+                  var colorB = "orange";
+                }
+                if(grandChildSnapshot.val().rating == '1'){
+                  var colorB = "red";
+                }
+                data.setCell(k, i, grandChildSnapshot.val().rating, grandChildSnapshot.val().rating, {'style': 'background-color: ' + colorB + ';'});
 
               }
             }
@@ -408,10 +423,21 @@ date.setHours(0,0,0,0)
     });
 
     if(div !== undefined){
+
+      var cssClassNames = {
+
+        'tableRow': '',
+        'oddTableRow': 'beige-background',
+        'hoverTableRow': '',
+        'headerCell': 'gold-border',
+        'tableCell': '',
+      };
+
       var table = new google.visualization.Table(document.getElementById(div));
       if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
         // var table = new google.visualization.Table(document.getElementById(div));
-        table.draw(data, {showRowNumber: true, allowHtml: true});
+        var options = {'showRowNumber': true, 'allowHtml': true, 'cssClassNames': cssClassNames};
+        table.draw(data, options);
     
       }
     

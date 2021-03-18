@@ -277,6 +277,7 @@ select{
     margin-left: 20px;
     margin-top: 15px;
     border-collapse: collapse;
+    max-width: 90%;
   }
 
   input {
@@ -288,7 +289,7 @@ select{
 
   th {
     border: 2px solid #000000;
-    background-color: #6f42c1;
+    /* background-color: #6f42c1; */
   }
 
   tr {
@@ -313,3 +314,55 @@ select{
 
   .reportChart td:hover {background-color: #7a7a7a;}
   .reportChart tr:nth-child(2) {background: #f2f2f2;}
+
+  .bold-green-font {
+    font-weight: bold;
+    color: green;
+  }
+
+  .bold-font {
+    font-weight: bold;
+  }
+
+  .right-text {
+    text-align: right;
+  }
+
+  .large-font {
+    font-size: 15px;
+  }
+
+  .italic-darkblue-font {
+    font-style: italic;
+    color: darkblue;
+  }
+
+  .italic-purple-font {
+    font-style: italic;
+    color: purple;
+  }
+
+  .underline-blue-font {
+    text-decoration: underline;
+    color: blue;
+  }
+
+  .gold-border {
+    border: 3px solid gold;
+  }
+
+  .deeppink-border {
+    border: 3px solid deeppink;
+  }
+
+  .orange-background {
+    background-color: orange;
+  }
+
+  .orchid-background {
+    background-color: orchid;
+  }
+
+  .beige-background {
+    background-color: beige;
+  }
