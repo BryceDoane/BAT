@@ -244,6 +244,7 @@ select{
     margin-top: 10px;
     margin-right: 10px;
    text-transform: uppercase;
+   font-size: 16px;
   }
   #myBtn {
     display: inline-block;
@@ -289,6 +290,7 @@ select{
 
   th {
     border: 2px solid #000000;
+    font-size: 18px;
     /* background-color: #6f42c1; */
   }
 
@@ -300,6 +302,7 @@ select{
   td {
     border: 2px solid #000000;
     background-color: #bdbdbd;
+    font-size: 18px;
   }
   a.active{
     background:#6f42c1;
