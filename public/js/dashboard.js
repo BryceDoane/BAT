@@ -269,7 +269,7 @@ var geo;
       // $('#chartContainer3').append(content);
     });
 
-console.log(rating5);
+
 date = d + ", " + m1 + " " + d1 + ", " + y;
 
 var date2 = (m+1) + "-" + d1 + "-" + y;
@@ -321,7 +321,6 @@ else{
       rating1 = (ss.match(/1/g) || []).length;
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-      console.log(finalFrDate);
 
       data2.addRow([String(finalFrDate), ratingTotal])
       chart2.draw(data2, options2);
@@ -330,19 +329,19 @@ else{
       jsonTest2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalTDate);
     
       jsonTest2.on('value', function (snapshot) {
-        //console.log(snapshot)
+
         //snapshot.forEach(function (childsSnapshot) {
         ss = JSON.stringify(snapshot);
-      // console.log(ss)
+
       rating5 = (ss.match(/5/g) || []).length;
-      // console.log(rating5);
+
       rating4 = (ss.match(/4/g) || []).length;
       rating3 = (ss.match(/3/g) || []).length;
       rating2 = (ss.match(/2/g) || []).length;
       rating1 = (ss.match(/1/g) || []).length;
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-      //console.log(ratingTotal);
+
       data2.addRow([String(finalTDate), ratingTotal])
 
       chart2.draw(data2, options2);
@@ -352,19 +351,19 @@ else{
 
     
       jsonTest3.on('value', function (snapshot) {
-        //console.log(snapshot)
+
         //snapshot.forEach(function (childsSnapshot) {
        ss = JSON.stringify(snapshot);
-      // console.log(ss)
+
       rating5 = (ss.match(/5/g) || []).length;
-      // console.log(rating5);
+
       rating4 = (ss.match(/4/g) || []).length;
       rating3 = (ss.match(/3/g) || []).length;
       rating2 = (ss.match(/2/g) || []).length;
       rating1 = (ss.match(/1/g) || []).length;
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-      //console.log(ratingTotal);
+
       data2.addRow([String(finalTwDate), ratingTotal])
 
       chart2.draw(data2, options2);
@@ -375,19 +374,19 @@ else{
 
     
       jsonTest5.on('value', function (snapshot) {
-        //console.log(snapshot)
+
         //snapshot.forEach(function (childsSnapshot) {
         ss = JSON.stringify(snapshot);
-      // console.log(ss)
+
       rating5 = (ss.match(/5/g) || []).length;
-      // console.log(rating5);
+
       rating4 = (ss.match(/4/g) || []).length;
       rating3 = (ss.match(/3/g) || []).length;
       rating2 = (ss.match(/2/g) || []).length;
       rating1 = (ss.match(/1/g) || []).length;
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-      //console.log(ratingTotal);
+
       data2.addRow([String(mdate), ratingTotal])
 
       chart2.draw(data2, options2);
@@ -397,12 +396,12 @@ else{
 
     
       jsonTest4.on('value', function (snapshot) {
-        //console.log(snapshot)
+
         //snapshot.forEach(function (childsSnapshot) {
         ss = JSON.stringify(snapshot);
-      // console.log(ss)
+
       rating5 = (ss.match(/5/g) || []).length;
-      // console.log(rating5);
+
       rating4 = (ss.match(/4/g) || []).length;
       rating3 = (ss.match(/3/g) || []).length;
       rating2 = (ss.match(/2/g) || []).length;
@@ -779,11 +778,44 @@ var gets;
          // snapshot.forEach(function (childsSnapshot) {
           sss = JSON.stringify(snapshott);
           taskData = childData.taskName;
-          var taskLabel = new RegExp(taskData, 'g');
+          var rating1 = taskData + '":{"rating":"1"}';
+          var rating2 = taskData + '":{"rating":"2"}';
+          var rating3 = taskData + '":{"rating":"3"}';
+          var rating4 = taskData + '":{"rating":"4"}';
+          var rating5 = taskData + '":{"rating":"5"}';
+          var taskLabel = new RegExp(rating1, 'g');
+          var taskLabel2 = new RegExp(rating2, 'g');
+          var taskLabel3 = new RegExp(rating3, 'g');
+          var taskLabel4 = new RegExp(rating4, 'g');
+          var taskLabel5 = new RegExp(rating5, 'g');
+          //const regex = /{"rating":"1"}/g;
           //(ss.match(/5/g) || []).length;
           // console.log(sss)
-           var geo = sss.match(taskLabel + (/":{"rating":"1"/g));
-         console.log(geo)
+           var geo = sss.match(taskLabel);
+           var geo2 = sss.match(taskLabel2);
+           var geo3 = sss.match(taskLabel3);
+           var geo4 = sss.match(taskLabel4);
+           var geo5 = sss.match(taskLabel5);
+
+           if(geo!=null){
+            console.log(taskData + " 1's: " + geo.length);
+           }
+           if(geo2!=null){
+            console.log(taskData + " 2's: " + geo2.length);
+           }
+           if(geo3!=null){
+            console.log(taskData + " 3's: " + geo3.length);
+           }
+
+           if(geo4!=null){
+            console.log(taskData + " 4's: " + geo4.length);
+           }
+           if(geo5!=null){
+            console.log(taskData + " 5's: " + geo5.length);
+           }
+
+
+
         
 
 
