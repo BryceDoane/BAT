@@ -99,7 +99,7 @@ var firebaseConfig = {
                });
             });
          var className;
-         saveButton.onclick = function () {
+         saveButton.onclick = function () { //when "save data" button is pressed
            for (var i = 0; i < classes.length; i++) {
             //  console.log(schoolName);
              className = classes[i];
