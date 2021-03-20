@@ -265,7 +265,7 @@ var geo;
       data.addRow(['Rating: 4', rating4]);
       data.addRow(['Rating: 3', rating3]);
       data.addRow(['Rating: 2', rating2]);
-      //data.addRow(['Rating: 1', rating1]);
+      data.addRow(['Rating: 1', rating1]);
 
       chart.draw(data, options1);
        //}) 
@@ -343,93 +343,6 @@ else{
       // var myPastDate=new Date(myCurrentDate);
       // myPastDate.setDate(myPastDate.getDate() - 3);
       // console.log(myPastDate)
-
-    jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalFrDate);
-    
-      jsonTest.on('value', function (snapshot) {
-        //console.log(snapshot)
-        //snapshot.forEach(function (childsSnapshot) {
-        ss = JSON.stringify(snapshot);
-      // console.log(ss)
-      rating5 = (ss.match(/5/g) || []).length;
-      // console.log(rating5);
-      rating4 = (ss.match(/4/g) || []).length;
-      rating3 = (ss.match(/3/g) || []).length;
-      rating2 = (ss.match(/2/g) || []).length;
-      rating1 = (ss.match(/1/g) || []).length;
-        
-      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-
-      data2.addRow([String(finalFrDate), ratingTotal])
-      chart2.draw(data2, options2);
-      });
-
-      jsonTest2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalTDate);
-    
-      jsonTest2.on('value', function (snapshot) {
-
-        //snapshot.forEach(function (childsSnapshot) {
-        ss = JSON.stringify(snapshot);
-
-      rating5 = (ss.match(/5/g) || []).length;
-
-      rating4 = (ss.match(/4/g) || []).length;
-      rating3 = (ss.match(/3/g) || []).length;
-      rating2 = (ss.match(/2/g) || []).length;
-      rating1 = (ss.match(/1/g) || []).length;
-        
-      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-
-      data2.addRow([String(finalTDate), ratingTotal])
-
-      chart2.draw(data2, options2);
-      });
-      
-      jsonTest3 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalTwDate);
-
-    
-      jsonTest3.on('value', function (snapshot) {
-
-        //snapshot.forEach(function (childsSnapshot) {
-       ss = JSON.stringify(snapshot);
-
-      rating5 = (ss.match(/5/g) || []).length;
-
-      rating4 = (ss.match(/4/g) || []).length;
-      rating3 = (ss.match(/3/g) || []).length;
-      rating2 = (ss.match(/2/g) || []).length;
-      rating1 = (ss.match(/1/g) || []).length;
-        
-      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-
-      data2.addRow([String(finalTwDate), ratingTotal])
-
-      chart2.draw(data2, options2);
-
-      });
-      
-      jsonTest5 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate);
-
-    
-      jsonTest5.on('value', function (snapshot) {
-
-        //snapshot.forEach(function (childsSnapshot) {
-        ss = JSON.stringify(snapshot);
-
-      rating5 = (ss.match(/5/g) || []).length;
-
-      rating4 = (ss.match(/4/g) || []).length;
-      rating3 = (ss.match(/3/g) || []).length;
-      rating2 = (ss.match(/2/g) || []).length;
-      rating1 = (ss.match(/1/g) || []).length;
-        
-      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-
-      data2.addRow([String(mdate), ratingTotal])
-
-      chart2.draw(data2, options2);
-
-      });
       jsonTest4 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalODate);
 
     
@@ -452,6 +365,96 @@ else{
       chart2.draw(data2, options2);
 
       });
+   
+      
+
+      jsonTest3 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalTwDate);
+
+    
+      jsonTest3.on('value', function (snapshot) {
+
+        //snapshot.forEach(function (childsSnapshot) {
+       ss = JSON.stringify(snapshot);
+
+      rating5 = (ss.match(/5/g) || []).length;
+
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+
+      data2.addRow([String(finalTwDate), ratingTotal])
+
+      chart2.draw(data2, options2);
+
+      });
+      jsonTest2 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalTDate);
+    
+      jsonTest2.on('value', function (snapshot) {
+
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+
+      rating5 = (ss.match(/5/g) || []).length;
+
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+
+      data2.addRow([String(finalTDate), ratingTotal])
+
+      chart2.draw(data2, options2);
+      });
+      jsonTest5 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate);
+
+    
+      jsonTest5.on('value', function (snapshot) {
+
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+
+      rating5 = (ss.match(/5/g) || []).length;
+
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+
+      data2.addRow([String(mdate + "   (Today)"), ratingTotal])
+
+      chart2.draw(data2, options2);
+
+      });
+    
+      jsonTest = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + finalFrDate);
+    
+      jsonTest.on('value', function (snapshot) {
+        //console.log(snapshot)
+        //snapshot.forEach(function (childsSnapshot) {
+        ss = JSON.stringify(snapshot);
+      // console.log(ss)
+      rating5 = (ss.match(/5/g) || []).length;
+      // console.log(rating5);
+      rating4 = (ss.match(/4/g) || []).length;
+      rating3 = (ss.match(/3/g) || []).length;
+      rating2 = (ss.match(/2/g) || []).length;
+      rating1 = (ss.match(/1/g) || []).length;
+        
+      var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
+
+      data2.addRow([String(finalFrDate), ratingTotal])
+      chart2.draw(data2, options2);
+      });
+ 
+      
+    
       // jsonTest5 = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate);
 
     
