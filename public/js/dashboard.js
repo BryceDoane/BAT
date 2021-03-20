@@ -62,6 +62,7 @@ var date;
   var classRef = firebase.database().ref('classes');
   var taskCount = 0;
   var taskData;
+  var sumTotal;
 
   var temp = [];
   var tasks = [];
@@ -118,6 +119,43 @@ var date;
   var myFrdate;
   var myFrdate;
   var sss;
+
+  var geo; 
+  var geo2; 
+  var geo3; 
+  var geo4; 
+  var geo5; 
+
+var geoTotal;
+var geoTotal2;
+var geoTotal3;
+var geoTotal4;
+var geoTotal5;
+
+var geoSumNum;
+var geoSumNum2;
+var geoSumNum3;
+var geoSumNum4;
+var geoSumNum5;
+
+
+var geoSum;
+var geo2Sum;
+var geo3Sum;
+var geo4Sum;
+var geo5Sum;
+
+var taskRating;
+var taskRating2;
+var taskRating3;
+var taskRating4;
+var taskRating5;
+
+var ratingg;
+var ratingg2;
+var ratingg3;
+var ratingg4;
+var ratingg5;
 
 
 
@@ -751,8 +789,17 @@ var gets;
     //   sss = JSON.stringify(snapshot);
     //   console.log(sss)
     // })
-
-
+var childDataa;
+var stuRef;
+var stuNum;
+var jsnap;
+stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Student List/")
+stuRef.on('value', function (snappshot) {
+  childDataa = snappshot.val();
+   jsnap = JSON.stringify(snappshot);
+  //console.log(jsnap)
+ stuNum = (jsnap.match(/studentName/g) || []).length * 5;
+ console.log(stuNum)})
     // referencing tasks list
     var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Tasks/");
     taskRef.on('value', function (snapshot) {
@@ -765,11 +812,11 @@ var gets;
           //console.log(brycesArray);
         //}
         //console.log(taskData)
-        data.addRow([taskData, 20, 20, ""]);
+        
         
        // console.log(taskData)
-        
-    
+      
+  
         //console.log(jsonTestt)
         //console.log(taskData);
         jsonTestt = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate);
@@ -778,62 +825,125 @@ var gets;
          // snapshot.forEach(function (childsSnapshot) {
           sss = JSON.stringify(snapshott);
           taskData = childData.taskName;
-          var rating1 = taskData + '":{"rating":"1"}';
-          var rating2 = taskData + '":{"rating":"2"}';
-          var rating3 = taskData + '":{"rating":"3"}';
-          var rating4 = taskData + '":{"rating":"4"}';
-          var rating5 = taskData + '":{"rating":"5"}';
-          var taskLabel = new RegExp(rating1, 'g');
-          var taskLabel2 = new RegExp(rating2, 'g');
-          var taskLabel3 = new RegExp(rating3, 'g');
-          var taskLabel4 = new RegExp(rating4, 'g');
-          var taskLabel5 = new RegExp(rating5, 'g');
+           ratingg1 = taskData + '":{"rating":"1"}';
+           ratingg2 = taskData + '":{"rating":"2"}';
+           ratingg3 = taskData + '":{"rating":"3"}';
+           ratingg4 = taskData + '":{"rating":"4"}';
+           ratingg5 = taskData + '":{"rating":"5"}';
+         taskLabel = new RegExp(ratingg1, 'g');
+         taskLabel2 = new RegExp(ratingg2, 'g');
+          taskLabel3 = new RegExp(ratingg3, 'g');
+          taskLabel4 = new RegExp(ratingg4, 'g');
+           taskLabel5 = new RegExp(ratingg5, 'g');
           //const regex = /{"rating":"1"}/g;
           //(ss.match(/5/g) || []).length;
           // console.log(sss)
-           var geo = sss.match(taskLabel);
-           var geo2 = sss.match(taskLabel2);
-           var geo3 = sss.match(taskLabel3);
-           var geo4 = sss.match(taskLabel4);
-           var geo5 = sss.match(taskLabel5);
+           geo = sss.match(taskLabel);
+           geo2 = sss.match(taskLabel2);
+            geo3 = sss.match(taskLabel3);
+           geo4 = sss.match(taskLabel4);
+            geo5 = sss.match(taskLabel5);
 
+           
+
+      
+        
            if(geo!=null){
-            console.log(taskData + " 1's: " + geo.length);
+            //console.log(taskData + " 1's: " + geo.length);
+             geoTotal = geo.length;
+
+            //console.log(geoTotal)
+             geoSum = geoTotal * 1
+            //console.log( taskData + geoSum)
+            
+            //console.log(geoTotal)
+            //var teo = (geoTotal.match(/1/g) || []).length;
+            //console.log(teo)
+ 
            }
+           else{geo = 0
+            geoSum = 0}
            if(geo2!=null){
-            console.log(taskData + " 2's: " + geo2.length);
+           // geo2Total = geo2
+           // console.log(geo2Total)-
+            //console.log(taskData + " 2's: " + geo2.length);
+             geo2Total = geo2.length;
+           // console.log(geo2Total)
+             geo2Sum = geo2Total * 2
+           // console.log( taskData + geo2Sum)
+
            }
+           else{geo2 = 0
+            geo2Sum = 0}
            if(geo3!=null){
-            console.log(taskData + " 3's: " + geo3.length);
+            //console.log(taskData + " 3's: " + geo3.length);
+             geo3Total = geo3.length;
+           // console.log(geo3Total)
+             geo3Sum = geo3Total * 3
+            //console.log( taskData + geo3Sum)
            }
-
+           else{geo3 = 0
+            geo3Sum = 0}
            if(geo4!=null){
-            console.log(taskData + " 4's: " + geo4.length);
+             geo4Total = geo4.length;
+           // console.log(geo4Total)
+             geo4Sum = geo4Total * 4
+            //console.log( taskData + geo4Sum)
+            //console.log(taskData + " 4's: " + geo4.length);
            }
+           else{geo4 = 0
+            geo4Sum = 0}
            if(geo5!=null){
-            console.log(taskData + " 5's: " + geo5.length);
+             geo5Total = geo5.length;
+            //console.log(geo5Total)
+             geo5Sum = geo5Total * 5
+            //console.log( taskData + geo5Sum)
+            //console.log(taskData + " 5's: " + geo5.length);
+            
            }
-
-
-
+           else{geo5 = 0
+          geo5Sum = 0}
+            //console.log(geoSum)
+           geoSumNum = parseInt(geoSum) 
+            geoSumNum2 = parseInt(geo2Sum) 
+           geoSumNum3 = parseInt(geo3Sum) 
+            geoSumNum4 = parseInt(geo4Sum) 
+            geoSumNum5 = parseInt(geo5Sum) 
+           
+       
+           sumTotal = geoSumNum + geoSumNum2 + geoSumNum3 + geoSumNum4 + geoSumNum5
+           
+            
         
-
-
+           //console.log(sumTotal);
         
-  
-        //console.log(geo)
+           data.addRow([taskData, sumTotal, stuNum, ""]);
+           google.charts.setOnLoadCallback(drawChart2);
+           //location.reload();
+        
         })
+       
+   
+
+        
+    })
+    })
+        
        //console.log(sss)
         // data.addRow(["Test", , 20, ""]);
-        ratingInfo = 0;
-      })
-    })
+       // ratingInfo = 0;
+      // console.log(sumTotal);
+      //var stuRef = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate + "/" + classes[i] + "/" )
+
 
 
     // Instantiate and draw the chart.
+    function drawChart2(){
     var chart = this.chart
+
     chart = new google.visualization.BarChart(document.getElementById(name));
     chart.draw(data, options);
+    }
     //console.log(childSnapshot);
 
     //})
