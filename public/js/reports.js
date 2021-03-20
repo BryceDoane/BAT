@@ -99,7 +99,9 @@ var firebaseConfig = {
                });
             });
          var className;
-         saveButton.onclick = function () { //when "save data" button is pressed
+
+
+         saveButton.onclick = function () { //when "save data" button is pressed in modal
            for (var i = 0; i < classes.length; i++) {
             //  console.log(schoolName);
              className = classes[i];
@@ -110,7 +112,7 @@ var firebaseConfig = {
                });
              });
              var rowsNumber = document.getElementById(className + "1").rows.length;
-             console.log(rowsNumber);
+             //console.log(rowsNumber);
              for (var p = 1; p < rowsNumber; p++) {
                var currentDate = m + "-" + d + "-" + y;
                var studentName = document.getElementById(className + "1").rows[p].cells[0].innerHTML;
@@ -127,6 +129,7 @@ var firebaseConfig = {
 
 var mydate;
 var finalDate;
+var intRating;
                 mydate = new Date();
 // split  based on whitespace, then get except the first element
 // and then join again
@@ -141,6 +144,16 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
                  var taskName = document.getElementById(className + "1").rows[0].cells[j].innerHTML;
                  var ratingValue = document.getElementById(className + "1").rows[p].cells[j].firstChild.value;
                  if (ratingValue) {
+
+                   intRating = parseInt(ratingValue, 10);
+                   //console.log(intRating);
+                   if (intRating > 5) {
+                     ratingValue = "5";
+                   }
+                   intRating = parseInt(ratingValue, 10);
+                   if (intRating < 1) {
+                    ratingValue = "1";
+                  }
                    firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + finalDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
                  }
          
@@ -149,6 +162,8 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
            };
            location.reload();
          };
+
+
        });
   
           taskRef.on('value', function (snapshot2) {
