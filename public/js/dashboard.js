@@ -793,12 +793,13 @@ var childDataa;
 var stuRef;
 var stuNum;
 var jsnap;
+var ratingDiff;
 stuRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Student List/")
 stuRef.on('value', function (snappshot) {
   childDataa = snappshot.val();
    jsnap = JSON.stringify(snappshot);
   //console.log(jsnap)
- stuNum = (jsnap.match(/studentName/g) || []).length * 5;
+ stuNum = (jsnap.match(/studentName/g) || []).length * 5 ;
  console.log(stuNum)})
     // referencing tasks list
     var taskRef = firebase.database().ref('Schools/' + schoolName + "/classes/" + classes[i] + "/Tasks/");
@@ -916,8 +917,9 @@ stuRef.on('value', function (snappshot) {
             
         
            //console.log(sumTotal);
-        
-           data.addRow([taskData, sumTotal, stuNum, ""]);
+        ratingDiff = stuNum - sumTotal
+        console.log(ratingDiff)
+           data.addRow([taskData, sumTotal, ratingDiff, ""]);
            google.charts.setOnLoadCallback(drawChart2);
            //location.reload();
         
