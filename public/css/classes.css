@@ -44,18 +44,17 @@ input{
   border-top: none;
   border-left: none;
   border-right: none;
+  
   border-bottom: 1px solid black;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-#hrmodal{
-margin-bottom: 10%;
-}
 select{
-  font-size: 30px;
-  width:90%;
+  font-size: 20px;
+  width:80%;
   margin: 5%;
+  margin-bottom: 0%;
 }
 .modal-header{
   margin: 0px;
@@ -77,8 +76,9 @@ select{
   color: black;
   font-size: 15px;
   margin-left: 2%;
-  height: 30px;
-  width: 200px;
+  height: 15px;
+  padding-top: 5px;
+  width: 80%;
   box-shadow: 1px 1px grey;
 }
 .modal-content .deletebtn {
@@ -87,8 +87,9 @@ select{
   color: black;
   font-size: 15px;
   margin-left: 2%;
-  height: 30px;
-  width: 200px;
+  height: 15px;
+  padding-top: 5px;
+  width: 80%;
   box-shadow: 1px 1px grey;
 }
 .modal-content button:hover {
@@ -230,6 +231,7 @@ select{
     margin-top: 10px;
     margin-right: 10px;
    text-transform: uppercase;
+   font-size: 16px;
   }
   #myBtn {
     display: inline-block;
@@ -260,8 +262,15 @@ select{
   
     align-content: left;
     transition: background-color 2s ease-out;
-  }
-
+  } 
+  #deleteClassModal:hover, #deleteClassModal:focus, #deleteClassModal:active{
+    background:#6f42c1;
+    color:#ffffff;
+    outline:0;
+  
+    align-content: left;
+    transition: background-color 2s ease-out;
+  } 
   .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
     color: #000000;
     background-color: #b3a5d9;
@@ -304,10 +313,6 @@ select{
     width: 20%px;
   }
 
-  h2 {
-      color:#6f42c1;
-  }
-
   table {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -322,8 +327,11 @@ select{
   }
 
   input {
-      width: 30%;
-      background-color: #bdbdbd;
+      width: 80%;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      background-color: white;
       border: 1px solid #000000;
       margin-top: 18px;
   }
@@ -346,13 +354,6 @@ select{
   .modal-body td:hover {background-color: #7a7a7a;}
   .modal-body tr:nth-child(2) {background: #f2f2f2;}
 
-  .modal-content {
-      background-color: #c9e6ff; 
-  }
-
-  .modal-header {
-    background-color: #c9e6ff; 
-  }
 
   a.active{
     background:#6f42c1;
@@ -363,4 +364,11 @@ select{
   color: #000000;
   background-color: #b3a5d9;
   cursor: pointer;
+}
+
+.noClassText{
+  color:#6f42c1;
+  font-size: 25px;
+  text-align: center;
+  align-content: center;
 }

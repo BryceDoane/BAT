@@ -97,11 +97,10 @@ var classAdded = false;
 //Takes in class name from modal form
 function newClass() {
   var className = document.getElementById("className").value;
-  var classShort = document.getElementById("classShort").value;
   //var UID = user.uid;
   classModal.style.display = "none";
   //firebase.database().ref('classes').push({ className: className, UID: uid });
-  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className, classShort: classShort });
+  firebase.database().ref("Schools/" + schoolName + "/classes/").child(className).set({ UID: uid, className: className });
   //firebase.database().ref(schoolName).child("classes").child(className).child("Tasks").set({ taskName: ""});
   location.reload();
 }
@@ -179,6 +178,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
     });
+    var x = document.getElementById("deleteClassModal");
+  
 
     classes.forEach(classes => {
       var node = document.createElement('button');
@@ -188,6 +189,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       ColorPickIndex ++;
       if(ColorPickIndex >= 11){
         ColorPickIndex = 0;
+        
       }
       var textNode = document.createTextNode(classes);
       node.appendChild(textNode);
@@ -195,8 +197,17 @@ firebase.auth().onAuthStateChanged(function (user) {
       node.setAttribute("onclick", temp);
       document.getElementById("classNameLi").appendChild(node);
     });
-
-
+      if (typeof cardbtn === 'undefined') {  
+        var noClassTxt = document.getElementById("classNameLi").innerHTML = "<span class='noClassText'>Click the button above to add a class!</span>";
+        noClassTxt.id = "noClassText";
+      }
+      else{ noclassTxt.style.visibility = 'hidden';
+      }
+      // else{
+      //   alert("doesn't exist")
+      // }
+      //console.log(snapshot)
+  
     // openClassbtn.onclick = function () {
     //   classDetailsModal.style.display = "block";
     // }
@@ -224,7 +235,7 @@ function showClass(className) {
 students = [];
 studentID = [];
 stuID = [];
-stuNamee = [];
+//stuNamee = [];
 taskList = []; 
 firebase.auth().onAuthStateChanged(function (user) {
   userSchool = user.displayName;
@@ -282,6 +293,10 @@ firebase.auth().onAuthStateChanged(function (user) {
       //students[i] = null;
    // }
   
+
+
+
+
 
 
    //Modal Student in Class List
@@ -397,4 +412,5 @@ function changeTask() {
     })
   })
 }
+
 

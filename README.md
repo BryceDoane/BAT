@@ -97,6 +97,13 @@ Please email bd1275@messiah.edu for any questions, comments, or concerns.
 
 This version is our minimum viable product, or the version that we believe fulfills our vision for this project, and could be used on a day-to-day basis. There may still be some bugs present, but all intended functionality is now in place.
 
+## V1.8
+1. Fixed multiple page refresh and redirect errors
+2. Reports table now shows real data and is color coded
+3. Data entry validation now present in many area of the site, including reports data input
+4. Users can now generate and download reports as PDF files
+5. Many other small bug fixes
+
 ## Future Releases
 
-In Version 1.8, we will continue to refine the user experience and fix bugs as they come up. There are now beta testers to help us through this process.
+In Version 1.9, we will focus on UI. After a client review, she said the UI was not very pretty, so we will be refining it and potentially using some bootstrap templates to guide us. We will also continue to fix bugs as out beta testing team finds them. 

@@ -46,7 +46,7 @@ input{
 margin-bottom: 10%;
 }
 select{
-  font-size: 30px;
+  font-size: 20px;
   width:90%;
   margin: 5%;
 }
@@ -300,6 +300,7 @@ select{
     background-color: #6f42c1;
     color: white;
     border: 2px solid #000000;
+    font-size: 16px;
     
   }
 
@@ -307,6 +308,7 @@ select{
     border: 2px solid #000000;
     padding: 10px;
     box-shadow: 3px 3px;
+    font-size: 16px;
   }
 
   .dashboard table tr:nth-child(even) {background-color: #6d6d6d;}
@@ -401,7 +403,6 @@ select{
   }
   .thID{
     width: 10%;
-    
 
   }
 

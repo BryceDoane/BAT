@@ -98,22 +98,8 @@ var firebaseConfig = {
             });
          var className;
 
-          //Makes Titles
-          //var insertTitle = document.getElementById("classNameLi")
-          //var textwords = "test";
-          //var textwords = classesList;
-          //insertTitle.innerHTML += textwords;
-          //document.getElementById("classNameLi").innerHTML += "Class #" + classCount; //this line does something
-         document.getElementById("classNameLi").innerHTML += "Class #" + classCount + "  "; //this line does something
-         
-        //  const newPara = document.createElement("p");
-        //  const newContent = document.createTextNode("Class #"+ classCount);
-        //  newPara.appendChild(newContent);
-        //  const placeObject = document.getElementById("TableNames");
-        //  console.log(placeObject);
-        //  document.body.insertBefore(newPara, placeObject); //this line causes issues
 
-         saveButton.onclick = function () {
+         saveButton.onclick = function () { //when "save data" button is pressed in modal
            for (var i = 0; i < classes.length; i++) {
             //  console.log(schoolName);
              className = classes[i];
@@ -124,7 +110,7 @@ var firebaseConfig = {
                });
              });
              var rowsNumber = document.getElementById(className + "1").rows.length;
-             console.log(rowsNumber);
+             //console.log(rowsNumber);
              for (var p = 1; p < rowsNumber; p++) {
                var currentDate = m + "-" + d + "-" + y;
                var studentName = document.getElementById(className + "1").rows[p].cells[0].innerHTML;
@@ -141,6 +127,7 @@ var firebaseConfig = {
 
 var mydate;
 var finalDate;
+var intRating;
                 mydate = new Date();
 // split  based on whitespace, then get except the first element
 // and then join again
@@ -155,13 +142,26 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
                  var taskName = document.getElementById(className + "1").rows[0].cells[j].innerHTML;
                  var ratingValue = document.getElementById(className + "1").rows[p].cells[j].firstChild.value;
                  if (ratingValue) {
+
+                   intRating = parseInt(ratingValue, 10);
+                   //console.log(intRating);
+                   if (intRating > 5) {
+                     ratingValue = "5";
+                   }
+                   intRating = parseInt(ratingValue, 10);
+                   if (intRating < 1) {
+                    ratingValue = "1";
+                  }
                    firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + finalDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
                  }
          
                };
              };
            };
+           location.reload();
          };
+
+
        });
   
           taskRef.on('value', function (snapshot2) {
@@ -171,7 +171,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
           })
           
           
-          var select = document.getElementById("classList")
+          var select = document.getElementById("classList");
           classes.push(childCData.className);
           
 
@@ -264,7 +264,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
             newCell.appendChild(newText);
             //taskCount++;
             var rows = node2.getElementsByTagName("tr");
-            console.log(rows);
+            // console.log(rows);
             // console.log(taskCount);
             if (taskCount != 1) {
               addCell(rows);
@@ -279,11 +279,11 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
       });
   
   function addCell(rows) {
-    console.log(rows.length);
+    // console.log(rows.length);
     for (var k = 1; k <= (rows.length - 1); k++) {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
-      ddnode.value = k;
+      //ddnode.value = k;
       blankCell.appendChild(ddnode);
     }
   }
@@ -316,8 +316,6 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
        });
   
      };
-  
-  
   //Show tasks as table
   //log out functionality on top right
   function signout() {
@@ -370,24 +368,25 @@ date.setHours(0,0,0,0)
   google.charts.setOnLoadCallback(drawTableR);
   //console.log(temp);
   export default function drawTableR(div, students, tasksl) {
+    
     var data = new google.visualization.DataTable();
 
 
 
 
     data.addColumn('string', 'Name');
-if(tasksl !== undefined){
-    for(var j = 0; j <= tasksl.length-1; j++){
-      data.addColumn('string', tasksl[j]);
-    };
-  }
-  if(students !== undefined){
-    data.addRows(students.length);
-    for(var i = 0; i <= students.length-1; i++){
-      data.setCell(i, 0, students[i]);
-      for(var k = 1; k <= (data.getNumberOfColumns() - 1); k++){
-        data.setCell((i), k, '5');
-    }
+      if(tasksl !== undefined){
+        for(var j = 0; j <= tasksl.length-1; j++){
+        data.addColumn('string', tasksl[j]);
+        };
+      }
+      if(students !== undefined){
+        data.addRows(students.length);
+      for(var i = 0; i <= students.length-1; i++){
+        data.setCell(i, 0, students[i], students[i], {style: 'width:100px'});
+    //     for(var k = 1; k <= (data.getNumberOfColumns() - 1); k++){
+    //       data.setCell((i), k, ('john' + k));
+    // }
     }
 
 //   for(var l = 1; l <= (data.getNumberOfRows() - 1); l++){
@@ -401,9 +400,68 @@ if(tasksl !== undefined){
     // tableURI = table.getImageURI;
 
 
-    // console.log(data.getNumberOfColumns());
+  var mydate = new Date();
+  var mdate = mydate.toDateString().split(' ').slice(1).join(' ');
 
-    // data.setCell(0, 0, 'Mike');
+  var dbRatingRef = firebase.database().ref('Schools/' + schoolName + "/dailyReports/" + mdate + "/" + div);
+  dbRatingRef.once("value", function (snapshot) {
+
+    // console.log(data.getColumnLabel(1));
+    snapshot.forEach(function(childSnapshot) {
+      // console.log(childSnapshot.key);
+      for(var k = 0; k<=data.getNumberOfRows() - 1; k++){
+        if(childSnapshot.key == data.getValue(k, 0)){
+          childSnapshot.forEach(function(grandChildSnapshot){
+            // console.log(grandChildSnapshot.val().rating);
+            for(var i = 0; (i<=data.getNumberOfColumns() - 1); i++){
+              if(grandChildSnapshot.key == (data.getColumnLabel(i))){
+                if(grandChildSnapshot.val().rating == '5'){
+                  var colorB = "lightblue";
+                }
+                if(grandChildSnapshot.val().rating == '4'){
+                  var colorB = "lightgreen";
+                }
+                if(grandChildSnapshot.val().rating == '3'){
+                  var colorB = "#ffbd00";
+                }
+                if(grandChildSnapshot.val().rating == '2'){
+                  var colorB = "#ff7326";
+                }
+                if(grandChildSnapshot.val().rating == '1'){
+                  var colorB = "red";
+                }
+                data.setCell(k, i, grandChildSnapshot.val().rating, grandChildSnapshot.val().rating, {'style': 'background-color: ' + colorB + ';'});
+
+              }
+            }
+            // console.log(grandChildSnapshot.key)
+    // console.log(grandChildSnapshot.val())
+          });
+        }
+      }
+    });
+
+    if(div !== undefined){
+
+      var cssClassNames = {
+
+        'tableRow': '',
+        'oddTableRow': 'beige-background',
+        'hoverTableRow': '',
+        'headerCell': 'gold-border',
+        'tableCell': '',
+      };
+
+      var table = new google.visualization.Table(document.getElementById(div));
+      if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
+        // var table = new google.visualization.Table(document.getElementById(div));
+        var options = {'showRowNumber': true, 'allowHtml': true, 'cssClassNames': cssClassNames};
+        table.draw(data, options);
+    
+      }
+    
+    };
+  });
 
   }
 

@@ -11,6 +11,9 @@ var firebaseConfig = {
   appId: "1:392015561610:web:d9d2686cb3c9b312e4fe73",
   measurementId: "G-EM4XVKW2YS"
 };
+var option;
+var selectObject;
+var opt;
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 //const analytics = firebase.analytics();
@@ -38,12 +41,7 @@ addStudentbtn.onclick = function () {
 // }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  studentModal.style.display = "none";
-}
-span2.onclick = function () {
-  addStuClass.style.display = "none";
-}
+
 // span3.onclick = function () {
 //   delStudentModel.style.display = "none";
 // }
@@ -115,14 +113,16 @@ function newStudent() {
 
 }
 
-//Delete Student model
+// //Delete Student model
+// deleteClassBtn.addEventListener('click', delStudent());
+
 function delStudent() {
 
   var studentDID = document.getElementById("studentDID").value;
   var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentDID + "/");
   delStudRef.remove();
   studentModal.style.display = "none";
-  //location.reload();
+  location.reload();
   
   
     /*var IDList = [];
@@ -142,7 +142,7 @@ function delStudent() {
     }
   }*/
 }
-  deleteClassBtn.addEventListener('click', delStudent());
+
 
 //Fills student info to webpage
 
@@ -229,6 +229,8 @@ var addStuClass = document.getElementById("addStuClass");
 var addStuClassbtn = document.getElementById("addStuClassModal");
 
 var opt;
+
+
 // When the user clicks on the button, open the modal
 addStuClassbtn.onclick = function () {
    
@@ -244,9 +246,14 @@ addStuClassbtn.onclick = function () {
   var studentGrab = firebase.database().ref("Schools/" + userSchool + "/students");
   studentGrab.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
-      opt = child.child("studentID").val();
+      option = document.createElement("option");
+      option.text = child.child("studentFName").val();
+      //option.text.appendChild = child.child("studentLName").val();
+      //option.text = child.child("studentID").val();
       console.log(opt);
-      document.getElementById("cid").innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+      var selectObject = document.getElementById("cid")//.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+      
+      selectObject.add(option)
     });
   });
     
@@ -254,6 +261,8 @@ addStuClassbtn.onclick = function () {
     addStuClass.style.display = "block";
   },250);
 }
+
+
 
 // When the user clicks on <span> (x), close the modal
 function closeasc() {
@@ -278,6 +287,7 @@ function addStudentClass() {
       console.log(childSnapshot);
       var childSNData = childSnapshot.val();
       studentCName = childSNData
+
     });
 
 
@@ -287,6 +297,7 @@ function addStudentClass() {
   })
 
 };
+
 var select = document.getElementById("selectNumber"); 
 var options = ["1", "2", "3", "4", "5"]; 
 
@@ -324,3 +335,22 @@ function checkStudent() {
   })
 }
 
+span.onclick = function () {
+  studentModal.style.display = "none";
+ 
+}
+span2.onclick = function () {
+  addStuClass.style.display = "none";
+  var select = document.getElementById("class");
+var length = select.options.length;
+for (i = length-1; i >= 0; i--) {
+  select.options[i] = null;
+}
+var select = document.getElementById("cid");
+var length = select.options.length;
+for (i = length-1; i >= 0; i--) {
+  select.options[i] = null;
+}
+}
+
+//adds students to class

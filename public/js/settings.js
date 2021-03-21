@@ -15,6 +15,8 @@ firebase.initializeApp(firebaseConfig);
 var emailVerified;
 var userSchool;
 var uid;
+var userRealName;
+var userPhone;
 
 //MODALS
 // Get the modal
@@ -48,17 +50,24 @@ var delConfirm = document.getElementById("confirm");
 closeModal.onclick = deleteu(); //line 93
 
 
-//function verifyEmail(){
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     var user = firebase.auth().currentUser;
-    //console.log("true");
+    console.log(user);
     emailVerified = user.emailVerified;
     uid = user.uid;
     userSchool = user.displayName;
+    userRealName = user.photoURL;
+    userPhone = user.phoneNumber;
+
+    //var userRealName = firebase.database().ref("Schools/" + userSchool + "/Users/" + "-MVlzAnY6Y00YGF2ZatX" + "/name/");
+    console.log(userRealName);
     var email = user.email;
     document.getElementById("email").placeholder = email;
     document.getElementById("school").placeholder = userSchool;
+    document.getElementById("fname").placeholder = userRealName;
+    document.getElementById("phone").placeholder = userPhone;
     if (emailVerified == true) {
       document.getElementById("emailVerifiedBool").innerHTML = "True";
     }
@@ -66,7 +75,7 @@ firebase.auth().onAuthStateChanged(function (user) {
    window.location.replace("http://www.behavv.com");
   }
 })
-//}
+
 function verifyEmail() {
   var user = firebase.auth().currentUser;
   //console.log(user);
