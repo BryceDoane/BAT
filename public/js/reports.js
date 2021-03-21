@@ -286,7 +286,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
     for (var k = 1; k <= (rows.length - 1); k++) {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
-      ddnode.value = k;
+      //ddnode.value = k;
       blankCell.appendChild(ddnode);
     }
   }
