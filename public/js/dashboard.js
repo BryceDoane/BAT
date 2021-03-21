@@ -553,7 +553,9 @@ else{
         color: 'black',
         fontSize: 20,
       },
+      legend: 'none',
       colors: ['green', 'red'],
+
     };
 
 
