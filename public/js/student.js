@@ -247,7 +247,7 @@ addStuClassbtn.onclick = function () {
   studentGrab.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       option = document.createElement("option");
-      option.text = child.child("studentFName").val();
+      option.text = child.child("studentID").val();
       //option.text.appendChild = child.child("studentLName").val();
       //option.text = child.child("studentID").val();
       console.log(opt);

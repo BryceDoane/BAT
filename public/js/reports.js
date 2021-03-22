@@ -465,22 +465,20 @@ date.setHours(0,0,0,0)
 
   }
 
-
-
-  function genPDF() {
+  var downloadbtn = document.getElementById("clickMe");
+  downloadbtn.onclick = function () {
     //alert("test");
     var classTitle;
 
     var doc = new jsPDF();
     doc.internal.scaleFactor = 2.25;
     doc.text(20, 20, 'TestPDF');
-    doc.addImage(tableURI, 0, 0);
+    // doc.addImage(tableURI, 0, 0);
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
     doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000});
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
-    doc.addPage();
     doc.save('test.pdf'); 
   }
 
