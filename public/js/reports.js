@@ -339,7 +339,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
   });
   date = new Date();
   date.setDate(date.getDate() - 13);
-date.setHours(0,0,0,0)
+  date.setHours(0,0,0,0)
   
     var studentList = [];
     function taskPercentDone(className, taskName){
@@ -468,18 +468,30 @@ date.setHours(0,0,0,0)
   var downloadbtn = document.getElementById("clickMe");
   downloadbtn.onclick = function () {
     //alert("test");
-    var classTitle;
+    //var classTitle;
 
-    var doc = new jsPDF();
+    //creates new pdf doc with pre determined formatting. 
+    var doc = new jsPDF('p', 'pt', 'letter');
     doc.internal.scaleFactor = 2.25;
-    doc.text(20, 20, 'TestPDF');
+
+    //Adds todays date and title at top
+    doc.text(20, 20, 'Daily Report: ' + m + "/" + d + "/" + y);
+
+    
+
+    //Pulls in all the tables that exist within "classNameLi" should be all tables.
+    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 500});
+    
+
+    //saves the document in your downloads as daily report with today's date.
+    doc.save('Daily Report: '+ m + "/" + d + "/" + y + '.pdf'); 
+
+
+    // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
+    // doc.addImage(content, 'PNG', 120, 20, 65, 55);
     // doc.addImage(tableURI, 0, 0);
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
-    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000});
-    // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
-    // doc.addImage(content, 'PNG', 120, 20, 65, 55);
-    doc.save('test.pdf'); 
   }
 
 
