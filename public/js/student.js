@@ -158,7 +158,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     snapshot.forEach(function (childSnapshot) {
       //console.log(childSnapshot);
       var childData = childSnapshot.val();
-      console.log(childData);
+      //console.log(childData);
 
       studentRef.on('child_added', function (snapshot) {
         //Do something with the data
@@ -247,10 +247,12 @@ addStuClassbtn.onclick = function () {
   studentGrab.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       option = document.createElement("option");
-      option.text = child.child("studentID").val();
+      //option.text = child.child("studentFName").val();
+      option.text = (child.child("studentFName").val()+ " " + child.child("studentLName").val());
+
       //option.text.appendChild = child.child("studentLName").val();
       //option.text = child.child("studentID").val();
-      console.log(opt);
+      //console.log(opt);
       var selectObject = document.getElementById("cid")//.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
       
       selectObject.add(option)
@@ -276,24 +278,35 @@ window.onclick = function (event) {
 }
 //adds students to class
 function addStudentClass() {
-  var studentcid = document.getElementById("cid").value;
+  var studentcid = document.getElementById("cid").value; //studentcid is actually student first + last name here
   var className = document.getElementById("class").value;
-  var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
-  var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/");
-
+  var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid); //location where to add students in class
+  var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/"); //where to pull student info from
+//make childSnapshot include first and last name
   addStuName.on('value', function (snapshot) {
-    console.log(snapshot);
+    //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
-      console.log(childSnapshot);
+      //console.log(childSnapshot);
       var childSNData = childSnapshot.val();
       studentCName = childSNData
-
+      //var childName = childSnapshot.val().studentFName + " " + childSnapshot.val().studentLName;
+      //console.log(childName);
     });
-
-
-    addStuClass.set({ studentcid: studentcid, studentName: studentCName });
-    //alert(studentCName + " " + "has been added to" + " " + className);
-    location.reload();
+    var check;
+    firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/"+ studentcid).once('value', function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        //console.log(childSnapshot);
+        check = childSnapshot.val();
+      });
+      if(check == studentcid){
+        alert("That student is already in that class!");
+      }else{
+        addStuClass.set({studentName: studentcid });
+        //alert(studentCName + " " + "has been added to" + " " + className);
+        location.reload();
+      }
+    });
+    
   })
 
 };
@@ -307,12 +320,14 @@ function checkClass() {
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("class").value)) {
-        checkStudent();
+        addStudentClass();
+        console.log("got here");
       }
       else {
         alert("class does not exist");
         location.reload();
-        setTimeout();
+        //setTimeout();
+        setTimeout(function(){},10);
       }
     });
   });
@@ -324,12 +339,14 @@ function checkStudent() {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("cid").value)) {
         addStudentClass();
+        //console.log("got here");
 
       }
       else {
-        //alert("student ID does not exist");
+        alert("student ID does not exist");
         location.reload();
-        setTimeout();
+        //setTimeout();
+        setTimeout(function(){},10);
       }
     });
   })

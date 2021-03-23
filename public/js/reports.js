@@ -88,6 +88,7 @@ var firebaseConfig = {
                 var childData = childSnapshot.val();
                 classRef.on('child_added', function (snapshot) {
                   //Do something with the data
+              //document.getElementById("classNameLi").innerHTML = childData.className;
               //document.getElementById("classNameLi").innerHTML = childData.className; //this line does something
               
          
@@ -199,8 +200,10 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
             node.appendChild(textNode);
             // document.getElementById("classNameLi").appendChild(node)
             var tablenode = document.createElement('div');
+            var textNode2 = document.createTextNode(temp3);
             tablenode.setAttribute("id", temp3);
             node2.setAttribute("id", temp3 + "1");
+            document.getElementById("classNameLi").appendChild(textNode2);
             document.getElementById("classNameLi").appendChild(tablenode);
 
             document.getElementById('reportEnter').appendChild(node2);
@@ -455,7 +458,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
       var table = new google.visualization.Table(document.getElementById(div));
       if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
         // var table = new google.visualization.Table(document.getElementById(div));
-        var options = {'showRowNumber': true, 'allowHtml': true, 'cssClassNames': cssClassNames};
+        var options = {'title': "How Much Pizza I Ate Last Night", 'showRowNumber': true, 'allowHtml': true, 'cssClassNames': cssClassNames};
         table.draw(data, options);
     
       }
