@@ -158,7 +158,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     snapshot.forEach(function (childSnapshot) {
       //console.log(childSnapshot);
       var childData = childSnapshot.val();
-      console.log(childData);
+      //console.log(childData);
 
       studentRef.on('child_added', function (snapshot) {
         //Do something with the data
@@ -277,22 +277,23 @@ window.onclick = function (event) {
 }
 //adds students to class
 function addStudentClass() {
-  var studentcid = document.getElementById("cid").value;
+  var studentcid = document.getElementById("cid").value; //studentcid is actually student first+ last name here
   var className = document.getElementById("class").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid); //location where to add students in class
   var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/"); //where to pull student info from
 //make childSnapshot include first and last name
   addStuName.on('value', function (snapshot) {
-    console.log(snapshot);
+    //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
       console.log(childSnapshot);
       var childSNData = childSnapshot.val();
       studentCName = childSNData
-
+      //var childName = childSnapshot.val().studentFName + " " + childSnapshot.val().studentLName;
+      //console.log(childName);
     });
 
 
-    addStuClass.set({ studentcid: studentcid, studentName: studentCName });
+    addStuClass.set({ studentcid: studentcid, studentName: studentcid });
     //alert(studentCName + " " + "has been added to" + " " + className);
     location.reload();
   })
@@ -308,12 +309,14 @@ function checkClass() {
   classRef.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("class").value)) {
-        checkStudent();
+        addStudentClass();
+        console.log("got here");
       }
       else {
         alert("class does not exist");
         location.reload();
-        setTimeout();
+        //setTimeout();
+        setTimeout(function(){},10);
       }
     });
   });
@@ -325,12 +328,14 @@ function checkStudent() {
     snapshot.forEach(function (child) {
       if (snapshot.hasChild(document.getElementById("cid").value)) {
         addStudentClass();
+        //console.log("got here");
 
       }
       else {
-        //alert("student ID does not exist");
+        alert("student ID does not exist");
         location.reload();
-        setTimeout();
+        //setTimeout();
+        setTimeout(function(){},10);
       }
     });
   })
