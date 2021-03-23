@@ -268,7 +268,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       //console.log(childSnapshot);
       var childData = childSnapshot.val();
       
-      stuName = (childData.studentName) + " test";
+      stuName = (childData.studentName) + "";
       stuID = (childData.studentcid);
       
       //console.log(stuName);
@@ -306,16 +306,16 @@ firebase.auth().onAuthStateChanged(function (user) {
       node.classList.add("thIDD");
       var textNode = document.createTextNode(stuName);
       //var textNode2 = document.createTextNode(stuName);
-      var textNode2 = document.createTextNode(stuID);
+      //var textNode2 = document.createTextNode(stuID);
       console.log(stuName);
       var node2 = document.createElement('td');
-      var node3 = document.createElement('td');
+      //var node3 = document.createElement('td');
       node.appendChild(textNode);
      
-      node3.appendChild(textNode2);
+      //node3.appendChild(textNode2);
       trNode.appendChild(node);
      // trNode.appendChild(node2);
-      trNode.appendChild(node3);
+      //trNode.appendChild(node3);
       document.getElementById("studentsLi").appendChild(trNode);
     
       

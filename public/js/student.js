@@ -293,7 +293,7 @@ function addStudentClass() {
     });
 
 
-    addStuClass.set({ studentcid: studentcid, studentName: studentcid });
+    addStuClass.set({studentName: studentcid });
     //alert(studentCName + " " + "has been added to" + " " + className);
     location.reload();
   })
