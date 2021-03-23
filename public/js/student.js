@@ -249,6 +249,7 @@ addStuClassbtn.onclick = function () {
       option = document.createElement("option");
       //option.text = child.child("studentFName").val();
       option.text = (child.child("studentFName").val()+ " " + child.child("studentLName").val());
+
       //option.text.appendChild = child.child("studentLName").val();
       //option.text = child.child("studentID").val();
       //console.log(opt);

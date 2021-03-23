@@ -40,10 +40,7 @@ var firebaseConfig = {
   var tasksID = [];
   var taskList;
   var dTable;
-  var gorger;
-  var gorgerr;
   var cumul = 0;
-  var classesList;
   var classCount = 0;
   var date;
 
@@ -92,6 +89,8 @@ var firebaseConfig = {
                 classRef.on('child_added', function (snapshot) {
                   //Do something with the data
               //document.getElementById("classNameLi").innerHTML = childData.className;
+              //document.getElementById("classNameLi").innerHTML = childData.className; //this line does something
+              
          
                 });
                 classes.push(childData.className);
@@ -231,7 +230,6 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
             var tasksP = [];
             var className = temp[i].replace("ClassName: ", "");
             var classRef2 = firebase.database().ref("Schools/" + schoolName + "/classes/" + className + "/Tasks");
-
             // console.log(classRef2);
             classRef2.on('value', function (snapshot) {
                 // console.log(snapshot.val())
@@ -344,7 +342,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
   });
   date = new Date();
   date.setDate(date.getDate() - 13);
-date.setHours(0,0,0,0)
+  date.setHours(0,0,0,0)
   
     var studentList = [];
     function taskPercentDone(className, taskName){
@@ -375,7 +373,9 @@ date.setHours(0,0,0,0)
   export default function drawTableR(div, students, tasksl) {
     
     var data = new google.visualization.DataTable();
-    // 
+
+
+
 
     data.addColumn('string', 'Name');
       if(tasksl !== undefined){
@@ -396,6 +396,11 @@ date.setHours(0,0,0,0)
 //     data.setCell(l, 0, '5');
 // }
   }
+  if(typeof(document.getElementById(div)) != 'undefined' && (document.getElementById(div)) != null){
+    var table = new google.visualization.Table(document.getElementById(div));
+    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+  }
+    // tableURI = table.getImageURI;
 
 
   var mydate = new Date();
@@ -463,24 +468,33 @@ date.setHours(0,0,0,0)
 
   }
 
-
-
-  function genPDF() {
+  var downloadbtn = document.getElementById("clickMe");
+  downloadbtn.onclick = function () {
     //alert("test");
-    var classTitle;
+    //var classTitle;
 
-    var doc = new jsPDF();
+    //creates new pdf doc with pre determined formatting. 
+    var doc = new jsPDF('p', 'pt', 'letter');
     doc.internal.scaleFactor = 2.25;
-    doc.text(20, 20, 'TestPDF');
-    doc.addImage(tableURI, 0, 0);
+
+    //Adds todays date and title at top
+    doc.text(20, 20, 'Daily Report: ' + m + "/" + d + "/" + y);
+
+    
+
+    //Pulls in all the tables that exist within "classNameLi" should be all tables.
+    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 500});
+    
+
+    //saves the document in your downloads as daily report with today's date.
+    doc.save('Daily Report: '+ m + "/" + d + "/" + y + '.pdf'); 
+
+
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
-    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 1000}
-    );
+    // doc.addImage(tableURI, 0, 0);
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
     // doc.addImage(content, 'PNG', 120, 20, 65, 55);
-    doc.addPage();
-    doc.save('test.pdf'); 
   }
 
 
