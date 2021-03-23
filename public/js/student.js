@@ -247,10 +247,11 @@ addStuClassbtn.onclick = function () {
   studentGrab.once("value", function (snapshot) {
     snapshot.forEach(function (child) {
       option = document.createElement("option");
-      option.text = child.child("studentFName").val();
+      //option.text = child.child("studentFName").val();
+      option.text = (child.child("studentFName").val()+ " " + child.child("studentLName").val());
       //option.text.appendChild = child.child("studentLName").val();
       //option.text = child.child("studentID").val();
-      console.log(opt);
+      //console.log(opt);
       var selectObject = document.getElementById("cid")//.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
       
       selectObject.add(option)
@@ -278,9 +279,9 @@ window.onclick = function (event) {
 function addStudentClass() {
   var studentcid = document.getElementById("cid").value;
   var className = document.getElementById("class").value;
-  var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid);
-  var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/");
-
+  var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid); //location where to add students in class
+  var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/"); //where to pull student info from
+//make childSnapshot include first and last name
   addStuName.on('value', function (snapshot) {
     console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {

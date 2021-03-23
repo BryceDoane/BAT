@@ -268,7 +268,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       //console.log(childSnapshot);
       var childData = childSnapshot.val();
       
-      stuName = (childData.studentName);
+      stuName = (childData.studentName) + " test";
       stuID = (childData.studentcid);
       
       //console.log(stuName);
