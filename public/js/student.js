@@ -277,7 +277,7 @@ window.onclick = function (event) {
 }
 //adds students to class
 function addStudentClass() {
-  var studentcid = document.getElementById("cid").value; //studentcid is actually student first+ last name here
+  var studentcid = document.getElementById("cid").value; //studentcid is actually student first + last name here
   var className = document.getElementById("class").value;
   var addStuClass = firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/").child(studentcid); //location where to add students in class
   var addStuName = firebase.database().ref("Schools/" + userSchool + "/students/" + studentcid + "/"); //where to pull student info from
@@ -285,17 +285,27 @@ function addStudentClass() {
   addStuName.on('value', function (snapshot) {
     //console.log(snapshot);
     snapshot.forEach(function (childSnapshot) {
-      console.log(childSnapshot);
+      //console.log(childSnapshot);
       var childSNData = childSnapshot.val();
       studentCName = childSNData
       //var childName = childSnapshot.val().studentFName + " " + childSnapshot.val().studentLName;
       //console.log(childName);
     });
-
-
-    addStuClass.set({studentName: studentcid });
-    //alert(studentCName + " " + "has been added to" + " " + className);
-    location.reload();
+    var check;
+    firebase.database().ref("Schools/" + userSchool + "/classes/" + className + "/Student List/"+ studentcid).once('value', function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        //console.log(childSnapshot);
+        check = childSnapshot.val();
+      });
+      if(check == studentcid){
+        alert("That student is already in that class!");
+      }else{
+        addStuClass.set({studentName: studentcid });
+        //alert(studentCName + " " + "has been added to" + " " + className);
+        location.reload();
+      }
+    });
+    
   })
 
 };
