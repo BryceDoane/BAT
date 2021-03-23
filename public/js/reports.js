@@ -286,7 +286,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
     for (var k = 1; k <= (rows.length - 1); k++) {
       let blankCell = rows[k].insertCell(-1);
       var ddnode = document.createElement('input');
-      ddnode.value = k;
+      //ddnode.value = k;
       blankCell.appendChild(ddnode);
     }
   }
@@ -412,16 +412,16 @@ date.setHours(0,0,0,0)
             for(var i = 0; (i<=data.getNumberOfColumns() - 1); i++){
               if(grandChildSnapshot.key == (data.getColumnLabel(i))){
                 if(grandChildSnapshot.val().rating == '5'){
-                  var colorB = "lightgreen";
-                }
-                if(grandChildSnapshot.val().rating == '4'){
                   var colorB = "lightblue";
                 }
+                if(grandChildSnapshot.val().rating == '4'){
+                  var colorB = "lightgreen";
+                }
                 if(grandChildSnapshot.val().rating == '3'){
-                  var colorB = "yellow";
+                  var colorB = "#ffbd00";
                 }
                 if(grandChildSnapshot.val().rating == '2'){
-                  var colorB = "orange";
+                  var colorB = "#ff7326";
                 }
                 if(grandChildSnapshot.val().rating == '1'){
                   var colorB = "red";
