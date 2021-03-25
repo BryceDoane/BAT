@@ -7,7 +7,7 @@ html{
 }
 
 body{
-  background-image: url("../assets/img/prism2.png");
+  /* background-image: url("../assets/img/prism2.png"); */
     color:2#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
@@ -136,9 +136,9 @@ font-size: 25px;
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     right: 0;
-    background-image: url("../assets/img/memphis-colorful.png");
+    /* background-image: url("../assets/img/memphis-colorful.png"); */
     overflow-x: hidden; /* Disable horizontal scroll */
-    box-shadow: 5px 5px 5px grey;
+    /* box-shadow: 5px 5px 5px grey; */
   }
   
   .topnav h1 {
@@ -188,10 +188,6 @@ font-size: 25px;
     position: absolute;
     right: 3%;
     width: 15%;
-  }
-  h1{
-      display: inline;
-    
   }
 
  .dashboard .modal p {
