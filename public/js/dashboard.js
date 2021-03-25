@@ -281,7 +281,6 @@ var geo;
   //   addRowsC();
   
     var options1 = {
-      title: 'Total Ratings',
       pieHole: 0.4,
       titleTextStyle: {
         color: 'black',
@@ -289,7 +288,7 @@ var geo;
       },
       chartArea: {
         // leave room for y-axis labels
-        width: '90%'
+        width: '100%'
       },
       slices: {
         1: { color: '#0066ff' },
@@ -483,17 +482,16 @@ else{
     ratingAppear2();
 
     var options2 = {
-      title: 'Weekly Comparison',
       pieHole: 0.4,
       legend: 'none',
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
       },
-      // chartArea: {
-      //   // leave room for y-axis labels
-      //   width: '60%'
-      // },
+      chartArea: {
+        // leave room for y-axis labels
+        width: '90%'
+      },
     };
    
 

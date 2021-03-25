@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User dashboard</title>
     <link rel="stylesheet" href="css/real_dashboard.css">
+    <link rel="stylesheet" href="css/sb-admin-2.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -40,32 +41,114 @@
     <!-- Page content -->
     <div id="dashboardPDF" class="dashboard">
         <div id="dashboardhead">
-            <h1>Dashboard - </h1>
-            <h1 id="date"></h1>
+            <h1 class="h3 mb-0 text-black-900">Dashboard |</h1>
+            <h1 class="h3 mb-0 text-black-900" id="date"></h1>
+            <hr>
         </div>
 
-        <h1>Overview</h1>
-        <hr>
-        <div class="dashboardCharts">
-            <div id="chartContainer4" style="height: 300px; width: 65%;display: inline-block;"></div>
-            <div id="chartContainer3" class="dcharts" style="height: 300px; width: 33%;display: inline-block;"></div>
+        <div class="row">
 
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Total Students</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Top Student</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Charlie</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Total Classes</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Top Class</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Math</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="h3 mb-0 text-gray-800">Overview</h1>
+            <hr>
+        <div class="dashboardCharts">
+            <div class='row'>
+            <div class="col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Weekly Comparison</h6>
+                </div>
+                <div class="card-body">
+            <div id="chartContainer4" style="height: 250px; width: 100%;display: inline-block;"></div>
+            </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Total Ratings</h6>
+                </div>
+                <div class="card-body">
+                    <div id="chartContainer3" class="dcharts" style="height: 250px; width: 100%;display: inline-block;"></div>
+            </div>
+            </div>
+
+        </div>
+    </div>
             <!-- <div id="chartContainer5"  style="height: 300px; width: 20%;display: inline-block;"></div> -->
         </div>
 
-        <h1>Class Breakdown</h1>
+        <h2 class="h3 mb-0 text-gray-800">Class Breakdown</h2>
 
         <hr>
         <div id="myPieChart"></div>
         <div class="classCharts">
-            <div id="chartContainer" class="charts" style="height: 250px; width: 49%;display: inline-block;"></div>
-            <div id="chartContainer2" class="charts" style="height: 250px; width: 49%;display: inline-block;"></div>
-
-            <br>
-            <div id="chartContainer" class="charts" style="height: 250px; width: 47%;display: inline-block;"></div>
-            <div id="chartContainer2" class="charts" style="height: 250px; width: 47%;display: inline-block;"></div>
         </div>
-        <!-- <button id="saveButton">Save Information</button> -->
 
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
