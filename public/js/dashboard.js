@@ -161,6 +161,7 @@ var ratingg5;
 
 
    mydate = new Date();
+  console.log(mydate)
    //split  based on whitespace, then get except the first element
    // and then join again
    mdate = mydate.toDateString().split(' ').slice(1).join(' ');
@@ -359,7 +360,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
       //console.log(ratingTotal);
-      data2.addRow([String(finalODate), ratingTotal])
+      data2.addRow([String(finalODate.substring(0, finalODate.length - 4)), ratingTotal])
 
       chart2.draw(data2, options2);
 
@@ -384,7 +385,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
 
-      data2.addRow([String(finalTwDate), ratingTotal])
+      data2.addRow([String(finalTwDate.substring(0, finalTwDate.length - 4)), ratingTotal])
 
       chart2.draw(data2, options2);
 
@@ -405,7 +406,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
 
-      data2.addRow([String(finalTDate), ratingTotal])
+      data2.addRow([String(finalTDate.substring(0, finalTDate.length - 4)), ratingTotal])
 
       chart2.draw(data2, options2);
       });
@@ -426,7 +427,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
 
-      data2.addRow([String(mdate + "   (Today)"), ratingTotal])
+      data2.addRow([String(mdate.substring(0, mdate.length - 4) + "   (Today)"), ratingTotal])
 
       chart2.draw(data2, options2);
 
@@ -447,8 +448,8 @@ else{
       rating1 = (ss.match(/1/g) || []).length;
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-
-      data2.addRow([String(finalFrDate), ratingTotal])
+   
+      data2.addRow([String(finalFrDate.substring(0, finalFrDate.length - 4)), ratingTotal])
       chart2.draw(data2, options2);
       });
  

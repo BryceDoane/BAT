@@ -520,4 +520,17 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
   document.getElementById("myDiv").style.backgroundColor = "lightblue";
   
   */
+ function resetData(){
+ var mydate = new Date();
+  //console.log(mydate)
+   //split  based on whitespace, then get except the first element
+   // and then join again
+   var mdate = mydate.toDateString().split(' ').slice(1).join(' ');
+  var todaysData = firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + mdate );
+
+  todaysData.remove();
+  location.reload()
+ }
+ var removeData = document.getElementById("resetData");
+ removeData.addEventListener('click', resetData);
 
