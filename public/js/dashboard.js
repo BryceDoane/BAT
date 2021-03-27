@@ -985,16 +985,15 @@ stuRef.on('value', function (snappshot) {
         text = document.createTextNode(classes[i]);
         var tag = document.createElement("p");
         var newRDiv = document.createElement("div");
+        newRDiv.className = "col-lg-7";
         newRDiv.appendChild(tag);
         tag.appendChild(text);
         newRDiv.id = classes[i];
-        newRDiv.className = "graphs";
         var element = document.getElementById("myPieChart");
         element.appendChild(newRDiv);
         console.log(classes[i])
         drawChart(classes[i]);
         taskPercentDone(className, taskName);
-        console.log
       }
     })
   })
@@ -1026,10 +1025,16 @@ stuRef.on('value', function (snappshot) {
         const text = document.createTextNode(classes[i]);
         var tag = document.createElement("p");
         var newRDiv = document.createElement("div");
+        var newDivHeader = document.createElement("div");
+        newDivHeader.classList = "card-header py-3";
+        newRDiv.className = "card shadow mb-4";
+        var h6 = document.createElement("h6");
+        h6.classList = "m-0 font-weight-bold text-primary";
+        const text2 = document.createTextNode(classes[i]);
+        newRDiv.appendChild(newDivHeader);
         newRDiv.appendChild(tag);
         tag.appendChild(text);
         newRDiv.id = classes[i];
-        newRDiv.className = "graphs";
         var element = document.getElementById("myPieChart");
         element.appendChild(newRDiv);
         drawChart(classes[i]);

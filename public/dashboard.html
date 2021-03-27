@@ -34,15 +34,22 @@
         <a id="lout"><img src="assets/img/iconlogout.png" class="icon" /> Log Out</a>
     </div>
 
-    <div class="topnav">
-        <h1> - The New Way to Monitor - </h1>
-        <button id="linu" class="dropbtn" onclick="window.location.href='accountsettings.html'"></button>
-    </div>
     <!-- Page content -->
     <div id="dashboardPDF" class="dashboard">
-        <div id="dashboardhead">
-            <h1 class="h3 mb-0 text-black-900">Dashboard |</h1>
-            <h1 class="h3 mb-0 text-black-900" id="date"></h1>
+        <div id="dashboardhead" class="row">
+            <h2 class="h2 mb-0 text-gray-900">Dashboard </h2> 
+            <h2 class="h2 mb-0 text-gray-600" id="date"></h2>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+                <a href="accountsettings.html" class="btn btn-info btn-icon-split">
+                    
+                    <span class="icon text-white-50">
+                        <img class="img-profile rounded-circle"
+                        src="assets/img/undraw_profile.svg">
+                    </span>
+                    <span class="text" id="linu"></span>
+                </a>
+
             <hr>
         </div>
 
