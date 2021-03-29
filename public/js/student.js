@@ -276,6 +276,7 @@ window.onclick = function (event) {
     addstuClass.style.display = "none";
   }
 }
+
 //adds students to class
 function addStudentClass() {
   var studentcid = document.getElementById("cid").value; //studentcid is actually student first + last name here
@@ -300,6 +301,8 @@ function addStudentClass() {
       });
       if(check == studentcid){
         alert("That student is already in that class!");
+        alert = function(){};
+        location.reload();
       }else{
         addStuClass.set({studentName: studentcid });
         //alert(studentCName + " " + "has been added to" + " " + className);
