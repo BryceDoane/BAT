@@ -34,6 +34,7 @@ body{
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
 }
  .classList {
 font-weight: bold;
@@ -48,6 +49,7 @@ input{
   border-bottom: 1px solid black;
   font-size: 20px;
   margin-bottom: 10px;
+
 }
 
 select{
@@ -372,3 +374,32 @@ select{
   text-align: center;
   align-content: center;
 }
+.card {
+display:inline-block;
+align-items: center;
+padding: right 10px;
+}
+
+.classDetailsModal
+{
+  align-content: center;
+  width:50%;
+}
+h2{
+  text-align: center;
+
+}
+#addClass, #addTask {
+  align-content: center;
+  margin-top: 30px;
+
+}
+#deleteClass, #deleteTask{
+  align-content: center;
+  margin-top: 10px;
+  color: white
+
+}
+
+
+

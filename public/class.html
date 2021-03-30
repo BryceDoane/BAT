@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User dashboard</title>
     <link rel="stylesheet" href="css/classes.css">
+    <link rel="stylesheet" href="css/sb-admin-2.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -30,11 +31,24 @@
     <!-- Page content -->
     <div class="classes">
         <h1>Classes</h1>
-        <button id="addClassModal">Add Class or Task</button><button id="deleteClassModal">Delete Class or Task</button>
-        <hr><div id="classNameLi"></div>
+        <a id="addClassModal" class="btn btn-success btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-flag"></i>
+            </span>
+            <span class="text">Add Class or Task </span>
+        </a>
+        <a id="deleteClassModal" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-flag"></i>
+            </span>
+            <span class="text">Delete Class or Task</span>
+        </a>
+  
+        <hr><div class = "row" id="classNameLi"></div>
     </div>
 
     <div id="classDetailsModal" class="modal">
+        
         <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
@@ -43,10 +57,11 @@
                 <hr>
             </div>
             <h3>Tasks</h3>
+            
             <div class="modal-body" id="classTaskDetails">
                 <!-- JS inserts information here -->
             </div>
-            <h3>Students</h3>
+            <hr><h3>Students</h3>
             <div class="modal-body" id="classStuDetails">
                 <table id="studentsLi">
                 <tr>
@@ -72,7 +87,8 @@
             <div class="modal-body">
                 <form id="newClassForm">
                 <input type="text" id="className" placeholder="Class">
-                <button value="Submit" onclick="newClass();">Add Class</button>
+                
+                <button class = "btn-success" id = "addClass" value="Submit" onclick="newClass();">Add Class</button>
                 </form>
             </div>
             <div class="modal-body">
@@ -90,7 +106,7 @@
                     </select>
                     <br><br>
                     <input type="text" id="taskName" placeholder="Task">
-                    <button value="Submit" class="addButton" onclick="newTask()">Add Task</button>
+                    <button class = "btn-success" id ="addTask" value="Submit" class="addButton" onclick="newTask()">Add Task</button>
                 </form>
             </div>
         </div>
@@ -111,7 +127,7 @@
             </div>
             <div class="modal-body">
                 </form>
-                <button value="Submit" class="deletebtn" onclick="deleteClass();">Delete Class</button>
+                <button id = "deleteClass" value="Submit" class="btn-success" onclick="deleteClass();">Delete Class</button>
                 <hr id="hrmodal">
                 <form id="deleteTaskForm">
                     <select onchange ="changeTask();" name="dtClassList" id="dtClassList">
@@ -133,7 +149,7 @@
                       <option value="Art">Art</option> -->
                     <!--</select>-->
                     <br><br>
-                    <button value="Submit" class="deletebtn" onclick="deleteTask()">Delete Task</button>
+                    <button id = "deleteTask" value="Submit" class="btn-success" onclick="deleteTask()">Delete Task</button>
                 </form>
             </div>
         </div>
