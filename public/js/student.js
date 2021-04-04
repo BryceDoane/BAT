@@ -119,6 +119,9 @@ function newStudent() {
 function delStudent() {
 
   var studentDID = document.getElementById("studentDID").value;
+  //get student studentFName+studentLName and combine as one string
+  //forEach to search each class in classes
+  //if the student full name is found in classes, delete it and all children
   var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentDID + "/");
   delStudRef.remove();
   studentModal.style.display = "none";

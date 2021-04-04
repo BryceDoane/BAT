@@ -98,9 +98,11 @@ var firebaseConfig = {
                });
             });
          var className;
+         var globalDataFail;
 
 
          saveButton.onclick = function () { //when "save data" button is pressed in modal
+          globalDataFail = 0;
            for (var i = 0; i < classes.length; i++) {
             //  console.log(schoolName);
              className = classes[i];
@@ -129,6 +131,7 @@ var firebaseConfig = {
 var mydate;
 var finalDate;
 var intRating;
+var dataFail;
                 mydate = new Date();
 // split  based on whitespace, then get except the first element
 // and then join again
@@ -138,28 +141,42 @@ var intRating;
 finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
 
                
-                 
                for (var j = 1; j < taskNumber + 1; j++) {
                  var taskName = document.getElementById(className + "1").rows[0].cells[j].innerHTML;
                  var ratingValue = document.getElementById(className + "1").rows[p].cells[j].firstChild.value;
                  if (ratingValue) {
+                   dataFail = 0;  
+                   intRating = parseInt(ratingValue, 10);
+                   console.log(intRating);
 
-                   intRating = parseInt(ratingValue, 10);
-                   //console.log(intRating);
-                   if (intRating > 5) {
-                     ratingValue = "5";
-                   }
-                   intRating = parseInt(ratingValue, 10);
-                   if (intRating < 1) {
-                    ratingValue = "1";
+                  if (intRating > 5 || intRating < 1){
+                    dataFail = 1; //sets flag to not save this cell to database
+                    globalDataFail = 1; //sets flag to throw error message and not refresh
                   }
-                   firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + finalDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
+                  if (isNaN(intRating)){
+                    dataFail = 1; //sets flag to not save this cell to database
+                    globalDataFail = 1; //sets flag to throw error message and not refresh
+                    console.log("NaN detected");
+                  }
+                  
+
+                  //console.log(globalDataFail);
+
+                   if(dataFail == 0){ //if no errors in current cell, save to database
+                    firebase.database().ref('Schools/' + schoolName + '/dailyReports/' + finalDate + "/" + className + "/" + studentName + '/' + taskName).set({ rating: ratingValue });
+                   }
                  }
-         
                };
              };
            };
-           location.reload();
+           //console.log(globalDataFail);
+           if(globalDataFail == 0){ //if no errors in any cell
+            location.reload();
+           } 
+           else {
+            alert("Error in data: You can only enter ratings from 1 to 5. Please fix errors and resubmit.");
+           }
+           
          };
 
 
