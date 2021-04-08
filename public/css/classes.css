@@ -9,18 +9,21 @@ html{
 
 .classes {
     
-    margin-left: 15%; /* Same as the width of the sidebar */
-    margin-top: 100px;
+    margin-left:2%; /* Same as the width of the sidebar */
+    margin-top: 10px;
     background-color: transparent;
+    width:100%;
   }
 
 body{
+  
+  color:#6f42c1;
+  line-height:1.6;
+  font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
+  padding-right: 1%;
   background-image: url("../assets/img/prism2.png");
-    color:2#6f42c1;
-    line-height:1.6;
-    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-    padding:1em;
-    background-image: url("../assets/img/prism2.png");
+
+
 }
 /* The Modal (background) */
 .modal {

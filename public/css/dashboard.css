@@ -8,12 +8,13 @@ html{
 }
 
 body{
-  background-image: url("../assets/img/prism2.png");
-    color:2#6f42c1;
+  /* background-image: url("../assets/img/prism2.png"); */
+    color:#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-    padding:1em;
+    padding-right: 1%;
     background-image: url("../assets/img/prism2.png");
+
 }
 /* The Modal (background) */
 .modal {
@@ -378,8 +379,10 @@ select{
 
   /* STUDENTS */
   .students {
-    margin-left: 15%; /* Same as the width of the sidebar */
-    margin-top: 100px;
+    margin-left: 2%; /* Same as the width of the sidebar */
+    margin-top: 10px;
+    width:100%;
+
     background-color: transparent;
   }
 
@@ -748,8 +751,21 @@ a.active{
 #wrapper{
   height: 1100px;
   width: 100%;
+  margin-right: 100px;
 
 }
+
+.sidenav a {
+  padding: 10px 16px 16px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  background-color: rgba(255, 253, 253, 0.2);
+  display: block;
+}
+
 #page-top{
-  
+  align-content: left;
+  margin-right: 100px;
+ 
 }
