@@ -359,18 +359,21 @@ border-radius: 20px;
   form, #sign{
     background-color: #c7c4e9;
     color: black;
-    border: round;
-    border-radius: 10px;
-    border-color: rgb(152, 131, 170);
-    border-width: 6px;
+    padding-top: 10px;
+    /* border: round;
+    border-radius: 10px; */
+    /* border-color: rgb(67, 32, 223);
+    border-width: 6px; */
     align-content: center;
-    width: 80%;
+    width: 100%;
     margin: auto;
-    border-style: solid;
-    border-spacing: 10px;
+
     text-align: center;
     padding-bottom: 10px;
     
+  }
+  #signup{
+    padding-top: 10px;
   }
   label{
     color:black;
@@ -401,3 +404,4 @@ input{
     color: black;
     text-align: center;
   }
+ 
