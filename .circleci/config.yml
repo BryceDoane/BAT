@@ -40,6 +40,9 @@ jobs:
             - slack/status:
                 #color: "#30d9ff"
                 fail_only: false
+            - slack/notify: 
+                color: "#30d9ff"
+                message: Beta Deploy Successful
             - checkout
             # Download and cache dependencies
             - restore_cache:
@@ -53,9 +56,6 @@ jobs:
                   key: v1-npm-deps-{{ checksum "package-lock.json" }}
                   paths:
                       - ./node_modules
-            - run:
-                  name: Install Dotenv
-                  command: npm install dotenv
             - run:
                   name: Build
                   command: npm build
