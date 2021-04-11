@@ -1,5 +1,5 @@
 * {
-    
+    background-color: aliceblue;
     box-sizing: border-box;
 }
 html{
@@ -8,12 +8,12 @@ html{
 }
 
 body{
-  color:#6f42c1;
-  line-height:1.6;
-  font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-  padding-right: 1%;
   background-image: url("../assets/img/prism2.png");
-
+    color:2#6f42c1;
+    line-height:1.6;
+    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
+    padding:1em;
+    background-image: url("../assets/img/prism2.png");
 }
 /* The Modal (background) */
 .settings .modal {
@@ -154,7 +154,7 @@ font-size: 25px;
     padding: 8px 8px 6px 20px;
     text-decoration: none;
     font-size: 20px;
-    color: black;
+    color: white;
     text-align: center;
     position: absolute;
     right:10px;;
@@ -201,9 +201,8 @@ font-size: 25px;
   }
   /* USER SETTINGS */
   .settings {
-    margin-left: 2%; /* Same as the width of the sidebar */
-    margin-top: 10px;
-    width: 100%;
+    margin-left: 15%; /* Same as the width of the sidebar */
+    margin-top: 100px;
     background-color: transparent;
   }
 
@@ -353,27 +352,23 @@ border-radius: 20px;
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
     color: #000000;
-    background-color: #9e92c0;
+    background-color: #b3a5d9;
     cursor: pointer;
   }
   form, #sign{
-    background-color: #c7c4e9;
-    color: black;
-    padding-top: 10px;
-    /* border: round;
-    border-radius: 10px; */
-    /* border-color: rgb(67, 32, 223);
-    border-width: 6px; */
+    background-color: #aa8be4;
+    color: white;
+    border: round;
+    border-radius: 10px;
+    border-color: rgb(152, 131, 170);
+    border-width: 6px;
     align-content: center;
-    width: 100%;
+    width: 80%;
     margin: auto;
-
+    border-style: solid;
+    border-spacing: 10px;
     text-align: center;
-    padding-bottom: 10px;
     
-  }
-  #signup{
-    padding-top: 10px;
   }
   label{
     color:black;
@@ -386,7 +381,7 @@ input{
     text-align: center;
     margin: 10px;
     font-size: 30px;
-    
+    text-size-adjust: ;
     color: white;
     font-style:inherit;
     
@@ -401,7 +396,6 @@ input{
     text-align: center;
   }
   h1 {
-    color: black;
+    color: white;
     text-align: center;
   }
- 

@@ -119,9 +119,6 @@ function newStudent() {
 function delStudent() {
 
   var studentDID = document.getElementById("studentDID").value;
-  //get student studentFName+studentLName and combine as one string
-  //forEach to search each class in classes
-  //if the student full name is found in classes, delete it and all children
   var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentDID + "/");
   delStudRef.remove();
   studentModal.style.display = "none";
@@ -146,38 +143,6 @@ function delStudent() {
   }*/
 }
 
-function editStudent() {
-  var dCheck = true;
-  var IDList = [];
-  var studentfName = document.getElementById("editfName").value;
-  var studentlName = document.getElementById("editlName").value;
-  var studentID = document.getElementById("editID").value;
-  var studentNotes = document.getElementById("editNotes").value;
-  studentModal.style.display = "none";
-  firebase.database().ref('Schools/' + userSchool + "/students/")
-  //.child(studentName).set({ SUID: studentID, studentName: studentName });
-  /* .on("child_added", function (snapshot) {
-    IDList.push(snapshot.val().studentID);
-  });*/
-  if(studentID == ""){
-    alert("Must enter the student's ID to edit their information");
-    location.reload();
-  }else{
-    if(studentfName==""){
-      firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/studentFName").on("value",function (snapshot) { studentfName = snapshot.val()} );
-    }
-    if(studentlName==""){
-      firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/studentLName").on("value",function (snapshot) { studentlName = snapshot.val()} );
-    }
-    if (dCheck == true) {
-      firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentFName: studentfName, studentLName: studentlName, studentID: studentID, notes: studentNotes });
-      location.reload();
-      //studentID = null;
-    }
-  }
- 
-
-}
 
 //Fills student info to webpage
 
@@ -311,7 +276,6 @@ window.onclick = function (event) {
     addstuClass.style.display = "none";
   }
 }
-
 //adds students to class
 function addStudentClass() {
   var studentcid = document.getElementById("cid").value; //studentcid is actually student first + last name here
@@ -336,8 +300,6 @@ function addStudentClass() {
       });
       if(check == studentcid){
         alert("That student is already in that class!");
-        alert = function(){};
-        location.reload();
       }else{
         addStuClass.set({studentName: studentcid });
         //alert(studentCName + " " + "has been added to" + " " + className);

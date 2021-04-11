@@ -14,6 +14,11 @@ var firebaseConfig = {
   measurementId: "G-EM4XVKW2YS"
 };
 
+
+
+
+
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
@@ -156,7 +161,6 @@ var ratingg5;
 
 
    mydate = new Date();
-  console.log(mydate)
    //split  based on whitespace, then get except the first element
    // and then join again
    mdate = mydate.toDateString().split(' ').slice(1).join(' ');
@@ -277,6 +281,7 @@ var geo;
   //   addRowsC();
   
     var options1 = {
+      title: 'Total Ratings',
       pieHole: 0.4,
       titleTextStyle: {
         color: 'black',
@@ -284,7 +289,7 @@ var geo;
       },
       chartArea: {
         // leave room for y-axis labels
-        width: '100%'
+        width: '90%'
       },
       slices: {
         1: { color: '#0066ff' },
@@ -355,7 +360,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
       //console.log(ratingTotal);
-      data2.addRow([String(finalODate.substring(0, finalODate.length - 4)), ratingTotal])
+      data2.addRow([String(finalODate), ratingTotal])
 
       chart2.draw(data2, options2);
 
@@ -380,7 +385,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
 
-      data2.addRow([String(finalTwDate.substring(0, finalTwDate.length - 4)), ratingTotal])
+      data2.addRow([String(finalTwDate), ratingTotal])
 
       chart2.draw(data2, options2);
 
@@ -401,7 +406,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
 
-      data2.addRow([String(finalTDate.substring(0, finalTDate.length - 4)), ratingTotal])
+      data2.addRow([String(finalTDate), ratingTotal])
 
       chart2.draw(data2, options2);
       });
@@ -422,7 +427,7 @@ else{
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
 
-      data2.addRow([String(mdate.substring(0, mdate.length - 4) + "   (Today)"), ratingTotal])
+      data2.addRow([String(mdate + "   (Today)"), ratingTotal])
 
       chart2.draw(data2, options2);
 
@@ -443,8 +448,8 @@ else{
       rating1 = (ss.match(/1/g) || []).length;
         
       var ratingTotal = (rating5*5) + (rating4*4) + (rating3*3) + (rating2*2) + rating1;
-   
-      data2.addRow([String(finalFrDate.substring(0, finalFrDate.length - 4)), ratingTotal])
+
+      data2.addRow([String(finalFrDate), ratingTotal])
       chart2.draw(data2, options2);
       });
  
@@ -478,16 +483,17 @@ else{
     ratingAppear2();
 
     var options2 = {
+      title: 'Weekly Comparison',
       pieHole: 0.4,
       legend: 'none',
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
       },
-      chartArea: {
-        // leave room for y-axis labels
-        width: '90%'
-      },
+      // chartArea: {
+      //   // leave room for y-axis labels
+      //   width: '60%'
+      // },
     };
    
 
@@ -980,15 +986,16 @@ stuRef.on('value', function (snappshot) {
         text = document.createTextNode(classes[i]);
         var tag = document.createElement("p");
         var newRDiv = document.createElement("div");
-        newRDiv.className = "col-lg-7";
         newRDiv.appendChild(tag);
         tag.appendChild(text);
         newRDiv.id = classes[i];
+        newRDiv.className = "graphs";
         var element = document.getElementById("myPieChart");
         element.appendChild(newRDiv);
         console.log(classes[i])
         drawChart(classes[i]);
         taskPercentDone(className, taskName);
+        console.log
       }
     })
   })
@@ -1020,16 +1027,10 @@ stuRef.on('value', function (snappshot) {
         const text = document.createTextNode(classes[i]);
         var tag = document.createElement("p");
         var newRDiv = document.createElement("div");
-        var newDivHeader = document.createElement("div");
-        newDivHeader.classList = "card-header py-3";
-        newRDiv.className = "card shadow mb-4";
-        var h6 = document.createElement("h6");
-        h6.classList = "m-0 font-weight-bold text-primary";
-        const text2 = document.createTextNode(classes[i]);
-        newRDiv.appendChild(newDivHeader);
         newRDiv.appendChild(tag);
         tag.appendChild(text);
         newRDiv.id = classes[i];
+        newRDiv.className = "graphs";
         var element = document.getElementById("myPieChart");
         element.appendChild(newRDiv);
         drawChart(classes[i]);

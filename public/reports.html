@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User dashboard</title>
     <link rel="stylesheet" href="css/reports.css">
-    <link rel="stylesheet" href="css/sb-admin-2.css"><link rel="stylesheet" href="css/sb-admin-2.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -18,95 +17,8 @@
         <script type="module" src="js/reports.js"></script>
 </head>
 
-<body id="page-top">
-    <div id="wrapper">
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Behavv</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="dashboard.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Reports
-            </div>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="reports.html" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Reports</span>
-                </a>
-
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Manage
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="class.html" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Classes</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="student.html" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Students</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-            <div class="sidebar-heading">
-                Account
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="accountsettings.html" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages" id="lout">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Logout</span>
-            </a>
-            </li>
-
-
-        </ul>
-    <!-- <div class="sidenav" id = "sidenav">
+<body>
+    <div class="sidenav" id = "sidenav">
         <img src="assets/img/logo.png" width="200" height="80" class="logo">
         <a href="dashboard.html" ><img src="assets/img/dashboardicon.png" class="icon" /> Dashboard</a>
         <a href="class.html"><img src="assets/img/iconclass.png" class="icon" /> Classes</a>
@@ -114,59 +26,19 @@
         <a href="reports.html" class ="active"><img src="assets/img/iconreport.png" class="icon" /> Reports</a>
         <a href="accountsettings.html" class ="btn"><img src="assets/img/iconsettings.png" class="icon" /> Settings</a>
         <a id="lout"><img src="assets/img/iconlogout.png" class="icon" /> Log Out</a>
-    </div> -->
+    </div>
 
+    <div class="topnav">
+        <h1> - The New Way to Monitor - </h1>
+        <button id="linu" class="dropbtn" onclick="window.location.href='accountsettings.html'"></button>
+    </div>
     <!-- Page content -->
     <div class="dashboard">
-        <div class="row">
-            <h2 class="h2 mb-0 text-gray-900">Reports |</h2> 
-            <h2 class="h2 mb-0 text-gray-600" id="date"></h2>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-                <a href="accountsettings.html" class="btn btn-info btn-icon-split">
-                    
-                    <span class="icon text-white-50">
-                        <img class="img-profile rounded-circle"
-                        src="assets/img/undraw_profile.svg">
-                    </span>
-                    <span class="text" id="linu"></span>
-                </a>
-        </div>
-        <hr>
-
-        <a href="#" class="btn btn-success btn-icon-split" id="saveButton">
-            <span class="icon text-white-50">
-                <i class="fas fa-check"></i>
-            </span>
-            <span class="text">Enter Information</span>
-        </a>
-
-        <a href="#" class="btn btn-info btn-icon-split" id="clickMe">
-            <span class="icon text-white-50">
-                <i class="fas fa-info-circle"></i>
-            </span>
-            <span class="text">Download Report</span>
-        </a>
-        <a href="#" class="btn btn-warning btn-icon-split" id="resetData">
-            <span class="icon text-white-50">
-                <i class="fas fa-exclamation-triangle"></i>
-            </span>
-            <span class="text">Reset Data</span>
-        </a>
-        <hr>
-        <div class="col-lg-100">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Total Ratings</h6>
-                </div>
-                <div class="card-body">
-                    <p id="classNameLi"></p>
-            </div>
-            </div>
-
-        </div>
-
-        <!-- <div id="table_div"></div> -->
+    <button id="clickMe">Download</button>
+        <h1 id="date"></h1>
+        <button id="saveButton">Enter Information</button>
+        <p id="classNameLi"></p>
+        <div id="table_div"></div>
     </div>
 
     <div id="reportModal" class="modal">
@@ -183,7 +55,6 @@
             <button value="Submit" id="cancel">Cancel</button><button value="Submit" id="saveButtonR">Save Data</button>
         </div>
     </div>
-</div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
