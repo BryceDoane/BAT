@@ -104,6 +104,13 @@ This version is our minimum viable product, or the version that we believe fulfi
 4. Users can now generate and download reports as PDF files
 5. Many other small bug fixes
 
+## V1.9
+1. Error checking on reports and data entry fields has been implemented
+2. Improved alert messages are more descriptive for clarity
+3. Major UI overhaul of dashboard and related pages
+4. Downloadable reports are now cleaner and include additional information
+5. Multiple small bug fixes with redirects, input boxes, and
+
 ## Future Releases
 
-In Version 1.9, we will focus on UI. After a client review, she said the UI was not very pretty, so we will be refining it and potentially using some bootstrap templates to guide us. We will also continue to fix bugs as out beta testing team finds them. 
+This next version will be our final demo ready release. In Version 2.0, we will focus our efforts on finding and fixing the last few bugs and taking into account feedback from our beta testing team. (thank you to the Hit Pause team). Outside of development, we will also work on creating a finalized script and preparing a professional looking and edited video for our presentation.
