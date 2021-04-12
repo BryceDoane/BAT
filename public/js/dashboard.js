@@ -277,15 +277,13 @@ var geo;
   //   addRowsC();
   
     var options1 = {
-      pieHole: 0.4,
+      pieHole: 0.5,
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
       },
-      chartArea: {
         // leave room for y-axis labels
-        width: '100%'
-      },
+ width: 450,
       slices: {
         1: { color: '#0066ff' },
         2: { color: 'green' },
