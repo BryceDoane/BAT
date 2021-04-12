@@ -124,7 +124,7 @@
             <span class="icon text-white-50">
                 <i class="fas fa-flag"></i>
             </span>
-            <span class="text">Add or Remove Student </span>
+            <span class="text">Add, Edit, or Remove Student </span>
         </a>
         <a id="addStuClassModal" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
@@ -150,11 +150,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2>Add or Remove Student</h2>
+                <h2>Add, Edit, or Remove Student</h2>
                 <hr id="hrmodal">
             </div>
             <div class="modal-body">
                 <form id="newStudentForm">
+                    <p>Create a New Student (ID must be unique)</p>
 
                     <input type="text" id="studentfName" placeholder="First Name">
 
@@ -165,6 +166,19 @@
                     <input type="text" id="studentNotes" placeholder="Notes">
                 </form>
                 <button value="Submit" onclick="newStudent()">Submit</button>
+                <p></p>
+                <form id="editStudentForm">
+                    <p>Edit Student (ID can not be changed)</p>
+
+                    <input type="text" id="editfName" placeholder="First Name">
+
+                    <input type="text" id="editlName" placeholder="Last Name">
+
+                    <input type="text" id="editID" placeholder="ID Number">
+
+                    <input type="text" id="editNotes" placeholder="Notes">
+                </form>
+                <button value="Submit" onclick="editStudent()">Submit</button>
                 <hr id="hrmodal">
                 <form id="delStudentForm">
                     <p>Enter Student ID to delete</p>
