@@ -1,7 +1,4 @@
-* {
-    /* background-color: aliceblue; */
-    /* box-sizing: border-box; */
-}
+
 html{
   
   background-image: url("../assets/img/prism2.png");
@@ -11,21 +8,23 @@ html{
     
   padding-top: 1%;
   margin-left: 2%;
+  width: 100%;
   background-color: transparent;
 }
 #user{
-  position: relative;
-  top: 0px;
-  right: -120%;
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
-  body{
-    /* background-image: url("../assets/img/prism2.png"); */
-      color:#6f42c1;
-      line-height:1.6;
-      font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-      padding-right: 1%;
-      background-image: url("../assets/img/prism2.png");
-  }
+body{
+  /* background-image: url("../assets/img/prism2.png"); */
+    color:#6f42c1;
+    line-height:1.6;
+    width: 100% !important;
+    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
+    padding-right: 1%;
+    background-image: url("../assets/img/prism2.png");
+}
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

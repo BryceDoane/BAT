@@ -1,6 +1,4 @@
-* {
-    /* box-sizing: border-box; */
-}
+
 html{
   
   background-image: url("../assets/img/prism2.png");
@@ -344,11 +342,11 @@ font-size: 25px;
     .topnav h1{font-size: 24px;}
   }
 
-#user{
-  position: relative;
-  top: 0px;
-  right: -40%;
-}
+  #user{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
 
   #lout {
     margin-bottom: 0px !important;

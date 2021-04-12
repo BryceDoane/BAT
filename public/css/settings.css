@@ -251,7 +251,11 @@ font-size: 25px;
     color: black;
     background-color: transparent;
   }
-
+  #user{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
   #myBtn, .settings button{
     display: inline-block;
     width:20%;

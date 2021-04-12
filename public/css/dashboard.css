@@ -770,7 +770,7 @@ a.active{
  
 } 
 #user{
-  position: relative;
-  top: 0px;
-  right: -75%;
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
