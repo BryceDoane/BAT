@@ -247,6 +247,7 @@ select{
   th {
     border: 2px solid #000000;
     font-size: 18px;
+    color: #4266cb;
     /* background-color: #6f42c1; */
   }
 
@@ -259,6 +260,8 @@ select{
     border: 2px solid #000000;
     background-color: #bdbdbd;
     font-size: 18px;
+    color: black;
+    padding: 15px;
   }
   a.active{
     background:#6f42c1;
