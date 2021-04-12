@@ -344,10 +344,11 @@ font-size: 25px;
     .topnav h1{font-size: 24px;}
   }
 
-  /* #linu{
-    background-color: lightgrey;
-    font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-  } */
+#user{
+  position: relative;
+  top: 0px;
+  right: -40%;
+}
 
   #lout {
     margin-bottom: 0px !important;

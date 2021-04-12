@@ -769,3 +769,8 @@ a.active{
   margin-right: 100px;
  
 } 
+#user{
+  position: relative;
+  top: 0px;
+  right: -75%;
+}

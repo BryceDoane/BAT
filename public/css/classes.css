@@ -364,6 +364,11 @@ select{
     background:#6f42c1;
     color:#ffffff;
   }
+  #user{
+    position: relative;
+    top: 0px;
+    right: -70%;
+  }
   /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
   color: #000000;

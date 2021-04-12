@@ -13,7 +13,11 @@ html{
   margin-left: 2%;
   background-color: transparent;
 }
-
+#user{
+  position: relative;
+  top: 0px;
+  right: -120%;
+}
   body{
     /* background-image: url("../assets/img/prism2.png"); */
       color:#6f42c1;
