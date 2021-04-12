@@ -23,6 +23,7 @@ var firebaseConfig = {
   //current date script by Lance on StackOverflow
   
   // import { content, content2 } from "./dashboard.js";
+
   var uid;
   var userEmail;
   var schoolName;
@@ -265,11 +266,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
             // });
           });
           // console.log(tasksP);
-
-          if(tasksP != ""){
-            drawTableR(temp3, students, tasksP);
-          }
-          
+          drawTableR(temp3, students, tasksP);
 
             for (var j = 0; j <= (students.length - 1); j++) {
               let newRow = node2.insertRow(-1);
@@ -487,8 +484,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
   });
 
   }
-  var logo = new Image();
-  logo.src = 'assets/img/logo.png';
+
   var downloadbtn = document.getElementById("clickMe");
   downloadbtn.onclick = function () {
     //alert("test");
@@ -499,13 +495,12 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
     doc.internal.scaleFactor = 2.25;
 
     //Adds todays date and title at top
-    doc.text(15, 20, 'Daily Report: ' + m + "/" + d + "/" + y);
+    doc.text(20, 20, 'Daily Report: ' + m + "/" + d + "/" + y);
+
     
-    //Adds the logo
-    doc.addImage(logo, 'PNG', 15, 30, 100, 50);
 
     //Pulls in all the tables that exist within "classNameLi" should be all tables.
-    doc.fromHTML(document.getElementById('classNameLi'), 15, 75, {width: 500});
+    doc.fromHTML(document.getElementById('classNameLi'), 15, 15, {width: 500});
     
 
     //saves the document in your downloads as daily report with today's date.

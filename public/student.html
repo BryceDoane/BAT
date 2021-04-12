@@ -124,7 +124,7 @@
             <span class="icon text-white-50">
                 <i class="fas fa-flag"></i>
             </span>
-            <span class="text">Add Edit or Remove Student </span>
+            <span class="text">Add or Remove Student </span>
         </a>
         <a id="addStuClassModal" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
@@ -144,6 +144,7 @@
         </table>
 
     </div>
+    
     <div id="studentModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -153,7 +154,6 @@
                 <hr id="hrmodal">
             </div>
             <div class="modal-body">
-                <p>Create a New Student (student ID must be unique)</p>
                 <form id="newStudentForm">
 
                     <input type="text" id="studentfName" placeholder="First Name">
@@ -165,19 +165,6 @@
                     <input type="text" id="studentNotes" placeholder="Notes">
                 </form>
                 <button value="Submit" onclick="newStudent()">Submit</button>
-                <p></p>
-                <p>Edit a Student (student ID can not be changed)</p>
-                <form id="editStudentForm">
-
-                    <input type="text" id="editfName" placeholder="First Name">
-
-                    <input type="text" id="editlName" placeholder="Last Name">
-
-                    <input type="text" id="editID" placeholder="ID Number">
-
-                    <input type="text" id="editNotes" placeholder="Notes">
-                </form>
-                <button value="Submit" onclick="editStudent()">Submit</button>
                 <hr id="hrmodal">
                 <form id="delStudentForm">
                     <p>Enter Student ID to delete</p>
@@ -213,6 +200,7 @@
             </div>
         </div>
     </div>
+
     </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
