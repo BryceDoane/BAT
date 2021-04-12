@@ -663,7 +663,6 @@ input:checked + .slider:before {
   }
 
   #linu{
-    background-color: lightgrey;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
   }

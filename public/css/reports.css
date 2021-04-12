@@ -182,7 +182,7 @@ select{
   }
   /*-----------------------------------------------------*/
   #linu{ /*Top button with account name*/
-    background-color: lightgrey;
+
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
     text-transform: lowercase;
