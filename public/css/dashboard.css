@@ -655,7 +655,6 @@ input:checked + .slider:before {
   }
 
   #linu{
-    background-color: lightgrey;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
   }
@@ -724,3 +723,48 @@ a.active{
   background-color: #b3a5d9;
   cursor: pointer;
 }
+<<<<<<< HEAD
+=======
+
+.table .tr .th .td{
+  background-color: blue;
+}
+
+#studentModal button{
+  margin-top: 30px;
+}
+#addStuClass button{
+  margin-top: 10px;
+}
+
+#addStuClass select{
+  size: 50px;
+  margin-bottom:50px;
+}
+#wrapper{
+  height: 1100px;
+  width: 100%;
+  margin-right: 100px;
+
+}
+
+.sidenav a {
+  padding: 10px 16px 16px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  background-color: rgba(255, 253, 253, 0.2);
+  display: block;
+}
+
+#page-top{
+  align-content: left;
+  margin-right: 100px;
+ 
+} 
+#user{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+>>>>>>> dev

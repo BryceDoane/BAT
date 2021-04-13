@@ -213,7 +213,7 @@ font-size: 25px;
 
   .settings div{
     color: black;
-    background-color: transparent;
+    
   }
 
   .settings p{
@@ -250,7 +250,11 @@ font-size: 25px;
     color: black;
     background-color: transparent;
   }
-
+  #user{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
   #myBtn, .settings button{
     display: inline-block;
     width:20%;
@@ -287,7 +291,7 @@ border-radius: 20px;
   }
 
   #linu{
-    background-color: lightgrey;
+  
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
   }
@@ -356,17 +360,18 @@ border-radius: 20px;
     cursor: pointer;
   }
   form, #sign{
-    background-color: #aa8be4;
-    color: white;
-    border: round;
-    border-radius: 10px;
-    border-color: rgb(152, 131, 170);
-    border-width: 6px;
+    background-color: #f8f8f8;
+    color: black;
+    padding-top: 10px;
+    /* border: round;
+    border-radius: 10px; */
+    /* border-color: rgb(67, 32, 223);
+    border-width: 6px; */
     align-content: center;
     width: 80%;
     margin: auto;
-    border-style: solid;
-    border-spacing: 10px;
+    border: 1px;
+    border-radius: 1%;
     text-align: center;
     
   }

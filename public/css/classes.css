@@ -213,7 +213,7 @@ select{
   }
   /*-----------------------------------------------------*/
   #linu{ /*Top button with account name*/
-    background-color: lightgrey;
+
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
     text-transform: lowercase;
@@ -358,6 +358,11 @@ select{
   a.active{
     background:#6f42c1;
     color:#ffffff;
+  }
+  #user{
+    position: absolute;
+    top: 15px;
+    right: 15px;
   }
   /* When you mouse over the navigation links, change their color */
 .sidenav a:hover, .sidenav a:focus, .sidenav a:active {
