@@ -8,12 +8,13 @@ html{
 }
 
 body{
-  background-image: url("../assets/img/prism2.png");
-    color:2#6f42c1;
+  /* background-image: url("../assets/img/prism2.png"); */
+    color:#6f42c1;
     line-height:1.6;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-    padding:1em;
+    padding-right: 1%;
     background-image: url("../assets/img/prism2.png");
+
 }
 /* The Modal (background) */
 .modal {
@@ -65,9 +66,9 @@ select{
   width: 30%; /* Could be more or less, depending on screen size */
 }
 .modal-content button {
-  background-color: lightgreen;
+  background-color: rgb(40, 199, 40);
   border-radius: 20px;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 15px;
   margin-left: 2%;
   height: 30px;
@@ -75,9 +76,9 @@ select{
   box-shadow: 1px 1px grey;
 }
 .modal-content .deletebtn {
-  background-color: rgb(209, 72, 44)!important;
+  background-color: rgb(250, 83, 83)!important;
   border-radius: 20px;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 15px;
   margin-left: 2%;
   height: 30px;
@@ -378,8 +379,10 @@ select{
 
   /* STUDENTS */
   .students {
-    margin-left: 15%; /* Same as the width of the sidebar */
-    margin-top: 100px;
+    margin-left: 2%; /* Same as the width of the sidebar */
+    margin-top: 10px;
+    width:100%;
+
     background-color: transparent;
   }
 
@@ -399,7 +402,7 @@ select{
   #studentNameLi th{
     color: black;
     background-color: grey;
-    border-radius: 10PX;;
+  
   }
   .thID{
     width: 10%;
@@ -413,18 +416,23 @@ select{
   .thIDD{
     width: 10%;
   }
-  #studentNameLi td{
+  #studentNameLi td {
     text-align: center;
     background-color: lightgrey;
-    border-radius: 5PX;;
+    border-radius: 5PX;
+    color: black;
   }
-
+  #studentNameLi th{
+color: white;
+  background-color: rgb(129, 135, 224);
+  text-align: center;
+}
   #myBtn, .students button{
     display: inline-block;
     width:40%;
     margin-left: 100px;
     padding: 1em;
-    border: 1px solid #6f42c1;
+    border: 1px solid #6b23f0;
     background:#c9e6ff;
     border:0;
     margin-top: 10px;
@@ -655,7 +663,6 @@ input:checked + .slider:before {
   }
 
   #linu{
-    background-color: lightgrey;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
   }
@@ -723,4 +730,46 @@ a.active{
   color: #000000;
   background-color: #b3a5d9;
   cursor: pointer;
+}
+
+.table .tr .th .td{
+  background-color: blue;
+}
+
+#studentModal button{
+  margin-top: 30px;
+}
+#addStuClass button{
+  margin-top: 10px;
+}
+
+#addStuClass select{
+  size: 50px;
+  margin-bottom:50px;
+}
+#wrapper{
+  height: 1100px;
+  width: 100%;
+  margin-right: 100px;
+
+}
+
+.sidenav a {
+  padding: 10px 16px 16px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  background-color: rgba(255, 253, 253, 0.2);
+  display: block;
+}
+
+#page-top{
+  align-content: left;
+  margin-right: 100px;
+ 
+} 
+#user{
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
