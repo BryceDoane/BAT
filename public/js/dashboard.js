@@ -281,7 +281,9 @@ var geo;
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
+        vAxis: {minValue: 0}
       },
+      
         // leave room for y-axis labels
  width: 450,
       slices: {
@@ -481,11 +483,13 @@ else{
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
+    
       },
       chartArea: {
         // leave room for y-axis labels
         width: '90%'
       },
+      vAxis: {minValue: 0}
     };
    
 
@@ -544,10 +548,12 @@ else{
       , titleTextStyle: {
         color: 'black',
         fontSize: 20,
+  
       },
+      
       legend: 'none',
       colors: ['green', 'red'],
-
+     
     };
 
 
