@@ -136,7 +136,7 @@ var dataFail;
 
 
 
-finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
+finalDate = "Apr 08 2021"
 
                
                for (var j = 1; j < taskNumber + 1; j++) {
