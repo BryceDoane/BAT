@@ -1,3 +1,7 @@
+* {
+    /* background-color: aliceblue; */
+    box-sizing: border-box;
+}
 html{
   
   background-image: url("../assets/img/prism2.png");
@@ -5,23 +9,17 @@ html{
 
 .dashboard {
     
-  padding-top: 1%;
-  margin-left: 2%;
-  width: 100%;
-  background-color: transparent;
-}
-#user{
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
+    margin-left: 15%; /* Same as the width of the sidebar */
+    margin-top: 100px;
+    background-color: transparent;
+  }
+
 body{
-  /* background-image: url("../assets/img/prism2.png"); */
-    color:#6f42c1;
+  background-image: url("../assets/img/prism2.png");
+    color:2#6f42c1;
     line-height:1.6;
-    width: 100% !important;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
-    padding-right: 1%;
+    padding:1em;
     background-image: url("../assets/img/prism2.png");
 }
 /* The Modal (background) */
@@ -228,7 +226,7 @@ select{
   }
   /*-----------------------------------------------------*/
   #linu{ /*Top button with account name*/
-
+    background-color: lightgrey;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
     text-transform: lowercase;
@@ -293,7 +291,6 @@ select{
   th {
     border: 2px solid #000000;
     font-size: 18px;
-    color: #4266cb;
     /* background-color: #6f42c1; */
   }
 
@@ -306,8 +303,6 @@ select{
     border: 2px solid #000000;
     background-color: #bdbdbd;
     font-size: 18px;
-    color: black;
-    padding: 15px;
   }
   a.active{
     background:#6f42c1;

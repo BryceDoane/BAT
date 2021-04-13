@@ -113,37 +113,6 @@ function newStudent() {
 
 }
 
-//Takes in student name from modal form
-function editStudent() {
-  var dCheck = true;
-  var studentfName = document.getElementById("editfName").value;
-  var studentlName = document.getElementById("editlName").value;
-  var studentID = document.getElementById("editID").value;
-  var studentNotes = document.getElementById("editNotes").value;
-  studentModal.style.display = "none";
-  firebase.database().ref('Schools/' + userSchool + "/students/")
-  
-
-  if(studentID == ""){
-    alert("Must enter the student's ID to edit their information");
-    location.reload();
-  }else{
-    if(studentfName==""){
-      firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/studentFName").on("value",function (snapshot) { studentfName = snapshot.val()} );
-    }
-    if(studentlName==""){
-      firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/studentLName").on("value",function (snapshot) { studentlName = snapshot.val()} );
-    }
-    if (dCheck == true) {
-      firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentFName: studentfName, studentLName: studentlName, studentID: studentID, notes: studentNotes });
-      location.reload();
-      
-    }
-  }
- 
-
-}
-
 // //Delete Student model
 // deleteClassBtn.addEventListener('click', delStudent());
 

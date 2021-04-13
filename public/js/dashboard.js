@@ -281,13 +281,16 @@ var geo;
   //   addRowsC();
   
     var options1 = {
-      pieHole: 0.5,
+      title: 'Total Ratings',
+      pieHole: 0.4,
       titleTextStyle: {
         color: 'black',
         fontSize: 20,
       },
+      chartArea: {
         // leave room for y-axis labels
- width: 450,
+        width: '90%'
+      },
       slices: {
         1: { color: '#0066ff' },
         2: { color: 'green' },
@@ -487,11 +490,10 @@ else{
         color: 'black',
         fontSize: 20,
       },
-      chartArea: {
-        // leave room for y-axis labels
-        width: '90%'
-      },
-      vAxis: {minValue: 0}
+      // chartArea: {
+      //   // leave room for y-axis labels
+      //   width: '60%'
+      // },
     };
    
 
@@ -550,7 +552,6 @@ else{
       , titleTextStyle: {
         color: 'black',
         fontSize: 20,
-
       },
       legend: 'none',
       colors: ['green', 'red'],

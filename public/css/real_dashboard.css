@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 html{
   
   background-image: url("../assets/img/prism2.png");
@@ -394,17 +397,10 @@ font-size: 25px;
     .topnav h1{font-size: 24px;}
   }
 
-<<<<<<< HEAD
   #linu{
     background-color: lightgrey;
     font-family: 'Segoe UI', Tahoma, Verdana, san-serif;
     padding-right: 10px;
-=======
-  #user{
-    position: absolute;
-    top: 15px;
-    right: 15px;
->>>>>>> dev
   }
 
   #lout {

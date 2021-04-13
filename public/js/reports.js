@@ -11,6 +11,8 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
+
   //const analytics = firebase.analytics();
   
   var n = new Date();
@@ -133,7 +135,7 @@ var intRating;
 
 
 
-finalDate = "Apr 08 2021"
+finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
 
                
                  
@@ -247,13 +249,7 @@ finalDate = "Apr 08 2021"
             // });
           });
           // console.log(tasksP);
-<<<<<<< HEAD
           drawTableR(temp3, students, tasksP);
-=======
-          if(tasksP != ""){
-            drawTableR(temp3, students, tasksP);
-          }
->>>>>>> dev
 
             for (var j = 0; j <= (students.length - 1); j++) {
               let newRow = node2.insertRow(-1);
@@ -472,11 +468,6 @@ finalDate = "Apr 08 2021"
 
   }
 
-<<<<<<< HEAD
-=======
-  var logo = new Image();
-  logo.src = 'assets/img/logo.png';
->>>>>>> dev
   var downloadbtn = document.getElementById("clickMe");
   downloadbtn.onclick = function () {
     //alert("test");
@@ -487,16 +478,8 @@ finalDate = "Apr 08 2021"
     doc.internal.scaleFactor = 2.25;
 
     //Adds todays date and title at top
-<<<<<<< HEAD
     doc.text(20, 20, 'Daily Report: ' + m + "/" + d + "/" + y);
 
-=======
-    doc.text(15, 20, 'Daily Report: ' + m + "/" + d + "/" + y);
-
-    //Adds logo
-    doc.addImage(logo, 'PNG', 15, 30, 100, 50);
-    
->>>>>>> dev
     
 
     //Pulls in all the tables that exist within "classNameLi" should be all tables.
