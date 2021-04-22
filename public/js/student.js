@@ -18,6 +18,31 @@ var opt;
 firebase.initializeApp(firebaseConfig);
 //const analytics = firebase.analytics();
 
+var date;
+
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  n = new Date();
+  y = n.getFullYear();
+  m = n.getMonth();
+  m1 = monthNames[m];
+  d1 = n.getDate();
+  d = weekday[n.getDay()];
+  document.getElementById("date").innerHTML = d + ", " + m1 + " " + d1 + ", " + y;
+  date = d + ", " + m1 + " " + d1 + ", " + y;
+  //current date script by Lance on StackOverflow
+
 // Get the modal
 var studentModal = document.getElementById("studentModal");
 //var delStudentModel = document.getElementById("delStudentModel");

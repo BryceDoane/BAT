@@ -13,12 +13,6 @@ var firebaseConfig = {
 
   //const analytics = firebase.analytics();
   
-  var n = new Date();
-  var y = n.getFullYear();
-  var m = n.getMonth() + 1;
-  var d = n.getDate();
-  document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
-  //current date script by Lance on StackOverflow
   
   // import { content, content2 } from "./dashboard.js";
 
@@ -40,7 +34,35 @@ var firebaseConfig = {
   var dTable;
   var cumul = 0;
   var classCount = 0;
+
   var date;
+
+  var todaysDate;
+
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  var n = new Date();
+  var y = n.getFullYear();
+  var m = n.getMonth();
+  var m1 = monthNames[m];
+  var d1 = n.getDate();
+  var d = weekday[n.getDay()];
+  document.getElementById("date").innerHTML = d + ", " + m1 + " " + d1 + ", " + y;
+  todaysDate = d + ", " + m1 + " " + d1 + ", " + y;
+  console.log(todaysDate);
+  //current date script by Lance on StackOverflow
+
 
 
   var reportModal = document.getElementById("reportModal");
