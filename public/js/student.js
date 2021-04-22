@@ -132,6 +132,9 @@ function newStudent() {
   console.log(dCheck);
   if (dCheck == true) {
     firebase.database().ref('Schools/' + userSchool + "/students/" + studentID + "/").set({ studentFName: studentfName, studentLName: studentlName, studentID: studentID, notes: studentNotes });
+    // var temp = document.getElementById("addtitle");
+    // temp.value= studentfName + "added to database";
+    // document.getElementById("newStudentForm").reset();
     location.reload();
     //studentID = null;
   }
@@ -185,11 +188,8 @@ function delStudent() {
       }
     });
   });
-  //get student studentFName+studentLName and combine as one string
-  //forEach to search each class in classes
-  //if the student full name is found in classes, delete it and all children
-  var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentDID + "/");
-  delStudRef.remove();
+  var delStudRef = firebase.database().ref('Schools/' + userSchool + "/students/" + studentDID + "/"); //find student in database
+  delStudRef.remove(); //delete student itself
   studentModal.style.display = "none";
   location.reload();
   
