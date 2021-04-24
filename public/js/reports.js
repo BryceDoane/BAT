@@ -237,17 +237,43 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
             node.appendChild(textNode);
             // document.getElementById("classNameLi").appendChild(node)
             var tablenode = document.createElement('div');
+            var widthNode = document.createElement('div');
+            widthNode.setAttribute('class', 'd-flex p-2');
+
+            var cardNode = document.createElement('div');
+            cardNode.setAttribute("class", "card shadow mb-4");
+
+            var cardheadDiv = document.createElement('div');
+            cardheadDiv.setAttribute("class", "card-header py-3");
+
+            var tableHeadDiv = document.createElement("h6");
+            tableHeadDiv.appendChild(textNode);
+            cardheadDiv.appendChild(tableHeadDiv);
+
+            cardNode.appendChild(cardheadDiv);
+
+            var cardBodyNode = document.createElement("div");
+            cardBodyNode.setAttribute("class", "card-body");
+            cardBodyNode.appendChild(tablenode);
+
+            cardNode.appendChild(cardBodyNode);
+            widthNode.appendChild(cardNode);
+            console.log(widthNode);
+
             var textNode2 = document.createTextNode(temp3);
             tablenode.setAttribute("id", temp3);
             node2.setAttribute("id", temp3 + "1");
-            document.getElementById("classNameLi").appendChild(textNode2);
-            document.getElementById("classNameLi").appendChild(tablenode);
+            // document.getElementById("classNameLi").appendChild(textNode2);
+
+            document.getElementById("classNameLi").appendChild(widthNode);
 
             document.getElementById('reportEnter').appendChild(node2);
             node.setAttribute("class", "reportEntry");
 
-            tablenode.setAttribute("class", "reportChart");
+            tablenode.setAttribute("class", "charts");
+
             dTable = tablenode;
+
   
             let newRow = node2.insertRow(-1);
             let newCell = newRow.insertCell(0);
