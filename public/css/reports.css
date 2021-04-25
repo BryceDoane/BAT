@@ -329,4 +329,13 @@ select{
     background-color: beige;
   }
 
+  img {  
+    max-width: 100%;  
+    height: 20px;  
+  margin:1%;
+    } 
+
+    .ClassesIcon{
+      margin-bottom: 10px;
+      }
  
