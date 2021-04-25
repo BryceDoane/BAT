@@ -277,9 +277,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 ;
 
       //Modal Tasks in Class List 
-   var pNode = document.createElement('p');
+   var pNode = document.createElement('table');
    document.getElementById('classTaskDetails').appendChild(pNode);
-   var taskElementList = document.createElement('p');
+   var taskElementList = document.createElement('li');
    taskElementList.classList.add("CardTaskList");
    var textNode3 = document.createTextNode(childData.taskName); 
    //console.log(taskList); //log

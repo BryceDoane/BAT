@@ -409,6 +409,33 @@ h2{
   color: white
 
 }
+#studentsLi{
+  margin-right:100px;
+  padding-right:100px;
+  align-content: center;
+  max-width: 92%;
+  color:black
+}
 
-
-
+table{
+  color: black;
+  background-color: white;
+  align-content: center;
+}
+th{
+  color:white
+}
+h2{
+  color: black;
+}
+h3{
+  color: black;
+}
+ul{
+  align-content: center;
+}
+img {  
+  max-width: 100%;  
+  height: 20px;  
+margin:1%
+  } 
