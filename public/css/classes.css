@@ -64,7 +64,16 @@ select{
 .modal-header{
   margin: 0px;
   background-color: white;
+
+  /* background-color: #fefefe; */
+  margin: 8% auto; /* 15% from the top and centered */
+  
+
+
 }
+
+  
+
 .modal-content {
   background-color: white;
   /* background-color: #fefefe; */
@@ -393,11 +402,7 @@ padding: right 10px;
   align-content: center;
   width:50%;
 }
-h2{
-  text-align: center;
 
-
-}
 #addClass, #addTask {
   align-content: center;
   margin-top: 30px;
@@ -427,6 +432,8 @@ th{
 }
 h2{
   color: black;
+  text-align: center;
+ 
 }
 h3{
   color: black;
