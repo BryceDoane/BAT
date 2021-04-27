@@ -64,7 +64,16 @@ select{
 .modal-header{
   margin: 0px;
   background-color: white;
-}
+
+ 
+  align-content: center;
+
+  /* background-color: #fefefe; */
+   /* 15% from the top and centered */
+  }
+
+  
+
 .modal-content {
   background-color: white;
   /* background-color: #fefefe; */
@@ -427,6 +436,9 @@ th{
 }
 h2{
   color: black;
+padding-right: auto;
+  
+ 
 }
 h3{
   color: black;
@@ -443,3 +455,5 @@ margin:1%;
   .ClassesIcon{
 margin-bottom: 10px;
 }
+
+

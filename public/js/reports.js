@@ -545,7 +545,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
     doc.internal.scaleFactor = 2.25;
 
     //Adds todays date and title at top
-    doc.text(15, 20, 'Daily Report: ' + m + "/" + d + "/" + y);
+    doc.text(20, 20, 'Daily Report: ' + m + "/" + d1 + "/" + y);
 
     //Adds logo
     doc.addImage(logo, 'PNG', 15, 30, 100, 50);
@@ -557,7 +557,7 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
     
 
     //saves the document in your downloads as daily report with today's date.
-    doc.save('Daily Report: '+ m + "/" + d + "/" + y + '.pdf'); 
+    doc.save('Daily Report: '+ m + "/" + d1 + "/" + y + '.pdf'); 
 
 
     // doc.addImage(content2, 'PNG', 10, 20, 100, 50);
