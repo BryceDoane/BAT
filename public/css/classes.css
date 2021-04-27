@@ -65,12 +65,12 @@ select{
   margin: 0px;
   background-color: white;
 
+ 
+  align-content: center;
+
   /* background-color: #fefefe; */
-  margin: 8% auto; /* 15% from the top and centered */
-  
-
-
-}
+   /* 15% from the top and centered */
+  }
 
   
 
@@ -432,7 +432,8 @@ th{
 }
 h2{
   color: black;
-  text-align: center;
+padding-right: auto;
+  
  
 }
 h3{
@@ -450,3 +451,5 @@ margin:1%;
   .ClassesIcon{
 margin-bottom: 10px;
 }
+
+
