@@ -42,6 +42,7 @@ function submitForm(e){
   
   saveMessage(fname,email, school, password);
 
+  window.location.href = "https://behavv.com/login.html";
   
 }
 

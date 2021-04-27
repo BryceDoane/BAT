@@ -13,102 +13,102 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body id="page-top">
-<div id="wrapper">
-
-    <!-- <div class="sidenav" id="sidenav"> -->
-         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <div id="wrapper">
+        
+        <!-- <div class="sidenav" id="sidenav"> -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
            
  
-             <!-- Sidebar - Brand -->
-             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                 <div class="sidebar-brand-icon rotate-n-15">
-                     <i class="fas fa-laugh-wink"></i>
-                 </div>
-                 <div class="sidebar-brand-text mx-3">Behavv</div>
-             </a>
- 
-             <!-- Divider -->
-             <hr class="sidebar-divider my-0">
- 
-             <!-- Nav Item - Dashboard -->
-             <li class="nav-item">
-                 <a class="nav-link" href="dashboard.html">
-                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                     <span>Dashboard</span></a>
-             </li>
- 
-             <!-- Divider -->
-             <hr class="sidebar-divider">
- 
-             <!-- Heading -->
-             <div class="sidebar-heading">
-                 Reports
-             </div>
- 
-             <!-- Nav Item - Utilities Collapse Menu -->
-             <li class="nav-item">
-                 <a class="nav-link collapsed" href="reports.html" >
-                   
-                     <span>Reports</span>
-                 </a>
- 
-             </li>
- 
-             <!-- Divider -->
-             <hr class="sidebar-divider">
- 
-             <!-- Heading -->
-             <div class="sidebar-heading">
-                 Manage
-             </div>
- 
-             <!-- Nav Item - Pages Collapse Menu -->
-             <li class="nav-item">
-                 <a class="nav-link collapsed" href="class.html" >
-             
-                     <span>Classes</span>
-                 </a>
-             </li>
-             <li class="nav-item active">
-                 <a class="nav-link collapsed" href="student.html" >
-                    
-                     <span>Students</span>
-                 </a>
-             </li>
- 
-             <!-- Divider -->
-             <hr class="sidebar-divider d-none d-md-block">
-             <div class="sidebar-heading">
-                 Account
-             </div>
- 
-             <!-- Nav Item - Pages Collapse Menu -->
-             <li class="nav-item">
-                 <a class="nav-link collapsed" href="accountsettings.html" >
-                    
-                     <span>Settings</span>
-                 </a>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link collapsed" href="class.html" id="lout">
-                
-                 <span>Logout</span>
-             </a>
-             </li>
- 
- 
-         </ul>
-
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-laugh-wink"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">Behavv</div>
+                </a>
+    
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+    
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">
+                        <img src="assets/img/Dash.png">
+                        <span>Dashboard</span></a>
+                </li>
+    
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+    
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Reports
+                </div>
+    
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="reports.html" >
+                        <img src="assets/img/ReportIcon.png" >
+                        <span>Reports</span>
+                    </a>
+    
+                </li>
+    
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+    
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Manage
+                </div>
+    
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="class.html" >
+                        <img src="assets/img/ClassesIcon.png" class="ClassesIcon">
+                        <span>Classes</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link collapsed" href="student.html" >
+                        <img src="assets/img/StudentsIcon.png" >
+                        <span>Students</span>
+                    </a>
+                </li>
+    
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+                <div class="sidebar-heading">
+                    Account
+                </div>
+    
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="accountsettings.html" >
+                        <img src="assets/img/AccSettingsIcon.png" >
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="class.html" id="lout">
+                        <img src="assets/img/LogoutIcon.png" >
+                    <span>Logout</span>
+                </a>
+                </li>
+    
+    
+            </ul>
  
     <!-- Page content -->
     <div class="students">
         <div class="row">
             <h2 class="h2 mb-0 text-gray-900">Students |</h2> 
+            <h2 class="h2 mb-0 text-gray-600" id="date"></h2>
         <div class="topbar-divider d-none d-sm-block"></div>
         <a href="accountsettings.html" class="btn btn-info btn-icon-split" id="user">
                     <span class="icon text-white-50">
                 <img class="img-profile rounded-circle"
-                src="assets/img/undraw_profile.svg">
+                src="assets/img/UserIcon2.png">
             </span>
             <span class="text" id="linu"></span>
         </a>
@@ -150,6 +150,7 @@
                 <hr id="hrmodal">
             </div>
             <div class="modal-body">
+                <p id="addtitle"></p>
                 <form id="newStudentForm">
                     <p>Create a New Student (ID must be unique)</p>
 
@@ -162,6 +163,7 @@
                     <input type="text" id="studentNotes" placeholder="Notes">
                 </form>
                 <button value="Submit" onclick="newStudent()">Submit</button>
+                
                 <p></p>
                 <form id="editStudentForm">
                     <p>Edit Student (ID can not be changed)</p>

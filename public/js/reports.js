@@ -15,12 +15,6 @@ var firebaseConfig = {
 
   //const analytics = firebase.analytics();
   
-  var n = new Date();
-  var y = n.getFullYear();
-  var m = n.getMonth() + 1;
-  var d = n.getDate();
-  document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
-  //current date script by Lance on StackOverflow
   
   // import { content, content2 } from "./dashboard.js";
 
@@ -42,7 +36,35 @@ var firebaseConfig = {
   var dTable;
   var cumul = 0;
   var classCount = 0;
+
   var date;
+
+  var todaysDate;
+
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  var n = new Date();
+  var y = n.getFullYear();
+  var m = n.getMonth();
+  var m1 = monthNames[m];
+  var d1 = n.getDate();
+  var d = weekday[n.getDay()];
+  document.getElementById("date").innerHTML = d + ", " + m1 + " " + d1 + ", " + y;
+  todaysDate = d + ", " + m1 + " " + d1 + ", " + y;
+  console.log(todaysDate);
+  //current date script by Lance on StackOverflow
+
 
 
   var reportModal = document.getElementById("reportModal");
@@ -200,17 +222,43 @@ finalDate = mydate.toDateString().split(' ').slice(1).join(' ');
             node.appendChild(textNode);
             // document.getElementById("classNameLi").appendChild(node)
             var tablenode = document.createElement('div');
+            var widthNode = document.createElement('div');
+            widthNode.setAttribute('class', 'd-flex p-2');
+
+            var cardNode = document.createElement('div');
+            cardNode.setAttribute("class", "card shadow mb-4");
+
+            var cardheadDiv = document.createElement('div');
+            cardheadDiv.setAttribute("class", "card-header py-3");
+
+            var tableHeadDiv = document.createElement("h6");
+            tableHeadDiv.appendChild(textNode);
+            cardheadDiv.appendChild(tableHeadDiv);
+
+            cardNode.appendChild(cardheadDiv);
+
+            var cardBodyNode = document.createElement("div");
+            cardBodyNode.setAttribute("class", "card-body");
+            cardBodyNode.appendChild(tablenode);
+
+            cardNode.appendChild(cardBodyNode);
+            widthNode.appendChild(cardNode);
+            console.log(widthNode);
+
             var textNode2 = document.createTextNode(temp3);
             tablenode.setAttribute("id", temp3);
             node2.setAttribute("id", temp3 + "1");
-            document.getElementById("classNameLi").appendChild(textNode2);
-            document.getElementById("classNameLi").appendChild(tablenode);
+            // document.getElementById("classNameLi").appendChild(textNode2);
+
+            document.getElementById("classNameLi").appendChild(widthNode);
 
             document.getElementById('reportEnter').appendChild(node2);
             node.setAttribute("class", "reportEntry");
 
-            tablenode.setAttribute("class", "reportChart");
+            tablenode.setAttribute("class", "charts");
+
             dTable = tablenode;
+
   
             let newRow = node2.insertRow(-1);
             let newCell = newRow.insertCell(0);

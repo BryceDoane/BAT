@@ -34,7 +34,7 @@
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
                     <a class="nav-link" href="dashboard.html">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <img src="assets/img/Dash.png">
                         <span>Dashboard</span></a>
                 </li>
     
@@ -49,7 +49,7 @@
                 <!-- Nav Item - Utilities Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="reports.html" >
-                      
+                        <img src="assets/img/ReportIcon.png" >
                         <span>Reports</span>
                     </a>
     
@@ -66,13 +66,13 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item active">
                     <a class="nav-link collapsed" href="class.html" >
-                
+                        <img src="assets/img/ClassesIcon.png" class="ClassesIcon">
                         <span>Classes</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="student.html" >
-                       
+                        <img src="assets/img/StudentsIcon.png" >
                         <span>Students</span>
                     </a>
                 </li>
@@ -86,13 +86,13 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="accountsettings.html" >
-                       
+                        <img src="assets/img/AccSettingsIcon.png" >
                         <span>Settings</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="class.html" id="lout">
-                   
+                        <img src="assets/img/LogoutIcon.png" >
                     <span>Logout</span>
                 </a>
                 </li>
@@ -103,11 +103,12 @@
     <div class="classes">
         <div class="row">
             <h2 class="h2 mb-0 text-gray-900">Classes |</h2> 
+            <h2 class="h2 mb-0 text-gray-600" id="date"></h2>
         <div class="topbar-divider d-none d-sm-block"></div>
         <a href="accountsettings.html" class="btn btn-info btn-icon-split" id="user">
                     <span class="icon text-white-50">
                 <img class="img-profile rounded-circle"
-                src="assets/img/undraw_profile.svg">
+                src="assets/img/UserIcon2.png">
             </span>
             <span class="text" id="linu"></span>
         </a>
@@ -138,19 +139,20 @@
                 <h2 id="classNameDisplay"></h2>
                 <hr>
             </div>
-            <h3>Tasks</h3>
-            
-            <div class="modal-body" id="classTaskDetails">
-                <!-- JS inserts information here -->
-            </div>
-            <hr><h3>Students</h3>
+            <h3>Students</h3>
             <div class="modal-body" id="classStuDetails">
-                <table id="studentsLi">
+                <table class = "table  table-bordered" id="studentsLi">
                 <tr>
                 <th>Name</th>
                 </tr>
                 </table>
             </div>
+            <hr>
+            <h3>Tasks</h3>
+        <table></table><div class="modal-body" id="classTaskDetails">
+                <!-- JS inserts information here -->
+            </div>
+            <hr>
         </div>
             <div class="modal-body">
 
